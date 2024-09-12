@@ -1,0 +1,1217 @@
+<Measure xmlns="http://hl7.org/fhir">
+   <id value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-measure-cqfm"/>
+   </meta>
+   <contained>
+      <Library xmlns="http://hl7.org/fhir">
+         <id value="effective-data-requirements"/>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/administrative-gender"/>
+               <code value="M"/>
+               <display value="Male"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/administrative-gender"/>
+               <code value="F"/>
+               <display value="Female"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="254292007"/>
+               <display value="Tumor staging (tumor staging)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+               <code value="active"/>
+               <display value="Active"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+               <code value="recurrence"/>
+               <display value="Recurrence"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+               <code value="relapse"/>
+               <display value="Relapse"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/condition-ver-status"/>
+               <code value="confirmed"/>
+               <display value="Confirmed"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="1228889001"/>
+               <display value="American Joint Committee on Cancer cT1 (qualifier value)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="1228884006"/>
+               <display value="American Joint Committee on Cancer cTis (qualifier value)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="1228883000"/>
+               <display value="American Joint Committee on Cancer cTa (qualifier value)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/sid/icd-10-cm"/>
+               <code value="D09.0"/>
+               <display value="Carcinoma in situ of bladder"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+               <code value="VR"/>
+               <display value="virtual"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="169331000"/>
+               <display value="Combined radiotherapy (procedure)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="SupplementalDataElements"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Sex"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Sex&amp;quot;:   case     when Patient.gender = &amp;#39;male&amp;#39; then &amp;quot;M&amp;quot;     when Patient.gender = &amp;#39;female&amp;#39; then &amp;quot;F&amp;quot;     else null   end"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="0"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Sex"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Sex&amp;quot;:   SDE.&amp;quot;SDE Sex&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="1"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Bladder Cancer Diagnosis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Bladder Cancer Diagnosis&amp;quot;:   [Condition: &amp;quot;Bladder Cancer for Urology Care&amp;quot;] BladderCancer     where BladderCancer.prevalenceInterval ( ) starts before end of &amp;quot;Measurement Period&amp;quot;       and BladderCancer.isConfirmedActiveDiagnosis ( )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="2"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="First Bladder Cancer Staging Procedure"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;First Bladder Cancer Staging Procedure&amp;quot;:   First([Procedure: &amp;quot;Tumor staging (tumor staging)&amp;quot;] BladderCancerStaging       with &amp;quot;Bladder Cancer Diagnosis&amp;quot; BladderCancer         such that BladderCancerStaging.performed.toInterval() starts on or before day of start of BladderCancer.prevalenceInterval()       where BladderCancerStaging.status = &amp;#39;completed&amp;#39;       sort by start of performed.toInterval()   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="3"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="First BCG Administered"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;First BCG Administered&amp;quot;:   First([MedicationAdministration: &amp;quot;BCG Bacillus Calmette Guerin for Urology Care&amp;quot;] BCG       with &amp;quot;First Bladder Cancer Staging Procedure&amp;quot; FirstBladderCancerStaging         such that BCG.effective.toInterval() starts 6 months or less after start of FirstBladderCancerStaging.performed.toInterval()           and BCG.effective.toInterval() starts during &amp;quot;Measurement Period&amp;quot;       where BCG.status in { &amp;#39;in-progress&amp;#39;, &amp;#39;completed&amp;#39; }       sort by start of effective.toInterval()   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="4"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Numerator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Numerator&amp;quot;:   &amp;quot;First BCG Administered&amp;quot; is not null"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="5"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator Exception"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @commentedOut: exists &amp;quot;BCG Not Available Within 6 Months After Bladder Cancer Staging&amp;quot; @commentedOutReason: Negation issue related to https://github.com/cqframework/cql-execution/issues/296, which is tied to https://oncprojectracking.healthit.gov/support/browse/BONNIEMAT-1455. Due to this being the only logic in this population added &amp;#39;false&amp;#39; as a placeholder. */   define &amp;quot;Denominator Exception&amp;quot;:     //placeholder      false"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="6"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="July 1 of Year Prior to the Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;July 1 of Year Prior to the Measurement Period&amp;quot;:   DateTime((year from start of &amp;quot;Measurement Period&amp;quot; - 1), 7, 1, 0, 0, 0, 0, 0)"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="7"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="June 30 of the Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;June 30 of the Measurement Period&amp;quot;:   DateTime((year from start of &amp;quot;Measurement Period&amp;quot;), 6, 30, 23, 59, 59, 0, 0)"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="8"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="First Bladder Cancer Staging Procedure during 6 Months Prior to Measurement Period through the First 6 Months of Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;First Bladder Cancer Staging Procedure during 6 Months Prior to Measurement Period through the First 6 Months of Measurement Period&amp;quot;:   &amp;quot;First Bladder Cancer Staging Procedure&amp;quot; FirstBladderCancerStaging     where FirstBladderCancerStaging.performed.toInterval ( ) during day of Interval[&amp;quot;July 1 of Year Prior to the Measurement Period&amp;quot;, &amp;quot;June 30 of the Measurement Period&amp;quot;]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="9"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Most Recent Bladder Cancer Tumor Staging is Ta HG, Tis, T1"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/*Ta High Grade only to be included.  Ta low grade is to be excluded from this measure.*/   define &amp;quot;Has Most Recent Bladder Cancer Tumor Staging is Ta HG, Tis, T1&amp;quot;:   exists ( [Observation] StagingObservation       where StagingObservation.getStagingProcedure ( ) is not null         and ( StagingObservation.value as Concept ~ &amp;quot;American Joint Committee on Cancer cT1 (qualifier value)&amp;quot;             or StagingObservation.value as Concept ~ &amp;quot;American Joint Committee on Cancer cTis (qualifier value)&amp;quot;             or StagingObservation.value as Concept ~ &amp;quot;American Joint Committee on Cancer cTa (qualifier value)&amp;quot;             or StagingObservation.value as Concept ~ &amp;quot;Carcinoma in situ of bladder&amp;quot;         )         and StagingObservation.status in { &amp;#39;final&amp;#39;, &amp;#39;amended&amp;#39;, &amp;#39;corrected&amp;#39; }   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="10"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Qualifying Encounter"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Qualifying Encounter&amp;quot;:   exists ( [Encounter: &amp;quot;Office Visit&amp;quot;] ValidEncounter       where ValidEncounter.period during &amp;quot;Measurement Period&amp;quot;         and ValidEncounter.class !~ &amp;quot;virtual&amp;quot;         and ValidEncounter.status = &amp;#39;finished&amp;#39;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="11"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Initial Population"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Initial Population&amp;quot;:   &amp;quot;Has Most Recent Bladder Cancer Tumor Staging is Ta HG, Tis, T1&amp;quot;     and &amp;quot;Has Qualifying Encounter&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="12"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator&amp;quot;:   &amp;quot;Initial Population&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="13"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="SupplementalDataElements"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Payer"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Payer&amp;quot;:   [Coverage: type in &amp;quot;Payer Type&amp;quot;] Payer     return {       code: Payer.type,       period: Payer.period     }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="14"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Payer"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Payer&amp;quot;:   SDE.&amp;quot;SDE Payer&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="15"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="SupplementalDataElements"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Ethnicity"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Ethnicity&amp;quot;:   Patient.ethnicity E     return Tuple {       codes: { E.ombCategory } union E.detailed,       display: E.text     }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="16"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Ethnicity"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Ethnicity&amp;quot;:   SDE.&amp;quot;SDE Ethnicity&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="17"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Acute Tuberculosis Diagnosis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Acute Tuberculosis Diagnosis&amp;quot;:   [Condition: &amp;quot;Active Tuberculosis for Urology Care&amp;quot;] ActiveTuberculosis     with &amp;quot;First Bladder Cancer Staging Procedure&amp;quot; FirstBladderCancerStaging       such that ActiveTuberculosis.prevalenceInterval ( ) overlaps after day of FirstBladderCancerStaging.performed.toInterval ( )     where ActiveTuberculosis.isConfirmedActiveDiagnosis ( )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="18"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Immunosuppressive Drugs"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Immunosuppressive Drugs&amp;quot;:   [MedicationRequest: &amp;quot;Immunosuppressive Drugs for Urology Care&amp;quot;] ImmunosuppressiveDrugs     let firstMedicationPeriod: First((collapse(ImmunosuppressiveDrugs.dosageInstruction.timing.repeat.bounds DoseTime           return DoseTime.toInterval()       )) DrugPeriods         sort by start of $this     ),         //get the very first event          firstMedicationEvent: First((ImmunosuppressiveDrugs.dosageInstruction.timing dosageTiming                                       //returns first event for the specific dosageTiming                  return First(dosageTiming.event dosageTimingEvents             sort ascending         )) firstEvents         sort ascending     ),     medicationPeriod: Coalesce(firstMedicationEvent.toInterval(), firstMedicationPeriod)     with &amp;quot;First Bladder Cancer Staging Procedure&amp;quot; FirstBladderCancerStaging       such that medicationPeriod starts on or before day of start of FirstBladderCancerStaging.performed.toInterval ( )     where ImmunosuppressiveDrugs.status in { &amp;#39;active&amp;#39;, &amp;#39;completed&amp;#39; }       and ImmunosuppressiveDrugs.intent = &amp;#39;order&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="19"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Cystectomy Done"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Cystectomy Done&amp;quot;:   [Procedure: &amp;quot;Cystectomy for Urology Care&amp;quot;] Cystectomy     with &amp;quot;First Bladder Cancer Staging Procedure&amp;quot; FirstBladderCancerStaging       such that Cystectomy.performed.toInterval ( ) 6 months or less before start of FirstBladderCancerStaging.performed.toInterval ( )     where Cystectomy.status = &amp;#39;completed&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="20"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Excluding HIV, Immunocompromised Conditions or Mixed Histology Before Staging"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Excluding HIV, Immunocompromised Conditions or Mixed Histology Before Staging&amp;quot;:   exists ( ( [Condition: &amp;quot;HIV&amp;quot;]       union [Condition: &amp;quot;Immunocompromised Conditions&amp;quot;]       union [Condition: &amp;quot;Mixed histology urothelial cell carcinoma for Urology Care&amp;quot;] ) ExclusionDiagnosis       with &amp;quot;First Bladder Cancer Staging Procedure&amp;quot; FirstBladderCancerStaging         such that ExclusionDiagnosis.prevalenceInterval ( ) starts on or before day of start of FirstBladderCancerStaging.performed.toInterval ( )       where ExclusionDiagnosis.isConfirmedActiveDiagnosis ( )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="21"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Excluding Chemotherapy or Radiotherapy Procedure Before Staging"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Excluding Chemotherapy or Radiotherapy Procedure Before Staging&amp;quot;:   exists ( ( [MedicationRequest: &amp;quot;Chemotherapy Agents for Advanced Cancer&amp;quot;] ExclusionMed         let firstMedicationPeriod: First((collapse(ExclusionMed.dosageInstruction.timing.repeat.bounds DoseTime               return DoseTime.toInterval()           )) DrugPeriods             sort by start of $this         )         with &amp;quot;First Bladder Cancer Staging Procedure&amp;quot; FirstBladderCancerStaging           such that firstMedicationPeriod starts 6 months or less before FirstBladderCancerStaging.performed.toInterval ( )         where ExclusionMed.status in { &amp;#39;active&amp;#39;, &amp;#39;completed&amp;#39; }           and ExclusionMed.intent = &amp;#39;order&amp;#39;     )       union ( [Procedure: &amp;quot;Combined radiotherapy (procedure)&amp;quot;] ExclusionProcedure           with &amp;quot;First Bladder Cancer Staging Procedure&amp;quot; FirstBladderCancerStaging             such that ExclusionProcedure.performed.toInterval ( ) starts 6 months or less before FirstBladderCancerStaging.performed.toInterval ( )           where ExclusionProcedure.status = &amp;#39;completed&amp;#39;       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="22"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator Exclusion"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator Exclusion&amp;quot;:   exists &amp;quot;Acute Tuberculosis Diagnosis&amp;quot;     or exists &amp;quot;Immunosuppressive Drugs&amp;quot;     or exists &amp;quot;Cystectomy Done&amp;quot;     or &amp;quot;Has Excluding HIV, Immunocompromised Conditions or Mixed Histology Before Staging&amp;quot;     or &amp;quot;Has Excluding Chemotherapy or Radiotherapy Procedure Before Staging&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="23"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="SupplementalDataElements"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Race"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Race&amp;quot;:   Patient.race R     return Tuple {       codes: R.ombCategory union R.detailed,       display: R.text     }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="24"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Race"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Race&amp;quot;:   SDE.&amp;quot;SDE Race&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="25"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="prevalenceInterval"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns an interval representing the normalized prevalence period of a given Condition. @comment: Uses the ToInterval and ToAbatementInterval functions to determine the widest potential interval from onset to abatement as specified in the given Condition. If the condition is active, or has an abatement date the resulting  interval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary. */ define fluent function prevalenceInterval(condition Condition): if condition.clinicalStatus ~ &amp;quot;active&amp;quot;   or condition.clinicalStatus ~ &amp;quot;recurrence&amp;quot;   or condition.clinicalStatus ~ &amp;quot;relapse&amp;quot; then   Interval[start of condition.onset.toInterval(), end of condition.abatementInterval()] else     (end of condition.abatementInterval()) abatementDate     return if abatementDate is null then       Interval[start of condition.onset.toInterval(), abatementDate)     else       Interval[start of condition.onset.toInterval(), abatementDate]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="26"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isConfirmedActiveDiagnosis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isConfirmedActiveDiagnosis(Condition Condition):   Condition.isActive ( )     and Condition.verificationStatus ~ QICoreCommon.&amp;quot;confirmed&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="27"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isActive"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* Candidates for FHIRCommon */  /* @description: Returns true if the given condition has a clinical status of active, recurrence, or relapse */ define fluent function isActive(condition Condition):   condition.clinicalStatus ~ &amp;quot;active&amp;quot;     or condition.clinicalStatus ~ &amp;quot;recurrence&amp;quot;     or condition.clinicalStatus ~ &amp;quot;relapse&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="28"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="getStagingProcedure"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function getStagingProcedure(StagingObservation Observation):   StagingObservation.partOf StagingReference     return &amp;quot;First Bladder Cancer Staging Procedure during 6 Months Prior to Measurement Period through the First 6 Months of Measurement Period&amp;quot; FirstBladderCancerStagingMP       where FirstBladderCancerStagingMP.id = StagingReference.reference.getId ( )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="29"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="getId"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns the tail of the given uri (i.e. everything after the last slash in the URI). @comment: This function can be used to determine the logical id of a given resource. It can be used in a single-server environment to trace references. However, this function does not attempt to resolve or distinguish the base of the given url, and so cannot be used safely in multi-server environments. */ define fluent function getId(uri String):   Last(Split(uri, &amp;#39;/&amp;#39;))"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="30"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FHIRHelpers"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToString"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define function ToString(value uri): value.value"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="31"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FHIRHelpers"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToCode"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code. */ define function ToCode(coding FHIR.Coding):     if coding is null then         null     else         System.Code {           code: coding.code.value,           system: coding.system.value,           version: coding.version.value,           display: coding.display.value         }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="32"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="toInterval"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Normalizes a value that is a choice of timing-valued types to an equivalent interval @comment: Normalizes a choice type of DateTime, Quanitty, Interval&amp;lt;DateTime&amp;gt;, or Interval&amp;lt;Quantity&amp;gt; types to an equivalent interval. This selection of choice types is a superset of the majority of choice types that are used as possible representations for timing-valued elements in QICore, allowing this function to be used across any resource. The input can be provided as a DateTime, Quantity, Interval&amp;lt;DateTime&amp;gt; or Interval&amp;lt;Quantity&amp;gt;. The intent of this function is to provide a clear and concise mechanism to treat single elements that have multiple possible representations as intervals so that logic doesn&amp;#39;t have to account for the variability. More complex calculations (such as medication request period or dispense period calculation) need specific guidance and consideration. That guidance may make use of this function, but the focus of this function is on single element calculations where the semantics are unambiguous. If the input is a DateTime, the result a DateTime Interval beginning and ending on that DateTime. If the input is a Quantity, the quantity is expected to be a calendar-duration interpreted as an Age, and the result is a DateTime Interval beginning on the Date the patient turned that age and ending immediately before one year later. If the input is a DateTime Interval, the result is the input. If the input is a Quantity Interval, the quantities are expected to be calendar-durations interpreted as an Age, and the result is a DateTime Interval beginning on the date the patient turned the age given as the start of the quantity interval, and ending immediately before one year later than the date the patient turned the age given as the end of the quantity interval. If the input is a Timing, an error will be thrown indicating that Timing calculations are not implemented. Any other input will reslt in a null DateTime Interval */ define fluent function toInterval(choice Choice&amp;lt;DateTime, Quantity, Interval&amp;lt;DateTime&amp;gt;, Interval&amp;lt;Quantity&amp;gt;, Timing&amp;gt;):   case    when choice is DateTime then      Interval[choice as DateTime, choice as DateTime]   when choice is Interval&amp;lt;DateTime&amp;gt; then     choice as Interval&amp;lt;DateTime&amp;gt;   when choice is Quantity then     Interval[Patient.birthDate + (choice as Quantity),      Patient.birthDate + (choice as Quantity) + 1 year)   when choice is Interval&amp;lt;Quantity&amp;gt; then     Interval[Patient.birthDate + (choice.low as Quantity),      Patient.birthDate + (choice.high as Quantity) + 1 year)   when choice is Timing then       Message(null, true, &amp;#39;NOT_IMPLEMENTED&amp;#39;, &amp;#39;Error&amp;#39;, &amp;#39;Calculation of an interval from a Timing value is not supported&amp;#39;) as Interval&amp;lt;DateTime&amp;gt;   else    null as Interval&amp;lt;DateTime&amp;gt;  end"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="33"/>
+            </extension>
+         </extension>
+         <status value="active"/>
+         <type>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/library-type"/>
+               <code value="module-definition"/>
+            </coding>
+         </type>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library SDE"/>
+            <resource value="Library/SupplementalDataElements|3.5.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library QICoreCommon"/>
+            <resource value="Library/QICoreCommon|2.1.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library FHIRHelpers"/>
+            <resource value="Library/FHIRHelpers|4.4.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system AdministrativeGender"/>
+            <resource value="http://hl7.org/fhir/administrative-gender"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system SNOMEDCT"/>
+            <resource value="http://snomed.info/sct"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ConditionClinicalStatusCodes"/>
+            <resource value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ConditionVerificationStatusCodes"/>
+            <resource value="http://terminology.hl7.org/CodeSystem/condition-ver-status"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ICD10CM"/>
+            <resource value="http://hl7.org/fhir/sid/icd-10-cm"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ActCode"/>
+            <resource value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set BCG Bacillus Calmette Guerin for Urology Care"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.52"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Bladder Cancer for Urology Care"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.45"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Office Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Payer Type"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Active Tuberculosis for Urology Care"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.56"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Immunosuppressive Drugs for Urology Care"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.32"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Cystectomy for Urology Care"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.55"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set HIV"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1003"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Immunocompromised Conditions"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.1940"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Mixed histology urothelial cell carcinoma for Urology Care"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.39"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Chemotherapy Agents for Advanced Cancer"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.60"/>
+         </relatedArtifact>
+         <parameter>
+            <name value="Measurement Period"/>
+            <use value="in"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Period"/>
+         </parameter>
+         <parameter>
+            <name value="Numerator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator Exception"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Initial Population"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator Exclusion"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="SDE Sex"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Coding"/>
+         </parameter>
+         <parameter>
+            <name value="SDE Payer"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="*"/>
+            <type value="Resource"/>
+         </parameter>
+         <parameter>
+            <name value="SDE Ethnicity"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Resource"/>
+         </parameter>
+         <parameter>
+            <name value="SDE Race"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Resource"/>
+         </parameter>
+         <dataRequirement>
+            <type value="Patient"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient"/>
+            <mustSupport value="gender"/>
+            <mustSupport value="gender.value"/>
+            <mustSupport value="url"/>
+            <mustSupport value="extension"/>
+            <mustSupport value="birthDate"/>
+            <mustSupport value="birthDate.value"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="clinicalStatus"/>
+            <mustSupport value="verificationStatus"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.45"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.56"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1003"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.1940"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.39"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="id"/>
+            <mustSupport value="id.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="254292007"/>
+                  <display value="Tumor staging (tumor staging)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="id"/>
+            <mustSupport value="id.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.55"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="id"/>
+            <mustSupport value="id.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="169331000"/>
+                  <display value="Combined radiotherapy (procedure)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationAdministration"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationadministration"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="effective"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.52"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="value"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="reference"/>
+            <mustSupport value="reference.value"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <mustSupport value="class"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Coverage"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.32"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.60"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication.reference"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Medication"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication"/>
+            <mustSupport value="id"/>
+         </dataRequirement>
+      </Library>
+   </contained>
+   <extension id="supplementalDataGuidance" url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-supplementalDataGuidance">
+      <extension url="guidance">
+         <valueString value="For every patient evaluated by this measure also identify payer, race, ethnicity and sex"/>
+      </extension>
+      <extension url="usage">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+               <code value="supplemental-data"/>
+               <display value="Supplemental Data"/>
+            </coding>
+            <text value="Supplemental Data Guidance"/>
+         </valueCodeableConcept>
+      </extension>
+   </extension>
+   <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements">
+      <valueReference>
+         <reference value="#effective-data-requirements"/>
+      </valueReference>
+   </extension>
+   <url value="https://madie.cms.gov/Measure/IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+   <identifier>
+      <use value="usual"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="short-name"/>
+            <display value="Short Name"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/shortName"/>
+      <value value="CMS646FHIR"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-independent"/>
+            <display value="Version Independent"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:907ead5a-2f8f-468e-b774-309ea8aa6182"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-specific"/>
+            <display value="Version Specific"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:2247c9d9-9de5-47dd-a2a5-cb05249f6a3e"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="publisher"/>
+            <display value="Publisher"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/cmsId"/>
+      <value value="646FHIR"/>
+      <assigner>
+         <display value="CMS"/>
+      </assigner>
+   </identifier>
+   <version value="Draft based on 1.4.000"/>
+   <name value="IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+   <title value="Intravesical Bacillus-Calmette-Guerin for Non-Muscle Invasive Bladder CancerFHIR"/>
+   <status value="draft"/>
+   <experimental value="false"/>
+   <date value="2024-05-14T19:26:01+00:00"/>
+   <publisher value="Oregon Urology"/>
+   <contact>
+      <telecom>
+         <system value="url"/>
+         <value value="www.oregonurology.com"/>
+      </telecom>
+   </contact>
+   <description value="Percentage of patients initially diagnosed with non-muscle invasive bladder cancer and who received intravesical Bacillus-Calmette-Guerin (BCG) within 6 months of bladder cancer staging"/>
+   <purpose value="UNKNOWN"/>
+   <usage value="Ta bladder cancer must be high grade Ta only and is supported by the 2016 AUA guidelines and 2018 NCCN guidelines.  The BCG dose can be full or partial and can be from any lot or manufacturer.  This eCQM is a patient-based measure.  Telehealth encounters are not eligible for this measure because the measure requires a clinical action that cannot be conducted via telehealth  This FHIR-based measure has been derived from the QDM-based measure: CMS646v5.   Please refer to the HL7 QI-Core Implementation Guide (https://hl7.org/fhir/us/qicore/STU4.1.1/) for more information on QI-Core and mapping recommendations from QDM to QI-Core 4.1.1 (https://hl7.org/fhir/us/qicore/STU4.1.1/qdm-to-qicore.html)."/>
+   <copyright value="Limited proprietary coding is contained in the measure specifications for convenience. Users of the proprietary code sets should obtain all necessary licenses from the owners of these code sets. Oregon Urology Institute (OUI) and Large Urology Group Practice Association (LUGPA) disclaim all liability for use or accuracy of third party codes contained in the specifications.  CPT(R) contained in the Measure specifications is copyright 2004-2023. American Medical Association. LOINC(R) copyright 2004-2023 Regenstrief Institute, Inc. This material contains SNOMED Clinical Terms(R) (SNOMED CT[R]) copyright 2004-2023 International Health Terminology Standards Development Organisation. ICD-10 copyright 2023 World Health Organization. All Rights Reserved."/>
+   <effectivePeriod>
+      <start value="2025-01-01"/>
+      <end value="2025-12-31"/>
+   </effectivePeriod>
+   <author>
+      <name value="Oregon Urology"/>
+      <telecom>
+         <system value="url"/>
+         <value value="www.oregonurology.com"/>
+      </telecom>
+   </author>
+   <library value="https://madie.cms.gov/Library/IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR"/>
+   <disclaimer value="The performance measure is not a clinical guideline and does not establish a standard of medical care, and has not been tested for all potential applications.  THE MEASURES AND SPECIFICATIONS ARE PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND.  Due to technical limitations, registered trademarks are indicated by (R) or [R] and unregistered trademarks are indicated by TM or [TM]."/>
+   <rationale value="Bladder cancer is ranked 10th for new cancer cases in 2020 and is the 9th leading cause of cancer death in the United States. There are 81,400 estimated new cases in 2020 and 17,980 estimated deaths in 2020. In 2016, there were an estimated 699,450 people living with bladder cancer in the United States. Early detection (discovery of cancer in situ or localized to the primary site) is found in 85% of the patients, and with these there is a five-year survival rate of 95.8% for In Situ and 69.2% for Localized. Bladder cancer is rarely found in patients under age 20, with the median age of diagnosis being 73 (NIH, 2020). National Comprehensive Cancer Network (NCCN) Guidelines for Bladder Cancer (version 6.2021) defines intravesical BCG as Category 1 Treatment for Ta - high grade, T1 and Tis non-muscle invasive bladder cancer. Most public data reflects prophylactic or adjuvant use of intravesical therapy with the goal of preventing recurrence or delaying progression to a higher grade or stage. BCG has been shown to be effective as prophylaxis to prevent bladder cancer recurrences following TURBT. The NCCN Bladder Cancer Panel Members recommend BCG as the preferred option over Mitomycin C for adjuvant treatment of high-grade lesions (Ta). BCG is also standard therapy for Primary Tis. Most T1 lesions are high risk and are similarly treated with adjuvant intravesical therapy with BCG being a Category 1 recommendation. (NCCN, 2021)."/>
+   <clinicalRecommendationStatement value="Intravesical BCG should be administered within 6 months of the initial diagnosis of non-muscle invasive bladder cancer. It may be administered 3-4 weeks after resection, but there needs to be pathological tumor confirmation and must be withheld if there is traumatic catheterization, bacteriuria, persistent gross hematuria, persistent severe local symptoms or systemic symptoms. The normal induction course is 6 weekly instillations of intravesical BCG (AUA Non-Muscle Invasive Bladder Cancer and American Urological Association (AUA) Guideline for the Management of Non-muscle Invasive Bladder Cancer: Stages Ta High Risk, T1 and TIS)."/>
+   <guidance value="Ta bladder cancer must be high grade Ta only and is supported by the 2016 AUA guidelines and 2018 NCCN guidelines.  The BCG dose can be full or partial and can be from any lot or manufacturer.  This eCQM is a patient-based measure.  Telehealth encounters are not eligible for this measure because the measure requires a clinical action that cannot be conducted via telehealth  This FHIR-based measure has been derived from the QDM-based measure: CMS646v5.   Please refer to the HL7 QI-Core Implementation Guide (https://hl7.org/fhir/us/qicore/STU4.1.1/) for more information on QI-Core and mapping recommendations from QDM to QI-Core 4.1.1 (https://hl7.org/fhir/us/qicore/STU4.1.1/qdm-to-qicore.html)."/>
+   <group id="6643b88af4fc785d87117101">
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-scoring">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-scoring"/>
+               <code value="proportion"/>
+               <display value="Proportion"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis">
+         <valueCode value="boolean"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-type">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-type"/>
+               <code value="process"/>
+               <display value="Process"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-rateAggregation">
+         <valueCode value="None"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-improvementNotation">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-improvement-notation"/>
+               <code value="increase"/>
+               <display value="Increased score indicates improvement"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <population id="4D2F5722-7FA4-4B23-8D7E-356A44FEE386">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="initial-population"/>
+               <display value="Initial Population"/>
+            </coding>
+         </code>
+         <description value="All patients initially diagnosed with T1, Tis or high grade Ta non-muscle invasive bladder cancer with bladder cancer staging within 6 months before to 6 months after the start of the measurement period and a qualified encounter in the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Initial Population"/>
+         </criteria>
+      </population>
+      <population id="6F7048E5-A801-4B49-B7F6-DCDE40AB938D">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator"/>
+               <display value="Denominator"/>
+            </coding>
+         </code>
+         <description value="Equals Initial Population"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator"/>
+         </criteria>
+      </population>
+      <population id="3E04DEA7-8F24-4003-89A6-04E7EE62DAF4">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator-exclusion"/>
+               <display value="Denominator Exclusion"/>
+            </coding>
+         </code>
+         <description value="Immunosuppressed patients, includes HIV and immunocompromised state, with a diagnosis prior to Bladder Cancer Staging.  Immunosuppressive drug therapy starting on or before Bladder Cancer Staging.  Active Tuberculosis diagnosis during the Bladder Cancer Staging.  Mixed histology urothelial cell carcinoma including micropapillary, plasmacytoid, sarcomatoid, adenocarcinoma and squamous disease prior to Bladder Cancer Staging.  Patients who undergo cystectomy, chemotherapy or radiation within 6 months prior to Bladder Cancer Staging."/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator Exclusion"/>
+         </criteria>
+      </population>
+      <population id="4C0E0E50-2A4D-4C3D-A9AD-12563E9F392F">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="numerator"/>
+               <display value="Numerator"/>
+            </coding>
+         </code>
+         <description value="Intravesical Bacillus-Calmette Guerin (BCG) instillation for initial dose or series: BCG is initiated within 6 months of the bladder cancer staging"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Numerator"/>
+         </criteria>
+      </population>
+      <population id="77076019-B76A-4F91-A254-06B870D7A263">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator-exception"/>
+               <display value="Denominator Exception"/>
+            </coding>
+         </code>
+         <description value="Unavailability of BCG within 6 months after Bladder Cancer Staging"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator Exception"/>
+         </criteria>
+      </population>
+   </group>
+   <supplementalData id="sde-ethnicity">
+      <usage>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+            <code value="supplemental-data"/>
+         </coding>
+      </usage>
+      <description value="SDE Ethnicity"/>
+      <criteria>
+         <language value="text/cql-identifier"/>
+         <expression value="SDE Ethnicity"/>
+      </criteria>
+   </supplementalData>
+   <supplementalData id="sde-payer">
+      <usage>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+            <code value="supplemental-data"/>
+         </coding>
+      </usage>
+      <description value="SDE Payer"/>
+      <criteria>
+         <language value="text/cql-identifier"/>
+         <expression value="SDE Payer"/>
+      </criteria>
+   </supplementalData>
+   <supplementalData id="sde-race">
+      <usage>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+            <code value="supplemental-data"/>
+         </coding>
+      </usage>
+      <description value="SDE Race"/>
+      <criteria>
+         <language value="text/cql-identifier"/>
+         <expression value="SDE Race"/>
+      </criteria>
+   </supplementalData>
+   <supplementalData id="sde-sex">
+      <usage>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+            <code value="supplemental-data"/>
+         </coding>
+      </usage>
+      <description value="SDE Sex"/>
+      <criteria>
+         <language value="text/cql-identifier"/>
+         <expression value="SDE Sex"/>
+      </criteria>
+   </supplementalData>
+</Measure>
