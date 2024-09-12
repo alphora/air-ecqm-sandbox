@@ -1,0 +1,45 @@
+Executing CQL...
+CQL path: /Users/sarapark/Documents/GitHub/air-ecqm-sandbox/input/cql
+No data found at /Users/sarapark/Documents/GitHub/air-ecqm-sandbox/input/tests. Evaluation may fail if data is required.
+Terminology path: /Users/sarapark/Documents/GitHub/air-ecqm-sandbox/input/vocabulary/valueset
+Patient=null
+Patient is Male=null
+Has Qualifying Encounter=false
+Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Period=null
+Has Qualifying BPH Diagnosis=false
+Documented IPSS Assessment Result=[]
+AUA Symptom Index and Quality of Life Assessment Result=[]
+Urinary Symptom Score Assessment=[]
+Urinary Symptom Score Within 1 Month after Initial BPH Diagnosis=null
+Urinary Symptom Score 6 to 12 Months After Initial BPH Diagnosis=null
+Initial Population=false
+Denominator=false
+Urinary Retention Diagnosis Starts Within 1 Year After Initial BPH Diagnosis=[]
+Has Initial BPH Diagnosis Starts During or Within 30 Days After End of Hospitalization=null
+Morbid Obesity Diagnosis On or Before Follow Up USS Assessment=[]
+BMI Exam Result Greater Than or Equal To 40 During Measurement Period and On or Before Follow Up USS Assessment=false
+Morbid Obesity Diagnosis or BMI Exam Result Greater Than or Equal to 40 Starts On or Before Follow Up USS Assessment=false
+Denominator Exclusions=false
+Urinary Symptom Score Change=null
+Urinary Symptom Score Improvement Greater Than or Equal To 3=false
+Numerator=false
+SDE Ethnicity=null
+SDE Payer=[]
+SDE Race=null
+SDE Sex=null
+
+
+Evaluation logs:
+13:26:52.148 [pool-2-thread-1] INFO  ca.uhn.fhir.context.FhirContext - Creating new FHIR context for FHIR version [R4]
+13:26:52.218 [pool-2-thread-1] INFO  o.o.c.c.e.engine.retrieve.NoOpRetrieveProvider - Attempted retrieve of Patient. Returning empty set.
+13:26:52.218 [pool-2-thread-1] INFO  o.o.c.c.e.engine.retrieve.NoOpRetrieveProvider - Attempted retrieve of Encounter. Returning empty set.
+13:26:52.218 [pool-2-thread-1] INFO  o.o.c.c.e.engine.retrieve.NoOpRetrieveProvider - Attempted retrieve of Condition. Returning empty set.
+13:26:52.218 [pool-2-thread-1] INFO  o.o.c.c.e.engine.retrieve.NoOpRetrieveProvider - Attempted retrieve of Observation. Returning empty set.
+13:26:52.218 [pool-2-thread-1] INFO  o.o.c.c.e.engine.retrieve.NoOpRetrieveProvider - Attempted retrieve of Observation. Returning empty set.
+13:26:52.218 [pool-2-thread-1] INFO  o.o.c.c.e.engine.retrieve.NoOpRetrieveProvider - Attempted retrieve of Condition. Returning empty set.
+13:26:52.218 [pool-2-thread-1] INFO  o.o.c.c.e.engine.retrieve.NoOpRetrieveProvider - Attempted retrieve of Condition. Returning empty set.
+13:26:52.218 [pool-2-thread-1] INFO  o.o.c.c.e.engine.retrieve.NoOpRetrieveProvider - Attempted retrieve of Observation. Returning empty set.
+13:26:52.218 [pool-2-thread-1] INFO  o.o.c.c.e.engine.retrieve.NoOpRetrieveProvider - Attempted retrieve of Patient. Returning empty set.
+13:26:52.218 [pool-2-thread-1] INFO  o.o.c.c.e.engine.retrieve.NoOpRetrieveProvider - Attempted retrieve of Coverage. Returning empty set.
+elapsed: 0.108 seconds
+
