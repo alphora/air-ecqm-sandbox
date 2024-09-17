@@ -87,16 +87,16 @@
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
       "valueCoding": {
-        "system": "http://snomed.info/sct",
-        "code": "373066001",
-        "display": "Yes (qualifier value)"
+        "system": "http://loinc.org",
+        "code": "45755-6",
+        "display": "Hospice care [Minimum Data Set]"
       }
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
       "valueCoding": {
-        "system": "http://loinc.org",
-        "code": "45755-6",
-        "display": "Hospice care [Minimum Data Set]"
+        "system": "http://snomed.info/sct",
+        "code": "373066001",
+        "display": "Yes (qualifier value)"
       }
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
@@ -115,10 +115,10 @@
         "valueString": "ASVCD Diagnosis or Procedure before End of Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define \"ASVCD Diagnosis or Procedure before End of Measurement Period\":\n  ( ( [Condition: \"Myocardial Infarction\"]\n      union [Condition: \"Cerebrovascular Disease Stroke or TIA\"]\n      union [Condition: \"Atherosclerosis and Peripheral Arterial Disease\"]\n      union [Condition: \"Ischemic Heart Disease or Other Related Diagnoses\"]\n      union [Condition: \"Stable and Unstable Angina\"] ) ASCVDDiagnosis\n      where ( ASCVDDiagnosis.isProblemListItem ( )\n          or ASCVDDiagnosis.isHealthConcern ( )\n      )\n        and ASCVDDiagnosis.prevalenceInterval ( ) starts on or before day of end of \"Measurement Period\"\n  )\n    union ( ( [Procedure: \"PCI\"]\n        union [Procedure: \"CABG Surgeries\"]\n        union [Procedure: \"Carotid Intervention\"]\n        union [Procedure: \"CABG or PCI Procedure\"] ) ASCVDProcedure\n        where ASCVDProcedure.performed.toInterval ( ) starts on or before day of end of \"Measurement Period\"\n          and ASCVDProcedure.status = 'completed'\n    )"
+        "valueString": "define &quot;ASVCD Diagnosis or Procedure before End of Measurement Period&quot;:   ( ( [Condition: &quot;Myocardial Infarction&quot;]       union [Condition: &quot;Cerebrovascular Disease Stroke or TIA&quot;]       union [Condition: &quot;Atherosclerosis and Peripheral Arterial Disease&quot;]       union [Condition: &quot;Ischemic Heart Disease or Other Related Diagnoses&quot;]       union [Condition: &quot;Stable and Unstable Angina&quot;] ) ASCVDDiagnosis       where ( ASCVDDiagnosis.isProblemListItem ( )           or ASCVDDiagnosis.isHealthConcern ( )       )         and ASCVDDiagnosis.prevalenceInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;   )     union ( ( [Procedure: &quot;PCI&quot;]         union [Procedure: &quot;CABG Surgeries&quot;]         union [Procedure: &quot;Carotid Intervention&quot;]         union [Procedure: &quot;CABG or PCI Procedure&quot;] ) ASCVDProcedure         where ASCVDProcedure.performed.toInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;           and ASCVDProcedure.status = &#39;completed&#39;     )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 0
+        "valueString": "0"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -130,10 +130,10 @@
         "valueString": "Myocardial Infarction before End of Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define \"Myocardial Infarction before End of Measurement Period\":\n  [Condition: \"Subsequent non-ST elevation (NSTEMI) myocardial infarction\"] SubsequentMI\n    where ( SubsequentMI.isProblemListItem ( )\n        or SubsequentMI.isHealthConcern ( )\n    )\n      and SubsequentMI.prevalenceInterval ( ) starts on or before day of end of \"Measurement Period\""
+        "valueString": "define &quot;Myocardial Infarction before End of Measurement Period&quot;:   [Condition: &quot;Subsequent non-ST elevation (NSTEMI) myocardial infarction&quot;] SubsequentMI     where ( SubsequentMI.isProblemListItem ( )         or SubsequentMI.isHealthConcern ( )     )       and SubsequentMI.prevalenceInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 1
+        "valueString": "1"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -145,10 +145,10 @@
         "valueString": "Qualifying Encounter during day of Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define \"Qualifying Encounter during day of Measurement Period\":\n  ( [Encounter: \"Annual Wellness Visit\"]\n    union [Encounter: \"Office Visit\"]\n    union [Encounter: \"Outpatient Consultation\"]\n    union [Encounter: \"Outpatient Encounters for Preventive Care\"]\n    union [Encounter: \"Preventive Care Services Established Office Visit, 18 and Up\"]\n    union [Encounter: \"Preventive Care Services Individual Counseling\"]\n    union [Encounter: \"Preventive Care Services Initial Office Visit, 18 and Up\"]\n    union [Encounter: \"Preventive Care Services Other\"] ) QualifyingEncounter\n    where QualifyingEncounter.period during day of \"Measurement Period\"\n      and QualifyingEncounter.status = 'finished'"
+        "valueString": "define &quot;Qualifying Encounter during day of Measurement Period&quot;:   ( [Encounter: &quot;Annual Wellness Visit&quot;]     union [Encounter: &quot;Office Visit&quot;]     union [Encounter: &quot;Outpatient Consultation&quot;]     union [Encounter: &quot;Outpatient Encounters for Preventive Care&quot;]     union [Encounter: &quot;Preventive Care Services Established Office Visit, 18 and Up&quot;]     union [Encounter: &quot;Preventive Care Services Individual Counseling&quot;]     union [Encounter: &quot;Preventive Care Services Initial Office Visit, 18 and Up&quot;]     union [Encounter: &quot;Preventive Care Services Other&quot;] ) QualifyingEncounter     where QualifyingEncounter.period during day of &quot;Measurement Period&quot;       and QualifyingEncounter.status = &#39;finished&#39;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 2
+        "valueString": "2"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -160,10 +160,10 @@
         "valueString": "Initial Population 1"
       }, {
         "url": "statement",
-        "valueString": "define \"Initial Population 1\":\n  exists ( \"ASVCD Diagnosis or Procedure before End of Measurement Period\"\n      union \"Myocardial Infarction before End of Measurement Period\"\n  )\n    and exists \"Qualifying Encounter during day of Measurement Period\""
+        "valueString": "define &quot;Initial Population 1&quot;:   exists ( &quot;ASVCD Diagnosis or Procedure before End of Measurement Period&quot;       union &quot;Myocardial Infarction before End of Measurement Period&quot;   )     and exists &quot;Qualifying Encounter during day of Measurement Period&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 3
+        "valueString": "3"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -175,10 +175,10 @@
         "valueString": "Patients Aged 20 to 75 at Start of Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define \"Patients Aged 20 to 75 at Start of Measurement Period\":\n  AgeInYearsAt(date from start of \"Measurement Period\") in Interval[20, 75]"
+        "valueString": "define &quot;Patients Aged 20 to 75 at Start of Measurement Period&quot;:   AgeInYearsAt(date from start of &quot;Measurement Period&quot;) in Interval[20, 75]"
       }, {
         "url": "displaySequence",
-        "valueInteger": 4
+        "valueString": "4"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -190,10 +190,10 @@
         "valueString": "LDL Result Greater Than or Equal To 190"
       }, {
         "url": "statement",
-        "valueString": "define \"LDL Result Greater Than or Equal To 190\":\n  [Observation: \"LDL Cholesterol\"] LDL190\n    where LDL190.value as Quantity >= 190 'mg/dL'\n      and LDL190.effective.toInterval ( ) starts on or before day of end of \"Measurement Period\"\n      and LDL190.status in { 'final', 'amended', 'corrected', 'appended' }"
+        "valueString": "define &quot;LDL Result Greater Than or Equal To 190&quot;:   [Observation: &quot;LDL Cholesterol&quot;] LDL190     where LDL190.value as Quantity &gt;= 190 &#39;mg/dL&#39;       and LDL190.effective.toInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;       and LDL190.status in { &#39;final&#39;, &#39;amended&#39;, &#39;corrected&#39;, &#39;appended&#39; }"
       }, {
         "url": "displaySequence",
-        "valueInteger": 5
+        "valueString": "5"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -205,10 +205,10 @@
         "valueString": "Hypercholesterolemia Diagnosis"
       }, {
         "url": "statement",
-        "valueString": "define \"Hypercholesterolemia Diagnosis\":\n  ( [Condition: \"Familial Hypercholesterolemia\"] Hypercholesterolemia\n      where ( Hypercholesterolemia.isProblemListItem ( )\n          or Hypercholesterolemia.isHealthConcern ( )\n      )\n        and Hypercholesterolemia.prevalenceInterval ( ) starts on or before day of end of \"Measurement Period\"\n  )"
+        "valueString": "define &quot;Hypercholesterolemia Diagnosis&quot;:   ( [Condition: &quot;Familial Hypercholesterolemia&quot;] Hypercholesterolemia       where ( Hypercholesterolemia.isProblemListItem ( )           or Hypercholesterolemia.isHealthConcern ( )       )         and Hypercholesterolemia.prevalenceInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 6
+        "valueString": "6"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -220,10 +220,10 @@
         "valueString": "Patients Aged 20 to 75 with LDL Cholesterol Result Greater than or Equal to 190 or Hypercholesterolemia without ASCVD"
       }, {
         "url": "statement",
-        "valueString": "define \"Patients Aged 20 to 75 with LDL Cholesterol Result Greater than or Equal to 190 or Hypercholesterolemia without ASCVD\":\n  \"Patients Aged 20 to 75 at Start of Measurement Period\"\n    and exists ( \"LDL Result Greater Than or Equal To 190\"\n        union \"Hypercholesterolemia Diagnosis\"\n    )\n    and not exists ( \"ASVCD Diagnosis or Procedure before End of Measurement Period\" )"
+        "valueString": "define &quot;Patients Aged 20 to 75 with LDL Cholesterol Result Greater than or Equal to 190 or Hypercholesterolemia without ASCVD&quot;:   &quot;Patients Aged 20 to 75 at Start of Measurement Period&quot;     and exists ( &quot;LDL Result Greater Than or Equal To 190&quot;         union &quot;Hypercholesterolemia Diagnosis&quot;     )     and not exists ( &quot;ASVCD Diagnosis or Procedure before End of Measurement Period&quot; )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 7
+        "valueString": "7"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -235,10 +235,10 @@
         "valueString": "Initial Population 2"
       }, {
         "url": "statement",
-        "valueString": "define \"Initial Population 2\":\n  \"Patients Aged 20 to 75 with LDL Cholesterol Result Greater than or Equal to 190 or Hypercholesterolemia without ASCVD\"\n    and exists \"Qualifying Encounter during day of Measurement Period\""
+        "valueString": "define &quot;Initial Population 2&quot;:   &quot;Patients Aged 20 to 75 with LDL Cholesterol Result Greater than or Equal to 190 or Hypercholesterolemia without ASCVD&quot;     and exists &quot;Qualifying Encounter during day of Measurement Period&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 8
+        "valueString": "8"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -250,10 +250,10 @@
         "valueString": "SDE Race"
       }, {
         "url": "statement",
-        "valueString": "define \"SDE Race\":\n  Patient.race R\n    return Tuple {\n      codes: R.ombCategory union R.detailed,\n      display: R.text\n    }"
+        "valueString": "define &quot;SDE Race&quot;:   Patient.race R     return Tuple {       codes: R.ombCategory union R.detailed,       display: R.text     }"
       }, {
         "url": "displaySequence",
-        "valueInteger": 9
+        "valueString": "9"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -265,10 +265,10 @@
         "valueString": "SDE Race"
       }, {
         "url": "statement",
-        "valueString": "define \"SDE Race\":\n  SDE.\"SDE Race\""
+        "valueString": "define &quot;SDE Race&quot;:   SDE.&quot;SDE Race&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 10
+        "valueString": "10"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -280,10 +280,10 @@
         "valueString": "Has Diabetes Diagnosis"
       }, {
         "url": "statement",
-        "valueString": "define \"Has Diabetes Diagnosis\":\n  exists ( [Condition: \"Diabetes\"] Diabetes\n      where ( Diabetes.isProblemListItem ( )\n          or Diabetes.isHealthConcern ( )\n      )\n        and Diabetes.prevalenceInterval ( ) overlaps day of \"Measurement Period\"\n  )"
+        "valueString": "define &quot;Has Diabetes Diagnosis&quot;:   exists ( [Condition: &quot;Diabetes&quot;] Diabetes       where ( Diabetes.isProblemListItem ( )           or Diabetes.isHealthConcern ( )       )         and Diabetes.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 11
+        "valueString": "11"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -295,10 +295,10 @@
         "valueString": "Patients Aged 40 to 75 Years with Diabetes without ASCVD or LDL Greater than 190 or Hypercholesterolemia"
       }, {
         "url": "statement",
-        "valueString": "define \"Patients Aged 40 to 75 Years with Diabetes without ASCVD or LDL Greater than 190 or Hypercholesterolemia\":\n  AgeInYearsAt(date from start of \"Measurement Period\") >= 40\n    and AgeInYearsAt(date from start of \"Measurement Period\") <= 75\n    and \"Has Diabetes Diagnosis\"\n    and ( not exists \"ASVCD Diagnosis or Procedure before End of Measurement Period\"\n        and not exists \"LDL Result Greater Than or Equal To 190\"\n        and not exists \"Hypercholesterolemia Diagnosis\"\n    )"
+        "valueString": "define &quot;Patients Aged 40 to 75 Years with Diabetes without ASCVD or LDL Greater than 190 or Hypercholesterolemia&quot;:   AgeInYearsAt(date from start of &quot;Measurement Period&quot;) &gt;= 40     and AgeInYearsAt(date from start of &quot;Measurement Period&quot;) &lt;= 75     and &quot;Has Diabetes Diagnosis&quot;     and ( not exists &quot;ASVCD Diagnosis or Procedure before End of Measurement Period&quot;         and not exists &quot;LDL Result Greater Than or Equal To 190&quot;         and not exists &quot;Hypercholesterolemia Diagnosis&quot;     )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 12
+        "valueString": "12"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -310,10 +310,10 @@
         "valueString": "Initial Population 3"
       }, {
         "url": "statement",
-        "valueString": "define \"Initial Population 3\":\n  \"Patients Aged 40 to 75 Years with Diabetes without ASCVD or LDL Greater than 190 or Hypercholesterolemia\"\n    and exists \"Qualifying Encounter during day of Measurement Period\""
+        "valueString": "define &quot;Initial Population 3&quot;:   &quot;Patients Aged 40 to 75 Years with Diabetes without ASCVD or LDL Greater than 190 or Hypercholesterolemia&quot;     and exists &quot;Qualifying Encounter during day of Measurement Period&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 13
+        "valueString": "13"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -325,10 +325,10 @@
         "valueString": "Ten Year CVD Risk is High"
       }, {
         "url": "statement",
-        "valueString": "define \"Ten Year CVD Risk is High\":\n  ( exists ( [Observation: \"Cardiovascular disease 10Y risk [Likelihood]\"]\n      union [Observation: \"Cardiovascular disease 10Y risk [Likelihood] ACC-AHA Pooled Cohort by Goff 2013\"] ) AtRiskCVD\n      where AtRiskCVD.value as Quantity >= 20 '%'\n        and AtRiskCVD.effective.toInterval ( ) during day of \"Measurement Period\"\n  )"
+        "valueString": "define &quot;Ten Year CVD Risk is High&quot;:   ( exists ( [Observation: &quot;Cardiovascular disease 10Y risk [Likelihood]&quot;]       union [Observation: &quot;Cardiovascular disease 10Y risk [Likelihood] ACC-AHA Pooled Cohort by Goff 2013&quot;] ) AtRiskCVD       where AtRiskCVD.value as Quantity &gt;= 20 &#39;%&#39;         and AtRiskCVD.effective.toInterval ( ) during day of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 14
+        "valueString": "14"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -340,10 +340,10 @@
         "valueString": "Patients Age 40 to 75 Years and have a 10 Year CVD Risk of High without ASCVD and High LDL and Diabetes"
       }, {
         "url": "statement",
-        "valueString": "define \"Patients Age 40 to 75 Years and have a 10 Year CVD Risk of High without ASCVD and High LDL and Diabetes\":\n  AgeInYearsAt(date from start of \"Measurement Period\") in Interval[40, 75]\n    and \"Ten Year CVD Risk is High\"\n    and not ( exists \"ASVCD Diagnosis or Procedure before End of Measurement Period\"\n        or exists \"Hypercholesterolemia Diagnosis\"\n        or exists \"LDL Result Greater Than or Equal To 190\"\n        or \"Has Diabetes Diagnosis\"\n    )"
+        "valueString": "define &quot;Patients Age 40 to 75 Years and have a 10 Year CVD Risk of High without ASCVD and High LDL and Diabetes&quot;:   AgeInYearsAt(date from start of &quot;Measurement Period&quot;) in Interval[40, 75]     and &quot;Ten Year CVD Risk is High&quot;     and not ( exists &quot;ASVCD Diagnosis or Procedure before End of Measurement Period&quot;         or exists &quot;Hypercholesterolemia Diagnosis&quot;         or exists &quot;LDL Result Greater Than or Equal To 190&quot;         or &quot;Has Diabetes Diagnosis&quot;     )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 15
+        "valueString": "15"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -355,10 +355,10 @@
         "valueString": "Initial Population 4"
       }, {
         "url": "statement",
-        "valueString": "define \"Initial Population 4\":\n  \"Patients Age 40 to 75 Years and have a 10 Year CVD Risk of High without ASCVD and High LDL and Diabetes\"\n    and exists \"Qualifying Encounter during day of Measurement Period\""
+        "valueString": "define &quot;Initial Population 4&quot;:   &quot;Patients Age 40 to 75 Years and have a 10 Year CVD Risk of High without ASCVD and High LDL and Diabetes&quot;     and exists &quot;Qualifying Encounter during day of Measurement Period&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 16
+        "valueString": "16"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -370,10 +370,10 @@
         "valueString": "SDE Sex"
       }, {
         "url": "statement",
-        "valueString": "define \"SDE Sex\":\n  case\n    when Patient.gender = 'male' then \"M\"\n    when Patient.gender = 'female' then \"F\"\n    else null\n  end"
+        "valueString": "define &quot;SDE Sex&quot;:   case     when Patient.gender = &#39;male&#39; then &quot;M&quot;     when Patient.gender = &#39;female&#39; then &quot;F&quot;     else null   end"
       }, {
         "url": "displaySequence",
-        "valueInteger": 17
+        "valueString": "17"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -385,10 +385,10 @@
         "valueString": "SDE Sex"
       }, {
         "url": "statement",
-        "valueString": "define \"SDE Sex\":\n  SDE.\"SDE Sex\""
+        "valueString": "define &quot;SDE Sex&quot;:   SDE.&quot;SDE Sex&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 18
+        "valueString": "18"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -400,10 +400,10 @@
         "valueString": "Denominator 3"
       }, {
         "url": "statement",
-        "valueString": "define \"Denominator 3\":\n  \"Initial Population 3\""
+        "valueString": "define &quot;Denominator 3&quot;:   &quot;Initial Population 3&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 19
+        "valueString": "19"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -415,10 +415,10 @@
         "valueString": "Statin Therapy Prescribed Anytime during day of Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define \"Statin Therapy Prescribed Anytime during day of Measurement Period\":\n  ( [MedicationRequest: \"Low Intensity Statin Therapy\"]\n    union [MedicationRequest: \"Moderate Intensity Statin Therapy\"]\n    union [MedicationRequest: \"High Intensity Statin Therapy\"] ) StatinPrescribed\n    where StatinPrescribed.status in { 'active', 'completed' }\n      and StatinPrescribed.intent ~ 'order'\n      and ( StatinPrescribed.authoredOn during day of \"Measurement Period\"\n          or exists ( StatinPrescribed.dosageInstruction.timing T\n              where T.repeat.bounds.toInterval ( ) overlaps day of \"Measurement Period\"\n          )\n      )"
+        "valueString": "define &quot;Statin Therapy Prescribed Anytime during day of Measurement Period&quot;:   ( [MedicationRequest: &quot;Low Intensity Statin Therapy&quot;]     union [MedicationRequest: &quot;Moderate Intensity Statin Therapy&quot;]     union [MedicationRequest: &quot;High Intensity Statin Therapy&quot;] ) StatinPrescribed     where StatinPrescribed.status in { &#39;active&#39;, &#39;completed&#39; }       and StatinPrescribed.intent ~ &#39;order&#39;       and ( StatinPrescribed.authoredOn during day of &quot;Measurement Period&quot;           or exists ( StatinPrescribed.dosageInstruction.timing T               where T.repeat.bounds.toInterval ( ) overlaps day of &quot;Measurement Period&quot;           )       )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 20
+        "valueString": "20"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -430,10 +430,10 @@
         "valueString": "Numerator"
       }, {
         "url": "statement",
-        "valueString": "define \"Numerator\":\n  exists \"Statin Therapy Prescribed Anytime during day of Measurement Period\""
+        "valueString": "define &quot;Numerator&quot;:   exists &quot;Statin Therapy Prescribed Anytime during day of Measurement Period&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 21
+        "valueString": "21"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -445,10 +445,10 @@
         "valueString": "Denominator 2"
       }, {
         "url": "statement",
-        "valueString": "define \"Denominator 2\":\n  \"Initial Population 2\""
+        "valueString": "define &quot;Denominator 2&quot;:   &quot;Initial Population 2&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 22
+        "valueString": "22"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -460,10 +460,10 @@
         "valueString": "Denominator 4"
       }, {
         "url": "statement",
-        "valueString": "define \"Denominator 4\":\n  \"Initial Population 4\""
+        "valueString": "define &quot;Denominator 4&quot;:   &quot;Initial Population 4&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 23
+        "valueString": "23"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -475,10 +475,10 @@
         "valueString": "SDE Payer"
       }, {
         "url": "statement",
-        "valueString": "define \"SDE Payer\":\n  [Coverage: type in \"Payer Type\"] Payer\n    return {\n      code: Payer.type,\n      period: Payer.period\n    }"
+        "valueString": "define &quot;SDE Payer&quot;:   [Coverage: type in &quot;Payer Type&quot;] Payer     return {       code: Payer.type,       period: Payer.period     }"
       }, {
         "url": "displaySequence",
-        "valueInteger": 24
+        "valueString": "24"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -490,10 +490,10 @@
         "valueString": "SDE Payer"
       }, {
         "url": "statement",
-        "valueString": "define \"SDE Payer\":\n  SDE.\"SDE Payer\""
+        "valueString": "define &quot;SDE Payer&quot;:   SDE.&quot;SDE Payer&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 25
+        "valueString": "25"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -505,10 +505,10 @@
         "valueString": "SDE Ethnicity"
       }, {
         "url": "statement",
-        "valueString": "define \"SDE Ethnicity\":\n  Patient.ethnicity E\n    return Tuple {\n      codes: { E.ombCategory } union E.detailed,\n      display: E.text\n    }"
+        "valueString": "define &quot;SDE Ethnicity&quot;:   Patient.ethnicity E     return Tuple {       codes: { E.ombCategory } union E.detailed,       display: E.text     }"
       }, {
         "url": "displaySequence",
-        "valueInteger": 26
+        "valueString": "26"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -520,10 +520,10 @@
         "valueString": "SDE Ethnicity"
       }, {
         "url": "statement",
-        "valueString": "define \"SDE Ethnicity\":\n  SDE.\"SDE Ethnicity\""
+        "valueString": "define &quot;SDE Ethnicity&quot;:   SDE.&quot;SDE Ethnicity&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 27
+        "valueString": "27"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -535,10 +535,10 @@
         "valueString": "Denominator Exclusions"
       }, {
         "url": "statement",
-        "valueString": "define \"Denominator Exclusions\":\n  exists ( ( [Condition: \"Breastfeeding\"]\n      union [Condition: \"Rhabdomyolysis\"] ) ExclusionDiagnosis\n      where ( ExclusionDiagnosis.isProblemListItem ( )\n          or ExclusionDiagnosis.isHealthConcern ( )\n      )\n        and ExclusionDiagnosis.prevalenceInterval ( ) overlaps day of \"Measurement Period\"\n  )"
+        "valueString": "define &quot;Denominator Exclusions&quot;:   exists ( ( [Condition: &quot;Breastfeeding&quot;]       union [Condition: &quot;Rhabdomyolysis&quot;] ) ExclusionDiagnosis       where ( ExclusionDiagnosis.isProblemListItem ( )           or ExclusionDiagnosis.isHealthConcern ( )       )         and ExclusionDiagnosis.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 28
+        "valueString": "28"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -550,10 +550,10 @@
         "valueString": "Denominator 1"
       }, {
         "url": "statement",
-        "valueString": "define \"Denominator 1\":\n  \"Initial Population 1\""
+        "valueString": "define &quot;Denominator 1&quot;:   &quot;Initial Population 1&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 29
+        "valueString": "29"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -565,10 +565,10 @@
         "valueString": "Has Allergy to Statin"
       }, {
         "url": "statement",
-        "valueString": "define \"Has Allergy to Statin\":\n  exists ( [AllergyIntolerance: \"Statin Allergen\"] StatinAllergy\n      where StatinAllergy.onset.toInterval ( ) overlaps day of \"Measurement Period\"\n        and StatinAllergy.clinicalStatus ~ QICoreCommon.\"allergy-active\"\n  )"
+        "valueString": "define &quot;Has Allergy to Statin&quot;:   exists ( [AllergyIntolerance: &quot;Statin Allergen&quot;] StatinAllergy       where StatinAllergy.onset.toInterval ( ) overlaps day of &quot;Measurement Period&quot;         and StatinAllergy.clinicalStatus ~ QICoreCommon.&quot;allergy-active&quot;   )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 30
+        "valueString": "30"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -580,10 +580,10 @@
         "valueString": "Has Hospice Services"
       }, {
         "url": "statement",
-        "valueString": "define \"Has Hospice Services\":\n  exists ((([Encounter: \"Encounter Inpatient\"]).isEncounterPerformed()) InpatientEncounter\n      where (InpatientEncounter.hospitalization.dischargeDisposition ~ \"Discharge to home for hospice care (procedure)\"\n          or InpatientEncounter.hospitalization.dischargeDisposition ~ \"Discharge to healthcare facility for hospice care (procedure)\"\n      )\n        and InpatientEncounter.period.toInterval() ends during day of \"Measurement Period\"\n  )\n    or exists ((([Encounter: \"Hospice Encounter\"]).isEncounterPerformed()) HospiceEncounter\n        where HospiceEncounter.period.toInterval() overlaps day of \"Measurement Period\"\n    )\n    or exists ((([Observation: \"Hospice care [Minimum Data Set]\"]).isAssessmentPerformed()) HospiceAssessment\n        where HospiceAssessment.value ~ \"Yes (qualifier value)\"\n          and HospiceAssessment.effective.toInterval() overlaps day of \"Measurement Period\"\n    )\n    or exists ((([ServiceRequest]).isInterventionOrder()) Order\n        where Order.code in \"Hospice Care Ambulatory\"\n        and Order.authoredOn.toInterval() during day of \"Measurement Period\"\n        // and HospiceOrder.doNotPerform is not true\n        // https://oncprojectracking.healthit.gov/support/browse/CQLIT-447\n    )\n    or exists ((([Procedure: \"Hospice Care Ambulatory\"]).isInterventionPerformed()) HospicePerformed\n        where HospicePerformed.performed.toInterval() overlaps day of \"Measurement Period\"\n    )\n    or exists (([Condition: \"Hospice Diagnosis\"]) HospiceCareDiagnosis\n        where HospiceCareDiagnosis.prevalenceInterval() overlaps day of \"Measurement Period\"\n    )"
+        "valueString": "define &quot;Has Hospice Services&quot;:   exists ((([Encounter: &quot;Encounter Inpatient&quot;]).isEncounterPerformed()) InpatientEncounter       where (InpatientEncounter.hospitalization.dischargeDisposition ~ &quot;Discharge to home for hospice care (procedure)&quot;           or InpatientEncounter.hospitalization.dischargeDisposition ~ &quot;Discharge to healthcare facility for hospice care (procedure)&quot;       )         and InpatientEncounter.period.toInterval() ends during day of &quot;Measurement Period&quot;   )     or exists ((([Encounter: &quot;Hospice Encounter&quot;]).isEncounterPerformed()) HospiceEncounter         where HospiceEncounter.period.toInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists ((([Observation: &quot;Hospice care [Minimum Data Set]&quot;]).isAssessmentPerformed()) HospiceAssessment         where HospiceAssessment.value ~ &quot;Yes (qualifier value)&quot;           and HospiceAssessment.effective.toInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists ((([ServiceRequest: &quot;Hospice Care Ambulatory&quot;]).isInterventionOrder()) HospiceOrder         where HospiceOrder.authoredOn.toInterval() during day of &quot;Measurement Period&quot;         // and HospiceOrder.doNotPerform is not true         // https://oncprojectracking.healthit.gov/support/browse/CQLIT-447     )     or exists ((([Procedure: &quot;Hospice Care Ambulatory&quot;]).isInterventionPerformed()) HospicePerformed         where HospicePerformed.performed.toInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists (([Condition: &quot;Hospice Diagnosis&quot;]) HospiceCareDiagnosis         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of &quot;Measurement Period&quot;     )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 31
+        "valueString": "31"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -595,10 +595,10 @@
         "valueString": "Has Palliative Care in the Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define \"Has Palliative Care in the Measurement Period\":\n  exists ((([Observation: \"Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)\"]).isAssessmentPerformed()) PalliativeAssessment\n      where PalliativeAssessment.effective.toInterval() overlaps day of \"Measurement Period\"\n  )\n    or exists ([Condition: \"Palliative Care Diagnosis\"] PalliativeDiagnosis\n        where PalliativeDiagnosis.prevalenceInterval() overlaps day of \"Measurement Period\"\n    )\n    or exists ((([Encounter: \"Palliative Care Encounter\"]).isEncounterPerformed()) PalliativeEncounter\n        where PalliativeEncounter.period.toInterval() overlaps day of \"Measurement Period\"\n    )\n    or exists ((([Procedure: \"Palliative Care Intervention\"]).isInterventionPerformed()) PalliativeIntervention\n        where PalliativeIntervention.performed.toInterval() overlaps day of \"Measurement Period\"\n    )"
+        "valueString": "define &quot;Has Palliative Care in the Measurement Period&quot;:   exists ((([Observation: &quot;Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)&quot;]).isAssessmentPerformed()) PalliativeAssessment       where PalliativeAssessment.effective.toInterval() overlaps day of &quot;Measurement Period&quot;   )     or exists ([Condition: &quot;Palliative Care Diagnosis&quot;] PalliativeDiagnosis         where PalliativeDiagnosis.prevalenceInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists ((([Encounter: &quot;Palliative Care Encounter&quot;]).isEncounterPerformed()) PalliativeEncounter         where PalliativeEncounter.period.toInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists ((([Procedure: &quot;Palliative Care Intervention&quot;]).isInterventionPerformed()) PalliativeIntervention         where PalliativeIntervention.performed.toInterval() overlaps day of &quot;Measurement Period&quot;     )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 32
+        "valueString": "32"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -610,10 +610,10 @@
         "valueString": "Has Hepatitis or Liver Disease Diagnosis"
       }, {
         "url": "statement",
-        "valueString": "define \"Has Hepatitis or Liver Disease Diagnosis\":\n  exists ( ( [Condition: \"Hepatitis A\"]\n      union [Condition: \"Hepatitis B\"]\n      union [Condition: \"Liver Disease\"] ) HepatitisLiverDisease\n      where ( HepatitisLiverDisease.isProblemListItem ( )\n          or HepatitisLiverDisease.isHealthConcern ( )\n      )\n        and HepatitisLiverDisease.prevalenceInterval ( ) overlaps day of \"Measurement Period\"\n  )"
+        "valueString": "define &quot;Has Hepatitis or Liver Disease Diagnosis&quot;:   exists ( ( [Condition: &quot;Hepatitis A&quot;]       union [Condition: &quot;Hepatitis B&quot;]       union [Condition: &quot;Liver Disease&quot;] ) HepatitisLiverDisease       where ( HepatitisLiverDisease.isProblemListItem ( )           or HepatitisLiverDisease.isHealthConcern ( )       )         and HepatitisLiverDisease.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 33
+        "valueString": "33"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -625,10 +625,10 @@
         "valueString": "Has Statin Associated Muscle Symptoms"
       }, {
         "url": "statement",
-        "valueString": "define \"Has Statin Associated Muscle Symptoms\":\n  exists ( [Condition: \"Statin Associated Muscle Symptoms\"] StatinMuscleSymptom\n      where ( StatinMuscleSymptom.isProblemListItem ( )\n          or StatinMuscleSymptom.isHealthConcern ( )\n      )\n        and StatinMuscleSymptom.prevalenceInterval ( ) overlaps day of \"Measurement Period\"\n  )"
+        "valueString": "define &quot;Has Statin Associated Muscle Symptoms&quot;:   exists ( [Condition: &quot;Statin Associated Muscle Symptoms&quot;] StatinMuscleSymptom       where ( StatinMuscleSymptom.isProblemListItem ( )           or StatinMuscleSymptom.isHealthConcern ( )       )         and StatinMuscleSymptom.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 34
+        "valueString": "34"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -640,10 +640,10 @@
         "valueString": "Has ESRD Diagnosis"
       }, {
         "url": "statement",
-        "valueString": "define \"Has ESRD Diagnosis\":\n  exists ( [Condition: \"End Stage Renal Disease\"] ESRD\n      where ( ESRD.isProblemListItem ( )\n          or ESRD.isHealthConcern ( )\n      )\n        and ESRD.prevalenceInterval ( ) overlaps day of \"Measurement Period\"\n  )"
+        "valueString": "define &quot;Has ESRD Diagnosis&quot;:   exists ( [Condition: &quot;End Stage Renal Disease&quot;] ESRD       where ( ESRD.isProblemListItem ( )           or ESRD.isHealthConcern ( )       )         and ESRD.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 35
+        "valueString": "35"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -655,10 +655,10 @@
         "valueString": "Has Adverse Reaction to Statin"
       }, {
         "url": "statement",
-        "valueString": "define \"Has Adverse Reaction to Statin\":\n  exists ( [AdverseEvent: event in \"Statin Allergen\"] StatinReaction\n      where StatinReaction.recordedDate during day of \"Measurement Period\"\n  )"
+        "valueString": "define &quot;Has Adverse Reaction to Statin&quot;:   exists ( [AdverseEvent: event in &quot;Statin Allergen&quot;] StatinReaction       where StatinReaction.recordedDate during day of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 36
+        "valueString": "36"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -670,10 +670,10 @@
         "valueString": "Has Medical Reason for Not Ordering Statin Therapy"
       }, {
         "url": "statement",
-        "valueString": "define \"Has Medical Reason for Not Ordering Statin Therapy\":\n  exists ( ( [MedicationNotRequested: \"Low Intensity Statin Therapy\"]\n      union [MedicationNotRequested: \"Moderate Intensity Statin Therapy\"]\n      union [MedicationNotRequested: \"High Intensity Statin Therapy\"] ) NoStatinTherapyOrdered\n      with \"Qualifying Encounter during day of Measurement Period\" QualifyingEncounter\n        such that NoStatinTherapyOrdered.authoredOn during QualifyingEncounter.period\n          and NoStatinTherapyOrdered.status = 'completed'\n          and NoStatinTherapyOrdered.reasonCode in \"Medical Reason\"\n  )"
+        "valueString": "define &quot;Has Medical Reason for Not Ordering Statin Therapy&quot;:   exists ( ( [MedicationNotRequested: &quot;Low Intensity Statin Therapy&quot;]       union [MedicationNotRequested: &quot;Moderate Intensity Statin Therapy&quot;]       union [MedicationNotRequested: &quot;High Intensity Statin Therapy&quot;] ) NoStatinTherapyOrdered       with &quot;Qualifying Encounter during day of Measurement Period&quot; QualifyingEncounter         such that NoStatinTherapyOrdered.authoredOn during QualifyingEncounter.period           and NoStatinTherapyOrdered.status = &#39;completed&#39;           and NoStatinTherapyOrdered.reasonCode in &quot;Medical Reason&quot;   )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 37
+        "valueString": "37"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -685,10 +685,10 @@
         "valueString": "Denominator Exceptions"
       }, {
         "url": "statement",
-        "valueString": "define \"Denominator Exceptions\":\n  \"Has Allergy to Statin\"\n    or Hospice.\"Has Hospice Services\"\n    or PalliativeCare.\"Has Palliative Care in the Measurement Period\"\n    or \"Has Hepatitis or Liver Disease Diagnosis\"\n    or \"Has Statin Associated Muscle Symptoms\"\n    or \"Has ESRD Diagnosis\"\n    or \"Has Adverse Reaction to Statin\"\n    or \"Has Medical Reason for Not Ordering Statin Therapy\""
+        "valueString": "define &quot;Denominator Exceptions&quot;:   &quot;Has Allergy to Statin&quot;     or Hospice.&quot;Has Hospice Services&quot;     or PalliativeCare.&quot;Has Palliative Care in the Measurement Period&quot;     or &quot;Has Hepatitis or Liver Disease Diagnosis&quot;     or &quot;Has Statin Associated Muscle Symptoms&quot;     or &quot;Has ESRD Diagnosis&quot;     or &quot;Has Adverse Reaction to Statin&quot;     or &quot;Has Medical Reason for Not Ordering Statin Therapy&quot;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 38
+        "valueString": "38"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -700,10 +700,10 @@
         "valueString": "isProblemListItem"
       }, {
         "url": "statement",
-        "valueString": "/*\n@description: Returns true if the given condition is a problem list item.\n*/\ndefine fluent function isProblemListItem(condition Condition):\n  exists (condition.category C\n    where C ~ \"problem-list-item\"\n  )"
+        "valueString": "/* @description: Returns true if the given condition is a problem list item. */ define fluent function isProblemListItem(condition Condition):   exists (condition.category C     where C ~ &quot;problem-list-item&quot;   )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 39
+        "valueString": "39"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -715,10 +715,10 @@
         "valueString": "ToConcept"
       }, {
         "url": "statement",
-        "valueString": "/*\n@description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept.\n*/\ndefine function ToConcept(concept FHIR.CodeableConcept):\n    if concept is null then\n        null\n    else\n        System.Concept {\n            codes: concept.coding C return ToCode(C),\n            display: concept.text.value\n        }"
+        "valueString": "/* @description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept. */ define function ToConcept(concept FHIR.CodeableConcept):     if concept is null then         null     else         System.Concept {             codes: concept.coding C return ToCode(C),             display: concept.text.value         }"
       }, {
         "url": "displaySequence",
-        "valueInteger": 40
+        "valueString": "40"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -730,10 +730,10 @@
         "valueString": "isHealthConcern"
       }, {
         "url": "statement",
-        "valueString": "/*\n@description: Returns true if the given condition is a health concern\n*/\ndefine fluent function isHealthConcern(condition Condition):\n  exists (condition.category C\n    where C ~ \"health-concern\"\n  )"
+        "valueString": "/* @description: Returns true if the given condition is a health concern */ define fluent function isHealthConcern(condition Condition):   exists (condition.category C     where C ~ &quot;health-concern&quot;   )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 41
+        "valueString": "41"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -745,10 +745,10 @@
         "valueString": "prevalenceInterval"
       }, {
         "url": "statement",
-        "valueString": "/*\n@description: Returns an interval representing the normalized prevalence period of a given Condition.\n@comment: Uses the ToInterval and ToAbatementInterval functions to determine the widest potential interval from\nonset to abatement as specified in the given Condition. If the condition is active, or has an abatement date the resulting \ninterval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary.\n*/\ndefine fluent function prevalenceInterval(condition Condition):\nif condition.clinicalStatus ~ \"active\"\n  or condition.clinicalStatus ~ \"recurrence\"\n  or condition.clinicalStatus ~ \"relapse\" then\n  Interval[start of condition.onset.toInterval(), end of condition.abatementInterval()]\nelse\n    (end of condition.abatementInterval()) abatementDate\n    return if abatementDate is null then\n      Interval[start of condition.onset.toInterval(), abatementDate)\n    else\n      Interval[start of condition.onset.toInterval(), abatementDate]"
+        "valueString": "/* @description: Returns an interval representing the normalized prevalence period of a given Condition. @comment: Uses the ToInterval and ToAbatementInterval functions to determine the widest potential interval from onset to abatement as specified in the given Condition. If the condition is active, or has an abatement date the resulting  interval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary. */ define fluent function prevalenceInterval(condition Condition): if condition.clinicalStatus ~ &quot;active&quot;   or condition.clinicalStatus ~ &quot;recurrence&quot;   or condition.clinicalStatus ~ &quot;relapse&quot; then   Interval[start of condition.onset.toInterval(), end of condition.abatementInterval()] else     (end of condition.abatementInterval()) abatementDate     return if abatementDate is null then       Interval[start of condition.onset.toInterval(), abatementDate)     else       Interval[start of condition.onset.toInterval(), abatementDate]"
       }, {
         "url": "displaySequence",
-        "valueInteger": 42
+        "valueString": "42"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -763,7 +763,7 @@
         "valueString": "define function ToString(value uri): value.value"
       }, {
         "url": "displaySequence",
-        "valueInteger": 43
+        "valueString": "43"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -775,10 +775,10 @@
         "valueString": "ToCode"
       }, {
         "url": "statement",
-        "valueString": "/*\n@description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code.\n*/\ndefine function ToCode(coding FHIR.Coding):\n    if coding is null then\n        null\n    else\n        System.Code {\n          code: coding.code.value,\n          system: coding.system.value,\n          version: coding.version.value,\n          display: coding.display.value\n        }"
+        "valueString": "/* @description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code. */ define function ToCode(coding FHIR.Coding):     if coding is null then         null     else         System.Code {           code: coding.code.value,           system: coding.system.value,           version: coding.version.value,           display: coding.display.value         }"
       }, {
         "url": "displaySequence",
-        "valueInteger": 44
+        "valueString": "44"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -790,10 +790,10 @@
         "valueString": "isEncounterPerformed"
       }, {
         "url": "statement",
-        "valueString": "//Encounter, Performed\n//General usage unless required otherwise by measure intent (e.g., follow-up encounters)\ndefine fluent function isEncounterPerformed(Enc List<Encounter>):\n  Enc E\n    where E.status in {'finished', 'arrived', 'triaged', 'in-progress', 'onleave'}"
+        "valueString": "//Encounter, Performed //General usage unless required otherwise by measure intent (e.g., follow-up encounters) define fluent function isEncounterPerformed(Enc List&lt;Encounter&gt;):   Enc E     where E.status in {&#39;finished&#39;, &#39;arrived&#39;, &#39;triaged&#39;, &#39;in-progress&#39;, &#39;onleave&#39;}"
       }, {
         "url": "displaySequence",
-        "valueInteger": 45
+        "valueString": "45"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -805,10 +805,10 @@
         "valueString": "toInterval"
       }, {
         "url": "statement",
-        "valueString": "/*\n@description: Normalizes a value that is a choice of timing-valued types to an equivalent interval\n@comment: Normalizes a choice type of DateTime, Quanitty, Interval<DateTime>, or Interval<Quantity> types\nto an equivalent interval. This selection of choice types is a superset of the majority of choice types that are used as possible\nrepresentations for timing-valued elements in QICore, allowing this function to be used across any resource.\nThe input can be provided as a DateTime, Quantity, Interval<DateTime> or Interval<Quantity>.\nThe intent of this function is to provide a clear and concise mechanism to treat single\nelements that have multiple possible representations as intervals so that logic doesn't have to account\nfor the variability. More complex calculations (such as medication request period or dispense period\ncalculation) need specific guidance and consideration. That guidance may make use of this function, but\nthe focus of this function is on single element calculations where the semantics are unambiguous.\nIf the input is a DateTime, the result a DateTime Interval beginning and ending on that DateTime.\nIf the input is a Quantity, the quantity is expected to be a calendar-duration interpreted as an Age,\nand the result is a DateTime Interval beginning on the Date the patient turned that age and ending immediately before one year later.\nIf the input is a DateTime Interval, the result is the input.\nIf the input is a Quantity Interval, the quantities are expected to be calendar-durations interpreted as an Age, and the result\nis a DateTime Interval beginning on the date the patient turned the age given as the start of the quantity interval, and ending\nimmediately before one year later than the date the patient turned the age given as the end of the quantity interval.\nIf the input is a Timing, an error will be thrown indicating that Timing calculations are not implemented. Any other input will reslt in a null DateTime Interval\n*/\ndefine fluent function toInterval(choice Choice<DateTime, Quantity, Interval<DateTime>, Interval<Quantity>, Timing>):\n  case\n\t  when choice is DateTime then\n    \tInterval[choice as DateTime, choice as DateTime]\n\t\twhen choice is Interval<DateTime> then\n  \t\tchoice as Interval<DateTime>\n\t\twhen choice is Quantity then\n\t\t  Interval[Patient.birthDate + (choice as Quantity),\n\t\t\t  Patient.birthDate + (choice as Quantity) + 1 year)\n\t\twhen choice is Interval<Quantity> then\n\t\t  Interval[Patient.birthDate + (choice.low as Quantity),\n\t\t\t  Patient.birthDate + (choice.high as Quantity) + 1 year)\n\t\twhen choice is Timing then\n      Message(null, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a Timing value is not supported') as Interval<DateTime>\n\t\telse\n\t\t\tnull as Interval<DateTime>\n\tend"
+        "valueString": "/* @description: Normalizes a value that is a choice of timing-valued types to an equivalent interval @comment: Normalizes a choice type of DateTime, Quanitty, Interval&lt;DateTime&gt;, or Interval&lt;Quantity&gt; types to an equivalent interval. This selection of choice types is a superset of the majority of choice types that are used as possible representations for timing-valued elements in QICore, allowing this function to be used across any resource. The input can be provided as a DateTime, Quantity, Interval&lt;DateTime&gt; or Interval&lt;Quantity&gt;. The intent of this function is to provide a clear and concise mechanism to treat single elements that have multiple possible representations as intervals so that logic doesn&#39;t have to account for the variability. More complex calculations (such as medication request period or dispense period calculation) need specific guidance and consideration. That guidance may make use of this function, but the focus of this function is on single element calculations where the semantics are unambiguous. If the input is a DateTime, the result a DateTime Interval beginning and ending on that DateTime. If the input is a Quantity, the quantity is expected to be a calendar-duration interpreted as an Age, and the result is a DateTime Interval beginning on the Date the patient turned that age and ending immediately before one year later. If the input is a DateTime Interval, the result is the input. If the input is a Quantity Interval, the quantities are expected to be calendar-durations interpreted as an Age, and the result is a DateTime Interval beginning on the date the patient turned the age given as the start of the quantity interval, and ending immediately before one year later than the date the patient turned the age given as the end of the quantity interval. If the input is a Timing, an error will be thrown indicating that Timing calculations are not implemented. Any other input will reslt in a null DateTime Interval */ define fluent function toInterval(choice Choice&lt;DateTime, Quantity, Interval&lt;DateTime&gt;, Interval&lt;Quantity&gt;, Timing&gt;):   case    when choice is DateTime then      Interval[choice as DateTime, choice as DateTime]   when choice is Interval&lt;DateTime&gt; then     choice as Interval&lt;DateTime&gt;   when choice is Quantity then     Interval[Patient.birthDate + (choice as Quantity),      Patient.birthDate + (choice as Quantity) + 1 year)   when choice is Interval&lt;Quantity&gt; then     Interval[Patient.birthDate + (choice.low as Quantity),      Patient.birthDate + (choice.high as Quantity) + 1 year)   when choice is Timing then       Message(null, true, &#39;NOT_IMPLEMENTED&#39;, &#39;Error&#39;, &#39;Calculation of an interval from a Timing value is not supported&#39;) as Interval&lt;DateTime&gt;   else    null as Interval&lt;DateTime&gt;  end"
       }, {
         "url": "displaySequence",
-        "valueInteger": 46
+        "valueString": "46"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -820,10 +820,10 @@
         "valueString": "isAssessmentPerformed"
       }, {
         "url": "statement",
-        "valueString": "//This library contains functions that are based on QDM 5.6 to QICore 4.1.1 March 2023 (https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Authoring-Patterns---QICore-v4.1.1). The functions may appear similar to some QICoreCommon functions but different in that they have constraints that are relevant for measures authored by NCQA.\n\n//Assessment, Performed\ndefine fluent function isAssessmentPerformed(Obs List<Observation>):\n  Obs O\n    where O.status in { 'final', 'amended', 'corrected' }\n          and exists ( O.category ObservationCategory\n          where ( ObservationCategory ) ~ \"survey\"\n      )"
+        "valueString": "//This library contains functions that are based on QDM 5.6 to QICore 4.1.1 March 2023 (https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Authoring-Patterns---QICore-v4.1.1). The functions may appear similar to some QICoreCommon functions but different in that they have constraints that are relevant for measures authored by NCQA.  //Assessment, Performed define fluent function isAssessmentPerformed(Obs List&lt;Observation&gt;):   Obs O     where O.status in { &#39;final&#39;, &#39;amended&#39;, &#39;corrected&#39; }           and exists ( O.category ObservationCategory           where ( ObservationCategory ) ~ &quot;survey&quot;       )"
       }, {
         "url": "displaySequence",
-        "valueInteger": 47
+        "valueString": "47"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -835,10 +835,10 @@
         "valueString": "isInterventionOrder"
       }, {
         "url": "statement",
-        "valueString": "//Intervention, Order: active and completed only    \ndefine fluent function isInterventionOrder(ServiceRequest List<ServiceRequest>):\n  ServiceRequest S\n    where S.status in { 'active', 'completed' }\n      and S.intent = 'order'"
+        "valueString": "//Intervention, Order: active and completed only     define fluent function isInterventionOrder(ServiceRequest List&lt;ServiceRequest&gt;):   ServiceRequest S     where S.status in { &#39;active&#39;, &#39;completed&#39; }       and S.intent = &#39;order&#39;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 48
+        "valueString": "48"
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -850,13 +850,12 @@
         "valueString": "isInterventionPerformed"
       }, {
         "url": "statement",
-        "valueString": "//Intervention, Performed\ndefine fluent function isInterventionPerformed(Proc List<Procedure>):\n  Proc P\n    where P.status ~ 'completed'"
+        "valueString": "//Intervention, Performed define fluent function isInterventionPerformed(Proc List&lt;Procedure&gt;):   Proc P     where P.status ~ &#39;completed&#39;"
       }, {
         "url": "displaySequence",
-        "valueInteger": 49
+        "valueString": "49"
       } ]
     } ],
-    "name": "EffectiveDataRequirements",
     "status": "active",
     "type": {
       "coding": [ {
@@ -1100,12 +1099,6 @@
       "max": "1",
       "type": "boolean"
     }, {
-      "name": "SDE Race",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "Resource"
-    }, {
       "name": "Initial Population 3",
       "use": "out",
       "min": 0,
@@ -1117,12 +1110,6 @@
       "min": 0,
       "max": "1",
       "type": "boolean"
-    }, {
-      "name": "SDE Sex",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "Coding"
     }, {
       "name": "Denominator 3",
       "use": "out",
@@ -1148,18 +1135,6 @@
       "max": "1",
       "type": "boolean"
     }, {
-      "name": "SDE Payer",
-      "use": "out",
-      "min": 0,
-      "max": "*",
-      "type": "Resource"
-    }, {
-      "name": "SDE Ethnicity",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "Resource"
-    }, {
       "name": "Denominator Exclusions",
       "use": "out",
       "min": 0,
@@ -1177,6 +1152,30 @@
       "min": 0,
       "max": "1",
       "type": "boolean"
+    }, {
+      "name": "SDE Race",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "Resource"
+    }, {
+      "name": "SDE Sex",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "Coding"
+    }, {
+      "name": "SDE Payer",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Resource"
+    }, {
+      "name": "SDE Ethnicity",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "Resource"
     } ],
     "dataRequirement": [ {
       "type": "Condition",
@@ -1457,7 +1456,7 @@
     }, {
       "type": "Patient",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ],
-      "mustSupport": [ "race", "ethnicity" ]
+      "mustSupport": [ "url", "extension", "gender", "gender.value", "birthDate", "birthDate.value" ]
     }, {
       "type": "Observation",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ],
@@ -1465,9 +1464,6 @@
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1573"
-      } ],
-      "dateFilter": [ {
-        "path": "effective"
       } ]
     }, {
       "type": "Observation",
@@ -1504,8 +1500,6 @@
           "code": "45755-6",
           "display": "Hospice care [Minimum Data Set]"
         } ]
-      }, {
-        "path": "value"
       } ]
     }, {
       "type": "Observation",
@@ -1519,22 +1513,6 @@
           "display": "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)"
         } ]
       } ]
-    }, {
-      "type": "Medication",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication" ],
-      "mustSupport": [ "id" ]
-    }, {
-      "type": "Medication",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication" ],
-      "mustSupport": [ "id" ]
-    }, {
-      "type": "Medication",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication" ],
-      "mustSupport": [ "id" ]
-    }, {
-      "type": "MedicationRequest",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
-      "mustSupport": [ "medication.reference", "status", "status.value", "intent", "intent.value", "authoredOn", "authoredOn.value", "dosageInstruction" ]
     }, {
       "type": "MedicationRequest",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
@@ -1560,6 +1538,14 @@
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1572"
       } ]
     }, {
+      "type": "MedicationRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
+      "mustSupport": [ "medication.reference", "status", "status.value", "intent", "intent.value", "authoredOn", "authoredOn.value", "dosageInstruction" ]
+    }, {
+      "type": "Medication",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication" ],
+      "mustSupport": [ "id" ]
+    }, {
       "type": "Coverage",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage" ],
       "mustSupport": [ "type", "period" ],
@@ -1574,8 +1560,6 @@
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1110.42"
-      }, {
-        "path": "clinicalStatus"
       } ]
     }, {
       "type": "ServiceRequest",
@@ -1592,18 +1576,6 @@
       "codeFilter": [ {
         "path": "event",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1110.42"
-      } ],
-      "dateFilter": [ {
-        "path": "recordedDate.value",
-        "valuePeriod": {
-          "extension": [ {
-            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
-            "valueExpression": {
-              "language": "text/cql-identifier",
-              "expression": "Measurement Period"
-            }
-          } ]
-        }
       } ]
     }, {
       "type": "MedicationRequest",
@@ -1673,12 +1645,6 @@
       }
     } ]
   }, {
-    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
-    "valueReference": {
-      "reference": "Device/cqf-tooling"
-    }
-  }, {
-    "id": "effective-data-requirements",
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements",
     "valueReference": {
       "reference": "#effective-data-requirements"
@@ -1738,7 +1704,7 @@
   "title": "Statin Therapy for the Prevention and Treatment of Cardiovascular DiseaseFHIR",
   "status": "draft",
   "experimental": false,
-  "date": "2024-09-12T03:35:46+00:00",
+  "date": "2024-07-25T16:34:25+00:00",
   "publisher": "Centers for Medicare & Medicaid Services (CMS)",
   "contact": [ {
     "telecom": [ {

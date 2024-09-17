@@ -1,0 +1,889 @@
+<Measure xmlns="http://hl7.org/fhir">
+   <id value="CRLReceiptofSpecialistReportFHIR"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-measure-cqfm"/>
+   </meta>
+   <contained>
+      <Library xmlns="http://hl7.org/fhir">
+         <id value="effective-data-requirements"/>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/administrative-gender"/>
+               <code value="M"/>
+               <display value="Male"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/administrative-gender"/>
+               <code value="F"/>
+               <display value="Female"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://www.ama-assn.org/go/cpt"/>
+               <code value="96136"/>
+               <display value="Psychological or neuropsychological test administration and scoring by physician or other qualified health care professional, two or more tests, any method; first 30 minutes"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://www.ama-assn.org/go/cpt"/>
+               <code value="96138"/>
+               <display value="Psychological or neuropsychological test administration and scoring by technician, two or more tests, any method; first 30 minutes"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://www.ama-assn.org/go/cpt"/>
+               <code value="90839"/>
+               <display value="Psychotherapy for crisis; first 60 minutes"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://www.ama-assn.org/go/cpt"/>
+               <code value="96112"/>
+               <display value="Developmental test administration (including assessment of fine and/or gross motor, language, cognitive level, social, memory and/or executive functions by standardized developmental instruments when performed), by physician or other qualified health care professional, with interpretation and report; first hour"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://www.ama-assn.org/go/cpt"/>
+               <code value="96156"/>
+               <display value="Health behavior assessment, or re-assessment (ie, health-focused clinical interview, behavioral observations, clinical decision making)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="SupplementalDataElements"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Sex"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Sex&amp;quot;:   case     when Patient.gender = &amp;#39;male&amp;#39; then &amp;quot;M&amp;quot;     when Patient.gender = &amp;#39;female&amp;#39; then &amp;quot;F&amp;quot;     else null   end"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="0"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Sex"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Sex&amp;quot;:   SDE.&amp;quot;SDE Sex&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="1"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="First Referral during First 10 Months of Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;First Referral during First 10 Months of Measurement Period&amp;quot;:   First([ServiceRequest: &amp;quot;Referral&amp;quot;] ReferralOrder       where ReferralOrder.status in { &amp;#39;active&amp;#39;, &amp;#39;completed&amp;#39; }         and ReferralOrder.intent = &amp;#39;order&amp;#39;         and ReferralOrder.authoredOn during day of Interval[start of &amp;quot;Measurement Period&amp;quot;, Date(year from start of &amp;quot;Measurement Period&amp;quot;, 10, 31)]       return {         ID: ReferralOrder.id,         AuthorDate: ReferralOrder.authoredOn       }       sort by AuthorDate ascending   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="2"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Referring Clinician Receives Consultant Report to Close Referral Loop"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Referring Clinician Receives Consultant Report to Close Referral Loop&amp;quot;:   exists ( [Task: &amp;quot;Consultant Report&amp;quot;] ConsultantReportObtained       with &amp;quot;First Referral during First 10 Months of Measurement Period&amp;quot; FirstReferral         such that FirstReferral.ID in &amp;quot;TaskGetRequestID&amp;quot;(ConsultantReportObtained)           and ConsultantReportObtained.executionPeriod ends after FirstReferral.AuthorDate           and ConsultantReportObtained.status = &amp;#39;completed&amp;#39;           and ConsultantReportObtained.executionPeriod ends during day of &amp;quot;Measurement Period&amp;quot;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="3"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Numerator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Numerator&amp;quot;:   &amp;quot;Referring Clinician Receives Consultant Report to Close Referral Loop&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="4"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Encounter from Valuesets during Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Encounter from Valuesets during Measurement Period&amp;quot;:   exists ( ( [Encounter: &amp;quot;Behavioral/Neuropsych Assessment&amp;quot;]       union [Encounter: &amp;quot;Office Visit&amp;quot;]       union [Encounter: &amp;quot;Ophthalmological Services&amp;quot;]       union [Encounter: &amp;quot;Preventive Care Services Established Office Visit, 18 and Up&amp;quot;]       union [Encounter: &amp;quot;Preventive Care Services, Initial Office Visit, 0 to 17&amp;quot;]       union [Encounter: &amp;quot;Preventive Care Services Initial Office Visit, 18 and Up&amp;quot;]       union [Encounter: &amp;quot;Preventive Care, Established Office Visit, 0 to 17&amp;quot;]       union [Encounter: &amp;quot;Psych Visit Diagnostic Evaluation&amp;quot;] ) Encounter       where Encounter.status = &amp;#39;finished&amp;#39;         and Encounter.period during day of &amp;quot;Measurement Period&amp;quot;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="5"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Encounter from DRCs during Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Encounter from DRCs during Measurement Period&amp;quot;:   exists ( ( [Encounter] EncDRC       where exists ( ( EncDRC.type ) T           where T ~ &amp;quot;Psychological or neuropsychological test administration and scoring by physician or other qualified health care professional, two or more tests, any method; first 30 minutes&amp;quot;       )         or exists ( ( EncDRC.type ) T             where T ~ &amp;quot;Psychological or neuropsychological test administration and scoring by technician, two or more tests, any method; first 30 minutes&amp;quot;         )         or exists ( ( EncDRC.type ) T             where T ~ &amp;quot;Psychotherapy for crisis; first 60 minutes&amp;quot;         )         or exists ( ( EncDRC.type ) T             where T ~ &amp;quot;Developmental test administration (including assessment of fine and/or gross motor, language, cognitive level, social, memory and/or executive functions by standardized developmental instruments when performed), by physician or other qualified health care professional, with interpretation and report; first hour&amp;quot;         )         or exists ( ( EncDRC.type ) T             where T ~ &amp;quot;Health behavior assessment, or re-assessment (ie, health-focused clinical interview, behavioral observations, clinical decision making)&amp;quot;         ) ) Encounter       where Encounter.status = &amp;#39;finished&amp;#39;         and Encounter.period during day of &amp;quot;Measurement Period&amp;quot;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="6"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Encounter during Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Encounter during Measurement Period&amp;quot;:   &amp;quot;Has Encounter from Valuesets during Measurement Period&amp;quot;     or &amp;quot;Has Encounter from DRCs during Measurement Period&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="7"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Initial Population"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Initial Population&amp;quot;:   &amp;quot;Has Encounter during Measurement Period&amp;quot;     and &amp;quot;First Referral during First 10 Months of Measurement Period&amp;quot; is not null"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="8"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator&amp;quot;:   &amp;quot;Initial Population&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="9"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="SupplementalDataElements"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Payer"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Payer&amp;quot;:   [Coverage: type in &amp;quot;Payer Type&amp;quot;] Payer     return {       code: Payer.type,       period: Payer.period     }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="10"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Payer"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Payer&amp;quot;:   SDE.&amp;quot;SDE Payer&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="11"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="SupplementalDataElements"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Ethnicity"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Ethnicity&amp;quot;:   Patient.ethnicity E     return Tuple {       codes: { E.ombCategory } union E.detailed,       display: E.text     }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="12"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Ethnicity"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Ethnicity&amp;quot;:   SDE.&amp;quot;SDE Ethnicity&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="13"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="SupplementalDataElements"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Race"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Race&amp;quot;:   Patient.race R     return Tuple {       codes: R.ombCategory union R.detailed,       display: R.text     }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="14"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Race"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Race&amp;quot;:   SDE.&amp;quot;SDE Race&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="15"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CRLReceiptofSpecialistReportFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="TaskGetRequestID"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define function &amp;quot;TaskGetRequestID&amp;quot;(task Task):   task.basedOn Task     return QICoreCommon.&amp;quot;GetId&amp;quot; ( Task.reference )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="16"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="GetId"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns the tail of the given uri (i.e. everything after the last slash in the URI). @comment: This function can be used to determine the logical id of a given resource. It can be used in a single-server environment to trace references. However, this function does not attempt to resolve or distinguish the base of the given url, and so cannot be used safely in multi-server environments. @deprecated: This function is deprecated. Use the fluent function `getId()` instead */ define function GetId(uri String ):   Last(Split(uri, &amp;#39;/&amp;#39;))"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="17"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FHIRHelpers"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToConcept"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept. */ define function ToConcept(concept FHIR.CodeableConcept):     if concept is null then         null     else         System.Concept {             codes: concept.coding C return ToCode(C),             display: concept.text.value         }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="18"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FHIRHelpers"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToString"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define function ToString(value uri): value.value"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="19"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FHIRHelpers"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToCode"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code. */ define function ToCode(coding FHIR.Coding):     if coding is null then         null     else         System.Code {           code: coding.code.value,           system: coding.system.value,           version: coding.version.value,           display: coding.display.value         }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="20"/>
+            </extension>
+         </extension>
+         <status value="active"/>
+         <type>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/library-type"/>
+               <code value="module-definition"/>
+            </coding>
+         </type>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library SDE"/>
+            <resource value="Library/SupplementalDataElements|3.5.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library QICoreCommon"/>
+            <resource value="Library/QICoreCommon|2.1.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library FHIRHelpers"/>
+            <resource value="Library/FHIRHelpers|4.4.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system AdministrativeGender"/>
+            <resource value="http://hl7.org/fhir/administrative-gender"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system CPT"/>
+            <resource value="http://www.ama-assn.org/go/cpt"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Consultant Report"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.121.12.1006"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Referral"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1046"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Behavioral/Neuropsych Assessment"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1023"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Office Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Ophthalmological Services"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1285"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services Established Office Visit, 18 and Up"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services, Initial Office Visit, 0 to 17"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1022"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services Initial Office Visit, 18 and Up"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care, Established Office Visit, 0 to 17"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1024"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Psych Visit Diagnostic Evaluation"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1492"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Payer Type"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"/>
+         </relatedArtifact>
+         <parameter>
+            <name value="Measurement Period"/>
+            <use value="in"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Period"/>
+         </parameter>
+         <parameter>
+            <name value="Numerator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Initial Population"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="SDE Sex"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Coding"/>
+         </parameter>
+         <parameter>
+            <name value="SDE Payer"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="*"/>
+            <type value="Resource"/>
+         </parameter>
+         <parameter>
+            <name value="SDE Ethnicity"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Resource"/>
+         </parameter>
+         <parameter>
+            <name value="SDE Race"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Resource"/>
+         </parameter>
+         <dataRequirement>
+            <type value="Patient"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient"/>
+            <mustSupport value="gender"/>
+            <mustSupport value="gender.value"/>
+            <mustSupport value="url"/>
+            <mustSupport value="extension"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="ServiceRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest"/>
+            <mustSupport value="code"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="id"/>
+            <mustSupport value="id.value"/>
+            <mustSupport value="ID"/>
+            <mustSupport value="AuthorDate"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1046"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Task"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-task"/>
+            <mustSupport value="code"/>
+            <mustSupport value="executionPeriod"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="reference"/>
+            <mustSupport value="reference.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.121.12.1006"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1023"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1285"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1022"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1024"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1492"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Coverage"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"/>
+            </codeFilter>
+         </dataRequirement>
+      </Library>
+   </contained>
+   <extension id="supplementalDataGuidance" url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-supplementalDataGuidance">
+      <extension url="guidance">
+         <valueString value="For every patient evaluated by this measure also identify payer, race, ethnicity and sex; SDE Ethnicity   SDE Payer   SDE Race   SDE Sex   "/>
+      </extension>
+      <extension url="usage">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+               <code value="supplemental-data"/>
+               <display value="Supplemental Data"/>
+            </coding>
+            <text value="Supplemental Data Guidance"/>
+         </valueCodeableConcept>
+      </extension>
+   </extension>
+   <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements">
+      <valueReference>
+         <reference value="#effective-data-requirements"/>
+      </valueReference>
+   </extension>
+   <url value="https://madie.cms.gov/Measure/CRLReceiptofSpecialistReportFHIR"/>
+   <identifier>
+      <use value="usual"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="short-name"/>
+            <display value="Short Name"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/shortName"/>
+      <value value="CMS50FHIR"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-independent"/>
+            <display value="Version Independent"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:75691bbe-451e-4e3a-9a95-6361f7b45196"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-specific"/>
+            <display value="Version Specific"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:28defa55-b86f-4d45-9919-08ee327231da"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="publisher"/>
+            <display value="Publisher"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/cmsId"/>
+      <value value="50FHIR"/>
+      <assigner>
+         <display value="CMS"/>
+      </assigner>
+   </identifier>
+   <version value="Draft based on 0.3.000"/>
+   <name value="CRLReceiptofSpecialistReportFHIR"/>
+   <title value="Closing the Referral Loop: Receipt of Specialist ReportFHIR"/>
+   <status value="draft"/>
+   <experimental value="false"/>
+   <date value="2024-05-16T13:27:21+00:00"/>
+   <publisher value="Centers for Medicare &amp; Medicaid Services (CMS)"/>
+   <contact>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.cms.gov/"/>
+      </telecom>
+   </contact>
+   <description value="Percentage of patients with referrals, regardless of age, for which the referring clinician receives a report from the clinician to whom the patient was referred"/>
+   <purpose value="UNKNOWN"/>
+   <usage value="The clinician who refers the patient to another clinician is the clinician who should be held accountable for the performance of this measure.   Only the first referral made between January 1 – October 31 of the measurement period will be considered for this measure to allow adequate time for the referring clinician to collect the consult report by the end of the measurement period.  If there are multiple referrals for a patient during the measurement period, use the first referral.  The clinician to whom the patient was referred is responsible for sending the consultant report that will fulfill the communication. Note: this is not the same clinician who would report on the measure.   The consultant report that will successfully close the referral loop should be related to the first referral for a patient during the measurement period. If there are multiple consultant reports received by the referring clinician which pertain to a particular referral, use the first consultant report to satisfy the measure. Eligible clinicians reporting on this measure should note that all data for the measurement period is to be submitted by the deadline established by CMS. Therefore, eligible clinicians who refer patients towards the end of the measurement period (i.e., October), should request that clinicians to whom they referred their patients share their consult reports as soon as possible in order for those patients to be counted in the measure numerator during the measurement period. When clinicians to whom patients are referred communicate the consult report as soon as possible with the referring clinician, it ensures that the communication loop is closed in a timely manner and that the data are included in the submission to CMS.  This eCQM is a patient-based measure.  This FHIR-based measure has been derived from the QDM-based measure: CMS50v13.    Please refer to the HL7 QI-Core Implementation Guide (https://hl7.org/fhir/us/qicore/STU4.1.1/) for more information on QI-Core and mapping recommendations from QDM to QI-Core 4.1.1 (https://hl7.org/fhir/us/qicore/STU4.1.1/qdm-to-qicore.html)."/>
+   <copyright value="Limited proprietary coding is contained in the Measure specifications for user convenience. Users of proprietary code sets should obtain all necessary licenses from the owners of the code sets.   CPT(R) contained in the Measure specifications is copyright 2004-2023 American Medical Association. LOINC(R) is copyright 2004-2023 Regenstrief Institute, Inc. This material contains SNOMED Clinical Terms(R) (SNOMED CT[R]) copyright 2004-2023 International Health Terminology Standards Development Organisation."/>
+   <effectivePeriod>
+      <start value="2025-01-01"/>
+      <end value="2025-12-31"/>
+   </effectivePeriod>
+   <author>
+      <name value="Mathematica"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.mathematica.org/"/>
+      </telecom>
+   </author>
+   <library value="https://madie.cms.gov/Library/CRLReceiptofSpecialistReportFHIR"/>
+   <disclaimer value="This performance Measure is not a clinical guideline, does not establish a standard of medical care, and has not been tested for all potential applications.  THE MEASURE AND SPECIFICATIONS ARE PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND.  Due to technical limitations, registered trademarks are indicated by (R) or [R] and unregistered trademarks are indicated by (TM) or [TM]."/>
+   <rationale value="Problems in the outpatient referral and consultation process have been documented, including inadequate care pathways between specialty and primary care. Studies suggest that both specialists and primary care providers (PCPs) are not satisfied with current processes (Institute for Healthcare Improvement / National Patient Safety Foundation, 2017; Greenwood-Lee et. al, 2018). Breakdowns in referral communication leads to worse health outcomes, increased cost, and appointment delays (Patel et. al, 2018; Odisho et. al, 2020). A 2018 analysis of primary care referrals to specialists found that of the 103,737 referral scheduling attempts analyzed, only 36,072 (34.8%) resulted in documented complete appointments, defined by the specialty clinician providing report to the PCP after the referral visit (Patel et. al, 2018).  Technological and process-based updates can improve the referral loop process and increase rates of closing the referral loop. Ramelson et. al (2018) enhanced an EHR's Referral Manager module to meet the Controlled Risk Insurance Company’s best practice steps and the requirements of both the CMS EHR Incentive Program and the National Committee for Quality Assurance Patient-Centered Medical Home program. Following the updates, 76.8% of referrals were completed and all defined referral process steps were easier to accomplish. Odisho et. al (2020) developed a referrals automation software to simplify the fax to referral process. Feedback from key stakeholder interviews noted that the software enhanced the referrals process by further streamlining and organizing the patient referral process. The Institute for Healthcare Improvement and the National Patient Safety Foundation (2017) reviewed the referrals process in the ambulatory care setting and found that organizational leaders, EHR vendors, regulatory agencies, clinicians, and patients all play a role in creating a referrals system that is effective, safe, convenient, and patient-centered."/>
+   <clinicalRecommendationStatement value="None"/>
+   <guidance value="The clinician who refers the patient to another clinician is the clinician who should be held accountable for the performance of this measure.   Only the first referral made between January 1 – October 31 of the measurement period will be considered for this measure to allow adequate time for the referring clinician to collect the consult report by the end of the measurement period.  If there are multiple referrals for a patient during the measurement period, use the first referral.  The clinician to whom the patient was referred is responsible for sending the consultant report that will fulfill the communication. Note: this is not the same clinician who would report on the measure.   The consultant report that will successfully close the referral loop should be related to the first referral for a patient during the measurement period. If there are multiple consultant reports received by the referring clinician which pertain to a particular referral, use the first consultant report to satisfy the measure. Eligible clinicians reporting on this measure should note that all data for the measurement period is to be submitted by the deadline established by CMS. Therefore, eligible clinicians who refer patients towards the end of the measurement period (i.e., October), should request that clinicians to whom they referred their patients share their consult reports as soon as possible in order for those patients to be counted in the measure numerator during the measurement period. When clinicians to whom patients are referred communicate the consult report as soon as possible with the referring clinician, it ensures that the communication loop is closed in a timely manner and that the data are included in the submission to CMS.  This eCQM is a patient-based measure.  This FHIR-based measure has been derived from the QDM-based measure: CMS50v13.    Please refer to the HL7 QI-Core Implementation Guide (https://hl7.org/fhir/us/qicore/STU4.1.1/) for more information on QI-Core and mapping recommendations from QDM to QI-Core 4.1.1 (https://hl7.org/fhir/us/qicore/STU4.1.1/qdm-to-qicore.html)."/>
+   <group id="656518260f81f93fca7d75b4">
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-scoring">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-scoring"/>
+               <code value="proportion"/>
+               <display value="Proportion"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis">
+         <valueCode value="boolean"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-type">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-type"/>
+               <code value="process"/>
+               <display value="Process"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-rateAggregation">
+         <valueCode value="None"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-improvementNotation">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-improvement-notation"/>
+               <code value="decrease"/>
+               <display value="increase"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <description value="Percentage of patients with referrals, regardless of age, for which the referring clinician receives a report from the clinician to whom the patient was referred"/>
+      <population id="2997D7E7-8063-4625-ABEE-B60E42B77B14">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="initial-population"/>
+               <display value="Initial Population"/>
+            </coding>
+         </code>
+         <description value="Number of patients, regardless of age, who had an encounter during the measurement period and were referred by one clinician to another clinician on or before October 31"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Initial Population"/>
+         </criteria>
+      </population>
+      <population id="8C1CD096-AD59-4135-B199-A20836ECA49E">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator"/>
+               <display value="Denominator"/>
+            </coding>
+         </code>
+         <description value="Equals Initial Population"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator"/>
+         </criteria>
+      </population>
+      <population id="5AAED7CC-78D7-4AA8-B9B9-734D2C4BE151">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="numerator"/>
+               <display value="Numerator"/>
+            </coding>
+         </code>
+         <description value="Number of patients with a referral on or before October 31, for which the referring clinician received a report from the clinician to whom the patient was referred"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Numerator"/>
+         </criteria>
+      </population>
+   </group>
+   <supplementalData id="sde-ethnicity">
+      <usage>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+            <code value="supplemental-data"/>
+         </coding>
+      </usage>
+      <description value="SDE Ethnicity"/>
+      <criteria>
+         <language value="text/cql-identifier"/>
+         <expression value="SDE Ethnicity"/>
+      </criteria>
+   </supplementalData>
+   <supplementalData id="sde-payer">
+      <usage>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+            <code value="supplemental-data"/>
+         </coding>
+      </usage>
+      <description value="SDE Payer"/>
+      <criteria>
+         <language value="text/cql-identifier"/>
+         <expression value="SDE Payer"/>
+      </criteria>
+   </supplementalData>
+   <supplementalData id="sde-race">
+      <usage>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+            <code value="supplemental-data"/>
+         </coding>
+      </usage>
+      <description value="SDE Race"/>
+      <criteria>
+         <language value="text/cql-identifier"/>
+         <expression value="SDE Race"/>
+      </criteria>
+   </supplementalData>
+   <supplementalData id="sde-sex">
+      <usage>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+            <code value="supplemental-data"/>
+         </coding>
+      </usage>
+      <description value="SDE Sex"/>
+      <criteria>
+         <language value="text/cql-identifier"/>
+         <expression value="SDE Sex"/>
+      </criteria>
+   </supplementalData>
+</Measure>

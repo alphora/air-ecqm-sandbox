@@ -25,20 +25,20 @@ Revert the changes to the following CQL libraries, because they are the FHIR-bas
 
 ## Copy Primary Measure Library
 
-Copy the primary measure library and rename it using the QICore6 postfix:
+Copy the primary measure library and rename it using the QICore4 postfix:
 
 ```
-input\cql\POAGOpticNerveEvaluationQICore6.cql
+input\cql\POAGOpticNerveEvaluationQICore4.cql
 ```
 
 ## Update Primary Measure Library
 
 1. Open the QICore named file
-2. Update the postfix on the library name from FHIR to QICore6
-3. Update the using statement to `using QICore version '6.0.0'`
+2. Update the postfix on the library name from FHIR to QICore4
+3. Update the using statement to `using QICore version '4.1.1'`
 3. Update the version of the FHIRHelpers reference to 4.0.013 (the current version for QICore support in this repository)
-4. Change the SupplementalDataElementsFHIR6 reference to SupplementalDataElementsQICore6
-5. Change the MATGlobalCommonFunctionsFHIR6 reference to MATGlobalCommonFunctionsQICore6
+4. Change the SupplementalDataElementsFHIR6 reference to SupplementalDataElementsQICore4
+5. Change the MATGlobalCommonFunctionsFHIR6 reference to MATGlobalCommonFunctionsQICore4
 6. Remove the reference to FHIRCommon
 7. Update references to MATGlobalCommonFunctionsFHIR6 functions that were moved to QICoreCommon:
     1. Normalize Interval -> ToInterval

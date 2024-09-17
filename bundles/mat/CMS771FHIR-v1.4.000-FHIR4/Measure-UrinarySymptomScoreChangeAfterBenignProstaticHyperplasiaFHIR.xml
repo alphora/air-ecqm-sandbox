@@ -1,0 +1,1093 @@
+<Measure xmlns="http://hl7.org/fhir">
+   <id value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-measure-cqfm"/>
+   </meta>
+   <contained>
+      <Library xmlns="http://hl7.org/fhir">
+         <id value="effective-data-requirements"/>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/administrative-gender"/>
+               <code value="M"/>
+               <display value="Male"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/administrative-gender"/>
+               <code value="F"/>
+               <display value="Female"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://loinc.org"/>
+               <code value="80976-4"/>
+               <display value="International Prostate Symptom Score [IPSS]"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://loinc.org"/>
+               <code value="80883-2"/>
+               <display value="American Urological Association Symptom Index [AUASI]"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://loinc.org"/>
+               <code value="81090-3"/>
+               <display value="If you were to spend the rest of your life with your urinary condition just the way it is now, how would you feel about that [IPSS]"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/sid/icd-10-cm"/>
+               <code value="N40.1"/>
+               <display value="Benign prostatic hyperplasia with lower urinary tract symptoms"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+               <code value="active"/>
+               <display value="Active"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+               <code value="recurrence"/>
+               <display value="Recurrence"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+               <code value="relapse"/>
+               <display value="Relapse"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/condition-ver-status"/>
+               <code value="confirmed"/>
+               <display value="Confirmed"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+               <code value="VR"/>
+               <display value="virtual"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="SupplementalDataElements"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Sex"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Sex&amp;quot;:   case     when Patient.gender = &amp;#39;male&amp;#39; then &amp;quot;M&amp;quot;     when Patient.gender = &amp;#39;female&amp;#39; then &amp;quot;F&amp;quot;     else null   end"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="0"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Sex"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Sex&amp;quot;:   SDE.&amp;quot;SDE Sex&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="1"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Documented IPSS Assessment Result"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Documented IPSS Assessment Result&amp;quot;:   [Observation: &amp;quot;International Prostate Symptom Score [IPSS]&amp;quot;] IPSSAssessment     where IPSSAssessment.status in { &amp;#39;final&amp;#39;, &amp;#39;amended&amp;#39;, &amp;#39;corrected&amp;#39; }       and IPSSAssessment.value is not null     return {       effectiveDatetime: IPSSAssessment.effective.earliest ( ),       valueInteger: IPSSAssessment.value as Integer     }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="2"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="AUA Symptom Index and Quality of Life Assessment Result"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;AUA Symptom Index and Quality of Life Assessment Result&amp;quot;:   [Observation: &amp;quot;American Urological Association Symptom Index [AUASI]&amp;quot;] AUASIAssessment     let LastQOLOnDate: Last([Observation: &amp;quot;If you were to spend the rest of your life with your urinary condition just the way it is now, how would you feel about that [IPSS]&amp;quot;] QOLAssessment         where QOLAssessment.effective.earliest() same day as AUASIAssessment.effective.earliest()           and QOLAssessment.status in { &amp;#39;final&amp;#39;, &amp;#39;amended&amp;#39;, &amp;#39;corrected&amp;#39; }           and QOLAssessment.value is not null         sort by effective.earliest()     )     where AUASIAssessment.status in { &amp;#39;final&amp;#39;, &amp;#39;amended&amp;#39;, &amp;#39;corrected&amp;#39; }       and AUASIAssessment.value is not null     return {       effectiveDatetime: AUASIAssessment.effective.earliest ( ),       valueInteger: ( AUASIAssessment.value as Integer ) + ( LastQOLOnDate.value as Integer )     }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="3"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Urinary Symptom Score Assessment"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Urinary Symptom Score Assessment&amp;quot;:   &amp;quot;Documented IPSS Assessment Result&amp;quot;     union &amp;quot;AUA Symptom Index and Quality of Life Assessment Result&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="4"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Period&amp;quot;:   First([Condition: &amp;quot;Benign prostatic hyperplasia with lower urinary tract symptoms&amp;quot;] NewBPHDiagnosis       where NewBPHDiagnosis.prevalenceInterval() starts during Interval[start of &amp;quot;Measurement Period&amp;quot; - 6 months, start of &amp;quot;Measurement Period&amp;quot;]         and NewBPHDiagnosis.isConfirmedActiveDiagnosis()       sort by start of onset.toInterval()   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="5"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Urinary Symptom Score Within 1 Month after Initial BPH Diagnosis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Urinary Symptom Score Within 1 Month after Initial BPH Diagnosis&amp;quot;:   First(&amp;quot;Urinary Symptom Score Assessment&amp;quot; USSAssessment       with &amp;quot;Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Period&amp;quot; InitialBPHDiagnosis         such that USSAssessment.effectiveDatetime 1 month or less on or after day of start of InitialBPHDiagnosis.prevalenceInterval()       sort by effectiveDatetime   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="6"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Urinary Symptom Score 6 to 12 Months After Initial BPH Diagnosis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Urinary Symptom Score 6 to 12 Months After Initial BPH Diagnosis&amp;quot;:   Last(&amp;quot;Urinary Symptom Score Assessment&amp;quot; USSAssessment       with &amp;quot;Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Period&amp;quot; InitialBPHDiagnosis         such that months between start of InitialBPHDiagnosis.prevalenceInterval() and USSAssessment.effectiveDatetime in Interval[6, 12]       sort by effectiveDatetime   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="7"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Urinary Symptom Score Change"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Urinary Symptom Score Change&amp;quot;:   from     &amp;quot;Urinary Symptom Score Within 1 Month after Initial BPH Diagnosis&amp;quot; FirstUSSAssessment,     &amp;quot;Urinary Symptom Score 6 to 12 Months After Initial BPH Diagnosis&amp;quot; FollowUpUSSAssessment     let USSChange: ( FirstUSSAssessment.valueInteger ) - ( FollowUpUSSAssessment.valueInteger )     return USSChange"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="8"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Urinary Symptom Score Improvement Greater Than or Equal To 3"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Urinary Symptom Score Improvement Greater Than or Equal To 3&amp;quot;:   ( &amp;quot;Urinary Symptom Score Change&amp;quot; USSImprovement       where USSImprovement &amp;gt;= 3   ) is not null"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="9"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Numerator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Numerator&amp;quot;:   &amp;quot;Urinary Symptom Score Improvement Greater Than or Equal To 3&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="10"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Patient is Male"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Patient is Male&amp;quot;:   Patient.gender = &amp;#39;male&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="11"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Qualifying Encounter"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Qualifying Encounter&amp;quot;:   exists ( [Encounter: &amp;quot;Office Visit&amp;quot;] ValidEncounter       where ValidEncounter.period during day of &amp;quot;Measurement Period&amp;quot;         and ValidEncounter.class !~ &amp;quot;virtual&amp;quot;         and ValidEncounter.status = &amp;#39;finished&amp;#39;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="12"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Qualifying BPH Diagnosis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Qualifying BPH Diagnosis&amp;quot;:   &amp;quot;Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Period&amp;quot; is not null"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="13"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Initial Population"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Initial Population&amp;quot;:   ( &amp;quot;Patient is Male&amp;quot; )     and &amp;quot;Has Qualifying Encounter&amp;quot;     and &amp;quot;Has Qualifying BPH Diagnosis&amp;quot;     and &amp;quot;Urinary Symptom Score Within 1 Month after Initial BPH Diagnosis&amp;quot; is not null     and &amp;quot;Urinary Symptom Score 6 to 12 Months After Initial BPH Diagnosis&amp;quot; is not null"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="14"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator&amp;quot;:   &amp;quot;Initial Population&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="15"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="SupplementalDataElements"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Payer"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Payer&amp;quot;:   [Coverage: type in &amp;quot;Payer Type&amp;quot;] Payer     return {       code: Payer.type,       period: Payer.period     }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="16"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Payer"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Payer&amp;quot;:   SDE.&amp;quot;SDE Payer&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="17"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="SupplementalDataElements"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Ethnicity"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Ethnicity&amp;quot;:   Patient.ethnicity E     return Tuple {       codes: { E.ombCategory } union E.detailed,       display: E.text     }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="18"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Ethnicity"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Ethnicity&amp;quot;:   SDE.&amp;quot;SDE Ethnicity&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="19"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Urinary Retention Diagnosis Starts Within 1 Year After Initial BPH Diagnosis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Urinary Retention Diagnosis Starts Within 1 Year After Initial BPH Diagnosis&amp;quot;:   [Condition: &amp;quot;Urinary retention&amp;quot;] UrinaryRetention     with &amp;quot;Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Period&amp;quot; InitialBPHDiagnosis       such that UrinaryRetention.prevalenceInterval ( ) starts 1 year or less on or after day of start of InitialBPHDiagnosis.prevalenceInterval ( )     where UrinaryRetention.isConfirmedActiveDiagnosis ( )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="20"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Initial BPH Diagnosis Starts During or Within 30 Days After End of Hospitalization"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Initial BPH Diagnosis Starts During or Within 30 Days After End of Hospitalization&amp;quot;:   &amp;quot;Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Period&amp;quot; InitialBPHDiagnosis     with [Encounter: &amp;quot;Hospital Services for Urology&amp;quot;] InHospitalServices       such that InitialBPHDiagnosis.prevalenceInterval ( ) starts during Interval[start of InHospitalServices.period, end of InHospitalServices.period + 31 days]         and InHospitalServices.status = &amp;#39;finished&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="21"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Morbid Obesity Diagnosis On or Before Follow Up USS Assessment"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Morbid Obesity Diagnosis On or Before Follow Up USS Assessment&amp;quot;:   [Condition: &amp;quot;Morbid Obesity&amp;quot;] MorbidObesity     with &amp;quot;Urinary Symptom Score 6 to 12 Months After Initial BPH Diagnosis&amp;quot; FollowUpUSSAssessment       such that MorbidObesity.prevalenceInterval ( ) overlaps &amp;quot;Measurement Period&amp;quot;         and MorbidObesity.prevalenceInterval ( ) starts on or before FollowUpUSSAssessment.effectiveDatetime     where MorbidObesity.isConfirmedActiveDiagnosis ( )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="22"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="BMI Exam Result Greater Than or Equal To 40 During Measurement Period and On or Before Follow Up USS Assessment"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* * @code: Body mass index (BMI) [Ratio] - 39156-5 * @profile: http://hl7.org/fhir/StructureDefinition/bmi */   define &amp;quot;BMI Exam Result Greater Than or Equal To 40 During Measurement Period and On or Before Follow Up USS Assessment&amp;quot;:   exists ( [&amp;quot;observation-bmi&amp;quot;] BMIExam       with &amp;quot;Urinary Symptom Score 6 to 12 Months After Initial BPH Diagnosis&amp;quot; FollowUpUSSAssessment         such that BMIExam.value &amp;gt;= 40 &amp;#39;kg/m2&amp;#39;           and BMIExam.status in { &amp;#39;final&amp;#39;, &amp;#39;amended&amp;#39;, &amp;#39;corrected&amp;#39; }           and BMIExam.effective.earliest ( ) during day of &amp;quot;Measurement Period&amp;quot;           and BMIExam.effective.earliest ( ) on or before FollowUpUSSAssessment.effectiveDatetime       return BMIExam.effective.earliest ( )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="23"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Morbid Obesity Diagnosis or BMI Exam Result Greater Than or Equal to 40 Starts On or Before Follow Up USS Assessment"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Morbid Obesity Diagnosis or BMI Exam Result Greater Than or Equal to 40 Starts On or Before Follow Up USS Assessment&amp;quot;:   exists &amp;quot;Morbid Obesity Diagnosis On or Before Follow Up USS Assessment&amp;quot;     or &amp;quot;BMI Exam Result Greater Than or Equal To 40 During Measurement Period and On or Before Follow Up USS Assessment&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="24"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator Exclusions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator Exclusions&amp;quot;:   exists ( &amp;quot;Urinary Retention Diagnosis Starts Within 1 Year After Initial BPH Diagnosis&amp;quot; )     or ( &amp;quot;Has Initial BPH Diagnosis Starts During or Within 30 Days After End of Hospitalization&amp;quot; is not null )     or ( &amp;quot;Morbid Obesity Diagnosis or BMI Exam Result Greater Than or Equal to 40 Starts On or Before Follow Up USS Assessment&amp;quot; )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="25"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="SupplementalDataElements"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Race"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Race&amp;quot;:   Patient.race R     return Tuple {       codes: R.ombCategory union R.detailed,       display: R.text     }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="26"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="SDE Race"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;SDE Race&amp;quot;:   SDE.&amp;quot;SDE Race&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="27"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="earliest"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Given an interval, return the starting point if the interval has a starting boundary specified, otherwise, return the ending point */ define fluent function earliest(choice Choice&amp;lt;DateTime, Quantity, Interval&amp;lt;DateTime&amp;gt;, Interval&amp;lt;Quantity&amp;gt;&amp;gt; ):   (choice.toInterval()) period     return       if (period.&amp;quot;hasStart&amp;quot;()) then start of period       else end of period"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="28"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="prevalenceInterval"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns an interval representing the normalized prevalence period of a given Condition. @comment: Uses the ToInterval and ToAbatementInterval functions to determine the widest potential interval from onset to abatement as specified in the given Condition. If the condition is active, or has an abatement date the resulting  interval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary. */ define fluent function prevalenceInterval(condition Condition): if condition.clinicalStatus ~ &amp;quot;active&amp;quot;   or condition.clinicalStatus ~ &amp;quot;recurrence&amp;quot;   or condition.clinicalStatus ~ &amp;quot;relapse&amp;quot; then   Interval[start of condition.onset.toInterval(), end of condition.abatementInterval()] else     (end of condition.abatementInterval()) abatementDate     return if abatementDate is null then       Interval[start of condition.onset.toInterval(), abatementDate)     else       Interval[start of condition.onset.toInterval(), abatementDate]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="29"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isConfirmedActiveDiagnosis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isConfirmedActiveDiagnosis(condition Condition):   condition.isActive ( )     and condition.verificationStatus ~ QICoreCommon.&amp;quot;confirmed&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="30"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isActive"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* Candidates for FHIRCommon */  /* @description: Returns true if the given condition has a clinical status of active, recurrence, or relapse */ define fluent function isActive(condition Condition):   condition.clinicalStatus ~ &amp;quot;active&amp;quot;     or condition.clinicalStatus ~ &amp;quot;recurrence&amp;quot;     or condition.clinicalStatus ~ &amp;quot;relapse&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="31"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FHIRHelpers"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToString"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define function ToString(value uri): value.value"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="32"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FHIRHelpers"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToCode"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code. */ define function ToCode(coding FHIR.Coding):     if coding is null then         null     else         System.Code {           code: coding.code.value,           system: coding.system.value,           version: coding.version.value,           display: coding.display.value         }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="33"/>
+            </extension>
+         </extension>
+         <status value="active"/>
+         <type>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/library-type"/>
+               <code value="module-definition"/>
+            </coding>
+         </type>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library SDE"/>
+            <resource value="Library/SupplementalDataElements|3.5.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library FHIRHelpers"/>
+            <resource value="Library/FHIRHelpers|4.4.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library QICoreCommon"/>
+            <resource value="Library/QICoreCommon|2.1.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system AdministrativeGender"/>
+            <resource value="http://hl7.org/fhir/administrative-gender"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system LOINC"/>
+            <resource value="http://loinc.org"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ICD10CM"/>
+            <resource value="http://hl7.org/fhir/sid/icd-10-cm"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ConditionClinicalStatusCodes"/>
+            <resource value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ConditionVerificationStatusCodes"/>
+            <resource value="http://terminology.hl7.org/CodeSystem/condition-ver-status"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ActCode"/>
+            <resource value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Office Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Payer Type"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Urinary retention"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1164.52"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospital Services for Urology"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.59"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Morbid Obesity"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1164.67"/>
+         </relatedArtifact>
+         <parameter>
+            <name value="Measurement Period"/>
+            <use value="in"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Period"/>
+         </parameter>
+         <parameter>
+            <name value="Numerator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Initial Population"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator Exclusions"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="SDE Sex"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Coding"/>
+         </parameter>
+         <parameter>
+            <name value="SDE Payer"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="*"/>
+            <type value="Resource"/>
+         </parameter>
+         <parameter>
+            <name value="SDE Ethnicity"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Resource"/>
+         </parameter>
+         <parameter>
+            <name value="SDE Race"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Resource"/>
+         </parameter>
+         <dataRequirement>
+            <type value="Patient"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient"/>
+            <mustSupport value="gender"/>
+            <mustSupport value="gender.value"/>
+            <mustSupport value="url"/>
+            <mustSupport value="extension"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="effective"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="value"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://loinc.org"/>
+                  <code value="80883-2"/>
+                  <display value="American Urological Association Symptom Index [AUASI]"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="effective"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="value"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://loinc.org"/>
+                  <code value="81090-3"/>
+                  <display value="If you were to spend the rest of your life with your urinary condition just the way it is now, how would you feel about that [IPSS]"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="value"/>
+            <mustSupport value="effective"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://loinc.org"/>
+                  <code value="80976-4"/>
+                  <display value="International Prostate Symptom Score [IPSS]"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="clinicalStatus"/>
+            <mustSupport value="verificationStatus"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1164.52"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1164.67"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://hl7.org/fhir/sid/icd-10-cm"/>
+                  <code value="N40.1"/>
+                  <display value="Benign prostatic hyperplasia with lower urinary tract symptoms"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <mustSupport value="class"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1151.59"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Coverage"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/StructureDefinition/bmi"/>
+            <mustSupport value="value"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="effective"/>
+         </dataRequirement>
+      </Library>
+   </contained>
+   <extension id="supplementalDataGuidance" url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-supplementalDataGuidance">
+      <extension url="guidance">
+         <valueString value="For every patient evaluated by this measure also identify payer, race, ethnicity and sex  "/>
+      </extension>
+      <extension url="usage">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+               <code value="supplemental-data"/>
+               <display value="Supplemental Data"/>
+            </coding>
+            <text value="Supplemental Data Guidance"/>
+         </valueCodeableConcept>
+      </extension>
+   </extension>
+   <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements">
+      <valueReference>
+         <reference value="#effective-data-requirements"/>
+      </valueReference>
+   </extension>
+   <url value="https://madie.cms.gov/Measure/UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+   <identifier>
+      <use value="usual"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="short-name"/>
+            <display value="Short Name"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/shortName"/>
+      <value value="CMS771FHIR"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-independent"/>
+            <display value="Version Independent"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:0748d873-8e20-441e-9bbf-c1eefe3ea054"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-specific"/>
+            <display value="Version Specific"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:43e6a3d8-3d0d-4d94-b4c2-bb0232d83fb2"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="publisher"/>
+            <display value="Publisher"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/cmsId"/>
+      <value value="771FHIR"/>
+      <assigner>
+         <display value="CMS"/>
+      </assigner>
+   </identifier>
+   <version value="Draft based on 1.4.000"/>
+   <name value="UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+   <title value="Urinary Symptom Score Change 6-12 Months After Diagnosis of Benign Prostatic HyperplasiaFHIR"/>
+   <status value="draft"/>
+   <experimental value="false"/>
+   <date value="2024-05-14T19:17:56+00:00"/>
+   <publisher value="Large Urology Group Practice Association (LUGPA)"/>
+   <contact>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.lugpa.org/"/>
+      </telecom>
+   </contact>
+   <description value="Percentage of patients with an office visit within the measurement period and with a new diagnosis of clinically significant Benign Prostatic Hyperplasia who have International Prostate Symptoms Score (IPSS) or American Urological Association (AUA) Symptom Index (SI) documented at time of diagnosis and again 6-12 months later with an improvement of 3 points"/>
+   <purpose value="UNKNOWN"/>
+   <usage value="The IPSS is inclusive of the symptom index score and the quality of life score. The AUA-SI is the symptom index score alone and must be added to the QOL score. The AUA-SI with the QOL equals the IPSS. Both of these are the urinary symptom score.  The patient must have a urinary symptom score (USS) within 1 month after initial diagnosis. If more than one USS in the initial one month, then the first USS counts. The patient must have a USS again at 6-12 months after the initial diagnosis and if more than one USS in this time frame, then the last USS counts.   The result of the test is a numeric value that relates to a continuous numeric scale. Reported either as an integer, a ratio, a real number, or a range. The test result value may optionally contain a relational operator from the set {&lt;=, &lt;, >, >=}. Valid values for a quantitative test are of the form “7”, “-7”, “7.4”, “-7.4”, “7.8912”, “0.125”, “&lt;10”, “&lt;10.15”, “>12000”, 1-10, 1:256.   Hospitalization within 30 days of Initial BPH Diagnosis refers to a 30-day period between the end of the hospitalization and the clinical office setting BPH diagnosis. This is due to aggravating factors from hospitalization, such as bed rest, medications, surgery, and altered body functions.  This eCQM is a patient-based measure.  Telehealth encounters are not eligible for this measure because the measure requires a clinical action that cannot be conducted via telehealth.  This FHIR-based measure has been derived from the QDM-based measure: CMS771v6.   Please refer to the HL7 QI-Core Implementation Guide (https://hl7.org/fhir/us/qicore/STU4.1.1/) for more information on QI-Core and mapping recommendations from QDM to QI-Core 4.1.1 (https://hl7.org/fhir/us/qicore/STU4.1.1/qdm-to-qicore.html)."/>
+   <copyright value="Limited proprietary coding is contained in the measure specifications for user convenience. Users of the proprietary code sets should obtain all necessary licenses from the owners of these code sets. Large Urology Group Practice Association (LUGPA) and Oregon Urology Institute (OUI) disclaim all liability for use or accuracy of any third party codes contained in the specifications.  CPT(R) contained in the Measure specifications is copyright 2004-2023. American Medical Association. LOINC(R) copyright 2004-2023 Regenstrief Institute, Inc. This material contains SNOMED Clinical Terms(R) (SNOMED CT[R]) copyright 2004-2023 International Health Terminology Standards Development Organisation. ICD-10 copyright 2023 World Health Organization. All Rights Reserved."/>
+   <effectivePeriod>
+      <start value="2025-01-01"/>
+      <end value="2025-12-31"/>
+   </effectivePeriod>
+   <author>
+      <name value="Large Urology Group Practice Association (LUGPA)"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.lugpa.org/"/>
+      </telecom>
+   </author>
+   <library value="https://madie.cms.gov/Library/UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR"/>
+   <disclaimer value="The performance measure is not a clinical guideline and does not establish a standard of medical care, and has not been tested for all potential applications.  THE MEASURE AND SPECIFICATIONS ARE PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND.  Due to technical limitations, registered trademarks are indicated by (R) or [R], and unregistered trademarks are indicated by (TM) or [TM]."/>
+   <rationale value="Benign prostatic hyperplasia (BPH) is one of the most common conditions affecting older men, with a prevalence of 50% by age 60 years and 90% by the ninth decade of life (Medina et al., 1999). The enlarged gland had been proposed to contribute to the overall lower urinary tract symptoms (LUTS) complex (McVary et al., 2014). Although LUTS secondary to BPH is not often a life-threatening condition, the impact of LUTS/BPH on quality of life can be significant (Wei et al., 2005). The American Urological Association Symptom Index (AUA-SI) and the International Prostate Symptom Score (IPSS) were developed to measure outcomes in studies of different treatments for BPH (Wuerstle et al., 2011). The IPSS uses the same questions as the AUA-SI, but also adds a disease-specific quality of life question (OLeary, 2005). The IPSS was adopted in 1993 by the World Health Organization. It is a reproducible, validated index designed to determine disease severity and response to therapy (D’Silva et al., 2014). It includes 3 storage symptom questions (frequency, nocturia, urgency) and four voiding symptoms (feeling of incomplete emptying, intermittency, straining, and a weak stream) as well as a Bother question: If you were to spend the rest of your life with your urinary condition just the way it is now, how would you feel about that? A three-point improvement in the score is considered meaningful (McVary et al., 2014)."/>
+   <clinicalRecommendationStatement value="The symptoms of BPH are lower urinary tract symptoms (LUTS). There are other disorders with similar symptoms that need to be excluded. History, physical examination, and testing are required prior to a diagnosis of BPH. IPSS by itself is not a reliable diagnostic tool for LUTS suggestive of BPH but serves as a quantitative measure of LUTS after the diagnosis is established (D’Silva et al., 2014). Medical and surgical interventions for BPH recommend a follow up IPSS evaluation to determine effectiveness of treatment. IPSS should be evaluated at the time of diagnosis and after definitive treatment."/>
+   <guidance value="The IPSS is inclusive of the symptom index score and the quality of life score. The AUA-SI is the symptom index score alone and must be added to the QOL score. The AUA-SI with the QOL equals the IPSS. Both of these are the urinary symptom score.  The patient must have a urinary symptom score (USS) within 1 month after initial diagnosis. If more than one USS in the initial one month, then the first USS counts. The patient must have a USS again at 6-12 months after the initial diagnosis and if more than one USS in this time frame, then the last USS counts.   The result of the test is a numeric value that relates to a continuous numeric scale. Reported either as an integer, a ratio, a real number, or a range. The test result value may optionally contain a relational operator from the set {&lt;=, &lt;, >, >=}. Valid values for a quantitative test are of the form “7”, “-7”, “7.4”, “-7.4”, “7.8912”, “0.125”, “&lt;10”, “&lt;10.15”, “>12000”, 1-10, 1:256.   Hospitalization within 30 days of Initial BPH Diagnosis refers to a 30-day period between the end of the hospitalization and the clinical office setting BPH diagnosis. This is due to aggravating factors from hospitalization, such as bed rest, medications, surgery, and altered body functions.  This eCQM is a patient-based measure.  Telehealth encounters are not eligible for this measure because the measure requires a clinical action that cannot be conducted via telehealth.  This FHIR-based measure has been derived from the QDM-based measure: CMS771v6.   Please refer to the HL7 QI-Core Implementation Guide (https://hl7.org/fhir/us/qicore/STU4.1.1/) for more information on QI-Core and mapping recommendations from QDM to QI-Core 4.1.1 (https://hl7.org/fhir/us/qicore/STU4.1.1/qdm-to-qicore.html)."/>
+   <group id="6643b8e4f4fc785d87117128">
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-scoring">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-scoring"/>
+               <code value="proportion"/>
+               <display value="Proportion"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis">
+         <valueCode value="boolean"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-type">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-type"/>
+               <code value="outcome"/>
+               <display value="Outcome"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-rateAggregation">
+         <valueCode value="None"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-improvementNotation">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-improvement-notation"/>
+               <code value="increase"/>
+               <display value="Increased score indicates improvement"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <population id="DF446A75-F4AB-4A5D-B121-066198848C5A">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="initial-population"/>
+               <display value="Initial Population"/>
+            </coding>
+         </code>
+         <description value="Male patients with an initial diagnosis of benign prostatic hyperplasia 6 months prior to the measurement period, and a urinary symptom score assessment within 1 month of initial diagnosis and a follow-up urinary symptom score assessment within 6-12 months, who had a qualifying visit during the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Initial Population"/>
+         </criteria>
+      </population>
+      <population id="180F8058-1D0B-4367-81C2-FA5736868C5F">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator"/>
+               <display value="Denominator"/>
+            </coding>
+         </code>
+         <description value="Equals Initial Population"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator"/>
+         </criteria>
+      </population>
+      <population id="71261DED-82AC-4F2E-AE2B-3E74CA3F8A42">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator-exclusion"/>
+               <display value="Denominator Exclusion"/>
+            </coding>
+         </code>
+         <description value="Patients with urinary retention that starts within 1 year of initial BPH diagnosis. Patients with an initial BPH diagnosis that starts during, or within 30 days after end of hospitalization. Patients with a diagnosis of morbid obesity, or with a BMI Exam >=40 before the follow up urinary symptom score."/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator Exclusions"/>
+         </criteria>
+      </population>
+      <population id="5CA575BA-5A1E-431E-903C-FAC40AA0CBE7">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="numerator"/>
+               <display value="Numerator"/>
+            </coding>
+         </code>
+         <description value="Patients with a documented improvement of at least 3 points in their urinary symptom score during the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Numerator"/>
+         </criteria>
+      </population>
+   </group>
+   <supplementalData id="sde-ethnicity">
+      <usage>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+            <code value="supplemental-data"/>
+         </coding>
+      </usage>
+      <description value="SDE Ethnicity"/>
+      <criteria>
+         <language value="text/cql-identifier"/>
+         <expression value="SDE Ethnicity"/>
+      </criteria>
+   </supplementalData>
+   <supplementalData id="sde-payer">
+      <usage>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+            <code value="supplemental-data"/>
+         </coding>
+      </usage>
+      <description value="SDE Payer"/>
+      <criteria>
+         <language value="text/cql-identifier"/>
+         <expression value="SDE Payer"/>
+      </criteria>
+   </supplementalData>
+   <supplementalData id="sde-race">
+      <usage>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+            <code value="supplemental-data"/>
+         </coding>
+      </usage>
+      <description value="SDE Race"/>
+      <criteria>
+         <language value="text/cql-identifier"/>
+         <expression value="SDE Race"/>
+      </criteria>
+   </supplementalData>
+   <supplementalData id="sde-sex">
+      <usage>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
+            <code value="supplemental-data"/>
+         </coding>
+      </usage>
+      <description value="SDE Sex"/>
+      <criteria>
+         <language value="text/cql-identifier"/>
+         <expression value="SDE Sex"/>
+      </criteria>
+   </supplementalData>
+</Measure>
