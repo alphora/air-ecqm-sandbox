@@ -31,6 +31,12 @@ parameter "Measurement Period" Interval<DateTime>
 
 context Patient
 
+/*
+  @QICore6Uplift: 
+    - Update ObservationNotDone to ObservationCancelled
+    - Update Condition to ConditionProblemsHealthConcerns
+*/
+
 define "Initial Population":
   "Patient Age 12 Years or Older at Start of Measurement Period"
     and exists ( "Qualifying Encounter During Measurement Period" )
