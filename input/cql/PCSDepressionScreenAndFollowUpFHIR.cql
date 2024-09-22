@@ -100,10 +100,6 @@ define "Follow Up Intervention for Positive Adult Depression Screening":
       )
   )
 
-/*
-  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
-*/
-
 define "Has Adolescent Depression Screening":
   exists ( [SimpleObservation: "Adolescent depression screening assessment"] AdolescentScreening
       with "Qualifying Encounter During Measurement Period" QualifyingEncounter
@@ -111,10 +107,6 @@ define "Has Adolescent Depression Screening":
           and AdolescentScreening.value is not null
           and AdolescentScreening.status = 'final'
   )
-
-/*
-  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
-*/
 
 define "Has Adult Depression Screening":
   exists ( [SimpleObservation: "Adult depression screening assessment"] AdultScreening
@@ -142,6 +134,10 @@ define "History of Bipolar Diagnosis Before Qualifying Encounter":
   [ConditionProblemsHealthConcerns: "Bipolar Disorder"] BipolarDiagnosis
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that BipolarDiagnosis.prevalenceInterval() starts before QualifyingEncounter.period
+
+/*
+  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
+*/
 
 /*
   @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
