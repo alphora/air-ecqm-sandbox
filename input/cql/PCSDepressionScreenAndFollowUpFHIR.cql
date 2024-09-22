@@ -38,12 +38,6 @@ parameter "Measurement Period" Interval<DateTime>
 
 context Patient
 
-/*
-  @QICore6Uplift: 
-    - Update ObservationNotDone to ObservationCancelled
-    - Update Condition to ConditionProblemsHealthConcerns
-*/
-
 define "Initial Population":
   "Patient Age 12 Years or Older at Start of Measurement Period"
     and exists ( "Qualifying Encounter During Measurement Period" )
@@ -107,6 +101,10 @@ define "Follow Up Intervention for Positive Adult Depression Screening":
       )
   )
 
+/*
+  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
+*/
+
 define "Has Adolescent Depression Screening":
   exists ( [Observation: "Adolescent depression screening assessment"] AdolescentScreening
       with "Qualifying Encounter During Measurement Period" QualifyingEncounter
@@ -114,6 +112,10 @@ define "Has Adolescent Depression Screening":
           and AdolescentScreening.value is not null
           and AdolescentScreening.status = 'final'
   )
+
+/*
+  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
+*/
 
 define "Has Adult Depression Screening":
   exists ( [Observation: "Adult depression screening assessment"] AdultScreening
@@ -132,6 +134,10 @@ define "Has Most Recent Adult Screening Negative":
   ( "Most Recent Adult Depression Screening" AdultScreen
       where AdultScreen.value ~ "Depression screening negative (finding)"
   ) is not null
+
+/*
+  @QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+*/
 
 define "History of Bipolar Diagnosis Before Qualifying Encounter":
   [Condition: "Bipolar Disorder"] BipolarDiagnosis
