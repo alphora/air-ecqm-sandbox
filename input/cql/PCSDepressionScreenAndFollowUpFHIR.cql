@@ -101,10 +101,6 @@ define "Follow Up Intervention for Positive Adult Depression Screening":
       )
   )
 
-/*
-  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
-*/
-
 define "Has Adolescent Depression Screening":
   exists ( [SimpleObservation: "Adolescent depression screening assessment"] AdolescentScreening
       with "Qualifying Encounter During Measurement Period" QualifyingEncounter
@@ -112,10 +108,6 @@ define "Has Adolescent Depression Screening":
           and AdolescentScreening.value is not null
           and AdolescentScreening.status = 'final'
   )
-
-/*
-  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
-*/
 
 define "Has Adult Depression Screening":
   exists ( [SimpleObservation: "Adult depression screening assessment"] AdultScreening
@@ -144,6 +136,10 @@ define "History of Bipolar Diagnosis Before Qualifying Encounter":
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that BipolarDiagnosis.prevalenceInterval() starts before QualifyingEncounter.period
 
+/*
+  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
+*/
+
 define "Medical or Patient Reason for Not Screening Adolescent for Depression":
   [ObservationCancelled: code ~ "Adolescent depression screening assessment"] NoAdolescentScreen
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
@@ -152,6 +148,10 @@ define "Medical or Patient Reason for Not Screening Adolescent for Depression":
         or NoAdolescentScreen.notDoneReason in "Medical Reason"
     )
       and NoAdolescentScreen.status = 'cancelled'
+
+/*
+  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
+*/
 
 define "Medical or Patient Reason for Not Screening Adult for Depression":
   [ObservationCancelled: code ~ "Adult depression screening assessment"] NoAdultScreen
