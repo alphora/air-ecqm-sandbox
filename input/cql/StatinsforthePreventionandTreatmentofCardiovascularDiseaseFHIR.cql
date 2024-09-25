@@ -1,3 +1,7 @@
+/*
+  @QICore6Uplift: Change resource types in test cases from Condition to ConditionEncounterDiagnosis or ConditionProblemsHealthConcerns
+*/ 
+
 library StatinsforthePreventionandTreatmentofCardiovascularDiseaseFHIR version '0.2.000'
 
 /*
