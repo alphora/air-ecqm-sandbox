@@ -11,7 +11,7 @@
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><ul><li>Include all codes defined in <a href=\"CodeSystem-observation-verification.html\"><code>http://hl7.org/fhir/us/qicore/CodeSystem/observation-verification</code></a></li></ul></div>"
   },
   "url": "http://hl7.org/fhir/us/qicore/ValueSet/qicore-observation-verification",
-  "version": "4.1.1",
+  "version": "6.0.0",
   "name": "QICoreObservationVerification",
   "title": "QICore Observation Verification Method",
   "status": "draft",

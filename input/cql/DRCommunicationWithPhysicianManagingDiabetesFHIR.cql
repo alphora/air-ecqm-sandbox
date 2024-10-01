@@ -1,6 +1,6 @@
 library DRCommunicationWithPhysicianManagingDiabetesFHIR version '0.1.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 /*
 Notes: 

@@ -1,6 +1,6 @@
 library DementiaCognitiveAssessmentFHIR version '0.1.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 /*Note ws 1. 8/09/2023: Negation issue as outlined in BonnieMat-1455 and ticket https://github.com/cqframework/cql-execution/issues/296 */
 

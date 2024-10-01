@@ -6,7 +6,7 @@
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>This value set includes codes based on the following rules:</p><ul/></div>"
   },
   "url": "http://hl7.org/fhir/us/qicore/ValueSet/qicore-procedure-type",
-  "version": "4.1.1",
+  "version": "6.0.0",
   "name": "QICoreProcedureType",
   "status": "active",
   "date": "2019-12-05",

@@ -1,6 +1,6 @@
 library PCSDepressionScreenAndFollowUpFHIR version '0.2.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include QICoreCommon version '2.1.000' called QICoreCommon
 include SupplementalDataElements version '3.5.000' called SDE
@@ -27,7 +27,7 @@ code "Depression screening declined (situation)": '720834000' from "SNOMEDCT" di
 code "Depression screening negative (finding)": '428171000124102' from "SNOMEDCT" display 'Depression screening negative (finding)'
 code "Depression screening positive (finding)": '428181000124104' from "SNOMEDCT" display 'Depression screening positive (finding)'
 
-parameter "Measurement Period" Interval<DateTime>
+parameter "Measurement Period" Interval<DateTime> //default Interval[@2025-01-01T00:00:00Z, @2026-01-01T00:00:00Z)
 
 context Patient
 
@@ -95,7 +95,7 @@ define "Follow Up Intervention for Positive Adult Depression Screening":
   )
 
 define "Has Adolescent Depression Screening":
-  exists ( [Observation: "Adolescent depression screening assessment"] AdolescentScreening
+  exists ( [SimpleObservation: "Adolescent depression screening assessment"] AdolescentScreening
       with "Qualifying Encounter During Measurement Period" QualifyingEncounter
         such that AdolescentScreening.effective.toInterval ( ) 14 days or less on or before day of start of QualifyingEncounter.period
           and AdolescentScreening.value is not null
@@ -103,7 +103,7 @@ define "Has Adolescent Depression Screening":
   )
 
 define "Has Adult Depression Screening":
-  exists ( [Observation: "Adult depression screening assessment"] AdultScreening
+  exists ( [SimpleObservation: "Adult depression screening assessment"] AdultScreening
       with "Qualifying Encounter During Measurement Period" QualifyingEncounter
         such that AdultScreening.effective.toInterval ( ) 14 days or less on or before day of start of QualifyingEncounter.period
           and AdultScreening.value is not null
@@ -121,15 +121,12 @@ define "Has Most Recent Adult Screening Negative":
   ) is not null
 
 define "History of Bipolar Diagnosis Before Qualifying Encounter":
-  [Condition: "Bipolar Disorder"] BipolarDiagnosis
+  [ConditionProblemsHealthConcerns: "Bipolar Disorder"] BipolarDiagnosis
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
-      such that ( BipolarDiagnosis.isProblemListItem ( )
-          or BipolarDiagnosis.isHealthConcern ( )
-      )
-        and BipolarDiagnosis.prevalenceInterval ( ) starts before QualifyingEncounter.period
+      such that BipolarDiagnosis.prevalenceInterval() starts before QualifyingEncounter.period
 
 define "Medical or Patient Reason for Not Screening Adolescent for Depression":
-  [ObservationNotDone: code ~ "Adolescent depression screening assessment"] NoAdolescentScreen
+  [ObservationCancelled: code ~ "Adolescent depression screening assessment"] NoAdolescentScreen
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that NoAdolescentScreen.issued during QualifyingEncounter.period
     where ( NoAdolescentScreen.notDoneReason ~ "Depression screening declined (situation)"
@@ -138,7 +135,7 @@ define "Medical or Patient Reason for Not Screening Adolescent for Depression":
       and NoAdolescentScreen.status = 'cancelled'
 
 define "Medical or Patient Reason for Not Screening Adult for Depression":
-  [ObservationNotDone: code ~ "Adult depression screening assessment"] NoAdultScreen
+  [ObservationCancelled: code ~ "Adult depression screening assessment"] NoAdultScreen
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that NoAdultScreen.issued during QualifyingEncounter.period
     where ( NoAdultScreen.notDoneReason ~ "Depression screening declined (situation)"
@@ -147,7 +144,7 @@ define "Medical or Patient Reason for Not Screening Adult for Depression":
       and NoAdultScreen.status = 'cancelled'
 
 define "Most Recent Adolescent Depression Screening":
-  Last([Observation: "Adolescent depression screening assessment"] AdolescentDepressionScreening
+  Last([SimpleObservation: "Adolescent depression screening assessment"] AdolescentDepressionScreening
       with "Qualifying Encounter During Measurement Period" QualifyingEncounter
         such that AdolescentDepressionScreening.effective.toInterval() 14 days or less on or before day of start of QualifyingEncounter.period
           and AdolescentDepressionScreening.value is not null
@@ -156,7 +153,7 @@ define "Most Recent Adolescent Depression Screening":
   )
 
 define "Most Recent Adult Depression Screening":
-  Last([Observation: "Adult depression screening assessment"] AdultDepressionScreening
+  Last([SimpleObservation: "Adult depression screening assessment"] AdultDepressionScreening
       with "Qualifying Encounter During Measurement Period" QualifyingEncounter
         such that AdultDepressionScreening.effective.toInterval() 14 days or less on or before day of start of QualifyingEncounter.period
           and AdultDepressionScreening.value is not null
