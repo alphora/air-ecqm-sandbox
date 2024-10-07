@@ -1,5 +1,8 @@
 library PalliativeCare version '1.11.000'
 
+/*
+ @QICore6Uplift: Update to QICore version '6.0.0'
+*/ 
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
@@ -19,9 +22,14 @@ parameter "Measurement Period" Interval<DateTime>
 context Patient
 
 define "Has Palliative Care in the Measurement Period":
-  exists ((([Observation: "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)"]).isAssessmentPerformed()) PalliativeAssessment
+    exists ((([Observation: "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)"]).isAssessmentPerformed()) PalliativeAssessment
       where PalliativeAssessment.effective.toInterval() overlaps day of "Measurement Period"
-  )
+    )
+
+    /*
+     @QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+    */ 
+    
     or exists ([Condition: "Palliative Care Diagnosis"] PalliativeDiagnosis
         where PalliativeDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
