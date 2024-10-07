@@ -8,10 +8,7 @@ https://oncprojectracking.healthit.gov/support/browse/CQLIT-414
 
 library QICoreCommon version '2.1.000'
 
-/*
- @QICore6Uplift: Update to QICore version '6.0.0'
-*/ 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000'
 
