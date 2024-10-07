@@ -1,6 +1,6 @@
 library FunctionalStatusAssessmentsforHeartFailureFHIR version '0.1.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon

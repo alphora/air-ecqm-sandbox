@@ -11,7 +11,7 @@
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><ul><li>Include all codes defined in <a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-flag-category.html\"><code>http://terminology.hl7.org/CodeSystem/flag-category</code></a></li></ul></div>"
   },
   "url": "http://hl7.org/fhir/us/qicore/ValueSet/qicore-flag-category",
-  "version": "4.1.1",
+  "version": "6.0.0",
   "name": "QICoreFlagCategory",
   "title": "Flag Category Codes",
   "status": "draft",

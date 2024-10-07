@@ -11,7 +11,7 @@
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><ul><li>Include codes from <a href=\"http://www.snomed.org/\"><code>http://snomed.info/sct</code></a> where concept  is-a  416406003 (Procedure discontinued), concept  is-a  428119001 (Procedure not indicated (situation)), concept  is-a  416064006 (Procedure not offered), concept  is-a  416432009 (Procedure not wanted) and concept  is-a  410521004 (Not to be done (qualifier value))</li></ul></div>"
   },
   "url": "http://hl7.org/fhir/us/qicore/ValueSet/qicore-servicerequest-reason-rejected",
-  "version": "4.1.1",
+  "version": "6.0.0",
   "name": "QICoreServiceRequestReasonRejected",
   "title": "Reasons for rejecting a service request",
   "status": "draft",

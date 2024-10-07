@@ -1,6 +1,6 @@
 library ChildrenWhoHaveDentalDecayOrCavitiesFHIR version '0.0.001'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include QICoreCommon version '2.1.000' called QICoreCommon
 include FHIRHelpers version '4.4.000' called FHIRHelpers

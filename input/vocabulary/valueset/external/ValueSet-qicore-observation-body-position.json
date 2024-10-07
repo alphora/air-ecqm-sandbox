@@ -17,7 +17,7 @@
     }
   ],
   "url": "http://hl7.org/fhir/us/qicore/ValueSet/qicore-observation-body-position",
-  "version": "4.1.1",
+  "version": "6.0.0",
   "name": "QICoreObservationBodyPosition",
   "title": "Body Position",
   "status": "draft",
