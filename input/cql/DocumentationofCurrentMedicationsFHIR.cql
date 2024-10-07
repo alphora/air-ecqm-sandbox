@@ -33,7 +33,7 @@ define "Denominator":
   "Initial Population"
 
 define "Qualifying Encounter during day of Measurement Period":
-  ["Encounter": "Encounter to Document Medications"] ValidEncounter
+  ["Encounter": type in "Encounter to Document Medications"] ValidEncounter
     where ValidEncounter.status = 'finished'
       and ValidEncounter.period during day of "Measurement Period"
 
