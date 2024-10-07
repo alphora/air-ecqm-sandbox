@@ -1,6 +1,9 @@
 library ProstateCaAvoidanceBoneScanOveruseFHIR version '0.3.000'
 
-using QICore version '6.0.0'
+/*
+@QICore6Uplift: Update QICore version to 6.0.0
+*/
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -59,6 +62,9 @@ define "Denominator Exceptions":
     or "Has Salvage Therapy Performed after Prostate Cancer Diagnosis"
     or "Has Bone Scan Study Performed with Documented Reason"
 
+/*
+@QICore6Uplift: Update Observation resource to ObservationClinicalResult
+*/
 define "Bone Scan Study Performed":
   [Observation: "Bone Scan"] BoneScan
     with "Prostate Cancer Diagnosis" ActiveProstateCancer
@@ -69,6 +75,9 @@ define "Has Bone Scan Study Performed with Documented Reason":
   exists "Bone Scan Study Performed" BoneScanAfterDiagnosis
     where BoneScanAfterDiagnosis.value ~ "Procedure reason record (record artifact)"
 
+/*
+@QICore6Uplift: Update Condition resource to ConditionEncounterDiagnosis
+*/
 define "Has Diagnosis of Pain related to Prostate Cancer":
   exists ( [Condition: "Pain Warranting Further Investigation for Prostate Cancer"] ProstateCancerPain
       with "Prostate Cancer Diagnosis" ActiveProstateCancer
@@ -85,6 +94,9 @@ define "First Prostate Cancer Treatment during day of Measurement Period":
       sort by start of performed.toInterval()
   )
 
+/*
+@QICore6Uplift: Update Observation resource to LaboratoryResultObservation
+*/
 define "Most Recent PSA Test Result is Low":
   ( Last([Observation: "Prostate Specific Antigen Test"] PSATest
       with "Most Recent Prostate Cancer Staging Tumor Size T1a to T2a" MostRecentProstateCancerStaging
@@ -101,6 +113,9 @@ define "Has Salvage Therapy Performed after Prostate Cancer Diagnosis":
           and SalvageTherapy.status = 'completed'
   )
 
+/*
+@QICore6Uplift: Update Observation resource to ObservationClinicalResult
+*/
 define "Most Recent Gleason Score is Low":
   ( Last([Observation: "Gleason score in Specimen Qualitative"] GleasonScore
       with "First Prostate Cancer Treatment during day of Measurement Period" FirstProstateCancerTreatment
@@ -110,6 +125,9 @@ define "Most Recent Gleason Score is Low":
   ) ) LastGleasonScore
     return LastGleasonScore.value as Integer <= 6
 
+/*
+@QICore6Uplift: Update Observation resource to ObservationClinicalResult
+*/
 define "Most Recent Prostate Cancer Staging Tumor Size T1a to T2a":
   ( Last([Observation: "Tumor staging (tumor staging)"] ProstateCancerStaging
       with "First Prostate Cancer Treatment during day of Measurement Period" FirstProstateCancerTreatment
@@ -123,6 +141,9 @@ define "Most Recent Prostate Cancer Staging Tumor Size T1a to T2a":
         or LastProstateCancerStaging.value ~ "Neoplasm of prostate primary tumor staging category T2a: Involves one-half of one lobe or less (finding)"
     )
 
+/*
+@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+*/
 define "Prostate Cancer Diagnosis":
   [Condition: "Prostate Cancer"] ProstateCancer
     where ProstateCancer.prevalenceInterval ( ) overlaps day of "Measurement Period"

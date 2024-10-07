@@ -6,7 +6,10 @@ Updated SDE Sex definition to use added codes from FHIR administrative-gender co
 */
 library SupplementalDataElements version '3.5.000'
 
-using QICore version '6.0.0'
+/*
+@QICore6Uplift: Update QICore version to 6.0.0
+*/
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 
@@ -43,6 +46,9 @@ define "SDE Race":
       display: R.text
     }
 
+/*
+@QICore6Uplift: Update gender to 'genderIdentity' or 'sex'
+*/
 define "SDE Sex":
   case
     when Patient.gender = 'male' then "M"
