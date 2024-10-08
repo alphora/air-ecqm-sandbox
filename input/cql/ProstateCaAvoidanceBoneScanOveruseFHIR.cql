@@ -1,3 +1,9 @@
+/*
+  @QICore6Uplift test impact: 
+  - Change resource types in test cases from Observation resource to ObservationClinicalResult or LaboratoryResultObservation, and Condition resource to ConditionEncounterDiagnosis or ConditionProblemsHealthConcerns
+  - Update qicore profile to match ObservationClinicalResult, LaboratoryResultObservation, ConditionEncounterDiagnosis, or ConditionProblemsHealthConcerns
+*/ 
+
 library ProstateCaAvoidanceBoneScanOveruseFHIR version '0.3.000'
 
 using QICore version '6.0.0'
