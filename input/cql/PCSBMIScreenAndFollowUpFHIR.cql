@@ -1,3 +1,7 @@
+/*
+  @QICore6Uplift test impact: Change resource types and update qicore profiles in test cases to SimpleObservation and ConditionProblemsHealthConcerns
+*/ 
+
 library PCSBMIScreenAndFollowUpFHIR version '0.2.000'
 
 using QICore version '6.0.0'
