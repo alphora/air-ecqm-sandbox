@@ -1,12 +1,11 @@
 /*
-  @QICore6Uplift: Change resource types in test cases from Condition to ConditionEncounterDiagnosis or ConditionProblemsHealthConcerns
+  @QICore6Uplift: 
+  - Change resource types in test cases from Condition to ConditionEncounterDiagnosis or ConditionProblemsHealthConcerns
+  - Update qicore profile to match ConditionEncounterDiagnosis or ConditionProblemsHealthConcerns resource types
 */ 
 
 library StatinsforthePreventionandTreatmentofCardiovascularDiseaseFHIR version '0.2.000'
 
-/*
-  @QICore6Uplift: Change to QICore version '6.0.0'
-*/ 
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
