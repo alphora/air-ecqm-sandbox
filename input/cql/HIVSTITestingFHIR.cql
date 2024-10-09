@@ -1,3 +1,7 @@
+/*
+@QICore6Uplift test impact: Change Condition and Observation resource types and qicore profiles in test cases to ConditionProblemsHealthConcerns and ObservationScreeningAssessment, respectively
+*/ 
+
 library HIVSTITestingFHIR version '0.2.000'
 
 using QICore version '6.0.0'
@@ -76,22 +80,34 @@ define "Has Qualifying Encounter During Measurement Period":
       where QualifyingEncounter.period during day of "Measurement Period"
   )
 
+/*
+@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+*/ 
 define "Has HIV Diagnosis Before End of Measurement Period":
   exists ["Condition": "HIV"] HIVDx
     where HIVDx.prevalenceInterval ( ) starts on or before day of end of "Measurement Period"
 
+/*
+@QICore6Uplift: Update Observation to ObservationScreeningAssessment
+*/ 
 define "Has Chlamydia Testing":
   exists ["Observation": "Chlamydia Screening"] ChlamydiaTest
     where ChlamydiaTest.value is not null
       and ChlamydiaTest.status in { 'final', 'amended', 'corrected' }
       and ChlamydiaTest.effective.latest ( ) during day of "Measurement Period"
 
+/*
+@QICore6Uplift: Update Observation to ObservationScreeningAssessment
+*/ 
 define "Has Gonorrhea Testing":
   exists ["Observation": "Gonorrhea Screening"] GonorrheaTest
     where GonorrheaTest.value is not null
       and GonorrheaTest.status in { 'final', 'amended', 'corrected' }
       and GonorrheaTest.effective.latest ( ) during day of "Measurement Period"
 
+/*
+@QICore6Uplift: Update Observation to ObservationScreeningAssessment
+*/ 
 define "Has Syphilis Testing":
   exists ["Observation": "Syphilis Tests"] SyphilisTest
     where SyphilisTest.value is not null
