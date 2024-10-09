@@ -51,11 +51,11 @@ define "Denominator Exceptions":
   "Patient Expired"
 
 define "Qualifying Encounters":
-  ( ["Encounter": "Preventive Care Services, Initial Office Visit, 0 to 17"]
-    union ["Encounter": "Preventive Care Services-Initial Office Visit, 18 and Up"]
-    union ["Encounter": "Preventive Care, Established Office Visit, 0 to 17"]
-    union ["Encounter": "Preventive Care Services - Established Office Visit, 18 and Up"]
-    union ["Encounter": "Office Visit"] ) Encounter
+  ( ["Encounter": type in "Preventive Care Services, Initial Office Visit, 0 to 17"]
+    union ["Encounter": type in "Preventive Care Services-Initial Office Visit, 18 and Up"]
+    union ["Encounter": type in "Preventive Care, Established Office Visit, 0 to 17"]
+    union ["Encounter": type in "Preventive Care Services - Established Office Visit, 18 and Up"]
+    union ["Encounter": type in "Office Visit"] ) Encounter
     where Encounter.period during day of "Measurement Period"
       and Encounter.status = 'finished'
 
