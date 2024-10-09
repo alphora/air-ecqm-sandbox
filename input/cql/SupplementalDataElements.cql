@@ -43,6 +43,9 @@ define "SDE Race":
       display: R.text
     }
 
+/*
+@QICore6Uplift: Update gender to 'genderIdentity' or 'sex'
+*/
 define "SDE Sex":
   case
     when Patient.gender = 'male' then "M"
