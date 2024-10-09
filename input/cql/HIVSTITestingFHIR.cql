@@ -62,17 +62,17 @@ define "Numerator":
 define "Has Qualifying Encounter During Measurement Period":
 /*Note: applied workaround using value set 'Preventive Care Services Other', as a DRC cannot be used directly from an encounter retrieve; additional info can be found in CQLIT-368*/
   
-  exists ( ( ["Encounter": "Office Visit"]
-      union ["Encounter": "Outpatient Consultation"]
-      union ["Encounter": "Annual Wellness Visit"]
-      union ["Encounter": "Face-to-Face Interaction"]
-      union ["Encounter": "Home Healthcare Services"]
-      union ["Encounter": "Preventive Care Services Established Office Visit, 18 and Up"]
-      union ["Encounter": "Preventive Care Services Initial Office Visit, 18 and Up"]
-      union ["Encounter": "Preventive Care Services, Initial Office Visit, 0 to 17"]
-      union ["Encounter": "Preventive Care, Established Office Visit, 0 to 17"]
-      union ["Encounter": "Telephone Visits"]
-      union ["Encounter": "Preventive Care Services Other"] ) QualifyingEncounter
+  exists ( ( ["Encounter": type in "Office Visit"]
+      union ["Encounter": type in "Outpatient Consultation"]
+      union ["Encounter": type in "Annual Wellness Visit"]
+      union ["Encounter": type in "Face-to-Face Interaction"]
+      union ["Encounter": type in "Home Healthcare Services"]
+      union ["Encounter": type in "Preventive Care Services Established Office Visit, 18 and Up"]
+      union ["Encounter": type in "Preventive Care Services Initial Office Visit, 18 and Up"]
+      union ["Encounter": type in "Preventive Care Services, Initial Office Visit, 0 to 17"]
+      union ["Encounter": type in "Preventive Care, Established Office Visit, 0 to 17"]
+      union ["Encounter": type in "Telephone Visits"]
+      union ["Encounter": type in "Preventive Care Services Other"] ) QualifyingEncounter
       where QualifyingEncounter.period during day of "Measurement Period"
   )
 
