@@ -65,15 +65,15 @@ define "Initial Population":
     and AgeInYearsAt(date from start of "Measurement Period") >= 19
 
 define "Has Qualifying Encounter":
-  exists ( ( ( [Encounter: "Outpatient Consultation"]
-        union [Encounter: "Office Visit"]
+  exists ( ( ( [Encounter: type in "Outpatient Consultation"]
+        union [Encounter: type in "Office Visit"]
         union ( [Encounter] E
             where exists ( ( E.type ) T
                 where T ~ "Postoperative follow-up visit, normally included in the surgical package, to indicate that an evaluation and management service was performed during a postoperative period for a reason(s) related to the original procedure"
             )
         )
-        union [Encounter: "Telephone Visits"]
-        union [Encounter: "Virtual Encounter"]
+        union [Encounter: type in "Telephone Visits"]
+        union [Encounter: type in "Virtual Encounter"]
     ).isEncounterPerformed ( ) ) ValidEncounters
       where ValidEncounters.period.toInterval ( ) during day of Interval["August 1 Year Prior to the Measurement Period", end of "Measurement Period"]
   )
