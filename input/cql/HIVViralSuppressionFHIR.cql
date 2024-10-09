@@ -1,3 +1,7 @@
+/*
+@QICore6Uplift test impact: Change Condition and Observation resource types and qicore profiles in test cases to ConditionProblemsHealthConcerns and LaboratoryResultObservation, respectively
+*/ 
+
 library HIVViralSuppressionFHIR version '0.1.000'
 
 using QICore version '6.0.0'
