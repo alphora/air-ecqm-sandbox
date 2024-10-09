@@ -79,7 +79,7 @@ define "Has Bone Scan Study Performed with Documented Reason":
     where BoneScanAfterDiagnosis.value ~ "Procedure reason record (record artifact)"
 
 /*
-@QICore6Uplift: Update Condition resource to ConditionEncounterDiagnosis
+@QICore6Uplift: Update Condition resource to ConditionProblemsHealthConcerns
 */
 define "Has Diagnosis of Pain related to Prostate Cancer":
   exists ( [Condition: "Pain Warranting Further Investigation for Prostate Cancer"] ProstateCancerPain
