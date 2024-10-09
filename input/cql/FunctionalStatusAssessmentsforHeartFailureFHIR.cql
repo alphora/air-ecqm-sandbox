@@ -1,3 +1,7 @@
+/*
+@QICore6Uplift test impact: Change resource types and update qicore profiles in test cases to ConditionProblemsHealthConcerns or ObservationScreeningAssessment
+*/ 
+
 library FunctionalStatusAssessmentsforHeartFailureFHIR version '0.1.000'
 
 using QICore version '6.0.0'
