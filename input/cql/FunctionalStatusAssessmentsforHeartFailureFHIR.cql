@@ -63,6 +63,9 @@ define "SDE Race":
 define "SDE Sex":
   SDE."SDE Sex"
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/
 define "Initial Population":
   AgeInYearsAt(date from start of "Measurement Period") >= 18
     and exists ( ( [Condition: "Heart Failure"] ) HeartFailure
@@ -73,6 +76,9 @@ define "Initial Population":
 define "Denominator":
   "Initial Population"
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/
 define "Denominator Exclusions":
   Hospice."Has Hospice Services"
     or exists ( ( [Condition: "Severe cognitive impairment (finding)"] ) SevereCognitiveImpairment
