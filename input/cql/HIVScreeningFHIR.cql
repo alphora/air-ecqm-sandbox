@@ -1,3 +1,7 @@
+/*
+@QICore6Uplift test impact: Change resource types and update qicore profiles in test cases to ConditionProblemsHealthConcerns or LaboratoryResultObservation
+*/ 
+
 library HIVScreeningFHIR version '0.2.000'
 
 using QICore version '6.0.0'
@@ -42,6 +46,9 @@ define "Denominator":
 define "Numerator":
   ( "Has HIV Test Performed" )
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/
 define "Denominator Exclusions":
   exists ( ["Condition": "HIV"] ) HIV
     where HIV.prevalenceInterval ( ) starts before day of start of "Measurement Period"
@@ -62,6 +69,9 @@ define "Qualifying Encounters":
 define "Patient Expired":
   Patient.deceased on or before end of "Measurement Period"
 
+/*
+@QICore6Uplift: Update 'Observation' to 'LaboratoryResultObservation'
+*/
 define "Has HIV Test Performed":
   exists ( ["Observation": "Human Immunodeficiency Virus (HIV) Laboratory Test Codes (Ab and Ag)"]
     union ["Observation": "HIV 1 and 2 tests - Meaningful Use set"] ) HIVTest
