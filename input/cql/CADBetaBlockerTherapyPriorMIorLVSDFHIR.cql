@@ -1,3 +1,7 @@
+/*
+@QICore6Uplift test impact: HL7 FHIR profile urls and resources should be updated to SimpleObservation and ConditionProblemsHealthConcerns
+*/
+
 library CADBetaBlockerTherapyPriorMIorLVSDFHIR version '0.2.000'
 
 using QICore version '6.0.0'
