@@ -4,6 +4,9 @@
 
 library HFBetaBlockerTherapyforLVSDFHIR version '1.4.000'
 
+/*
+@QICore6Uplift: Add 'using USCore version `6.1.0'`
+*/  
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
@@ -134,7 +137,7 @@ define "Has Bradycardia Diagnosis":
   )
 
 /*
-@QICore6Uplift: Update 'observation-heartrate' to 'SimpleObservation'
+@QICore6Uplift: Update 'observation-heartrate' to 'USCoreHeartRateProfile'
 */   
 define "Has Consecutive Heart Rates Less than 50":
   exists ( from
