@@ -183,7 +183,7 @@ define "Has THA with Initial and Follow Up HOOS Assessments":
   )
 
 /*
-@QICore6Uplift: Update 'Observation' to 'ObservationClinicalResult'
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
 */
 define "Date HOOS Total Assessment Completed":
   from
@@ -218,7 +218,7 @@ define "Has THA with Initial and Follow Up HOOSJr Assessments":
   )
 
 /*
-@QICore6Uplift: Update 'Observation' to 'ObservationClinicalResult'
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
 */
 define "Date HOOSJr Total Assessment Completed":
   ( ( ( [Observation: "Total interval score [HOOSJR]"] ).isAssessmentPerformed ( ) ) HOOSJr
@@ -235,7 +235,7 @@ define "Has THA with Initial and Follow Up PROMIS10 Assessments":
   )
 
 /*
-@QICore6Uplift: Update 'Observation' to 'ObservationClinicalResult'
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
 */
 define "Date PROMIS10 Total Assessment Completed":
   from
@@ -258,7 +258,7 @@ define "Has THA with Initial and Follow Up VR12 Oblique Assessments":
   )
 
 /*
-@QICore6Uplift: Update 'Observation' to 'ObservationClinicalResult'
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
 */
 define "Date VR12 Oblique Total Assessment Completed":
   from
@@ -281,7 +281,7 @@ define "Has THA with Initial and Follow Up VR12 Orthogonal Assessments":
   )
 
 /*
-@QICore6Uplift: Update 'Observation' to 'ObservationClinicalResult'
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
 */
 define "Date VR12 Orthogonal Total Assessment Completed":
   from
