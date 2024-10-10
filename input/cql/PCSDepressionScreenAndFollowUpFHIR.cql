@@ -1,3 +1,10 @@
+/*
+  Test impact for QICore6 uplift: 
+    - HL7 FHIR profile urls should be changed to the following: 
+      "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observationcancelled"
+			"http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns"
+*/
+
 library PCSDepressionScreenAndFollowUpFHIR version '0.2.000'
 
 using QICore version '6.0.0'
@@ -120,10 +127,18 @@ define "Has Most Recent Adult Screening Negative":
       where AdultScreen.value ~ "Depression screening negative (finding)"
   ) is not null
 
+/*
+  @QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+*/
+
 define "History of Bipolar Diagnosis Before Qualifying Encounter":
   [ConditionProblemsHealthConcerns: "Bipolar Disorder"] BipolarDiagnosis
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that BipolarDiagnosis.prevalenceInterval() starts before QualifyingEncounter.period
+
+/*
+  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
+*/
 
 define "Medical or Patient Reason for Not Screening Adolescent for Depression":
   [ObservationCancelled: code ~ "Adolescent depression screening assessment"] NoAdolescentScreen
@@ -133,6 +148,10 @@ define "Medical or Patient Reason for Not Screening Adolescent for Depression":
         or NoAdolescentScreen.notDoneReason in "Medical Reason"
     )
       and NoAdolescentScreen.status = 'cancelled'
+
+/*
+  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
+*/
 
 define "Medical or Patient Reason for Not Screening Adult for Depression":
   [ObservationCancelled: code ~ "Adult depression screening assessment"] NoAdultScreen
@@ -198,9 +217,9 @@ define "Patient Age 18 Years or Older at Start of Measurement Period":
   AgeInYearsAt(date from start of "Measurement Period") >= 18
 
 define "Qualifying Encounter During Measurement Period":
-  ( [Encounter: "Encounter to Screen for Depression"]
-    union [Encounter: "Physical Therapy Evaluation"]
-    union [Encounter: "Telephone Visits"] ) QualifyingEncounter
+  ( [Encounter: type in "Encounter to Screen for Depression"]
+    union [Encounter: type in "Physical Therapy Evaluation"]
+    union [Encounter: type in "Telephone Visits"] ) QualifyingEncounter
     where QualifyingEncounter.period during day of "Measurement Period"
       and QualifyingEncounter.status = 'finished'
 
