@@ -88,7 +88,7 @@ define "Has HIV Diagnosis Before End of Measurement Period":
     where HIVDx.prevalenceInterval ( ) starts on or before day of end of "Measurement Period"
 
 /*
-@QICore6Uplift: Update Observation to ObservationScreeningAssessment
+@QICore6Uplift: Update Observation to LaboratoryResultObservation
 */ 
 define "Has Chlamydia Testing":
   exists ["Observation": "Chlamydia Screening"] ChlamydiaTest
@@ -97,7 +97,7 @@ define "Has Chlamydia Testing":
       and ChlamydiaTest.effective.latest ( ) during day of "Measurement Period"
 
 /*
-@QICore6Uplift: Update Observation to ObservationScreeningAssessment
+@QICore6Uplift: Update Observation to LaboratoryResultObservation
 */ 
 define "Has Gonorrhea Testing":
   exists ["Observation": "Gonorrhea Screening"] GonorrheaTest
@@ -106,7 +106,7 @@ define "Has Gonorrhea Testing":
       and GonorrheaTest.effective.latest ( ) during day of "Measurement Period"
 
 /*
-@QICore6Uplift: Update Observation to ObservationScreeningAssessment
+@QICore6Uplift: Update Observation to LaboratoryResultObservation
 */ 
 define "Has Syphilis Testing":
   exists ["Observation": "Syphilis Tests"] SyphilisTest
