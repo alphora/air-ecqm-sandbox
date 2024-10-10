@@ -4,6 +4,9 @@
 
 library PCSBMIScreenAndFollowUpFHIR version '0.2.000'
 
+/*
+@QICore6Uplift: Add 'using USCore version '6.1.0'
+*/
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
@@ -60,7 +63,7 @@ define "Denominator Exceptions":
     or exists "Medical Reason or Patient Reason for Not Performing BMI Exam"
 
 /*
-@QICore6Uplift: Update 'observation-bmi' to 'SimpleObservation'
+@QICore6Uplift: Update 'observation-bmi' to 'USCoreBMIProfile'
 */
 define "BMI during Measurement Period":
   ["observation-bmi"] BMI
