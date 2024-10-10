@@ -4,6 +4,9 @@
 
 library CADBetaBlockerTherapyPriorMIorLVSDFHIR version '0.2.000'
 
+/*
+@QICore6Uplift: Add 'using USCore version `6.1.0'`
+*/  
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
@@ -63,7 +66,7 @@ define "Has Atrioventricular Block with Qualifying CAD Encounter and Prior MI wi
 */
 
 /*
-@QICore6Uplift: Update 'observation-heartrate' to 'SimpleObservation'
+@QICore6Uplift: Update 'observation-heartrate' to 'USCoreHeartRateProfile'
 */   
 define "Has Consecutive Heart Rates Less than 50 with Qualifying CAD Encounter and Prior MI":
   exists ( from
@@ -131,7 +134,7 @@ define "Has Atrioventricular Block with Qualifying CAD Encounter and History of 
 */
 
 /*
-@QICore6Uplift: Update 'observation-heartrate' to 'SimpleObservation'
+@QICore6Uplift: Update 'observation-heartrate' to 'USCoreHeartRateProfile'
 */
 define "Has Consecutive Heart Rates Less than 50 with Qualifying CAD Encounter and History of Moderate or Severe LVSD":
   exists ( from
