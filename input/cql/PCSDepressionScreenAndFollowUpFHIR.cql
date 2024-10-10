@@ -1,6 +1,5 @@
 /*
-  Test impact for QICore6 uplift: 
-    - HL7 FHIR profile urls should be changed to the following: 
+  Test impact for QICore6 uplift: HL7 FHIR profile urls should be changed to the following: 
       "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observationcancelled"
 			"http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns"
 */
@@ -127,18 +126,10 @@ define "Has Most Recent Adult Screening Negative":
       where AdultScreen.value ~ "Depression screening negative (finding)"
   ) is not null
 
-/*
-  @QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
-*/
-
 define "History of Bipolar Diagnosis Before Qualifying Encounter":
   [ConditionProblemsHealthConcerns: "Bipolar Disorder"] BipolarDiagnosis
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that BipolarDiagnosis.prevalenceInterval() starts before QualifyingEncounter.period
-
-/*
-  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
-*/
 
 define "Medical or Patient Reason for Not Screening Adolescent for Depression":
   [ObservationCancelled: code ~ "Adolescent depression screening assessment"] NoAdolescentScreen
@@ -148,10 +139,6 @@ define "Medical or Patient Reason for Not Screening Adolescent for Depression":
         or NoAdolescentScreen.notDoneReason in "Medical Reason"
     )
       and NoAdolescentScreen.status = 'cancelled'
-
-/*
-  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
-*/
 
 define "Medical or Patient Reason for Not Screening Adult for Depression":
   [ObservationCancelled: code ~ "Adult depression screening assessment"] NoAdultScreen
