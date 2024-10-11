@@ -24,18 +24,18 @@ parameter "Measurement Period" Interval<DateTime>
 context Patient
 
 define "Has Hospice Services":
-  exists ((([Encounter: "Encounter Inpatient"]).isEncounterPerformed()) InpatientEncounter
+  exists ((([Encounter: type in "Encounter Inpatient"]).isEncounterPerformed()) InpatientEncounter
       where (InpatientEncounter.hospitalization.dischargeDisposition ~ "Discharge to home for hospice care (procedure)"
           or InpatientEncounter.hospitalization.dischargeDisposition ~ "Discharge to healthcare facility for hospice care (procedure)"
       )
         and InpatientEncounter.period.toInterval() ends during day of "Measurement Period"
   )
-    or exists ((([Encounter: "Hospice Encounter"]).isEncounterPerformed()) HospiceEncounter
+    or exists ((([Encounter: type in "Hospice Encounter"]).isEncounterPerformed()) HospiceEncounter
         where HospiceEncounter.period.toInterval() overlaps day of "Measurement Period"
     )
 
     /*
-    @QICore6Uplift: Update Observation to ObservationClinicalResult
+    @QICore6Uplift: Update Observation resource to ObservationScreeningAssessment
     */ 
     or exists ((([Observation: "Hospice care [Minimum Data Set]"]).isAssessmentPerformed()) HospiceAssessment
         where HospiceAssessment.value ~ "Yes (qualifier value)"
