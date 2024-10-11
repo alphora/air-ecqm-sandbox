@@ -1,5 +1,12 @@
+/*
+  @QICore6Uplift test impact: Change resource types and update qicore profiles in test cases to SimpleObservation and ConditionProblemsHealthConcerns
+*/ 
+
 library PCSBMIScreenAndFollowUpFHIR version '0.2.000'
 
+/*
+@QICore6Uplift: Add 'using USCore version '6.1.0'
+*/
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
@@ -55,6 +62,9 @@ define "Denominator Exceptions":
   exists "Medical Reason for Not Documenting a Follow up Plan for Low or High BMI"
     or exists "Medical Reason or Patient Reason for Not Performing BMI Exam"
 
+/*
+@QICore6Uplift: Update 'observation-bmi' to 'USCoreBMIProfile'
+*/
 define "BMI during Measurement Period":
   ["observation-bmi"] BMI
     where BMI.value > 0 'kg/m2'
@@ -86,6 +96,9 @@ define "High BMI and Follow up Provided":
       union "High BMI Interventions Performed" ) HighBMIInterventions
       such that Coalesce(HighBMIInterventions.performed.toInterval(), HighBMIInterventions.authoredOn.toInterval()) starts during day of "Measurement Period"
 
+/*
+@QICore6Uplift: Update 'Condition to 'ConditionProblemsHealthConcerns'
+*/
 define "High BMI Interventions Ordered":
   ( ( [ServiceRequest: "Follow Up for Above Normal BMI"]
       union [ServiceRequest: "Referrals Where Weight Assessment May Occur"]
@@ -100,6 +113,9 @@ define "High BMI Interventions Ordered":
         )
   )
 
+/*
+@QICore6Uplift: Update 'Condition to 'ConditionProblemsHealthConcerns'
+*/
 define "High BMI Interventions Performed":
   ( [Procedure: "Follow Up for Above Normal BMI"] HighInterventionsPerformed
       where HighInterventionsPerformed.reasonCode in "Overweight or Obese"
@@ -109,6 +125,9 @@ define "High BMI Interventions Performed":
         )
   )
 
+/*
+@QICore6Uplift: Update 'ObservationNotDone to 'ObservationCancelled'
+*/
 define "Medical Reason or Patient Reason for Not Performing BMI Exam":
   [ObservationNotDone: code = "Body mass index (BMI) [Ratio]"] NoBMI
     with "Qualifying Encounter during Day of Measurement Period" QualifyingEncounter
@@ -118,6 +137,9 @@ define "Medical Reason or Patient Reason for Not Performing BMI Exam":
           or NoBMI.notDoneReason in "Medical Reason"
       )
 
+/*
+@QICore6Uplift: Update 'Condition to 'ConditionProblemsHealthConcerns'
+*/
 define "Low BMI Interventions Ordered":
   ( ( [ServiceRequest: "Follow Up for Below Normal BMI"]
       union [ServiceRequest: "Referrals Where Weight Assessment May Occur"]
@@ -131,6 +153,9 @@ define "Low BMI Interventions Ordered":
         )
   )
 
+/*
+@QICore6Uplift: Update 'Condition to 'ConditionProblemsHealthConcerns'
+*/
 define "Low BMI Interventions Performed":
   ( [Procedure: "Follow Up for Below Normal BMI"] LowInterventionsPerformed
       where LowInterventionsPerformed.reasonCode in "Underweight"
@@ -168,6 +193,9 @@ define "Medical Reason for Not Documenting a Follow up Plan for Low or High BMI"
           and NoBMIFollowUp.reasonCode in "Medical Reason"
     )
 
+/*
+@QICore6Uplift: Update 'Condition to 'ConditionProblemsHealthConcerns'
+*/
 define "Is Pregnant during Day of Measurement Period":
   [Condition: "Pregnancy or Other Related Diagnoses"] PregnancyDiagnosis
     with "Qualifying Encounter during Day of Measurement Period" QualifyingEncounter
@@ -175,7 +203,7 @@ define "Is Pregnant during Day of Measurement Period":
         and PregnancyDiagnosis.prevalenceInterval ( ) overlaps day of "Measurement Period"
 
 define "Qualifying Encounter during Day of Measurement Period":
-  [Encounter: "Encounter to Evaluate BMI"] BMIEncounter
+  [Encounter: type in "Encounter to Evaluate BMI"] BMIEncounter
     where BMIEncounter.period during day of "Measurement Period"
       and BMIEncounter.class !~ "virtual"
       and BMIEncounter.status = 'finished'

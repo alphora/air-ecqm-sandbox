@@ -1,6 +1,5 @@
 /*
-  Test impact for QICore6 uplift: 
-    - HL7 FHIR profile urls should be changed to the following: 
+  Test impact for QICore6 uplift: HL7 FHIR profile urls should be changed to the following: 
       "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observationcancelled"
 			"http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns"
 */
