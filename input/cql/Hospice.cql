@@ -1,8 +1,5 @@
 library Hospice version '6.12.000'
 
-/*
- @QICore6Uplift: Update to QICore version '6.0.0'
-*/ 
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
@@ -36,6 +33,10 @@ define "Has Hospice Services":
     or exists ((([Encounter: "Hospice Encounter"]).isEncounterPerformed()) HospiceEncounter
         where HospiceEncounter.period.toInterval() overlaps day of "Measurement Period"
     )
+
+    /*
+    @QICore6Uplift: Update Observation to ObservationClinicalResult
+    */ 
     or exists ((([Observation: "Hospice care [Minimum Data Set]"]).isAssessmentPerformed()) HospiceAssessment
         where HospiceAssessment.value ~ "Yes (qualifier value)"
           and HospiceAssessment.effective.toInterval() overlaps day of "Measurement Period"
@@ -50,9 +51,8 @@ define "Has Hospice Services":
     )
 
     /*
-     @QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+    @QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
     */ 
-
     or exists (([Condition: "Hospice Diagnosis"]) HospiceCareDiagnosis
         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
