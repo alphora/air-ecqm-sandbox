@@ -1,3 +1,10 @@
+/*
+  Test impact for QICore6 uplift: 
+    - HL7 FHIR profile urls should be changed to the following: 
+      "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observationcancelled"
+			"http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns"
+*/
+
 library PCSDepressionScreenAndFollowUpFHIR version '0.2.000'
 
 using QICore version '6.0.0'
@@ -198,9 +205,9 @@ define "Patient Age 18 Years or Older at Start of Measurement Period":
   AgeInYearsAt(date from start of "Measurement Period") >= 18
 
 define "Qualifying Encounter During Measurement Period":
-  ( [Encounter: "Encounter to Screen for Depression"]
-    union [Encounter: "Physical Therapy Evaluation"]
-    union [Encounter: "Telephone Visits"] ) QualifyingEncounter
+  ( [Encounter: type in "Encounter to Screen for Depression"]
+    union [Encounter: type in "Physical Therapy Evaluation"]
+    union [Encounter: type in "Telephone Visits"] ) QualifyingEncounter
     where QualifyingEncounter.period during day of "Measurement Period"
       and QualifyingEncounter.status = 'finished'
 
