@@ -1,3 +1,7 @@
+/*
+Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns and LaboratoryResultObservation
+*/
+
 library KidneyHealthEvaluationFHIR version '0.1.000'
 
 using QICore version '6.0.0'
@@ -55,6 +59,9 @@ define "Denominator Exclusions":
 define "Numerator":
   "Has Kidney Panel Performed During Measurement Period"
 
+/*
+@QICore6Uplift: Update both Observation resources to LaboratoryResultObservation
+*/ 
 define "Has Kidney Panel Performed During Measurement Period":
   exists ( ["Observation": "Estimated Glomerular Filtration Rate"] eGFRTest
       where eGFRTest.effective.toInterval ( ) during day of "Measurement Period"
@@ -79,12 +86,18 @@ define "Has Outpatient Visit During Measurement Period":
         and ValidEncounter.status = 'finished'
   )
 
+/*
+@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+*/ 
 define "Has Active Diabetes Overlaps Measurement Period":
   exists ( ["Condition": "Diabetes"] Diabetes
       where Diabetes.prevalenceInterval ( ) overlaps day of "Measurement Period"
         and Diabetes.clinicalStatus ~ "active"
   )
 
+/*
+@QICore6Uplift: Update both Condition resources to ConditionProblemsHealthConcerns
+*/ 
 define "Has CKD Stage 5 or ESRD Diagnosis Overlaps Measurement Period":
   ( ["Condition": "Chronic Kidney Disease, Stage 5"]
     union ["Condition": "End Stage Renal Disease"] ) CKDOrESRD
