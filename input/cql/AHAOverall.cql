@@ -36,7 +36,7 @@ context Patient
                 * office visits (http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001)
                 * outpatient consolutations (http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1008)
 
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns, and consider adding 'type in' for Encounters
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis, and consider adding 'type in' for Encounters
 */    
 define "Heart Failure Outpatient Encounter":
   ( [Encounter: "Care Services in Long Term Residential Facility"]
