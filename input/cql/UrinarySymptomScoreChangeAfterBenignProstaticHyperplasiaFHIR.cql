@@ -1,3 +1,7 @@
+/*
+Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to USCoreBMIProfile, ConditionProblemsHealthConcerns, and ObservationScreeningAssessment
+*/
+
 library UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR version '1.4.000'
 
 /*
