@@ -256,7 +256,7 @@ define fluent function overlapsAfterHeartFailureOutpatientEncounter(MedicationRe
 /*
 @overloaded
 @description: Returns true if the given HeartRateObservation overlaps after the day of the heart failure outpatient encounter with history of moderate or severe LVSD
-@QICore6Uplift: Update 'observation-heartrate' to 'SimpleObservation'
+@QICore6Uplift: Update 'observation-heartrate' to 'USCoreHeartRateProfile'
 */          
 define fluent function overlapsAfterHeartFailureOutpatientEncounter(HeartRateObservation "observation-heartrate"): 
   exists ( "Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
