@@ -36,7 +36,7 @@ context Patient
                 * office visits (http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001)
                 * outpatient consolutations (http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1008)
 
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns, and consider adding 'type in' for Encounters
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis, and consider adding 'type in' for Encounters
 */    
 define "Heart Failure Outpatient Encounter":
   ( [Encounter: "Care Services in Long Term Residential Facility"]
@@ -256,7 +256,7 @@ define fluent function overlapsAfterHeartFailureOutpatientEncounter(MedicationRe
 /*
 @overloaded
 @description: Returns true if the given HeartRateObservation overlaps after the day of the heart failure outpatient encounter with history of moderate or severe LVSD
-@QICore6Uplift: Update 'observation-heartrate' to 'SimpleObservation'
+@QICore6Uplift: Update 'observation-heartrate' to 'USCoreHeartRateProfile'
 */          
 define fluent function overlapsAfterHeartFailureOutpatientEncounter(HeartRateObservation "observation-heartrate"): 
   exists ( "Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
