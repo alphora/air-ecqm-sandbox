@@ -44,7 +44,8 @@ define "Heart Failure Outpatient Encounter":
       union [Encounter: type in "Office Visit"] 
       union [Encounter: type in "Outpatient Consultation"]
      ) QualifyingEncounter
-    with [ConditionProblemsHealthConcerns: "Heart Failure"] HeartFailure
+    with ([ConditionProblemsHealthConcerns: "Heart Failure"]
+      union [ConditionEncounterDiagnosis: "Heart Failure"]) HeartFailure
       such that HeartFailure.prevalenceInterval() overlaps QualifyingEncounter.period  
         and HeartFailure.isConfirmedActiveDiagnosis()
     where QualifyingEncounter.period during day of "Measurement Period"
