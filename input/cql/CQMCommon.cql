@@ -340,27 +340,27 @@ define fluent function firstInpatientIntensiveCareUnit(Encounter Encounter ):
 */
 define function "EncounterDiagnosis"(Encounter Encounter ):
   Encounter.diagnosis D
-	return singleton from ([Condition] C where C.id = D.condition.reference.getId())
+	return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = D.condition.reference.getId())
 
 /*
 @description: Returns the Condition resources referenced by the diagnosis element of the Encounter
 */
 define fluent function encounterDiagnosis(Encounter Encounter ):
   Encounter.diagnosis D
-    return singleton from ([Condition] C where C.id = D.condition.reference.getId())
+    return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = D.condition.reference.getId())
 
 /*
 @description: Returns the Condition resource for the given reference
 @deprecated: This function is deprecated. Use the fluent function `getCondition()` instead
 */
 define function "GetCondition"(reference Reference):
-  singleton from ([Condition] C where C.id = reference.reference.getId())
+  singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = reference.reference.getId())
 
 /*
 @description: Returns the Condition resource for the given reference
 */
 define fluent function getCondition(reference Reference):
-  singleton from ([Condition] C where C.id = reference.reference.getId())
+  singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = reference.reference.getId())
 
 /*
 @description: Returns the condition that is specified as the principal diagnosis for the encounter
@@ -369,7 +369,7 @@ define fluent function getCondition(reference Reference):
 define function "PrincipalDiagnosis"(Encounter Encounter ):
 	singleton from (
 	(Encounter.diagnosis D where D.rank = 1 and D.use ~ "Billing") PD
-      return singleton from ([Condition] C where C.id = PD.condition.reference.getId())
+      return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = PD.condition.reference.getId())
 	)
 
 /*
@@ -377,7 +377,7 @@ define function "PrincipalDiagnosis"(Encounter Encounter ):
 */
 define fluent function principalDiagnosis(Encounter Encounter ):
 	singleton from ((Encounter.diagnosis D where D.rank = 1 and D.use ~ "Billing") PD
-      return singleton from ([Condition] C where C.id = PD.condition.reference.getId())
+      return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = PD.condition.reference.getId())
 	)
 
 /*
