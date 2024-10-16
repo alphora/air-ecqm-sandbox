@@ -127,7 +127,7 @@ define "Morbid Obesity Diagnosis or BMI Exam Result Greater Than or Equal to 40 
     or "BMI Exam Result Greater Than or Equal To 40 During Measurement Period and On or Before Follow Up USS Assessment"
 
 /*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */ 
 define "Urinary Retention Diagnosis Starts Within 1 Year After Initial BPH Diagnosis":
   [Condition: "Urinary retention"] UrinaryRetention
@@ -156,7 +156,7 @@ define "Has Initial BPH Diagnosis Starts During or Within 30 Days After End of H
         and InHospitalServices.status = 'finished'
 
 /*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */ 
 define "Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Period":
   First([Condition: "Benign prostatic hyperplasia with lower urinary tract symptoms"] NewBPHDiagnosis
@@ -166,7 +166,7 @@ define "Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Peri
   )
 
 /*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */ 
 define "Morbid Obesity Diagnosis On or Before Follow Up USS Assessment":
   [Condition: "Morbid Obesity"] MorbidObesity

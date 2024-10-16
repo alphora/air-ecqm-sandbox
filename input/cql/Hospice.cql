@@ -51,7 +51,7 @@ define "Has Hospice Services":
     )
 
     /*
-    @QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+    @QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
     */ 
     or exists (([Condition: "Hospice Diagnosis"]) HospiceCareDiagnosis
         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"

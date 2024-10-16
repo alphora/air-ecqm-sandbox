@@ -85,7 +85,7 @@ define "June 30 of the Measurement Period":
   DateTime((year from start of "Measurement Period"), 6, 30, 23, 59, 59, 0, 0)
 
 /*
-@QICore6Uplift: Update Condition to ConditionEncounterDiagnosis
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */ 
 define "Acute Tuberculosis Diagnosis":
   [Condition: "Active Tuberculosis for Urology Care"] ActiveTuberculosis
@@ -100,7 +100,7 @@ define "Cystectomy Done":
     where Cystectomy.status = 'completed'
 
 /*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */ 
 define "Has Excluding HIV, Immunocompromised Conditions or Mixed Histology Before Staging":
   exists ( ( [Condition: "HIV"]
@@ -146,7 +146,7 @@ define "Has Qualifying Encounter":
   )
 
 /*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */ 
 define "Bladder Cancer Diagnosis":
   [Condition: "Bladder Cancer for Urology Care"] BladderCancer

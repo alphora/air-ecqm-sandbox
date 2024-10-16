@@ -154,7 +154,7 @@ define "Has Qualifying Encounter":
   )
 
 /*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */    
 define "Prostate Cancer Diagnosis":
   [Condition: "Prostate Cancer"] ProstateCancer

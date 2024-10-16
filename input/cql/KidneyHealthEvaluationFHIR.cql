@@ -87,7 +87,7 @@ define "Has Outpatient Visit During Measurement Period":
   )
 
 /*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */ 
 define "Has Active Diabetes Overlaps Measurement Period":
   exists ( ["Condition": "Diabetes"] Diabetes
@@ -96,7 +96,7 @@ define "Has Active Diabetes Overlaps Measurement Period":
   )
 
 /*
-@QICore6Uplift: Update both Condition resources to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update both Condition resources to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */ 
 define "Has CKD Stage 5 or ESRD Diagnosis Overlaps Measurement Period":
   ( ["Condition": "Chronic Kidney Disease, Stage 5"]
