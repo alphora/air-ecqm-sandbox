@@ -28,7 +28,7 @@ parameter "Measurement Period" Interval<DateTime>
 context Patient
 
 define "Inpatient Encounter":
-  [Encounter: "Encounter Inpatient"] EncounterInpatient
+  [Encounter: type in "Encounter Inpatient"] EncounterInpatient
 		where EncounterInpatient.status = 'finished'
 		and EncounterInpatient.period ends during day of "Measurement Period"
 
@@ -61,7 +61,7 @@ define fluent function lengthInDays(Value Interval<DateTime> ):
 */
 define function "ED Visit"(TheEncounter Encounter ):
   Last(
-    [Encounter: "Emergency Department Visit"] EDVisit
+    [Encounter: type in "Emergency Department Visit"] EDVisit
       where EDVisit.status = 'finished'
         and EDVisit.period ends 1 hour or less on or before start of TheEncounter.period
       sort by end of period
@@ -72,7 +72,7 @@ define function "ED Visit"(TheEncounter Encounter ):
 */
 define fluent function edVisit(TheEncounter Encounter ):
   Last(
-    [Encounter: "Emergency Department Visit"] EDVisit
+    [Encounter: type in "Emergency Department Visit"] EDVisit
       where EDVisit.status = 'finished'
         and EDVisit.period ends 1 hour or less on or before start of TheEncounter.period
       sort by end of period
@@ -222,19 +222,19 @@ define fluent function emergencyDepartmentArrivalTime(TheEncounter Encounter):
 */
 define function "HospitalizationWithObservationAndOutpatientSurgeryService"(TheEncounter "Encounter" ):
   TheEncounter Visit
-	  let ObsVisit: Last([Encounter: "Observation Services"] LastObs
+	  let ObsVisit: Last([Encounter: type in "Observation Services"] LastObs
 		  	where LastObs.status = 'finished'
           and LastObs.period ends 1 hour or less on or before start of Visit.period
 			  sort by	end of period
     	),
     	VisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),
-    	EDVisit: Last([Encounter: "Emergency Department Visit"] LastED
+    	EDVisit: Last([Encounter: type in "Emergency Department Visit"] LastED
 			  where LastED.status = 'finished'
           and LastED.period ends 1 hour or less on or before VisitStart
 			  sort by	end of period
     	),
     	VisitStartWithED: Coalesce(start of EDVisit.period, VisitStart),
-    	OutpatientSurgeryVisit: Last([Encounter: "Outpatient Surgery Service"] LastSurgeryOP
+    	OutpatientSurgeryVisit: Last([Encounter: type in "Outpatient Surgery Service"] LastSurgeryOP
 			  where LastSurgeryOP.period ends 1 hour or less on or before VisitStartWithED
 			  sort by	end of period
     	)
@@ -245,19 +245,19 @@ define function "HospitalizationWithObservationAndOutpatientSurgeryService"(TheE
 */
 define fluent function hospitalizationWithObservationAndOutpatientSurgeryService(TheEncounter "Encounter" ):
   TheEncounter Visit
-	  let ObsVisit: Last([Encounter: "Observation Services"] LastObs
+	  let ObsVisit: Last([Encounter: type in "Observation Services"] LastObs
 		  	where LastObs.status = 'finished'
           and LastObs.period ends 1 hour or less on or before start of Visit.period
 			  sort by	end of period
     	),
     	VisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),
-    	EDVisit: Last([Encounter: "Emergency Department Visit"] LastED
+    	EDVisit: Last([Encounter: type in "Emergency Department Visit"] LastED
 			  where LastED.status = 'finished'
           and LastED.period ends 1 hour or less on or before VisitStart
 			  sort by	end of period
     	),
     	VisitStartWithED: Coalesce(start of EDVisit.period, VisitStart),
-    	OutpatientSurgeryVisit: Last([Encounter: "Outpatient Surgery Service"] LastSurgeryOP
+    	OutpatientSurgeryVisit: Last([Encounter: type in "Outpatient Surgery Service"] LastSurgeryOP
 			  where LastSurgeryOP.period ends 1 hour or less on or before VisitStartWithED
 			  sort by	end of period
     	)
@@ -269,13 +269,13 @@ define fluent function hospitalizationWithObservationAndOutpatientSurgeryService
 */
 define function "HospitalizationWithObservation"(TheEncounter Encounter ):
   TheEncounter Visit
-  		let ObsVisit: Last([Encounter: "Observation Services"] LastObs
+  		let ObsVisit: Last([Encounter: type in "Observation Services"] LastObs
   				where LastObs.status = 'finished'
             and LastObs.period ends 1 hour or less on or before start of Visit.period
   				sort by end of period
   			),
   			VisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),
-  			EDVisit: Last([Encounter: "Emergency Department Visit"] LastED
+  			EDVisit: Last([Encounter: type in "Emergency Department Visit"] LastED
   				where LastED.status = 'finished'
             and LastED.period ends 1 hour or less on or before VisitStart
   				sort by end of period
@@ -287,13 +287,13 @@ define function "HospitalizationWithObservation"(TheEncounter Encounter ):
 */
 define fluent function hospitalizationWithObservation(TheEncounter Encounter ):
   TheEncounter Visit
-  		let ObsVisit: Last([Encounter: "Observation Services"] LastObs
+  		let ObsVisit: Last([Encounter: type in "Observation Services"] LastObs
   				where LastObs.status = 'finished'
             and LastObs.period ends 1 hour or less on or before start of Visit.period
   				sort by end of period
   			),
   			VisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),
-  			EDVisit: Last([Encounter: "Emergency Department Visit"] LastED
+  			EDVisit: Last([Encounter: type in "Emergency Department Visit"] LastED
   				where LastED.status = 'finished'
             and LastED.period ends 1 hour or less on or before VisitStart
   				sort by end of period
