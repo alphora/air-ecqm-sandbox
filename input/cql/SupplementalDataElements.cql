@@ -45,7 +45,7 @@ define "SDE Race":
     }
 
 /*
-@QICore6Uplift: Update gender to 'genderIdentity' or 'sex'
+@QICore6Uplift: Consider updating `gender` to QICore Patient profile elements, 'genderIdentity' or 'sex'
 */
 define "SDE Sex":
   case
