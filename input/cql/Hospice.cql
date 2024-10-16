@@ -45,6 +45,7 @@ define "Has Hospice Services":
     or exists ((([Procedure: "Hospice Care Ambulatory"]).isInterventionPerformed()) HospicePerformed
         where HospicePerformed.performed.toInterval() overlaps day of "Measurement Period"
     )
-    or exists (([ConditionProblemsHealthConcerns: "Hospice Diagnosis"]) HospiceCareDiagnosis
+    or exists ((([ConditionProblemsHealthConcerns: "Hospice Diagnosis"])
+        union ([ConditionEncounterDiagnosis: "Hospice Diagnosis"])) HospiceCareDiagnosis
         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
