@@ -91,7 +91,7 @@ define "Qualifying Encounter During Measurement Period":
       and QualifyingEncounter.class !~ "virtual"
 
 /*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */ 
 define "Diabetic Retinopathy Encounter":
   "Qualifying Encounter During Measurement Period" ValidQualifyingEncounter
