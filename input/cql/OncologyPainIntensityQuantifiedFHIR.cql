@@ -43,7 +43,7 @@ define "Chemotherapy Within 31 Days Prior and During Measurement Period":
       and ChemoAdministration.status = 'completed'
 
 /*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */ 
 define "Face to Face or Telehealth Encounter with Ongoing Chemotherapy":
   from
@@ -66,7 +66,7 @@ define "Numerator 1":
       such that PainAssessed.effective.toInterval ( ) during FaceToFaceOrTelehealthEncounterWithChemo.period
 
 /*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */ 
 define "Radiation Treatment Management During Measurement Period with Cancer Diagnosis":
   ( [Encounter: "Radiation Treatment Management"] ) RadiationTreatmentManagement

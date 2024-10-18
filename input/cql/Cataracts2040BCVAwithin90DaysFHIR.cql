@@ -91,11 +91,7 @@ define "Cataract Surgery Between January and September of Measurement Period":
       and CataractSurgery.status = 'completed'
 
 /*
-@QICore6Uplift: 
-  For Conditions of "Burn Confined to Eye and Adnexa", "Choroidal Detachment", "Choroidal Hemorrhage and Rupture", "Cloudy Cornea", "Corneal Edema", "Central Corneal Ulcer", "Injury to Optic Nerve and Pathways",
-    "Open Wound of Eyeball", "Optic Neuritis", "Purulent Endophthalmitis", "Retinal Detachment with Retinal Defect", "Traumatic Cataract", and "Scleritis", 
-    * Update Condition to ConditionEncounterDiagnosis 
-  For the rest of the Conditions not listed above, update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Each Condition should be updated to be a union of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns
 */ 
 define "Denominator Exclusions":
   "Cataract Surgery Between January and September of Measurement Period" CataractSurgeryPerformed

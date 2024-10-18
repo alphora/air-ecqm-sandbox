@@ -87,7 +87,7 @@ define "Depression Assessments Greater than 9":
       and DepressionAssessment.status in { 'final', 'amended', 'corrected' }
 
 /*
-@QICore6Uplift: Update both 'Condition' resources to 'ConditionProblemsHealthConcerns'
+@QICore6Uplift: Update both 'Condition' resources to be a union of 'ConditionProblemsHealthConcerns' and 'ConditionEncounterDiagnosis'
 */ 
 define "Depression Diagnoses":
   ( [Condition: "Major Depression Including Remission"]

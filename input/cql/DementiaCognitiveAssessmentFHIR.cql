@@ -60,7 +60,7 @@ define "Assessment of Cognition Using Standardized Tools or Alternate Methods":
       and CognitiveAssessment.status in { 'final', 'amended', 'corrected', 'preliminary' }
 
 /*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 */ 
 define "Dementia Encounter During Measurement Period":
   "Encounter to Assess Cognition" EncounterAssessCognition
