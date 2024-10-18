@@ -1,12 +1,7 @@
-/*
-  Test impact for QICore6 uplift: HL7 FHIR profile urls should be changed to the following: 
-      "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observationcancelled"
-			"http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns"
-*/
-
 library PCSDepressionScreenAndFollowUpFHIR version '0.2.000'
 
 using QICore version '6.0.0'
+using FHIR version '4.0.1'
 
 include QICoreCommon version '2.1.000' called QICoreCommon
 include SupplementalDataElements version '3.5.000' called SDE
@@ -101,7 +96,7 @@ define "Follow Up Intervention for Positive Adult Depression Screening":
   )
 
 define "Has Adolescent Depression Screening":
-  exists ( [SimpleObservation: "Adolescent depression screening assessment"] AdolescentScreening
+  exists ( [ObservationScreeningAssessment: "Adolescent depression screening assessment"] AdolescentScreening
       with "Qualifying Encounter During Measurement Period" QualifyingEncounter
         such that AdolescentScreening.effective.toInterval ( ) 14 days or less on or before day of start of QualifyingEncounter.period
           and AdolescentScreening.value is not null
@@ -109,7 +104,7 @@ define "Has Adolescent Depression Screening":
   )
 
 define "Has Adult Depression Screening":
-  exists ( [SimpleObservation: "Adult depression screening assessment"] AdultScreening
+  exists ( [ObservationScreeningAssessment: "Adult depression screening assessment"] AdultScreening
       with "Qualifying Encounter During Measurement Period" QualifyingEncounter
         such that AdultScreening.effective.toInterval ( ) 14 days or less on or before day of start of QualifyingEncounter.period
           and AdultScreening.value is not null
@@ -126,18 +121,10 @@ define "Has Most Recent Adult Screening Negative":
       where AdultScreen.value ~ "Depression screening negative (finding)"
   ) is not null
 
-/*
-  @QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
-*/
-
 define "History of Bipolar Diagnosis Before Qualifying Encounter":
   [ConditionProblemsHealthConcerns: "Bipolar Disorder"] BipolarDiagnosis
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that BipolarDiagnosis.prevalenceInterval() starts before QualifyingEncounter.period
-
-/*
-  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
-*/
 
 define "Medical or Patient Reason for Not Screening Adolescent for Depression":
   [ObservationCancelled: code ~ "Adolescent depression screening assessment"] NoAdolescentScreen
@@ -147,10 +134,6 @@ define "Medical or Patient Reason for Not Screening Adolescent for Depression":
         or NoAdolescentScreen.notDoneReason in "Medical Reason"
     )
       and NoAdolescentScreen.status = 'cancelled'
-
-/*
-  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
-*/
 
 define "Medical or Patient Reason for Not Screening Adult for Depression":
   [ObservationCancelled: code ~ "Adult depression screening assessment"] NoAdultScreen
@@ -162,7 +145,7 @@ define "Medical or Patient Reason for Not Screening Adult for Depression":
       and NoAdultScreen.status = 'cancelled'
 
 define "Most Recent Adolescent Depression Screening":
-  Last([SimpleObservation: "Adolescent depression screening assessment"] AdolescentDepressionScreening
+  Last([ObservationScreeningAssessment: "Adolescent depression screening assessment"] AdolescentDepressionScreening
       with "Qualifying Encounter During Measurement Period" QualifyingEncounter
         such that AdolescentDepressionScreening.effective.toInterval() 14 days or less on or before day of start of QualifyingEncounter.period
           and AdolescentDepressionScreening.value is not null
@@ -171,7 +154,7 @@ define "Most Recent Adolescent Depression Screening":
   )
 
 define "Most Recent Adult Depression Screening":
-  Last([SimpleObservation: "Adult depression screening assessment"] AdultDepressionScreening
+  Last([ObservationScreeningAssessment: "Adult depression screening assessment"] AdultDepressionScreening
       with "Qualifying Encounter During Measurement Period" QualifyingEncounter
         such that AdultDepressionScreening.effective.toInterval() 14 days or less on or before day of start of QualifyingEncounter.period
           and AdultDepressionScreening.value is not null
