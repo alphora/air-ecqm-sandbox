@@ -7,6 +7,7 @@
 library PCSDepressionScreenAndFollowUpFHIR version '0.2.000'
 
 using QICore version '6.0.0'
+using FHIR version '4.0.1'
 
 include QICoreCommon version '2.1.000' called QICoreCommon
 include SupplementalDataElements version '3.5.000' called SDE
