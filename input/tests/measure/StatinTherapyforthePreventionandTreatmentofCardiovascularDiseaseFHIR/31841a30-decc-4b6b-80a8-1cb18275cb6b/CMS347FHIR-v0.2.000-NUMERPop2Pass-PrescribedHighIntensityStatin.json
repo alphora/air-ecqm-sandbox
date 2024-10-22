@@ -152,7 +152,7 @@
       "resourceType": "Observation",
       "id": "ldl-cholesterol-19d3",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-lab" ]
       },
       "status": "final",
       "category": [ {

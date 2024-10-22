@@ -101,7 +101,7 @@
       "resourceType": "Observation",
       "id": "cardiovascular-disease-10y-risk-likelihood-5ec2",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result" ]
       },
       "status": "final",
       "category": [ {
@@ -140,7 +140,7 @@
       "resourceType": "Observation",
       "id": "hospice-care-minimum-data-set-5ec3",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment" ]
       },
       "status": "final",
       "category": [ {
