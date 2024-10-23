@@ -1,0 +1,132 @@
+CQL: /Users/sarapark/Documents/GitHub/air-ecqm-sandbox/input/cql
+Terminology: /Users/sarapark/Documents/GitHub/air-ecqm-sandbox/input/vocabulary/valueset
+No data found at /Users/sarapark/Documents/GitHub/air-ecqm-sandbox/input/tests. Evaluation may fail if data is required.
+ASVCD Diagnosis or Procedure before End of Measurement Period=[]
+Denominator 1=false
+Denominator 2=false
+Denominator 3=false
+Denominator 4=false
+Denominator Exceptions=false
+Denominator Exclusions=false
+Has Adverse Reaction to Statin=false
+Has Allergy to Statin=false
+Has Diabetes Diagnosis=false
+Has ESRD Diagnosis=false
+Has Hepatitis or Liver Disease Diagnosis=false
+Has Medical Reason for Not Ordering Statin Therapy=false
+Has Statin Associated Muscle Symptoms=false
+Hypercholesterolemia Diagnosis=[]
+Initial Population 1=false
+Initial Population 2=false
+Initial Population 3=false
+Initial Population 4=false
+LDL Result Greater Than or Equal To 190=[]
+Myocardial Infarction before End of Measurement Period=[]
+Numerator=false
+Patient=null
+Patients Age 40 to 75 Years and have a 10 Year CVD Risk of High without ASCVD and High LDL and Diabetes=false
+Patients Aged 20 to 75 at Start of Measurement Period=null
+Patients Aged 20 to 75 with LDL Cholesterol Result Greater than or Equal to 190 or Hypercholesterolemia without ASCVD=false
+Patients Aged 40 to 75 Years with Diabetes without ASCVD or LDL Greater than 190 or Hypercholesterolemia=false
+Qualifying Encounter during day of Measurement Period=[]
+SDE Ethnicity=null
+SDE Payer=[]
+SDE Race=null
+SDE Sex=null
+Statin Therapy Prescribed Anytime during day of Measurement Period=[]
+Ten Year CVD Risk is High=false
+
+
+Evaluation logs:
+42821165 [pool-2-thread-1] INFO  o.o.c.f.u.r.ig.IgConventions Auto-detected repository configuration: IGConventions [typeLayout=FLAT, categoryLayout=FLAT, filenameMode=ID_ONLY] 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Procedure to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Procedure to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Procedure to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Procedure to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Encounter to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Encounter to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Encounter to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Encounter to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Encounter to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Encounter to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Encounter to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Encounter to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Patient to Patient context with contextPath: id and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Observation to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Observation to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821361 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Observation to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate AllergyIntolerance to Patient context with contextPath: patient and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Encounter to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.c.e.e.e.FunctionRefEvaluator Using runtime function resolution for 'isEncounterPerformed'. It's recommended to always include signatures in ELM 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Encounter to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.c.e.e.e.FunctionRefEvaluator Using runtime function resolution for 'isEncounterPerformed'. It's recommended to always include signatures in ELM 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Observation to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.c.e.e.e.FunctionRefEvaluator Using runtime function resolution for 'isAssessmentPerformed'. It's recommended to always include signatures in ELM 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate ServiceRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.c.e.e.e.FunctionRefEvaluator Using runtime function resolution for 'isInterventionOrder'. It's recommended to always include signatures in ELM 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Procedure to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.c.e.e.e.FunctionRefEvaluator Using runtime function resolution for 'isInterventionPerformed'. It's recommended to always include signatures in ELM 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Observation to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.c.e.e.e.FunctionRefEvaluator Using runtime function resolution for 'isAssessmentPerformed'. It's recommended to always include signatures in ELM 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Encounter to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.c.e.e.e.FunctionRefEvaluator Using runtime function resolution for 'isEncounterPerformed'. It's recommended to always include signatures in ELM 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Procedure to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.c.e.e.e.FunctionRefEvaluator Using runtime function resolution for 'isInterventionPerformed'. It's recommended to always include signatures in ELM 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate AdverseEvent to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821362 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Procedure to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Procedure to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Procedure to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Procedure to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Patient to Patient context with contextPath: id and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Observation to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Observation to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Observation to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Condition to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Patient to Patient context with contextPath: id and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Coverage to Patient context with contextPath: beneficiary and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate MedicationRequest to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Observation to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+42821363 [pool-2-thread-1] DEBUG o.o.c.f.c.e.r.BaseRetrieveProvider Unable to relate Observation to Patient context with contextPath: subject and contextValue: null. Returning unfiltered resources. 
+
+elapsed: 0.216 seconds

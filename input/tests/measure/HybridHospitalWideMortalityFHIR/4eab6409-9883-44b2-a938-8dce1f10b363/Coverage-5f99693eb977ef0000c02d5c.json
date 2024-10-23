@@ -1,0 +1,23 @@
+{
+  "resourceType": "Coverage",
+  "id": "5f99693eb977ef0000c02d5c",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage" ]
+  },
+  "status": "active",
+  "type": {
+    "coding": [ {
+      "system": "https://nahdo.org/sopt",
+      "version": "1.0.1",
+      "code": "1",
+      "display": "Medicare payer",
+      "userSelected": true
+    } ]
+  },
+  "beneficiary": {
+    "reference": "Patient/4eab6409-9883-44b2-a938-8dce1f10b363"
+  },
+  "payor": [ {
+    "reference": "Organization/123456"
+  } ]
+}

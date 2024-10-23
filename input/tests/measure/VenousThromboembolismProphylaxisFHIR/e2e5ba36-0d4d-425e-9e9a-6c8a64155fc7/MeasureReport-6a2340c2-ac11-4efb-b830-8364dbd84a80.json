@@ -1,0 +1,89 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "6a2340c2-ac11-4efb-b830-8364dbd84a80",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "54c8dcf8-26cc-4910-a714-82bbe0e50d4b-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "e2e5ba36-0d4d-425e-9e9a-6c8a64155fc7"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#54c8dcf8-26cc-4910-a714-82bbe0e50d4b-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "oral factor Xa administered concurrent with start of IP encounter, Hip replacement concurrent with Start of IP encounter\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/VenousThromboembolismProphylaxisFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 1
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/e2e5ba36-0d4d-425e-9e9a-6c8a64155fc7"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5dbe0ec236c3c80000887248"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5fa041651c76ba66d9959361"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationAdministration/5dbe0f2536c3c80000887277"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/5dbe13ef36c3c8000088768a"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}
