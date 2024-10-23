@@ -1,0 +1,58 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "5cdea1de-e0d1-4b68-a23c-a277c8fe4bb6",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "4f8c6187-fed0-47fe-898a-6366da291cf4-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "73e88efb-563b-43b8-b201-250ccd1ec40b"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#4f8c6187-fed0-47fe-898a-6366da291cf4-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Enc first day of MP July 1 - 3rd, Payer from different VS but SOP 119  is include in the Medicare Advantage payer vs so meets insurance expectation; "
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/HybridHospitalWideReadmissionFHIR",
+  "period": {
+    "start": "2025-07-01",
+    "end": "2026-06-30"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/73e88efb-563b-43b8-b201-250ccd1ec40b"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5e3b3191313ce50000458084"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5f9a0224ed31890000d324d4"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

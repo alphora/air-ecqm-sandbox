@@ -1,0 +1,64 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "a624fdb9-65df-4d81-8257-77326a3e6894",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "0b583555-3a15-412c-b182-4750a9d906ac-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "5c8fd823-e0f2-4cce-ab1f-9ed73e175fd6"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#0b583555-3a15-412c-b182-4750a9d906ac-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Patient had 3 respiratory rate exams - 24 hours, 1 minute before start of encounter, 2 hours, 1 minute after start of encounter, and after end of encounter. \n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/HybridHospitalWideReadmissionFHIR",
+  "period": {
+    "start": "2025-07-01",
+    "end": "2026-06-30"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/5c8fd823-e0f2-4cce-ab1f-9ed73e175fd6"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5dc2db40831f330000d741e6"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5f98f56ca916680000fb6ed0"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5b55f69ab84846558c53bb60"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5b55f69ab84846558c53bb62"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5b55f69ab84846558c53bb64"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

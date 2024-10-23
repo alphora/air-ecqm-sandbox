@@ -1,0 +1,227 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "00da63d7-1fda-4147-a850-c40dddb30cb7",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "2765feb6-e76c-4ba0-bc3e-93daf2161e66-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "b3ee3e77-b813-42ac-949a-5d85e3df5002"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#2765feb6-e76c-4ba0-bc3e-93daf2161e66-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Screened, Not at Risk, No Referral, Assessment, Severe Malnutrition, No Diagnosis, Care Plan"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/GlobalMalnutritionCompositeFHIR",
+  "period": {
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-population",
+          "display": "Measure Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-population-observation",
+          "display": "Measure Population Observation"
+        } ]
+      },
+      "count": 0
+    } ]
+  }, {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-population",
+          "display": "Measure Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-population-observation",
+          "display": "Measure Population Observation"
+        } ]
+      },
+      "count": 0
+    } ]
+  }, {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-population",
+          "display": "Measure Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-population-observation",
+          "display": "Measure Population Observation"
+        } ]
+      },
+      "count": 0
+    } ]
+  }, {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-population",
+          "display": "Measure Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-population-observation",
+          "display": "Measure Population Observation"
+        } ]
+      },
+      "count": 0
+    } ]
+  }, {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-population",
+          "display": "Measure Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-population-observation",
+          "display": "Measure Population Observation"
+        } ]
+      },
+      "count": 0
+    } ]
+  }, {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-population",
+          "display": "Measure Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-population-observation",
+          "display": "Measure Population Observation"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/b3ee3e77-b813-42ac-949a-5d85e3df5002"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/ScreNotatriNorefAsseModNodxCp-01"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/ScreNotatriNorefAsseModNodxCp-06"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/ScreNotatriNorefAsseModNodxCp-18"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/ScreNotatriNorefAsseModNodxCp-19"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/ScreNotatriNorefAsseModNodxCp-08"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/ScreNotatriNorefAsseModNodxCp-61"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/ScreNotatriNorefAsseModNodxCp-98"
+  } ]
+}

@@ -100,7 +100,7 @@
       "resourceType": "Condition",
       "id": "liver-disease-35c3",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ]
       },
       "clinicalStatus": {
         "coding": [ {
@@ -143,7 +143,7 @@
       "resourceType": "Observation",
       "id": "cardiovascular-disease-10y-risk-likelihood-5ee4",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result" ]
       },
       "status": "final",
       "category": [ {

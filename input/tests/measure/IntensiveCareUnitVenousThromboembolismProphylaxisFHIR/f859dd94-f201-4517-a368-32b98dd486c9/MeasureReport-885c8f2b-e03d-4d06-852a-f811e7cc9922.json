@@ -1,0 +1,102 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "885c8f2b-e03d-4d06-852a-f811e7cc9922",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "0fcc7d23-f171-4b3d-aef6-b08fc88a00c7-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "f859dd94-f201-4517-a368-32b98dd486c9"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#0fcc7d23-f171-4b3d-aef6-b08fc88a00c7-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "meets IPP, meets Denominator, IPC applied not done MedRsn and Warfarin admin not done PatRfsl - during ED but ED > 1 hr before adm time, but it is on the same day as Adm date\n\"\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/IntensiveCareUnitVenousThromboembolismProphylaxisFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exception",
+          "display": "Denominator Exception"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/f859dd94-f201-4517-a368-32b98dd486c9"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5ca62961b8484628b8de1e81"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5ca62961b8484628b8de1e82"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5fa041591c76ba66d995928f"
+  }, {
+    "reference": "https://madie.cms.gov/Location/Location-1"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/device-application-8a0a"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationAdministration/warfarin-8a15"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

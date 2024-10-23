@@ -1,0 +1,87 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "5d9ec342-31d2-4043-987b-ba9c0b3298ef",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "4f16044d-9d41-4640-ba04-b64daa14a473-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "9f11ba0f-2fd8-4f45-87c8-98fd7f81e42b"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#4f16044d-9d41-4640-ba04-b64daa14a473-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Patient had SCIP -GenSurg during Encounter and Rank =1\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/VenousThromboembolismProphylaxisFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/9f11ba0f-2fd8-4f45-87c8-98fd7f81e42b"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5ca62965b8484628b8de1fae"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5fa041661c76ba66d9959370"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/5e21be93f9757500009ed4e7"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

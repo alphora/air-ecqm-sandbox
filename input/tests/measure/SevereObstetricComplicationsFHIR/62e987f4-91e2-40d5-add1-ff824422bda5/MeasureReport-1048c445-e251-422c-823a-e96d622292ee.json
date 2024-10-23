@@ -1,0 +1,98 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "1048c445-e251-422c-823a-e96d622292ee",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "a5ef84d2-8a9b-462c-8f99-092a8a3af535-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "62e987f4-91e2-40d5-add1-ff824422bda5"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#a5ef84d2-8a9b-462c-8f99-092a8a3af535-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Risk variable of bleeding disorder.\n\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/SevereObstetricComplicationsFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator-exclusion",
+          "display": "Numerator Exclusion"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/62e987f4-91e2-40d5-add1-ff824422bda5"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5f29baa26f0b7100008d8af1"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5f29bb016f0b7100008d8b15"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5f21e66daca3e40000cb86cf"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/5f21e716aca3e40000cb87ee"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/severe-maternal-morbidity-diagnoses-adc1"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/BleedingDisorder-81e0"
+  } ]
+}

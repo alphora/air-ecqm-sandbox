@@ -101,7 +101,7 @@
       "resourceType": "Condition",
       "id": "end-stage-renal-disease-35d7",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ]
       },
       "clinicalStatus": {
         "coding": [ {
@@ -144,7 +144,7 @@
       "resourceType": "Observation",
       "id": "ldl-cholesterol-9c4a",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-lab" ]
       },
       "status": "corrected",
       "category": [ {

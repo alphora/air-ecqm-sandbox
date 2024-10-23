@@ -114,7 +114,7 @@
       "resourceType": "Condition",
       "id": "hospice-diagnosis-6c13",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ]
       },
       "clinicalStatus": {
         "coding": [ {
@@ -161,7 +161,7 @@
       "resourceType": "Condition",
       "id": "diabetes-58aa",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ]
       },
       "clinicalStatus": {
         "coding": [ {

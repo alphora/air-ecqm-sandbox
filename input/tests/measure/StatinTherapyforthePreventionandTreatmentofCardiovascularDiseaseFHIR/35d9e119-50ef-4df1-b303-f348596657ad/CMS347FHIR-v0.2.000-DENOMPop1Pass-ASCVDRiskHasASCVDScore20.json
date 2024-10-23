@@ -146,7 +146,7 @@
       "resourceType": "Condition",
       "id": "myocardial-infarction-f0f8",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ]
       },
       "clinicalStatus": {
         "coding": [ {
@@ -198,7 +198,7 @@
       "resourceType": "Observation",
       "id": "cardiovascular-disease-10y-risk-likelihood-5edf",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result" ]
       },
       "status": "final",
       "category": [ {
@@ -230,7 +230,7 @@
       "resourceType": "Observation",
       "id": "cardiovascular-disease-10y-risk-likelihood-5ee0",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result" ]
       },
       "status": "final",
       "category": [ {

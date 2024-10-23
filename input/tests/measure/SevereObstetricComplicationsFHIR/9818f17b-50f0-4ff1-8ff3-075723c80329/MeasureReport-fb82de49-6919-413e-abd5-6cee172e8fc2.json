@@ -1,0 +1,100 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "fb82de49-6919-413e-abd5-6cee172e8fc2",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "4732db2a-96cb-43d9-9324-67d4407894d6-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "9818f17b-50f0-4ff1-8ff3-075723c80329"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#4732db2a-96cb-43d9-9324-67d4407894d6-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Delivery Procedure rel date/time = IP end.  ED/OBS/IP all meet global hospitalization criteria.\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/SevereObstetricComplicationsFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator-exclusion",
+          "display": "Numerator Exclusion"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/9818f17b-50f0-4ff1-8ff3-075723c80329"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5f21e66daca3e40000cb86cf"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/6008b987d198200000ecc735"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/6008b98bd198200000ecc753"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5f2c54161c76ba5c996057d4"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/5f21e716aca3e40000cb87ee"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

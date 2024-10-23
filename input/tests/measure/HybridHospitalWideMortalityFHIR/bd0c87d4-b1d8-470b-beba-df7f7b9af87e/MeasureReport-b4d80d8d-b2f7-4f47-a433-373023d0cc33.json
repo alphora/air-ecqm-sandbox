@@ -1,0 +1,62 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "b4d80d8d-b2f7-4f47-a433-373023d0cc33",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "978a0eb9-cae1-46dd-bfb5-fb21090583c3-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "bd0c87d4-b1d8-470b-beba-df7f7b9af87e"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#978a0eb9-cae1-46dd-bfb5-fb21090583c3-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Observation enc first day of MP (7/1), age 65 today, inpatient admit 7/2 and hematocrit test performed 24hrs 1 min prior to inpatient admission"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/HybridHospitalWideMortalityFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/bd0c87d4-b1d8-470b-beba-df7f7b9af87e"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5e064eb09350f90000fe244aX"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5e064eb09350f90000fe244a"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5f9968fcb977ef0000c02ce8"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5e064efa9350f90000fe247c"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

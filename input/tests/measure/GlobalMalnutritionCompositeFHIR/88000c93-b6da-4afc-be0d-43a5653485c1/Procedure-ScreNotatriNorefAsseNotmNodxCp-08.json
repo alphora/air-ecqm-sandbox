@@ -1,0 +1,30 @@
+{
+  "resourceType": "Procedure",
+  "id": "ScreNotatriNorefAsseNotmNodxCp-08",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure" ]
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-recorded",
+    "valueDateTime": "2026-02-02T11:30:00.000Z"
+  } ],
+  "status": "completed",
+  "code": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "229912004",
+      "display": "Enteral feeding (regime/therapy)"
+    } ],
+    "text": "Enteral feeding (regime/therapy)"
+  },
+  "subject": {
+    "reference": "Patient/88000c93-b6da-4afc-be0d-43a5653485c1"
+  },
+  "encounter": {
+    "reference": "Encounter/ScreNotatriNorefAsseNotmNodxCpDENOMPass1"
+  },
+  "performedPeriod": {
+    "start": "2026-02-01T11:30:00.000Z",
+    "end": "2026-02-07T08:15:00.000Z"
+  }
+}

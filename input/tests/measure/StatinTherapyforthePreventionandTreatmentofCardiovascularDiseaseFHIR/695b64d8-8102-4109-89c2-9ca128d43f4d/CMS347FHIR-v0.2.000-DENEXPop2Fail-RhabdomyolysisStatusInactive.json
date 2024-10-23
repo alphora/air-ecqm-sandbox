@@ -101,7 +101,7 @@
       "resourceType": "Condition",
       "id": "rhabdomyolysis-6c10",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ]
       },
       "clinicalStatus": {
         "coding": [ {
@@ -145,7 +145,7 @@
       "resourceType": "Observation",
       "id": "ldl-cholesterol-9c46",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-lab" ]
       },
       "status": "final",
       "category": [ {

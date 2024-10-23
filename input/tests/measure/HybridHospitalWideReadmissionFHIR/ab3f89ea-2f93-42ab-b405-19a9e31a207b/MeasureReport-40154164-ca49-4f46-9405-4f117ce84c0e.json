@@ -1,0 +1,60 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "40154164-ca49-4f46-9405-4f117ce84c0e",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "c8775485-1d07-4059-b198-43386d4b85a3-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "ab3f89ea-2f93-42ab-b405-19a9e31a207b"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#c8775485-1d07-4059-b198-43386d4b85a3-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Enc ends last day of MP (6/30), age 65 on day of enc. Systolic BP evaluated 2 hours after start of inpatient and morning of discharge"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/HybridHospitalWideReadmissionFHIR",
+  "period": {
+    "start": "2025-07-01",
+    "end": "2026-06-30"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/ab3f89ea-2f93-42ab-b405-19a9e31a207b"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5e06513f9350f90000fe2684"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5f9969a2b977ef0000c02e9a"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5b7c565ab84846299c81a5c8"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

@@ -1,0 +1,97 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "5afa1123-1126-4e26-be7b-a1d69dd457ba",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "5aba0616-dbf2-4284-83a7-df76927983d3-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "446532f2-7a4c-43cd-91ab-44bcd198526c"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#5aba0616-dbf2-4284-83a7-df76927983d3-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "\"Preterm Births=0, Relevant date/time < 42weeks prior to Asse delivery\nTerm Newborn=0, Relevant date/time same datetime as Asse delivery\"\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/CesareanBirthFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/446532f2-7a4c-43cd-91ab-44bcd198526c"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5d014eb2b84846087238067d"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5d014eb2b84846087238067f"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5d014eb2b848460872380682"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5e6971587ffec70000322b19"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5d014eb2b84846087238067b"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/5d014eb2b84846087238067c"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/delivery-of-singleton-4b1b"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/1"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}
