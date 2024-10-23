@@ -123,7 +123,7 @@ define "ASVCD Diagnosis or Procedure before End of Measurement Period":
         union [Procedure: "CABG Surgeries"]
         union [Procedure: "Carotid Intervention"]
         union [Procedure: "CABG or PCI Procedure"] ) ASCVDProcedure
-        where ASCVDProcedure.performed.toInterval ( ) starts on or before day of end of "Measurement Period"
+        where QICoreCommon.ToInterval(ASCVDProcedure.performed) starts on or before day of end of "Measurement Period"
           and ASCVDProcedure.status = 'completed'
     )
 
@@ -141,7 +141,7 @@ define "Has Adverse Reaction to Statin":
 
 define "Has Allergy to Statin":
   exists ( [AllergyIntolerance: "Statin Allergen"] StatinAllergy
-      where StatinAllergy.onset.toInterval ( ) overlaps day of "Measurement Period"
+      where QICoreCommon.ToInterval(StatinAllergy.onset) overlaps day of "Measurement Period"
         and StatinAllergy.clinicalStatus ~ QICoreCommon."allergy-active"
   )
 
@@ -200,7 +200,7 @@ define "Hypercholesterolemia Diagnosis":
 define "LDL Result Greater Than or Equal To 190":
   [LaboratoryResultObservation: "LDL Cholesterol"] LDL190
     where LDL190.value as Quantity >= 190 'mg/dL'
-      and LDL190.effective.toInterval ( ) starts on or before day of end of "Measurement Period"
+      and QICoreCommon.ToInterval(LDL190.effective) starts on or before day of end of "Measurement Period"
       and LDL190.status in { 'final', 'amended', 'corrected', 'appended' }
 
 define "Patients Aged 20 to 75 with LDL Cholesterol Result Greater than or Equal to 190 or Hypercholesterolemia without ASCVD":
@@ -239,7 +239,7 @@ define "Statin Therapy Prescribed Anytime during day of Measurement Period":
       and StatinPrescribed.intent ~ 'order'
       and ( StatinPrescribed.authoredOn during day of "Measurement Period"
           or exists ( StatinPrescribed.dosageInstruction.timing T
-              where T.repeat.bounds.toInterval ( ) overlaps day of "Measurement Period"
+              where QICoreCommon.ToInterval(T.repeat.bounds) overlaps day of "Measurement Period"
           )
       )
 
@@ -259,7 +259,7 @@ define "Ten Year CVD Risk is High":
   exists ( ([ObservationClinicalResult: "Cardiovascular disease 10Y risk [Likelihood]"]
       union [ObservationClinicalResult: "Cardiovascular disease 10Y risk [Likelihood] ACC-AHA Pooled Cohort by Goff 2013"]) AtRiskCVD
       where AtRiskCVD.value as Quantity >= 20 '%'
-        and AtRiskCVD.effective.toInterval ( ) during day of "Measurement Period"
+        and QICoreCommon.ToInterval(AtRiskCVD.effective) during day of "Measurement Period"
   )
 
 define "SDE Ethnicity":
