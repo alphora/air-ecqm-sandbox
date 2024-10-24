@@ -1,0 +1,56 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "6e3cc76e-0002-44fc-80fe-597d58c504f1",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "8fc24016-9ca5-4be5-9286-77707614de18-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "cf648ca2-7300-4d96-8a8e-d1f14460d730"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#8fc24016-9ca5-4be5-9286-77707614de18-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Enc. ends last day of MP (6/30), patient does not have Medicare  \n "
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/HybridHospitalWideReadmissionFHIR",
+  "period": {
+    "start": "2025-07-01",
+    "end": "2026-06-30"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/cf648ca2-7300-4d96-8a8e-d1f14460d730"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5e3b3147d6cb680000be9821"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}
