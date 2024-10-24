@@ -1,0 +1,102 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "66bd93b2-0998-43b0-8d02-b1ce2756b80a",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "0a831eb0-11f1-4b90-a560-b21cb0a1803a-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "a2365453-d868-4111-b1dc-aad2e81d55fd"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#0a831eb0-11f1-4b90-a560-b21cb0a1803a-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Patient receives CMO during Observation. ED ends 1 min before Obs start and Obs ends 61 min before inpatient encounter start. Testing HospitalizationWithObservation function."
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/AnticoagulationTherapyforAtrialFibrillationFlutterFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exception",
+          "display": "Denominator Exception"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/a2365453-d868-4111-b1dc-aad2e81d55fd"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/5c953f97b848462de0ae416d"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c953f97b848462de0ae416e"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c953f97b848462de0ae416f"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c953f97b848462de0ae4170"
+  }, {
+    "reference": "https://madie.cms.gov/ServiceRequest/5c953f97b848462de0ae4172"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5f2c53d01c76ba5c9960579b"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/ischemic-stroke-1955"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  } ]
+}

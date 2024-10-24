@@ -1,0 +1,89 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "1eda0fa6-0c54-49bb-b664-916ad6bf790b",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "ac1fb871-ad12-4b37-b27c-f644793f2dbb-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "dfc6a903-e637-4fff-8619-996099874454"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#ac1fb871-ad12-4b37-b27c-f644793f2dbb-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": ">18, dx VTE, LOS<120 day,   LabResult INR is a invalid value as coded value,  < 0 day after surgery end datetime\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/VenousThromboembolismProphylaxisFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/dfc6a903-e637-4fff-8619-996099874454"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5ca62964b8484628b8de1f24"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5fa041631c76ba66d995933a"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5ca62964b8484628b8de1f26"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/5ca62964b8484628b8de1f25"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

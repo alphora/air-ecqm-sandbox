@@ -1,0 +1,87 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "c16a8a31-3801-4472-9e48-2e2c7d12bf37",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "0a1a753d-000d-46d3-afb4-ee9988a5add4-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "3425eac5-be2b-457f-8db1-cdc0c9f01f5e"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#0a1a753d-000d-46d3-afb4-ee9988a5add4-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Encounter 1/29 - 1/31, age 18,  palliative care performed 1 min after encounter ended, has one opioid\n\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/SafeUseofOpioidsConcurrentPrescribingFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/3425eac5-be2b-457f-8db1-cdc0c9f01f5e"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/encounter-inpatient-1c2a"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationRequest/schedule-ii-iii-opioid-medications-1c2b"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/palliative-or-hospice-care-1c2c"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/1"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  } ]
+}

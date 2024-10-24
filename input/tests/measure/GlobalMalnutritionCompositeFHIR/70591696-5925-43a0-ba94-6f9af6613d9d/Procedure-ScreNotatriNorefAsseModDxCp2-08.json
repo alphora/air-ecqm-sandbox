@@ -1,0 +1,30 @@
+{
+  "resourceType": "Procedure",
+  "id": "ScreNotatriNorefAsseModDxCp2-08",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure" ]
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-recorded",
+    "valueDateTime": "2026-02-02T11:30:00.000Z"
+  } ],
+  "status": "completed",
+  "code": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "22372007",
+      "display": "Total parenteral nutrition (regime/therapy)"
+    } ],
+    "text": "Total parenteral nutrition (regime/therapy)"
+  },
+  "subject": {
+    "reference": "Patient/70591696-5925-43a0-ba94-6f9af6613d9d"
+  },
+  "encounter": {
+    "reference": "Encounter/ScreNotatriNorefAsseModDxCp2DENOMPass1"
+  },
+  "performedPeriod": {
+    "start": "2026-02-01T11:30:00.000Z",
+    "end": "2026-02-07T08:15:00.000Z"
+  }
+}

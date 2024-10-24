@@ -1,0 +1,110 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "e814a86b-b0b5-47ad-a163-13ac771a1e6a",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "77932f0c-a816-4a14-9e7a-03e41c4fe452-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "92f09d8f-c916-4030-9dc3-14844a50c7cb"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#77932f0c-a816-4a14-9e7a-03e41c4fe452-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Patient receives tPA in first encounter and antithrombotics in last 2 encounters. Testing to ensure medications without end dates do not interfere with encounters that follow. Executes as expected. \n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/AntithromboticTherapyByEndofHospitalDay2FHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 3
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 3
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 2
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exception",
+          "display": "Denominator Exception"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/92f09d8f-c916-4030-9dc3-14844a50c7cb"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c9e2f10b8484633ef4da92b"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c9e2f10b8484633ef4da92c"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5e271f5229969c0000f91fbc"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationAdministration/5e271f4229969c0000f91fad"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationAdministration/5e442a533afe5d000044bd64"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5e20a3721c76ba6c5896ec1e"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/5e271f9c29969c0000f92027"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/ischemic-stroke-7d50"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/ischemic-stroke-7d51"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/ischemic-stroke-7d52"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

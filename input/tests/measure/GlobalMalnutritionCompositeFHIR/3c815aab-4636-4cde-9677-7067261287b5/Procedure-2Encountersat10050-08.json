@@ -1,0 +1,30 @@
+{
+  "resourceType": "Procedure",
+  "id": "2Encountersat10050-08",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure" ]
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-recorded",
+    "valueDateTime": "2026-02-02T11:30:00.000Z"
+  } ],
+  "status": "completed",
+  "code": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "386372009",
+      "display": "Nutrition management (regime/therapy)"
+    } ],
+    "text": "Nutrition management (regime/therapy)"
+  },
+  "subject": {
+    "reference": "Patient/3c815aab-4636-4cde-9677-7067261287b5"
+  },
+  "encounter": {
+    "reference": "Encounter/2Encountersat10050DENOMPass44"
+  },
+  "performedPeriod": {
+    "start": "2026-02-01T11:30:00.000Z",
+    "end": "2026-02-07T08:15:00.000Z"
+  }
+}

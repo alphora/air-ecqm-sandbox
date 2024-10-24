@@ -18,19 +18,11 @@ parameter "Measurement Period" Interval<DateTime>
 
 context Patient
 
-/*
-@QICore6Uplift: Update Observation resource to ObservationScreeningAssessment
-*/ 
 define "Has Palliative Care in the Measurement Period":
-    exists ((([Observation: "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)"]).isAssessmentPerformed()) PalliativeAssessment
+    exists ((([ObservationScreeningAssessment: "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)"]).isAssessmentPerformed()) PalliativeAssessment
       where PalliativeAssessment.effective.toInterval() overlaps day of "Measurement Period"
     )
-
-    /*
-     @QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
-    */ 
-    
-    or exists ([Condition: "Palliative Care Diagnosis"] PalliativeDiagnosis
+    or exists ([ConditionProblemsHealthConcerns: "Palliative Care Diagnosis"] PalliativeDiagnosis
         where PalliativeDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
     or exists ((([Encounter: type in "Palliative Care Encounter"]).isEncounterPerformed()) PalliativeEncounter

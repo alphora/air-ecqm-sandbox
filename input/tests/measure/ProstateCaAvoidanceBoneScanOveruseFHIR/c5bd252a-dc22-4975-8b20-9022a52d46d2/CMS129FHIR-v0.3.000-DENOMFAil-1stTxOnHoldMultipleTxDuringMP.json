@@ -66,7 +66,7 @@
       "resourceType": "Condition",
       "id": "prostate-cancer-a8d8",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ]
       },
       "clinicalStatus": {
         "coding": [ {
@@ -206,7 +206,7 @@
       "resourceType": "Observation",
       "id": "prostate-specific-antigen-test-a8da",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-lab" ]
       },
       "status": "final",
       "category": [ {
@@ -245,7 +245,7 @@
       "resourceType": "Observation",
       "id": "gleason-score-in-specimen-qualitative-a8dc",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result" ]
       },
       "status": "final",
       "category": [ {
@@ -279,7 +279,7 @@
       "resourceType": "Observation",
       "id": "tumor-staging-tumor-staging-a8dd",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result" ]
       },
       "status": "final",
       "category": [ {
