@@ -139,6 +139,10 @@ define "History of Bipolar Diagnosis Before Qualifying Encounter":
   @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
 */
 
+/*
+  @QICore6Uplift: Update ObservationNotDone to ObservationCancelled
+*/
+
 define "Medical or Patient Reason for Not Screening Adolescent for Depression":
   [ObservationCancelled: code ~ "Adolescent depression screening assessment"] NoAdolescentScreen
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter

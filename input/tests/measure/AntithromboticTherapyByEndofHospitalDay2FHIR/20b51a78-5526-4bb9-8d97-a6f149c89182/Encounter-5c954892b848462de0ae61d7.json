@@ -1,0 +1,43 @@
+{
+  "resourceType": "Encounter",
+  "id": "5c954892b848462de0ae61d7",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ]
+  },
+  "status": "finished",
+  "class": {
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "code": "IMP",
+    "display": "inpatient encounter"
+  },
+  "type": [ {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "32485007"
+    } ]
+  } ],
+  "subject": {
+    "reference": "Patient/20b51a78-5526-4bb9-8d97-a6f149c89182"
+  },
+  "period": {
+    "start": "2025-10-10T09:00:00+00:00",
+    "end": "2025-10-12T11:15:00+00:00"
+  },
+  "length": {
+    "value": 2,
+    "unit": "days"
+  },
+  "diagnosis": [ {
+    "condition": {
+      "reference": "Condition/ischemic-stroke-2d67"
+    },
+    "use": {
+      "coding": [ {
+        "system": "http://terminology.hl7.org/CodeSystem/diagnosis-role",
+        "code": "billing",
+        "display": "Billing"
+      } ]
+    },
+    "rank": 1
+  } ]
+}

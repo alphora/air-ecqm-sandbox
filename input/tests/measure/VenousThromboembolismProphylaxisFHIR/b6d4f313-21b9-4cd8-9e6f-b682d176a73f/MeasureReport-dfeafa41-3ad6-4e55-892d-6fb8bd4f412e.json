@@ -1,0 +1,91 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "dfeafa41-3ad6-4e55-892d-6fb8bd4f412e",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "c1ece058-f068-4f5b-b1ef-b276aa423a5d-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "b6d4f313-21b9-4cd8-9e6f-b682d176a73f"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#c1ece058-f068-4f5b-b1ef-b276aa423a5d-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "TestMultipleOccur - 2 occurrences. 1 in Den due to Dvc applied >1 day after Adm and 1 in Numerator\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/VenousThromboembolismProphylaxisFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 2
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 2
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 1
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/b6d4f313-21b9-4cd8-9e6f-b682d176a73f"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5ca62965b8484628b8de1fd5"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5ca62965b8484628b8de1fd6"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5fa041631c76ba66d9959340"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationAdministration/5ca62965b8484628b8de1fd8"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/device-application-24fe"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

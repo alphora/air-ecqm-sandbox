@@ -1,0 +1,98 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "ee34a11c-b3d7-4bf7-8e98-c44667789942",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "108e3731-aa0b-4899-8051-db7afd458c63-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "c1ee2b07-f5a7-451c-8bc5-cb97b1cbcca2"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#108e3731-aa0b-4899-8051-db7afd458c63-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "ED visit AND antithrombotic is not ordered due to medical reason but > 1 day after start of ED visit,  global.\"Hospitalization\" =(Ed+IP)\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/AntithromboticTherapyByEndofHospitalDay2FHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exception",
+          "display": "Denominator Exception"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/c1ee2b07-f5a7-451c-8bc5-cb97b1cbcca2"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c954892b848462de0ae620c"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c954892b848462de0ae620d"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationRequest/5c954892b848462de0ae620f"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5e20a36a1c76ba6c5896ebd5"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/ischemic-stroke-8b65"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  } ]
+}

@@ -1,0 +1,113 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "dd93f416-4635-4043-aca9-01c0b6a58b54",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "47f6d170-f710-4322-9d14-29ff7cf9588d-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "eca36e7f-95ed-4395-933e-44899a268b79"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#47f6d170-f710-4322-9d14-29ff7cf9588d-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Patient has every type of valid CTScan with good results"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/ALARACTOQRFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 18
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 18
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/eca36e7f-95ed-4395-933e-44899a268b79"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-2"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-3"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-4"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-5"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-6"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-7"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-8"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-9"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-10"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-11"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-12"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-13"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-14"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-15"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-16"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-17"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-18"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/denompass-allscans-19"
+  } ]
+}

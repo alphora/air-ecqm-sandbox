@@ -1,0 +1,30 @@
+{
+  "resourceType": "Procedure",
+  "id": "ScreAtriNorefAsseNotmDxCp-08",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure" ]
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-recorded",
+    "valueDateTime": "2025-02-02T11:30:00.000Z"
+  } ],
+  "status": "completed",
+  "code": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "418995006",
+      "display": "Feeding regime (regime/therapy)"
+    } ],
+    "text": "Feeding regime (regime/therapy)"
+  },
+  "subject": {
+    "reference": "Patient/bfb5338b-1ade-4488-9fdb-0cb974388e18"
+  },
+  "encounter": {
+    "reference": "Encounter/ScreAtriNorefAsseNotmDxCpDENOMPass2"
+  },
+  "performedPeriod": {
+    "start": "2026-02-01T11:30:00.000Z",
+    "end": "2026-02-07T08:15:00.000Z"
+  }
+}

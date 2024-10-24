@@ -1,0 +1,20 @@
+{
+  "resourceType": "Coverage",
+  "id": "payer-adc0",
+  "status": "active",
+  "type": {
+    "coding": [ {
+      "system": "http://www.nlm.nih.gov/research/umls/sop",
+      "version": "9.2",
+      "code": "1",
+      "display": "MEDICARE",
+      "userSelected": true
+    } ]
+  },
+  "beneficiary": {
+    "reference": "Patient/c24eaa0b-0b4f-4150-a806-63b9b672d5e1"
+  },
+  "payor": [ {
+    "reference": "Organization/123456"
+  } ]
+}

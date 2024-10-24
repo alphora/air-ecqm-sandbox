@@ -1,0 +1,89 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "a63418db-ca97-4bac-a588-af73f169d1cf",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "27eed5b5-7589-4479-a43e-87c63ee2ea9a-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "031889e2-0353-4c2e-82c0-f422e15aacaa"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#27eed5b5-7589-4479-a43e-87c63ee2ea9a-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Enc first day of MP, pt in MAT program for opioids, tx plan includes buprenorhine tx. "
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/SafeUseofOpioidsConcurrentPrescribingFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/031889e2-0353-4c2e-82c0-f422e15aacaa"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/encounter-inpatient-1c2a"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationRequest/schedule-iv-benzodiazepines-medications-1c2b"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationRequest/medications-for-opioid-use-disorder-1c2b"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/opioid-medication-assisted-treatment-1c2c"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/1"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  } ]
+}

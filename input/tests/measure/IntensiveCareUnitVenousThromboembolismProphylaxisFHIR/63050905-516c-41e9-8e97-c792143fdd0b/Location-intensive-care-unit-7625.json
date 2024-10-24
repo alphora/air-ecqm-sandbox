@@ -1,0 +1,13 @@
+{
+  "resourceType": "Location",
+  "id": "intensive-care-unit-7625",
+  "type": [ {
+    "coding": [ {
+      "system": "http://cts.nlm.nih.gov/fhir/cs/hsloc",
+      "version": "2020",
+      "code": "1025-6",
+      "display": "Trauma Critical Care",
+      "userSelected": true
+    } ]
+  } ]
+}
