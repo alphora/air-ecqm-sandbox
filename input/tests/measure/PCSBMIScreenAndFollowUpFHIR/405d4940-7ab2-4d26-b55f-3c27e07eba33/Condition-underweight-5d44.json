@@ -3,7 +3,7 @@
   "id": "underweight-5d44",
   "clinicalStatus": {
     "coding": [ {
-      "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+      "system": "http://terminology.hl7.org/CodeSystem/condition-problems-health-concerns",
       "code": "inactive",
       "display": "inActive",
       "userSelected": true
