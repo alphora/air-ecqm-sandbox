@@ -146,7 +146,7 @@
       "resourceType": "MedicationRequest",
       "id": "medications-for-above-normal-bmi-75aa",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-mednotrequested" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationnotrequested" ]
       },
       "status": "completed",
       "intent": "order",
