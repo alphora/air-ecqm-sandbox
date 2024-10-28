@@ -1,7 +1,3 @@
-/*
-@QICore6Uplift test impact: Change resource types and update qicore profiles in test cases to ObservationClinicalResult, ConditionEncounterDiagnosis, or ConditionProblemsHealthConcerns
-*/ 
-
 library FunctionalStatusAssessmentforTotalHipReplacementFHIR version '0.0.008'
 
 using QICore version '6.0.0'
@@ -109,19 +105,13 @@ define "Denominator Exclusions":
     or "Has More Than One Elective Primary Total Hip Arthroplasty Performed"
     or "Death Within 300 Days of the THA Procedure"
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Severe Cognitive Impairment":
-  exists [Condition: "Severe cognitive impairment (finding)"] Dementia
+  exists [ConditionProblemsHealthConcerns: "Severe cognitive impairment (finding)"] Dementia
     where Dementia.prevalenceInterval ( ) overlaps day of "Measurement Period"
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionEncounterDiagnosis'
-*/
 define "Has Total Hip Arthroplasty with 1 or More Lower Body Fractures":
   exists ( "Total Hip Arthroplasty Procedure" THAProcedure
-      with [Condition: "Lower Body Fractures Excluding Ankle and Foot"] LowerBodyFracture
+      with [ConditionEncounterDiagnosis: "Lower Body Fractures Excluding Ankle and Foot"] LowerBodyFracture
         such that LowerBodyFracture.prevalenceInterval ( ) starts 24 hours or less on or before start of THAProcedure.performed."toInterval" ( )
   )
 
@@ -137,20 +127,15 @@ define "Has Revision Hip Arthroplasty Procedure or Implanted Device or Prosthesi
         such that RevisionTHAProcedure.performed.toInterval ( ) during day of THAProcedure.performed.toInterval ( )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Malignant Neoplasm of Lower and Unspecified Limbs":
-  exists ( [Condition: "Malignant Neoplasms of Lower and Unspecified Limbs"] MalignantNeoplasm
+  exists ( [ConditionProblemsHealthConcerns: "Malignant Neoplasms of Lower and Unspecified Limbs"] MalignantNeoplasm
       with "Total Hip Arthroplasty Procedure" THAProcedure
         such that MalignantNeoplasm.prevalenceInterval ( ) overlaps day of THAProcedure.performed.toInterval ( )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionEncounterDiagnosis'
-*/
 define "Has Mechanical Complication":
-  exists ( [Condition: "Mechanical Complications Excluding Upper Body"] MechanicalComplications
+  exists ( ([ConditionEncounterDiagnosis: "Mechanical Complications Excluding Upper Body"]
+      union [ConditionProblemsHealthConcerns: "Mechanical Complications Excluding Upper Body"]) MechanicalComplications
       with "Total Hip Arthroplasty Procedure" THAProcedure
         such that MechanicalComplications.prevalenceInterval ( ) overlaps day of THAProcedure.performed.toInterval ( )
   )
@@ -182,16 +167,13 @@ define "Has THA with Initial and Follow Up HOOS Assessments":
         such that date from FollowUpHipAssessmentHOOS during day of Interval[date from end of TotalHip + 300 days, date from end of TotalHip + 425 days]
   )
 
-/*
-@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
-*/
 define "Date HOOS Total Assessment Completed":
   from
-    ( ( [Observation: "Quality of life score [HOOS]"] ).isAssessmentPerformed ( ) ) HOOSLifeQuality,
-    ( ( [Observation: "Sport-recreation score [HOOS]"] ).isAssessmentPerformed ( ) ) HOOSSport,
-    ( ( [Observation: "Activities of daily living score [HOOS]"] ).isAssessmentPerformed ( ) ) HOOSActivityScore,
-    ( ( [Observation: "Symptoms score [HOOS]"] ).isAssessmentPerformed ( ) ) HOOSSymptoms,
-    ( ( [Observation: "Pain score [HOOS]"] ).isAssessmentPerformed ( ) ) HOOSPain
+    ( ( [ObservationScreeningAssessment: "Quality of life score [HOOS]"] ).isAssessmentPerformed ( ) ) HOOSLifeQuality,
+    ( ( [ObservationScreeningAssessment: "Sport-recreation score [HOOS]"] ).isAssessmentPerformed ( ) ) HOOSSport,
+    ( ( [ObservationScreeningAssessment: "Activities of daily living score [HOOS]"] ).isAssessmentPerformed ( ) ) HOOSActivityScore,
+    ( ( [ObservationScreeningAssessment: "Symptoms score [HOOS]"] ).isAssessmentPerformed ( ) ) HOOSSymptoms,
+    ( ( [ObservationScreeningAssessment: "Pain score [HOOS]"] ).isAssessmentPerformed ( ) ) HOOSPain
     let HOOSLifeQualityDate: date from start of HOOSLifeQuality.effective.toInterval ( ),
     HOOSSportDate: date from start of HOOSSport.effective.toInterval ( ),
     HOOSActivityScoreDate: date from start of HOOSActivityScore.effective.toInterval ( ),
@@ -217,11 +199,8 @@ define "Has THA with Initial and Follow Up HOOSJr Assessments":
         such that date from FollowUpHipAssessment during day of Interval[date from end of TotalHip + 300 days, date from end of TotalHip + 425 days]
   )
 
-/*
-@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
-*/
 define "Date HOOSJr Total Assessment Completed":
-  ( ( ( [Observation: "Total interval score [HOOSJR]"] ).isAssessmentPerformed ( ) ) HOOSJr
+  ( ( ( [ObservationScreeningAssessment: "Total interval score [HOOSJR]"] ).isAssessmentPerformed ( ) ) HOOSJr
     where HOOSJr.value is not null ) DocumentedHOOSJr
     return date from start of DocumentedHOOSJr.effective.toInterval ( )
 
@@ -234,13 +213,10 @@ define "Has THA with Initial and Follow Up PROMIS10 Assessments":
         such that date from FollowUpHipAssessmentPROMIS10 during day of Interval[date from end of TotalHip + 300 days, date from end of TotalHip + 425 days]
   )
 
-/*
-@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
-*/
 define "Date PROMIS10 Total Assessment Completed":
   from
-    ( ( [Observation: "PROMIS-10 Global Mental Health (GMH) score T-score"] ).isAssessmentPerformed ( ) ) PROMIS10MentalScore,
-    ( ( [Observation: "PROMIS-10 Global Physical Health (GPH) score T-score"] ).isAssessmentPerformed ( ) ) PROMIS10PhysicalScore
+    ( ( [ObservationScreeningAssessment: "PROMIS-10 Global Mental Health (GMH) score T-score"] ).isAssessmentPerformed ( ) ) PROMIS10MentalScore,
+    ( ( [ObservationScreeningAssessment: "PROMIS-10 Global Physical Health (GPH) score T-score"] ).isAssessmentPerformed ( ) ) PROMIS10PhysicalScore
     let PROMIS10MentalScoreDate: date from start of PROMIS10MentalScore.effective.toInterval ( ),
     PROMIS10PhysicalScoreDate: date from start of PROMIS10PhysicalScore.effective.toInterval ( )
     where PROMIS10MentalScoreDate same day as PROMIS10PhysicalScoreDate
@@ -257,13 +233,10 @@ define "Has THA with Initial and Follow Up VR12 Oblique Assessments":
         such that date from FollowUpHipAssessmentOblique during day of Interval[date from end of TotalHip + 300 days, date from end of TotalHip + 425 days]
   )
 
-/*
-@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
-*/
 define "Date VR12 Oblique Total Assessment Completed":
   from
-    ( ( [Observation: "VR-12 Mental component summary (MCS) score - oblique method T-score"] ).isAssessmentPerformed ( ) ) VR12MentalAssessment,
-    ( ( [Observation: "VR-12 Physical component summary (PCS) score - oblique method T-score"] ).isAssessmentPerformed ( ) ) VR12PhysicalAssessment
+    ( ( [ObservationScreeningAssessment: "VR-12 Mental component summary (MCS) score - oblique method T-score"] ).isAssessmentPerformed ( ) ) VR12MentalAssessment,
+    ( ( [ObservationScreeningAssessment: "VR-12 Physical component summary (PCS) score - oblique method T-score"] ).isAssessmentPerformed ( ) ) VR12PhysicalAssessment
     let VR12MentalAssessmentDate: date from start of VR12MentalAssessment.effective.toInterval ( ),
     VR12PhysicalAssessmentDate: date from start of VR12PhysicalAssessment.effective.toInterval ( )
     where VR12MentalAssessmentDate same day as VR12PhysicalAssessmentDate
@@ -280,13 +253,10 @@ define "Has THA with Initial and Follow Up VR12 Orthogonal Assessments":
         such that date from FollowUpHipAssessmentOrthogonal during day of Interval[date from end of TotalHip + 300 days, date from end of TotalHip + 425 days]
   )
 
-/*
-@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
-*/
 define "Date VR12 Orthogonal Total Assessment Completed":
   from
-    ( ( [Observation: "VR-12 Mental component summary (MCS) score - orthogonal method T-score"] ).isAssessmentPerformed ( ) ) VR12MentalAssessment,
-    ( ( [Observation: "VR-12 Physical component summary (PCS) score - orthogonal method T-score"] ).isAssessmentPerformed ( ) ) VR12PhysicalAssessment
+    ( ( [ObservationScreeningAssessment: "VR-12 Mental component summary (MCS) score - orthogonal method T-score"] ).isAssessmentPerformed ( ) ) VR12MentalAssessment,
+    ( ( [ObservationScreeningAssessment: "VR-12 Physical component summary (PCS) score - orthogonal method T-score"] ).isAssessmentPerformed ( ) ) VR12PhysicalAssessment
     let VR12MentalAssessmentDate: date from start of VR12MentalAssessment.effective.toInterval ( ),
     VR12PhysicalAssessmentDate: date from start of VR12PhysicalAssessment.effective.toInterval ( )
     where VR12MentalAssessmentDate same day as VR12PhysicalAssessmentDate
