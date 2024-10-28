@@ -111,7 +111,8 @@ define "Has Severe Cognitive Impairment":
 
 define "Has Total Hip Arthroplasty with 1 or More Lower Body Fractures":
   exists ( "Total Hip Arthroplasty Procedure" THAProcedure
-      with [ConditionEncounterDiagnosis: "Lower Body Fractures Excluding Ankle and Foot"] LowerBodyFracture
+      with ([ConditionEncounterDiagnosis: "Lower Body Fractures Excluding Ankle and Foot"]
+        union [ConditionProblemsHealthConcerns: "Lower Body Fractures Excluding Ankle and Foot"]) LowerBodyFracture
         such that LowerBodyFracture.prevalenceInterval ( ) starts 24 hours or less on or before start of THAProcedure.performed."toInterval" ( )
   )
 
