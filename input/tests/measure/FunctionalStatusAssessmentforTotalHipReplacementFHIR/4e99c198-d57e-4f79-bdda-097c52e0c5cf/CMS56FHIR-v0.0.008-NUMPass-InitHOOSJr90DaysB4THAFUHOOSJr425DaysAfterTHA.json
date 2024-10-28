@@ -123,7 +123,7 @@
       "resourceType": "Observation",
       "id": "Observation-38.1-1",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment" ]
       },
       "status": "final",
       "category": [ {
@@ -158,7 +158,7 @@
       "resourceType": "Observation",
       "id": "Observation-38.2-1",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment" ]
       },
       "status": "final",
       "category": [ {
