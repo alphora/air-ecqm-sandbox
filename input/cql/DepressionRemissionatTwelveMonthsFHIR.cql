@@ -135,7 +135,7 @@ define "Has Hospice Services in the Measure Assessment Period":
     )
 
     /*
-    @QICore6Uplift: Update 'Observation' to 'ObservationClinicalResult'
+    @QICore6Uplift: Update 'Observation' to 'NonPatientObservation'
     */    
     or exists ( [Observation: "Hospice care [Minimum Data Set]"] HospiceAssessment
         where HospiceAssessment.value ~ "Yes (qualifier value)"
