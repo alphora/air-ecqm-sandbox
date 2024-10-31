@@ -43,7 +43,8 @@ define "Numerator":
   ( "Has HIV Test Performed" )
 
 define "Denominator Exclusions":
-  exists ( [ConditionProblemsHealthConcerns: "HIV"] ) HIVirus
+  exists ( [ConditionProblemsHealthConcerns: "HIV"] 
+    union [ConditionEncounterDiagnosis: "HIV"] ) HIVirus
     where HIVirus.prevalenceInterval ( ) starts before day of start of "Measurement Period"
       and HIVirus.verificationStatus !~ "refuted"
 
