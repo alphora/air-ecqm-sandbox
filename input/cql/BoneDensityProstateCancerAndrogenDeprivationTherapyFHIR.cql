@@ -1,5 +1,5 @@
 /*
-Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, LaboratoryResultObservation, and ObservationCancelled
+Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis, LaboratoryResultObservation, and ObservationCancelled
 */
 
 library BoneDensityProstateCancerAndrogenDeprivationTherapyFHIR version '1.4.000'
