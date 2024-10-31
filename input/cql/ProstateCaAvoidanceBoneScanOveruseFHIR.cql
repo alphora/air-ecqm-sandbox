@@ -70,8 +70,7 @@ define "Has Bone Scan Study Performed with Documented Reason":
     where BoneScanAfterDiagnosis.value ~ "Procedure reason record (record artifact)"
 
 define "Has Diagnosis of Pain related to Prostate Cancer":
-  exists ( ([ConditionProblemsHealthConcerns: "Pain Warranting Further Investigation for Prostate Cancer"]
-    union [ConditionEncounterDiagnosis: "Pain Warranting Further Investigation for Prostate Cancer"]) ProstateCancerPain
+  exists ( [ConditionProblemsHealthConcerns: "Pain Warranting Further Investigation for Prostate Cancer"] ProstateCancerPain
       with "Prostate Cancer Diagnosis" ActiveProstateCancer
         such that ProstateCancerPain.prevalenceInterval ( ) starts after start of ActiveProstateCancer.prevalenceInterval ( )
           and ( ProstateCancerPain.isProblemListItem ( )
