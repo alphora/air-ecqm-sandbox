@@ -1,5 +1,5 @@
 /*
-Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ObservationScreeningAssessment, and ObservationCancelled
+Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis, ObservationScreeningAssessment, and ObservationCancelled
 */
 
 library DementiaCognitiveAssessmentFHIR version '0.1.000'

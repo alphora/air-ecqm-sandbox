@@ -1,5 +1,5 @@
 /*
-Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ObservationScreeningAssessment, and ObservationClinicalResult
+Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis, ObservationScreeningAssessment, and ObservationClinicalResult
 */
 
 library DepressionRemissionatTwelveMonthsFHIR version '0.2.000'
@@ -102,7 +102,7 @@ define "Depression Encounter":
         and ValidEncounter.status = 'finished'
 
 /*
-@QICore6Uplift: Update all 'Condition' to 'ConditionProblemsHealthConcerns'
+@QICore6Uplift: Update all 'Condition' to a union of 'ConditionProblemsHealthConcerns' and 'ConditionEncounterDiagnosis'
 */ 
 define "Has Mental Health Disorder Diagnoses":
   exists ( ( [Condition: "Bipolar Disorder"]
@@ -154,7 +154,7 @@ define "Has Hospice Services in the Measure Assessment Period":
     )
 
     /*
-    @QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+    @QICore6Uplift: Update 'Condition' to a union of 'ConditionProblemsHealthConcerns' and 'ConditionEncounterDiagnosis'
     */    
     or exists ( [Condition: "Hospice Diagnosis"] HospiceCareDiagnosis
         where HospiceCareDiagnosis.prevalenceInterval ( ) overlaps day of Interval[start of "Denominator Identification Period", end of "Measure Assessment Period"]
@@ -179,7 +179,7 @@ define "Has Palliative Care in the Measure Assessment Period":
   )
 
     /*
-    @QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+    @QICore6Uplift: Update 'Condition' to a union of 'ConditionProblemsHealthConcerns' and 'ConditionEncounterDiagnosis'
     */
     or exists ( [Condition: "Palliative Care Diagnosis"] PalliativeDiagnosis
         where PalliativeDiagnosis.prevalenceInterval ( ) overlaps Interval[start of "Denominator Identification Period", end of "Measure Assessment Period"]
