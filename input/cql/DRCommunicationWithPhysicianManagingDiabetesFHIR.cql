@@ -1,5 +1,5 @@
 /*
-Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns and ObservationClinicalResult
+Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis, and ObservationClinicalResult
 */
 
 library DRCommunicationWithPhysicianManagingDiabetesFHIR version '0.1.000'
