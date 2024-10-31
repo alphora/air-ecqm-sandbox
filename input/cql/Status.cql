@@ -16,7 +16,12 @@ context Patient
 //This library contains functions that are based on QDM 5.6 to QICore 4.1.1 March 2023 (https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Authoring-Patterns---QICore-v4.1.1). The functions may appear similar to some QICoreCommon functions but different in that they have constraints that are relevant for measures authored by NCQA.
 
 //Assessment, Performed
-define fluent function isAssessmentPerformed(Obs List<ObservationScreeningAssessment>):
+define fluent function isAssessmentPerformed(Obs List<Choice<"SimpleObservation", 
+"LaboratoryResultObservation", 
+"ObservationClinicalResult",
+"ObservationScreeningAssessment",
+"NonPatientObservation", 
+"ObservationCancelled">>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
           and exists ( O.category ObservationCategory
@@ -48,7 +53,12 @@ define fluent function isLaboratoryTestOrder(ServiceRequest List<ServiceRequest>
       and S.intent = 'order'        
 
 //Diagnostic Study, Performed
-define fluent function isDiagnosticStudyPerformed(Obs List<Choice<"SimpleObservation", "LaboratoryResultObservation", "ObservationClinicalResult">>):
+define fluent function isDiagnosticStudyPerformed(Obs List<Choice<"SimpleObservation", 
+"LaboratoryResultObservation", 
+"ObservationClinicalResult",
+"ObservationScreeningAssessment",
+"NonPatientObservation", 
+"ObservationCancelled">>):
   Obs O
     where O.status in {'final', 'amended', 'corrected' }
     
@@ -74,7 +84,12 @@ define fluent function isProcedurePerformed(Proc List<Procedure>):
     where P.status ~ 'completed'
 
 //Laboratory Test, Performed
-define fluent function isLaboratoryTestPerformed(Obs List<LaboratoryResultObservation>):
+define fluent function isLaboratoryTestPerformed(Obs List<Choice<"SimpleObservation", 
+"LaboratoryResultObservation", 
+"ObservationClinicalResult",
+"ObservationScreeningAssessment",
+"NonPatientObservation", 
+"ObservationCancelled">>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       and exists ( O.category ObservationCategory
@@ -99,7 +114,12 @@ define fluent function isMedicationOrder(MedicationRequest List<MedicationReques
       and M.intent = 'order'
 
 //Physical Exam, Performed
-define fluent function isPhysicalExamPerformed(Obs List<Choice<"ObservationClinicalResult", "SimpleObservation">>):
+define fluent function isPhysicalExamPerformed(Obs List<Choice<"SimpleObservation", 
+"LaboratoryResultObservation", 
+"ObservationClinicalResult",
+"ObservationScreeningAssessment",
+"NonPatientObservation", 
+"ObservationCancelled">>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       and exists ( O.category ObservationCategory
@@ -124,6 +144,11 @@ define fluent function isObservationBMI(Obs List<"USCoreBMIProfile">):
     where O.status in { 'final', 'amended', 'corrected' }
 
 //Symptom
-define fluent function isSymptom(Obs List<Choice<"SimpleObservation", "ObservationScreeningAssessment">>):
+define fluent function isSymptom(Obs List<Choice<"SimpleObservation", 
+"LaboratoryResultObservation", 
+"ObservationClinicalResult",
+"ObservationScreeningAssessment",
+"NonPatientObservation", 
+"ObservationCancelled">>):
   Obs O
     where O.status in { 'preliminary', 'final', 'amended', 'corrected' }
