@@ -106,7 +106,8 @@ define "Denominator Exclusions":
     or "Death Within 300 Days of the THA Procedure"
 
 define "Has Severe Cognitive Impairment":
-  exists [ConditionProblemsHealthConcerns: "Severe cognitive impairment (finding)"] Dementia
+  exists ( [ConditionProblemsHealthConcerns: "Severe cognitive impairment (finding)"]
+    union [ConditionEncounterDiagnosis: "Severe cognitive impairment (finding)"] ) Dementia
     where Dementia.prevalenceInterval ( ) overlaps day of "Measurement Period"
 
 define "Has Total Hip Arthroplasty with 1 or More Lower Body Fractures":
@@ -129,7 +130,8 @@ define "Has Revision Hip Arthroplasty Procedure or Implanted Device or Prosthesi
   )
 
 define "Has Malignant Neoplasm of Lower and Unspecified Limbs":
-  exists ( [ConditionProblemsHealthConcerns: "Malignant Neoplasms of Lower and Unspecified Limbs"] MalignantNeoplasm
+  exists ( ( [ConditionProblemsHealthConcerns: "Malignant Neoplasms of Lower and Unspecified Limbs"]
+    union [ConditionEncounterDiagnosis: "Malignant Neoplasms of Lower and Unspecified Limbs"] ) MalignantNeoplasm
       with "Total Hip Arthroplasty Procedure" THAProcedure
         such that MalignantNeoplasm.prevalenceInterval ( ) overlaps day of THAProcedure.performed.toInterval ( )
   )
