@@ -52,7 +52,8 @@ define "Has Criteria Indicating Frailty":
         where EquipmentUsed.value as Concept in "Frailty Device" 
         and EquipmentUsed.effective.toInterval() ends during day of "Measurement Period"
     )
-    or exists ( ([ConditionProblemsHealthConcerns: "Frailty Diagnosis"]) FrailtyDiagnosis
+    or exists ( ([ConditionProblemsHealthConcerns: "Frailty Diagnosis"]
+        union [ConditionEncounterDiagnosis: "Frailty Diagnosis"]) FrailtyDiagnosis
         where FrailtyDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
     or exists ( (([Encounter: "Frailty Encounter"]).isEncounterPerformed()) FrailtyEncounter
@@ -63,8 +64,9 @@ define "Has Criteria Indicating Frailty":
     )
 
 define "Has Advanced Illness in Year Before or During Measurement Period":
-exists ([ConditionProblemsHealthConcerns: "Advanced Illness"] AdvancedIllnessDiagnosis
-where AdvancedIllnessDiagnosis.prevalenceInterval() starts during day of Interval[start of "Measurement Period" - 1 year, end of "Measurement Period"])
+exists (([ConditionProblemsHealthConcerns: "Advanced Illness"]
+    union [ConditionEncounterDiagnosis: "Advanced Illness"]) AdvancedIllnessDiagnosis
+    where AdvancedIllnessDiagnosis.prevalenceInterval() starts during day of Interval[start of "Measurement Period" - 1 year, end of "Measurement Period"])
 
 define "Has Dementia Medications in Year Before or During Measurement Period":
   exists (( ([MedicationRequest: medication in "Dementia Medications"]).isMedicationActive()) DementiaMedication
