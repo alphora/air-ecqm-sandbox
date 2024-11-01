@@ -40,6 +40,7 @@ define "Denominator":
 define "Denominator Exclusions":
   Hospice."Has Hospice Services"
 
+//@QICore6Uplift: Update Condition to a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 define "Numerator":
   exists [Condition: "Dental Caries"] DentalCaries
     where DentalCaries.prevalenceInterval ( ) overlaps "Measurement Period"
