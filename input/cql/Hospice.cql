@@ -1,8 +1,5 @@
 library Hospice version '6.12.000'
 
-/*
- @QICore6Uplift: Update to QICore version '6.0.0'
-*/ 
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
@@ -54,9 +51,8 @@ define "Has Hospice Services":
     )
 
     /*
-     @QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+    @QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
     */ 
-
     or exists (([Condition: "Hospice Diagnosis"]) HospiceCareDiagnosis
         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )

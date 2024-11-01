@@ -22,6 +22,9 @@ context Patient
 @QICore6Uplift: Update Observation resource to ObservationScreeningAssessment
 */ 
 define "Has Palliative Care in the Measurement Period":
+    /*
+     @QICore6Uplift: Update Observation to ObservationScreeningAssessment
+    */ 
     exists ((([Observation: "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)"]).isAssessmentPerformed()) PalliativeAssessment
       where PalliativeAssessment.effective.toInterval() overlaps day of "Measurement Period"
     )
@@ -29,7 +32,6 @@ define "Has Palliative Care in the Measurement Period":
     /*
      @QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
     */ 
-    
     or exists ([Condition: "Palliative Care Diagnosis"] PalliativeDiagnosis
         where PalliativeDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
