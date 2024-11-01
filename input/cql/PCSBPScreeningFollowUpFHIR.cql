@@ -167,8 +167,8 @@ define "Encounter with Normal Blood Pressure Reading":
           and BloodPressure.status in { 'final', 'amended', 'corrected' }
         sort by start of effective.toInterval()
     )
-    where EncounterLastBP.Systolic.value in Interval[1 'mm[Hg]', 120 'mm[Hg]' )
-      and EncounterLastBP.DiastolicBP.value in Interval[1 'mm[Hg]', 80 'mm[Hg]' )
+    where EncounterLastBP.systolic.value in Interval[1 'mm[Hg]', 120 'mm[Hg]' )
+      and EncounterLastBP.diastolic.value in Interval[1 'mm[Hg]', 80 'mm[Hg]' )
 
 define "Encounter with Elevated Blood Pressure Reading SBP 120 to 129 AND DBP less than 80":
   "Qualifying Encounter during Measurement Period" QualifyingEncounter
@@ -177,8 +177,8 @@ define "Encounter with Elevated Blood Pressure Reading SBP 120 to 129 AND DBP le
           and BloodPressure.status in { 'final', 'amended', 'corrected' }
         sort by start of effective.toInterval()
     )
-    where ( EncounterLastBP.SystolicBP.value in Interval[120 'mm[Hg]', 129 'mm[Hg]']
-        and EncounterLastBP.DiastolicBP.value in Interval[1 'mm[Hg]', 80 'mm[Hg]' )
+    where ( EncounterLastBP.systolic.value in Interval[120 'mm[Hg]', 129 'mm[Hg]']
+        and EncounterLastBP.diastolic.value in Interval[1 'mm[Hg]', 80 'mm[Hg]' )
     )
 
 define "Encounter with Second Hypertensive Reading SBP Greater than or Equal to 140 OR DBP Greater than or Equal to 90":
@@ -188,10 +188,10 @@ define "Encounter with Second Hypertensive Reading SBP Greater than or Equal to 
             and BloodPressure.status in { 'final', 'amended', 'corrected' }
           sort by start of effective.toInterval()
       )
-      where ( EncounterLastBP.SystolicBP.value > 0 'mm[Hg]'
-          and EncounterLastBP.DiastolicBP.value > 0 'mm[Hg]'
-          and ( EncounterLastBP.SystolicBP.value >= 140 'mm[Hg]'
-              or EncounterLastBP.DiastolicBP.value >= 90 'mm[Hg]'
+      where ( EncounterLastBP.systolic.value > 0 'mm[Hg]'
+          and EncounterLastBP.diastolic.value > 0 'mm[Hg]'
+          and ( EncounterLastBP.systolic.value >= 140 'mm[Hg]'
+              or EncounterLastBP.diastolic.value >= 90 'mm[Hg]'
           )
       )
         and ( exists "Encounter with Hypertensive Reading Within Year Prior" )
@@ -204,11 +204,11 @@ define "Encounter with Second Hypertensive Reading SBP 130 to 139 OR DBP 80 to 8
             and BloodPressure.status in { 'final', 'amended', 'corrected' }
           sort by start of effective.toInterval()
       )
-      where ( ( EncounterLastBP.SystolicBP.value in Interval[130 'mm[Hg]', 139 'mm[Hg]']
-            or EncounterLastBP.DiastolicBP.value in Interval[80 'mm[Hg]', 89 'mm[Hg]']
+      where ( ( EncounterLastBP.systolic.value in Interval[130 'mm[Hg]', 139 'mm[Hg]']
+            or EncounterLastBP.diastolic.value in Interval[80 'mm[Hg]', 89 'mm[Hg]']
         )
-          and not ( EncounterLastBP.SystolicBP.value >= 140 'mm[Hg]'
-              or EncounterLastBP.DiastolicBP.value >= 90 'mm[Hg]'
+          and not ( EncounterLastBP.systolic.value >= 140 'mm[Hg]'
+              or EncounterLastBP.diastolic.value >= 90 'mm[Hg]'
           )
       )
         and ( exists "Encounter with Hypertensive Reading Within Year Prior" )
@@ -220,11 +220,11 @@ define "Encounter with First Hypertensive Reading SBP Greater than or Equal to 1
           where BloodPressure.effective.toInterval() ends during day of QualifyingEncounter.period
           sort by start of effective.toInterval()
       )
-      where ( ( EncounterLastBP.SystolicBP.value > 0 'mm[Hg]'
-            and EncounterLastBP.DiastolicBP.value > 0 'mm[Hg]'
+      where ( ( EncounterLastBP.systolic.value > 0 'mm[Hg]'
+            and EncounterLastBP.diastolic.value > 0 'mm[Hg]'
         )
-          and ( EncounterLastBP.SystolicBP.value >= 130 'mm[Hg]'
-              or EncounterLastBP.DiastolicBP.value >= 80 'mm[Hg]'
+          and ( EncounterLastBP.systolic.value >= 130 'mm[Hg]'
+              or EncounterLastBP.diastolic.value >= 80 'mm[Hg]'
           )
       )
   )
@@ -237,10 +237,10 @@ define "Encounter with Hypertensive Reading Within Year Prior":
             and BloodPressure.status in { 'final', 'amended', 'corrected' }
           sort by start of effective.toInterval()
       )
-      where ( EncounterLastBP.SystolicBP.value > 0 'mm[Hg]'
-          and EncounterLastBP.DiastolicBP.value > 0 'mm[Hg]'
-          and ( EncounterLastBP.SystolicBP.value >= 130 'mm[Hg]'
-              or EncounterLastBP.DiastolicBP.value >= 80 'mm[Hg]'
+      where ( EncounterLastBP.systolic.value > 0 'mm[Hg]'
+          and EncounterLastBP.diastolic.value > 0 'mm[Hg]'
+          and ( EncounterLastBP.systolic.value >= 130 'mm[Hg]'
+              or EncounterLastBP.diastolic.value >= 80 'mm[Hg]'
           )
       )
   )
