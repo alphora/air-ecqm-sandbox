@@ -1,3 +1,7 @@
+/*
+Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis, and ObservationScreeningAssessment
+*/
+
 library OncologyPainIntensityQuantifiedFHIR version '0.1.000'
 
 using QICore version '6.0.0'
@@ -38,6 +42,9 @@ define "Chemotherapy Within 31 Days Prior and During Measurement Period":
     where ChemoAdministration.performed.toInterval ( ) during Interval[start of "Measurement Period" - 31 days, end of "Measurement Period"]
       and ChemoAdministration.status = 'completed'
 
+/*
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
+*/ 
 define "Face to Face or Telehealth Encounter with Ongoing Chemotherapy":
   from
     [Encounter: "Office Visit"] FaceToFaceOrTelehealthEncounter,
@@ -58,6 +65,9 @@ define "Numerator 1":
     with "Standard Pain Assessment with Result" PainAssessed
       such that PainAssessed.effective.toInterval ( ) during FaceToFaceOrTelehealthEncounterWithChemo.period
 
+/*
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
+*/ 
 define "Radiation Treatment Management During Measurement Period with Cancer Diagnosis":
   ( [Encounter: "Radiation Treatment Management"] ) RadiationTreatmentManagement
     with [Condition: "Cancer"] Cancer
@@ -87,6 +97,9 @@ define "SDE Race":
 define "SDE Sex":
   SDE."SDE Sex"
 
+/*
+@QICore6Uplift: Update Observation to ObservationScreeningAssessment
+*/ 
 define "Standard Pain Assessment with Result":
   ["Observation": "Standardized Pain Assessment Tool"] AssessedPain
     where AssessedPain.value is not null
