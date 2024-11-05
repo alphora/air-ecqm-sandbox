@@ -1,7 +1,7 @@
 library AppropriateDXAScansForWomenUnder65FHIR version '0.2.001'
 
-//@QICore6Uplift: Add "using USCore version '6.1.0'"
 using QICore version '6.0.0'
+using USCore version '6.1.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -121,32 +121,28 @@ define "First BMI in Measurement Period Less Than or Equal to 20 kg m2":
   "First BMI in Measurement Period" FirstBMI
     where FirstBMI.value as Quantity <= 20 'kg/m2'
 
-//@QICore6Uplift: Update observation-bmi to USCoreBMIProfile
 define "First BMI in Measurement Period":
-  First(((["observation-bmi"]).isObservationBMI()) BMIRatio
+  First(((["USCoreBMIProfile"]).isObservationBMI()) BMIRatio
       where BMIRatio.effective.toInterval() during "Measurement Period"
         and BMIRatio.value as Quantity is not null
       sort by start of effective.toInterval()
   )
 
-//@QICore6Uplift: Update Observation to ObservationScreeningAssessment
 define "First Average Number of Drinks Assessments Indicating More Than Two Per Day":
-  First((([Observation: "Alcoholic drinks per day"]).isAssessmentPerformed()) AverageDrinks
+  First((([ObservationScreeningAssessment: "Alcoholic drinks per day"]).isAssessmentPerformed()) AverageDrinks
       where start of AverageDrinks.effective.toInterval() during "Measurement Period"
         and AverageDrinks.value as Quantity > 2 '{drinks}/d'
       sort by start of effective.toInterval()
   )
 
 /*
-@QICore6Uplift: 
-- Update both Condition resources to a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
-- Update Observation to ObservationScreeningAssessment
+@QICore6Uplift: Per Authoring Patterns, "prevalence period would only be expected to be present on problem list items and health concerns”
 */
 define "Has Risk Factor Any Time in History Prior to Measurement Period":
-  exists ( ( [Condition: "Osteoporosis Without Current Fracture"] OsteoporosisDiagnosis
+  exists ( ( [ConditionProblemsHealthConcerns: "Osteoporosis Without Current Fracture"] OsteoporosisDiagnosis
         where OsteoporosisDiagnosis.prevalenceInterval ( ) starts before start of "Measurement Period"
     )
-      union ( [Condition: "Osteopenia"] OsteopeniaDiagnosis
+      union ( [ConditionProblemsHealthConcerns: "Osteopenia"] OsteopeniaDiagnosis
           where OsteopeniaDiagnosis.prevalenceInterval ( ) starts before start of "Measurement Period"
       )
       union ( ( ( ( [Procedure: "Gastric Bypass Surgery"] ).isProcedurePerformed ( ) ) GastricBypass
@@ -158,34 +154,53 @@ define "Has Risk Factor Any Time in History Prior to Measurement Period":
           union ( ( ( [MedicationRequest: "Aromatase Inhibitors"] ).isMedicationOrder ( ) ) AromataseInhibitorOrder
               where AromataseInhibitorOrder.authoredOn.toInterval ( ) before start of "Measurement Period"
           )
-          union ( ( [Observation: "History of hip fracture in parent"] ).isAssessmentPerformed ( ) ) ParentFractureHistory
+          union ( ( [ObservationScreeningAssessment: "History of hip fracture in parent"] ).isAssessmentPerformed ( ) ) ParentFractureHistory
             where start of ParentFractureHistory.effective.toInterval ( ) before start of "Measurement Period"
       )
   )
 
-//@QICore6Uplift: Update each Condition resource to a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 define "Has Risk Factor Any Time in History or During Measurement Period":
   "Has 90 or More Active Glucocorticoid Medication Days"
-    or exists ( [Condition: "Osteoporosis With Current Fracture"]
-        union [Condition: "Malabsorption Syndromes"]
-        union [Condition: "Chronic Malnutrition"]
-        union [Condition: "Chronic Liver Disease"]
-        union [Condition: "Rheumatoid Arthritis"]
-        union [Condition: "Hyperthyroidism"]
-        union [Condition: "Type 1 Diabetes"]
-        union [Condition: "End Stage Renal Disease"]
-        union [Condition: "Osteogenesis Imperfecta"]
-        union [Condition: "Ankylosing Spondylitis"]
-        union [Condition: "Psoriatic Arthritis"]
-        union [Condition: "Ehlers Danlos Syndrome"]
-        union [Condition: "Cushings Syndrome"]
-        union [Condition: "Hyperparathyroidism"]
-        union [Condition: "Marfan's Syndrome"]
-        union [Condition: "Lupus"]
-        union [Condition: "Multiple Myeloma"]
-        union [Condition: "Premature Menopause"]
-        union [Condition: "Eating Disorders"]
-        union [Condition: "Amenorrhea"]
+    or exists ( [ConditionProblemsHealthConcerns: "Osteoporosis With Current Fracture"]
+        union [ConditionEncounterDiagnosis: "Osteoporosis With Current Fracture"]
+        union [ConditionProblemsHealthConcerns: "Malabsorption Syndromes"]
+        union [ConditionEncounterDiagnosis: "Malabsorption Syndromes"]
+        union [ConditionProblemsHealthConcerns: "Chronic Malnutrition"]
+        union [ConditionEncounterDiagnosis: "Chronic Malnutrition"]
+        union [ConditionProblemsHealthConcerns: "Chronic Liver Disease"]
+        union [ConditionEncounterDiagnosis: "Chronic Liver Disease"]
+        union [ConditionProblemsHealthConcerns: "Rheumatoid Arthritis"]
+        union [ConditionEncounterDiagnosis: "Rheumatoid Arthritis"]
+        union [ConditionProblemsHealthConcerns: "Hyperthyroidism"]
+        union [ConditionEncounterDiagnosis: "Hyperthyroidism"]
+        union [ConditionProblemsHealthConcerns: "Type 1 Diabetes"]
+        union [ConditionEncounterDiagnosis: "Type 1 Diabetes"]
+        union [ConditionProblemsHealthConcerns: "End Stage Renal Disease"]
+        union [ConditionEncounterDiagnosis: "End Stage Renal Disease"]
+        union [ConditionProblemsHealthConcerns: "Osteogenesis Imperfecta"]
+        union [ConditionEncounterDiagnosis: "Osteogenesis Imperfecta"]
+        union [ConditionProblemsHealthConcerns: "Ankylosing Spondylitis"]
+        union [ConditionEncounterDiagnosis:  "Ankylosing Spondylitis"]
+        union [ConditionProblemsHealthConcerns: "Psoriatic Arthritis"]
+        union [ConditionEncounterDiagnosis: "Psoriatic Arthritis"]
+        union [ConditionProblemsHealthConcerns: "Ehlers Danlos Syndrome"]
+        union [ConditionEncounterDiagnosis: "Ehlers Danlos Syndrome"]
+        union [ConditionProblemsHealthConcerns: "Cushings Syndrome"]
+        union [ConditionEncounterDiagnosis: "Cushings Syndrome"]
+        union [ConditionProblemsHealthConcerns: "Hyperparathyroidism"]
+        union [ConditionEncounterDiagnosis: "Hyperparathyroidism"]
+        union [ConditionProblemsHealthConcerns: "Marfan's Syndrome"]
+        union [ConditionEncounterDiagnosis: "Marfan's Syndrome"]
+        union [ConditionProblemsHealthConcerns: "Lupus"]
+        union [ConditionEncounterDiagnosis: "Lupus"]
+        union [ConditionProblemsHealthConcerns: "Multiple Myeloma"]
+        union [ConditionEncounterDiagnosis: "Multiple Myeloma"]
+        union [ConditionProblemsHealthConcerns: "Premature Menopause"]
+        union [ConditionEncounterDiagnosis: "Premature Menopause"]
+        union [ConditionProblemsHealthConcerns: "Eating Disorders"]
+        union [ConditionEncounterDiagnosis: "Eating Disorders"]
+        union [ConditionProblemsHealthConcerns: "Amenorrhea"]
+        union [ConditionEncounterDiagnosis: "Amenorrhea"]
     ).diagnosisInPatientHistory ( )
     or exists ( [Procedure: "Chemotherapy"] ).procedureInPatientHistory ( )
     or "Has Double or Bilateral Oophorectomy"
@@ -243,18 +258,17 @@ define "DXA Scan Order During Measurement Period":
 define "Numerator Exclusion":
   exists "Osteoporosis Fracture Risk Assessment Prior to First DXA Scan"
 
-//@QICore6Uplift: Update each Observation resource to ObservationScreeningAssessment
 define "Osteoporosis Fracture Risk Assessment Prior to First DXA Scan":
-  ( ( ( ( [Observation: "Major osteoporotic fracture 10-year probability [Likelihood] Fracture Risk Assessment"] ).isAssessmentPerformed ( ) ) FRAX
+  ( ( ( ( [ObservationScreeningAssessment: "Major osteoporotic fracture 10-year probability [Likelihood] Fracture Risk Assessment"] ).isAssessmentPerformed ( ) ) FRAX
       where FRAX.value >= 8.4 '%'
   )
-    union ( ( ( [Observation: "Osteoporosis Risk Assessment Instrument"] ).isAssessmentPerformed ( ) ) ORAI
+    union ( ( ( [ObservationScreeningAssessment: "Osteoporosis Risk Assessment Instrument"] ).isAssessmentPerformed ( ) ) ORAI
         where ORAI.value as Integer >= 9
     )
-    union ( ( ( [Observation: "Osteoporosis Index of Risk panel"] ).isAssessmentPerformed ( ) ) OSIRIS
+    union ( ( ( [ObservationScreeningAssessment: "Osteoporosis Index of Risk panel"] ).isAssessmentPerformed ( ) ) OSIRIS
         where OSIRIS.value as Quantity < 1.0
     )
-    union ( ( ( [Observation: "Osteoporosis Self-Assessment Tool"] ).isAssessmentPerformed ( ) ) OST
+    union ( ( ( [ObservationScreeningAssessment: "Osteoporosis Self-Assessment Tool"] ).isAssessmentPerformed ( ) ) OST
         where OST.value as Quantity < 2.0
     ) ) RiskAssessment
     where start of RiskAssessment.effective.toInterval ( ) before First("DXA Scan Order During Measurement Period").authoredOn
@@ -263,7 +277,7 @@ define fluent function "procedureInPatientHistory"(Procedure List<"Procedure">):
   ( ( Procedure ).isProcedurePerformed ( ) ) Proc
     where Proc.performed.toInterval ( ) ends on or before day of end of "Measurement Period"
 
-//@QICore6Uplift: Update Condition to a choice of ConditionProblemsHealthConcerns or ConditionEncounterDiagnosis
-define fluent function "diagnosisInPatientHistory"(Condition List<"Condition">):
+//@QICore6Uplift: Per Authoring Patterns, "prevalence period would only be expected to be present on problem list items and health concerns”
+define fluent function "diagnosisInPatientHistory"(Condition List<"ConditionProblemsHealthConcerns">):
   ( Condition ) Dx
     where Dx.prevalenceInterval ( ) starts on or before day of end of "Measurement Period"
