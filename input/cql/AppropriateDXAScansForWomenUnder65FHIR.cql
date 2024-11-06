@@ -69,7 +69,7 @@ code "Osteoporosis Self-Assessment Tool": '98146-4' from "LOINC" display 'Osteop
 code "Right (qualifier value)": '24028007' from "SNOMEDCT" display 'Right (qualifier value)'
 code "Unlisted preventive medicine service": '99429' from "CPT" display 'Unlisted preventive medicine service'
 
-parameter "Measurement Period" Interval<DateTime>
+parameter "Measurement Period" default Interval[@2025-01-01T00:00:00.000, @2026-01-01T00:00:00.000)
 
 context Patient
 
