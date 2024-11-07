@@ -60,7 +60,7 @@ define "SDE Sex":
 */ 
 define "Has Active HIV Diagnosis Before or in First 90 Days of Measurement Period":
   exists ["Condition": "HIV"] HIVDx
-    where HIVDx.prevalenceInterval ( ) starts before day of ( start of "Measurement Period" + 90 days )
+    where QICoreCommon."ToPrevalenceInterval" ( HIVDx ) starts before day of ( start of "Measurement Period" + 90 days )
 
 define "Initial Population":
   "Has Active HIV Diagnosis Before or in First 90 Days of Measurement Period"
@@ -71,8 +71,8 @@ define "Initial Population":
 */ 
 define "Most Recent Viral Load Test During Measurement Period":
   Last(["Observation": "HIV Viral Load"] ViralLoad
-      where ViralLoad.effective.latest() during day of "Measurement Period"
-      sort by start of effective.toInterval()
+      where QICoreCommon."Latest" (ViralLoad.effective) during day of "Measurement Period"
+      sort by start of QICoreCommon."ToInterval"(effective)
   )
 
 define "Has Qualifying Encounter During First 240 Days of Measurement Period":
