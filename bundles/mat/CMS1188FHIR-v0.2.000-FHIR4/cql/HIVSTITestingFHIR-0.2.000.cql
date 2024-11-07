@@ -78,22 +78,19 @@ define "Has Qualifying Encounter During Measurement Period":
 
 define "Has HIV Diagnosis Before End of Measurement Period":
   exists ["Condition": "HIV"] HIVDx
-    where HIVDx.prevalenceInterval ( ) starts on or before day of end of "Measurement Period"
+    where QICoreCommon."ToPrevalenceInterval" ( HIVDx ) starts on or before day of end of "Measurement Period"
 
 define "Has Chlamydia Testing":
   exists ["Observation": "Chlamydia Screening"] ChlamydiaTest
     where ChlamydiaTest.value is not null
-      and ChlamydiaTest.status in { 'final', 'amended', 'corrected' }
-      and ChlamydiaTest.effective.latest ( ) during day of "Measurement Period"
+      and QICoreCommon."Latest" ( ChlamydiaTest.effective ) during day of "Measurement Period"
 
 define "Has Gonorrhea Testing":
   exists ["Observation": "Gonorrhea Screening"] GonorrheaTest
     where GonorrheaTest.value is not null
-      and GonorrheaTest.status in { 'final', 'amended', 'corrected' }
-      and GonorrheaTest.effective.latest ( ) during day of "Measurement Period"
+      and QICoreCommon."Latest" ( GonorrheaTest.effective ) during day of "Measurement Period"
 
 define "Has Syphilis Testing":
   exists ["Observation": "Syphilis Tests"] SyphilisTest
     where SyphilisTest.value is not null
-      and SyphilisTest.status in { 'final', 'amended', 'corrected' }
-      and SyphilisTest.effective.latest ( ) during day of "Measurement Period"
+      and QICoreCommon."Latest" ( SyphilisTest.effective ) during day of "Measurement Period"

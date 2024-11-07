@@ -8,10 +8,7 @@ https://oncprojectracking.healthit.gov/support/browse/CQLIT-414
 
 library QICoreCommon version '2.1.000'
 
-/*
- @QICore6Uplift: Update to QICore version '6.0.0'
-*/ 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000'
 
@@ -114,11 +111,6 @@ context Patient
 /*
 @description: Returns true if the given condition has a clinical status of active, recurrence, or relapse
 */
-
-/*
-@QICore6Uplift: Update below function to incorporate a choice of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns as the parameter
-*/ 
-
 define fluent function isActive(condition Condition):
   condition.clinicalStatus ~ "active"
     or condition.clinicalStatus ~ "recurrence"
@@ -127,11 +119,6 @@ define fluent function isActive(condition Condition):
 /*
 @description: Returns true if the given condition has the given category
 */
-
-/*
-@QICore6Uplift: Update below function to incorporate a choice of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns as the parameter
-*/ 
-
 define fluent function hasCategory(condition Condition, category Code):
   exists (condition.category C
     where C ~ category
@@ -148,11 +135,6 @@ define fluent function isProblemListItem(condition Condition):
 /*
 @description: Returns true if the given condition is an encounter diagnosis
 */
-
-/*
-@QICore6Uplift: Update below function with a parameter that includes ConditionEncounterDiagnosis
-*/ 
-
 define fluent function isEncounterDiagnosis(condition Condition):
   exists (condition.category C
     where C ~ "encounter-diagnosis"
@@ -161,11 +143,6 @@ define fluent function isEncounterDiagnosis(condition Condition):
 /*
 @description: Returns true if the given condition is a health concern
 */
-
-/*
-@QICore6Uplift: Update below function with a parameter that includes ConditionProblemsHealthConcerns
-*/ 
-
 define fluent function isHealthConcern(condition Condition):
   exists (condition.category C
     where C ~ "health-concern"
@@ -383,11 +360,6 @@ which the abatement occurred. The result is an interval from the date the patien
 before one year later than the date the patient turned the ending age of the quantity interval.
 @deprecated: This function is deprecated. Use the fluent function `abatementInterval()` instead.
 */
-
-/*
-@QICore6Uplift: Update below function to incorporate a choice of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns as the parameter
-*/ 
-
 define function ToAbatementInterval(condition Condition):
 	if condition.abatement is DateTime then
 	  Interval[condition.abatement as DateTime, condition.abatement as DateTime]
@@ -411,11 +383,6 @@ If the abatement is represented as a Quantity Interval, the quantities are expec
 which the abatement occurred. The result is an interval from the date the patient turned the starting age of the quantity interval, and ending immediately
 before one year later than the date the patient turned the ending age of the quantity interval.
 */
-
-/*
-@QICore6Uplift: Update below function to incorporate a choice of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns as the parameter
-*/ 
-
 define fluent function abatementInterval(condition Condition):
 	if condition.abatement is DateTime then
 	  Interval[condition.abatement as DateTime, condition.abatement as DateTime]
@@ -436,11 +403,6 @@ onset to abatement as specified in the given Condition. If the condition is acti
 interval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary.
 @deprecated: This function is deprecated. Use the `prevalenceInterval()` fluent function instead
 */
-
-/*
-@QICore6Uplift: Update below function to incorporate a choice of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns as the parameter
-*/ 
-
 define function ToPrevalenceInterval(condition Condition):
 if condition.clinicalStatus ~ "active"
   or condition.clinicalStatus ~ "recurrence"
@@ -459,11 +421,6 @@ else
 onset to abatement as specified in the given Condition. If the condition is active, or has an abatement date the resulting 
 interval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary.
 */
-
-/*
-@QICore6Uplift: Update below function to incorporate a choice of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns as the parameter
-*/ 
-
 define fluent function prevalenceInterval(condition Condition):
 if condition.clinicalStatus ~ "active"
   or condition.clinicalStatus ~ "recurrence"

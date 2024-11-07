@@ -1,6 +1,6 @@
 library PCSBMIScreenAndFollowUpFHIR version '0.2.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include Hospice version '6.12.000' called Hospice

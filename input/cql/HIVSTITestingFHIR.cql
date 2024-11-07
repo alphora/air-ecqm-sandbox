@@ -66,26 +66,26 @@ define "Numerator":
 define "Has Qualifying Encounter During Measurement Period":
 /*Note: applied workaround using value set 'Preventive Care Services Other', as a DRC cannot be used directly from an encounter retrieve; additional info can be found in CQLIT-368*/
   
-  exists ( ( ["Encounter": type in "Office Visit"]
-      union ["Encounter": type in "Outpatient Consultation"]
-      union ["Encounter": type in "Annual Wellness Visit"]
-      union ["Encounter": type in "Face-to-Face Interaction"]
-      union ["Encounter": type in "Home Healthcare Services"]
-      union ["Encounter": type in "Preventive Care Services Established Office Visit, 18 and Up"]
-      union ["Encounter": type in "Preventive Care Services Initial Office Visit, 18 and Up"]
-      union ["Encounter": type in "Preventive Care Services, Initial Office Visit, 0 to 17"]
-      union ["Encounter": type in "Preventive Care, Established Office Visit, 0 to 17"]
-      union ["Encounter": type in "Telephone Visits"]
-      union ["Encounter": type in "Preventive Care Services Other"] ) QualifyingEncounter
+  exists ( ( ["Encounter": "Office Visit"]
+      union ["Encounter": "Outpatient Consultation"]
+      union ["Encounter": "Annual Wellness Visit"]
+      union ["Encounter": "Face-to-Face Interaction"]
+      union ["Encounter": "Home Healthcare Services"]
+      union ["Encounter": "Preventive Care Services Established Office Visit, 18 and Up"]
+      union ["Encounter": "Preventive Care Services Initial Office Visit, 18 and Up"]
+      union ["Encounter": "Preventive Care Services, Initial Office Visit, 0 to 17"]
+      union ["Encounter": "Preventive Care, Established Office Visit, 0 to 17"]
+      union ["Encounter": "Telephone Visits"]
+      union ["Encounter": "Preventive Care Services Other"] ) QualifyingEncounter
       where QualifyingEncounter.period during day of "Measurement Period"
   )
 
 /*
 @QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
-*/ 
+*/
 define "Has HIV Diagnosis Before End of Measurement Period":
   exists ["Condition": "HIV"] HIVDx
-    where HIVDx.prevalenceInterval ( ) starts on or before day of end of "Measurement Period"
+    where QICoreCommon."ToPrevalenceInterval" ( HIVDx ) starts on or before day of end of "Measurement Period"
 
 /*
 @QICore6Uplift: Update Observation to LaboratoryResultObservation
@@ -93,8 +93,7 @@ define "Has HIV Diagnosis Before End of Measurement Period":
 define "Has Chlamydia Testing":
   exists ["Observation": "Chlamydia Screening"] ChlamydiaTest
     where ChlamydiaTest.value is not null
-      and ChlamydiaTest.status in { 'final', 'amended', 'corrected' }
-      and ChlamydiaTest.effective.latest ( ) during day of "Measurement Period"
+      and QICoreCommon."Latest" ( ChlamydiaTest.effective ) during day of "Measurement Period"
 
 /*
 @QICore6Uplift: Update Observation to LaboratoryResultObservation
@@ -102,8 +101,7 @@ define "Has Chlamydia Testing":
 define "Has Gonorrhea Testing":
   exists ["Observation": "Gonorrhea Screening"] GonorrheaTest
     where GonorrheaTest.value is not null
-      and GonorrheaTest.status in { 'final', 'amended', 'corrected' }
-      and GonorrheaTest.effective.latest ( ) during day of "Measurement Period"
+      and QICoreCommon."Latest" ( GonorrheaTest.effective ) during day of "Measurement Period"
 
 /*
 @QICore6Uplift: Update Observation to LaboratoryResultObservation
@@ -111,5 +109,4 @@ define "Has Gonorrhea Testing":
 define "Has Syphilis Testing":
   exists ["Observation": "Syphilis Tests"] SyphilisTest
     where SyphilisTest.value is not null
-      and SyphilisTest.status in { 'final', 'amended', 'corrected' }
-      and SyphilisTest.effective.latest ( ) during day of "Measurement Period"
+      and QICoreCommon."Latest" ( SyphilisTest.effective ) during day of "Measurement Period"

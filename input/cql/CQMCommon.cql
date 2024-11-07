@@ -6,7 +6,7 @@ Update principalDiagnosis function to correctly reference the 'use' element http
 
 library CQMCommon version '2.2.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon

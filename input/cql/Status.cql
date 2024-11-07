@@ -1,6 +1,6 @@
 library Status version '1.8.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 

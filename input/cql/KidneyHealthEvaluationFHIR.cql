@@ -1,6 +1,6 @@
 library KidneyHealthEvaluationFHIR version '0.1.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
