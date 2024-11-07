@@ -1,12 +1,12 @@
 library HIVRetentionFHIR version '0.1.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
-include CQMCommon version '1.4.000' called CQMCommon
-include FHIRHelpers version '4.3.000' called FHIRHelpers
-include QICoreCommon version '1.5.000' called QICoreCommon
+include CQMCommon version '2.2.000' called CQMCommon
+include FHIRHelpers version '4.4.000' called FHIRHelpers
+include QICoreCommon version '2.1.000' called QICoreCommon
 include SupplementalDataElements version '3.4.000' called SDE
-include CumulativeMedicationDuration version '3.3.000' called CMD
+include CumulativeMedicationDuration version '4.1.000' called CMD
 
 codesystem "CPT": 'http://www.ama-assn.org/go/cpt'
 
@@ -53,6 +53,7 @@ define "SDE Sex":
 define "Denominator":
   "Initial Population"
 
+//@QICore6: Update Condition to ConditionProblemsHealthConcerns
 define "Encounter During Measurement Period With HIV":
   ( ( ["Encounter": "Office Visit"]
       union ["Encounter": "Outpatient Consultation"]
@@ -70,16 +71,19 @@ define "Encounter During Measurement Period With HIV":
           and QICoreCommon."ToPrevalenceInterval" ( HIVDiagnosis ) starts on or before day of ValidEncounter.period
   )
 
+//@QICore6: Update Condition to ConditionProblemsHealthConcerns
 define "Has Active HIV Diagnosis Starts On or Before First 240 Days of Measurement Period":
   exists ( ["Condition": "HIV"] HIVDx
       where QICoreCommon."ToPrevalenceInterval" ( HIVDx ) starts on or before date from ( start of "Measurement Period" + 240 days )
   )
 
+//@QICore6: Update Observation to LaboratoryResultObservation
 define "Has HIV Viral Load Test During Measurement Period":
   exists ( ["Observation": "HIV Viral Load"] ViralLoadTest
       where QICoreCommon."ToInterval" ( ViralLoadTest.effective ) during day of "Measurement Period"
   )
 
+//@QICore6: Update Observation to LaboratoryResultObservation
 define "Has One Encounter With HIV and One Viral Load Test At Least 90 Days Apart":
   exists ( "Encounter During Measurement Period With HIV" ) EncounterWithHIV
     with ["Observation": "HIV Viral Load"] ViralLoadTest
