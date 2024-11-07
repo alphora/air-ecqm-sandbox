@@ -25,6 +25,10 @@ define "Has Palliative Care in the Measurement Period":
     or exists ([Condition: "Palliative Care Diagnosis"] PalliativeDiagnosis
         where PalliativeDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
+    or exists (([ConditionProblemsHealthConcerns: "Palliative Care Diagnosis"] 
+        union [ConditionEncounterDiagnosis: "Palliative Care Diagnosis"]) PalliativeDiagnosis
+            where PalliativeDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
+    )
     or exists ((([Encounter: "Palliative Care Encounter"]).isEncounterPerformed()) PalliativeEncounter
         where PalliativeEncounter.period.toInterval() overlaps day of "Measurement Period"
     )

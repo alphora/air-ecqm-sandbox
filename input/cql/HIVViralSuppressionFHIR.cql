@@ -61,7 +61,7 @@ define "Initial Population":
 
 define "Most Recent Viral Load Test During Measurement Period":
   Last(["Observation": "HIV Viral Load"] ViralLoad
-      where QICoreCommon."Latest" (ViralLoad.effective) during day of "Measurement Period"
+      where QICoreCommon."Latest"(ViralLoad.effective) during day of "Measurement Period"
       sort by start of QICoreCommon."ToInterval"(effective)
   )
 
