@@ -4,7 +4,7 @@
 
 library HIVViralSuppressionFHIR version '0.1.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include CQMCommon version '2.2.000' called CQMCommon
 include FHIRHelpers version '4.4.000' called FHIRHelpers
@@ -71,16 +71,13 @@ define "Initial Population":
 */ 
 define "Most Recent Viral Load Test During Measurement Period":
   Last(["Observation": "HIV Viral Load"] ViralLoad
-      where QICoreCommon."Latest" (ViralLoad.effective) during day of "Measurement Period"
+      where QICoreCommon."Latest"(ViralLoad.effective) during day of "Measurement Period"
       sort by start of QICoreCommon."ToInterval"(effective)
   )
 
 define "Has Qualifying Encounter During First 240 Days of Measurement Period":
 /*Note: applied workaround using value set 'Preventive Care Services Other', as a DRC cannot be used directly from an encounter retrieve; additional info can be found in CQLIT-368*/
   
-/*
-@QICore6Uplift: Consider adding 'type in' after Encounter resources
-*/ 
   exists ( ["Encounter": "Office Visit"]
     union ["Encounter": "Outpatient Consultation"]
     union ["Encounter": "Annual Wellness Visit"]

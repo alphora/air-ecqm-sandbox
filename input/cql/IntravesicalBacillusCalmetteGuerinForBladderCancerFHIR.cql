@@ -4,7 +4,7 @@ Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should 
 
 library IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR version '1.4.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon

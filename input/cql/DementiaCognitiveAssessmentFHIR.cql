@@ -4,7 +4,7 @@ Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should 
 
 library DementiaCognitiveAssessmentFHIR version '0.1.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 /*Note ws 1. 8/09/2023: Negation issue as outlined in BonnieMat-1455 and ticket https://github.com/cqframework/cql-execution/issues/296 */
 

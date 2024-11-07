@@ -28,7 +28,7 @@ code "Depression screening declined (situation)": '720834000' from "SNOMEDCT" di
 code "Depression screening negative (finding)": '428171000124102' from "SNOMEDCT" display 'Depression screening negative (finding)'
 code "Depression screening positive (finding)": '428181000124104' from "SNOMEDCT" display 'Depression screening positive (finding)'
 
-parameter "Measurement Period" Interval<DateTime> //default Interval[@2025-01-01T00:00:00Z, @2026-01-01T00:00:00Z)
+parameter "Measurement Period" Interval<DateTime>
 
 context Patient
 
@@ -122,12 +122,12 @@ define "Has Most Recent Adult Screening Negative":
   ) is not null
 
 define "History of Bipolar Diagnosis Before Qualifying Encounter":
-  [ConditionProblemsHealthConcerns: "Bipolar Disorder"] BipolarDiagnosis
+  [Condition: "Bipolar Disorder"] BipolarDiagnosis
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that BipolarDiagnosis.prevalenceInterval() starts before QualifyingEncounter.period
 
 define "Medical or Patient Reason for Not Screening Adolescent for Depression":
-  [ObservationCancelled: code ~ "Adolescent depression screening assessment"] NoAdolescentScreen
+  [ObservationNotDone: code ~ "Adolescent depression screening assessment"] NoAdolescentScreen
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that NoAdolescentScreen.issued during QualifyingEncounter.period
     where ( NoAdolescentScreen.notDoneReason ~ "Depression screening declined (situation)"
@@ -136,7 +136,7 @@ define "Medical or Patient Reason for Not Screening Adolescent for Depression":
       and NoAdolescentScreen.status = 'cancelled'
 
 define "Medical or Patient Reason for Not Screening Adult for Depression":
-  [ObservationCancelled: code ~ "Adult depression screening assessment"] NoAdultScreen
+  [ObservationNotDone: code ~ "Adult depression screening assessment"] NoAdultScreen
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that NoAdultScreen.issued during QualifyingEncounter.period
     where ( NoAdultScreen.notDoneReason ~ "Depression screening declined (situation)"
@@ -199,9 +199,9 @@ define "Patient Age 18 Years or Older at Start of Measurement Period":
   AgeInYearsAt(date from start of "Measurement Period") >= 18
 
 define "Qualifying Encounter During Measurement Period":
-  ( [Encounter: type in "Encounter to Screen for Depression"]
-    union [Encounter: type in "Physical Therapy Evaluation"]
-    union [Encounter: type in "Telephone Visits"] ) QualifyingEncounter
+  ( [Encounter: "Encounter to Screen for Depression"]
+    union [Encounter: "Physical Therapy Evaluation"]
+    union [Encounter: "Telephone Visits"] ) QualifyingEncounter
     where QualifyingEncounter.period during day of "Measurement Period"
       and QualifyingEncounter.status = 'finished'
 

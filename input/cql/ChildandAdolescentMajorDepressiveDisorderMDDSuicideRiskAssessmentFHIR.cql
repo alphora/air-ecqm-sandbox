@@ -1,6 +1,6 @@
 library ChildandAdolescentMajorDepressiveDisorderMDDSuicideRiskAssessmentFHIR version '0.1.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include SupplementalDataElements version '3.5.000' called SDE
 include QICoreCommon version '2.1.000' called QICoreCommon

@@ -1,6 +1,6 @@
 library PalliativeCare version '1.11.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
@@ -26,7 +26,7 @@ define "Has Palliative Care in the Measurement Period":
         union [ConditionEncounterDiagnosis: "Palliative Care Diagnosis"]) PalliativeDiagnosis
             where PalliativeDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
-    or exists ((([Encounter: type in "Palliative Care Encounter"]).isEncounterPerformed()) PalliativeEncounter
+    or exists ((([Encounter: "Palliative Care Encounter"]).isEncounterPerformed()) PalliativeEncounter
         where PalliativeEncounter.period.toInterval() overlaps day of "Measurement Period"
     )
     or exists ((([Procedure: "Palliative Care Intervention"]).isInterventionPerformed()) PalliativeIntervention
