@@ -1,6 +1,6 @@
 library AlaraCTClinicalFHIR version '0.4.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include CQMCommon version '2.2.000' called CQMCommon
@@ -30,6 +30,7 @@ define "SDE Race":
 define "SDE Sex":
   SDE."SDE Sex"
 
+//@QICore6: Update Observation to SimpleObservation
 define "Patients with Qualifying CTScan":
   [Observation: "CT dose and image quality category"] CTScanResult
     where QICoreCommon.ToInterval ( CTScanResult.effective ) ends during day of "Measurement Period"
