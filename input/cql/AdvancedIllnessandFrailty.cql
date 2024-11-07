@@ -1,6 +1,6 @@
 library AdvancedIllnessandFrailty version '1.16.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
@@ -48,25 +48,23 @@ define "Has Criteria Indicating Frailty":
       where FrailtyDeviceOrder.doNotPerform() is not true
       and FrailtyDeviceOrder.authoredOn.toInterval() during day of "Measurement Period"
   )
-    or exists ( (([ObservationScreeningAssessment: "Medical equipment used"]).isAssessmentPerformed()) EquipmentUsed
+    or exists ( (([Observation: "Medical equipment used"]).isAssessmentPerformed()) EquipmentUsed
         where EquipmentUsed.value as Concept in "Frailty Device" 
         and EquipmentUsed.effective.toInterval() ends during day of "Measurement Period"
     )
-    or exists ( ([ConditionProblemsHealthConcerns: "Frailty Diagnosis"]
-        union [ConditionEncounterDiagnosis: "Frailty Diagnosis"]) FrailtyDiagnosis
+    or exists ( ([Condition: "Frailty Diagnosis"]) FrailtyDiagnosis
         where FrailtyDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
     or exists ( (([Encounter: "Frailty Encounter"]).isEncounterPerformed()) FrailtyEncounter
         where FrailtyEncounter.period.toInterval() overlaps day of "Measurement Period"
     )
-    or exists ( (([SimpleObservation: "Frailty Symptom"]).isSymptom()) FrailtySymptom
+    or exists ( (([Observation: "Frailty Symptom"]).isSymptom()) FrailtySymptom
         where FrailtySymptom.effective.toInterval() overlaps day of "Measurement Period"
     )
 
 define "Has Advanced Illness in Year Before or During Measurement Period":
-exists (([ConditionProblemsHealthConcerns: "Advanced Illness"]
-    union [ConditionEncounterDiagnosis: "Advanced Illness"]) AdvancedIllnessDiagnosis
-    where AdvancedIllnessDiagnosis.prevalenceInterval() starts during day of Interval[start of "Measurement Period" - 1 year, end of "Measurement Period"])
+exists ([Condition: "Advanced Illness"] AdvancedIllnessDiagnosis
+where AdvancedIllnessDiagnosis.prevalenceInterval() starts during day of Interval[start of "Measurement Period" - 1 year, end of "Measurement Period"])
 
 define "Has Dementia Medications in Year Before or During Measurement Period":
   exists (( ([MedicationRequest: medication in "Dementia Medications"]).isMedicationActive()) DementiaMedication
@@ -81,7 +79,7 @@ define "Is Age 66 or Older Living Long Term in a Nursing Home":
   AgeInYearsAt(date from 
      end of "Measurement Period"
   )>= 66
-    and ( ( Last( (([ObservationScreeningAssessment: "Housing status"]).isAssessmentPerformed()) HousingStatus    
+    and ( ( Last( (([Observation: "Housing status"]).isAssessmentPerformed()) HousingStatus    
           where HousingStatus.effective.toInterval() ends on or before 
           day of end of "Measurement Period"
           sort by 

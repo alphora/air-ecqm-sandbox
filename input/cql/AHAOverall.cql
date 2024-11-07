@@ -1,7 +1,6 @@
 library AHAOverall version '2.8.000'
 
-using QICore version '6.0.0'
-using USCore version '6.1.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
@@ -36,16 +35,15 @@ context Patient
                 * nursing facility visits (http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1012)
                 * office visits (http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001)
                 * outpatient consolutations (http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1008)
-*/
+*/   
 define "Heart Failure Outpatient Encounter":
-  ( [Encounter: type in "Care Services in Long Term Residential Facility"]
-      union [Encounter: type in "Home Healthcare Services"]
-      union [Encounter: type in "Nursing Facility Visit"]
-      union [Encounter: type in "Office Visit"] 
-      union [Encounter: type in "Outpatient Consultation"]
+  ( [Encounter: "Care Services in Long Term Residential Facility"]
+      union [Encounter: "Home Healthcare Services"]
+      union [Encounter: "Nursing Facility Visit"]
+      union [Encounter: "Office Visit"] 
+      union [Encounter: "Outpatient Consultation"]
      ) QualifyingEncounter
-    with ([ConditionProblemsHealthConcerns: "Heart Failure"]
-      union [ConditionEncounterDiagnosis: "Heart Failure"]) HeartFailure
+    with [Condition: "Heart Failure"] HeartFailure
       such that HeartFailure.prevalenceInterval() overlaps QualifyingEncounter.period  
         and HeartFailure.isConfirmedActiveDiagnosis()
     where QualifyingEncounter.period during day of "Measurement Period"
@@ -56,8 +54,7 @@ define "Heart Failure Outpatient Encounter":
 */ 
 define "Has Heart Transplant Complications":
   exists ( 
-          ([ConditionEncounterDiagnosis: "Heart Transplant Complications"]
-            union [ConditionProblemsHealthConcerns: "Heart Transplant Complications"]) HeartTransplantComplications
+          [Condition: "Heart Transplant Complications"] HeartTransplantComplications
             let diagnosisStart: Coalesce( HeartTransplantComplications.recordedDate, start of HeartTransplantComplications.prevalenceInterval() )  
             with "Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
               such that diagnosisStart before end of ModerateOrSevereLVSDHFOutpatientEncounter.period
@@ -80,8 +77,7 @@ define "Has Left Ventricular Assist Device":
 */ 
 define "Has Left Ventricular Assist Device Complications":
   exists (
-            ([ConditionEncounterDiagnosis: "Left Ventricular Assist Device Complications"]
-              union [ConditionProblemsHealthConcerns: "Left Ventricular Assist Device Complications"]) LVADComplications
+            [Condition: "Left Ventricular Assist Device Complications"] LVADComplications
               let diagnosisStart: Coalesce( LVADComplications.recordedDate, start of LVADComplications.prevalenceInterval() ) 
               with "Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
                 such that diagnosisStart before end of ModerateOrSevereLVSDHFOutpatientEncounter.period  
@@ -98,12 +94,12 @@ define "Has Left Ventricular Assist Device Complications":
                 * patient provider interactions (http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1012) 
 */          
 define "Qualifying Outpatient Encounter During Measurement Period":
-    ( [Encounter: type in "Office Visit"]
-        union [Encounter: type in "Outpatient Consultation"]
-        union [Encounter: type in "Nursing Facility Visit"]
-        union [Encounter: type in "Care Services in Long Term Residential Facility"]
-        union [Encounter: type in "Home Healthcare Services"]
-        union [Encounter: type in "Patient Provider Interaction"] ) ValidEncounter
+    ( [Encounter: "Office Visit"]
+        union [Encounter: "Outpatient Consultation"]
+        union [Encounter: "Nursing Facility Visit"]
+        union [Encounter: "Care Services in Long Term Residential Facility"]
+        union [Encounter: "Home Healthcare Services"]
+        union [Encounter: "Patient Provider Interaction"] ) ValidEncounter
       where ValidEncounter.period during day of "Measurement Period"
         and ValidEncounter.isFinished()
 
@@ -132,20 +128,17 @@ define "Heart Failure Outpatient Encounter with History of Moderate or Severe LV
                 * Moderate or Severe LVSD conditions where the diagnosis has been confirmed as active
 */  
 define "Moderate or Severe LVSD Findings":
-  ( [ObservationClinicalResult: "Ejection Fraction"] EjectionFraction
+  ( [Observation: "Ejection Fraction"] EjectionFraction
       where EjectionFraction.value as Quantity <= 40 '%'
         and EjectionFraction.status in {'final', 'amended', 'corrected'} 
    )
    union ( 
-          ( ([ConditionProblemsHealthConcerns: "Moderate or Severe LVSD"]
-            union [ConditionEncounterDiagnosis: "Moderate or Severe LVSD"]
-            union [ConditionProblemsHealthConcerns: "Left ventricular systolic dysfunction (disorder)"]
-            union [ConditionEncounterDiagnosis: "Left ventricular systolic dysfunction (disorder)"]
-            ) LVSDDiagnosis
-              where LVSDDiagnosis.severity in "Moderate or Severe" 
-          ) ModerateOrSevereLVSD   
+           ( [Condition: "Moderate or Severe LVSD"]
+             union ( [Condition: "Left ventricular systolic dysfunction (disorder)"] LVSDDiagnosis
+                       where LVSDDiagnosis.severity in "Moderate or Severe" )
+            ) ModerateOrSevereLVSD   
             where ModerateOrSevereLVSD.isConfirmedActiveDiagnosis()
-        ) 
+          )
 
 /*
 @description: Returns true if the patient meets the following criteria:
@@ -164,7 +157,7 @@ define "Is Adults With Two Qualifying Outpatient Encounters and One Heart Failur
 /*
 @description: Returns true if the given Condition is confirmed as active
 */
-define fluent function isConfirmedActiveDiagnosis(condition Choice<ConditionEncounterDiagnosis, ConditionProblemsHealthConcerns>):
+define fluent function isConfirmedActiveDiagnosis(condition Condition):
     condition.isActive()
         and condition.verificationStatus ~ QICoreCommon."confirmed"
 
@@ -189,7 +182,7 @@ define fluent function isOrderedDuringHeartFailureOutpatientEncounter(Medication
 /*
 @description: Returns true if the given Condition overlaps the heart failure outpatient encounter with history of moderate or severe LVSD at any point
 */
-define fluent function overlapsHeartFailureOutpatientEncounter(Condition Choice<ConditionEncounterDiagnosis, ConditionProblemsHealthConcerns>): 
+define fluent function overlapsHeartFailureOutpatientEncounter(Condition Condition): 
   exists ( "Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
             where Condition.prevalenceInterval() overlaps day of ModerateOrSevereLVSDHFOutpatientEncounter.period
               and Condition.isConfirmedActiveDiagnosis()
@@ -199,7 +192,7 @@ define fluent function overlapsHeartFailureOutpatientEncounter(Condition Choice<
 @overloaded
 @description: Returns true if the given Condition overlaps after the day of the heart failure outpatient encounter with history of moderate or severe LVSD
 */
-define fluent function overlapsAfterHeartFailureOutpatientEncounter(Condition Choice<ConditionEncounterDiagnosis, ConditionProblemsHealthConcerns>): 
+define fluent function overlapsAfterHeartFailureOutpatientEncounter(Condition Condition): 
   exists ( "Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
              where Condition.prevalenceInterval() overlaps after day of ModerateOrSevereLVSDHFOutpatientEncounter.period
                and Condition.isConfirmedActiveDiagnosis()
@@ -249,7 +242,7 @@ define fluent function overlapsAfterHeartFailureOutpatientEncounter(MedicationRe
 @overloaded
 @description: Returns true if the given HeartRateObservation overlaps after the day of the heart failure outpatient encounter with history of moderate or severe LVSD
 */          
-define fluent function overlapsAfterHeartFailureOutpatientEncounter(HeartRateObservation USCoreHeartRateProfile): 
+define fluent function overlapsAfterHeartFailureOutpatientEncounter(HeartRateObservation "observation-heartrate"): 
   exists ( "Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
              where HeartRateObservation.effective.toInterval() overlaps after day of ModerateOrSevereLVSDHFOutpatientEncounter.period
                and HeartRateObservation.status in {'final', 'amended', 'corrected'}

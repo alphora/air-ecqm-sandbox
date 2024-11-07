@@ -1,7 +1,6 @@
 library Status version '1.8.000'
 
-using QICore version '6.0.0'
-using USCore version '6.1.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 
@@ -16,12 +15,7 @@ context Patient
 //This library contains functions that are based on QDM 5.6 to QICore 4.1.1 March 2023 (https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Authoring-Patterns---QICore-v4.1.1). The functions may appear similar to some QICoreCommon functions but different in that they have constraints that are relevant for measures authored by NCQA.
 
 //Assessment, Performed
-define fluent function isAssessmentPerformed(Obs List<Choice<"SimpleObservation", 
-"LaboratoryResultObservation", 
-"ObservationClinicalResult",
-"ObservationScreeningAssessment",
-"NonPatientObservation", 
-"ObservationCancelled">>):
+define fluent function isAssessmentPerformed(Obs List<Observation>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
           and exists ( O.category ObservationCategory
@@ -53,12 +47,7 @@ define fluent function isLaboratoryTestOrder(ServiceRequest List<ServiceRequest>
       and S.intent = 'order'        
 
 //Diagnostic Study, Performed
-define fluent function isDiagnosticStudyPerformed(Obs List<Choice<"SimpleObservation", 
-"LaboratoryResultObservation", 
-"ObservationClinicalResult",
-"ObservationScreeningAssessment",
-"NonPatientObservation", 
-"ObservationCancelled">>):
+define fluent function isDiagnosticStudyPerformed(Obs List<Observation>):
   Obs O
     where O.status in {'final', 'amended', 'corrected' }
     
@@ -84,12 +73,7 @@ define fluent function isProcedurePerformed(Proc List<Procedure>):
     where P.status ~ 'completed'
 
 //Laboratory Test, Performed
-define fluent function isLaboratoryTestPerformed(Obs List<Choice<"SimpleObservation", 
-"LaboratoryResultObservation", 
-"ObservationClinicalResult",
-"ObservationScreeningAssessment",
-"NonPatientObservation", 
-"ObservationCancelled">>):
+define fluent function isLaboratoryTestPerformed(Obs List<Observation>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       and exists ( O.category ObservationCategory
@@ -114,12 +98,7 @@ define fluent function isMedicationOrder(MedicationRequest List<MedicationReques
       and M.intent = 'order'
 
 //Physical Exam, Performed
-define fluent function isPhysicalExamPerformed(Obs List<Choice<"SimpleObservation", 
-"LaboratoryResultObservation", 
-"ObservationClinicalResult",
-"ObservationScreeningAssessment",
-"NonPatientObservation", 
-"ObservationCancelled">>):
+define fluent function isPhysicalExamPerformed(Obs List<Observation>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       and exists ( O.category ObservationCategory
@@ -127,28 +106,23 @@ define fluent function isPhysicalExamPerformed(Obs List<Choice<"SimpleObservatio
       )
 
 //Observation Vital Signs
-define fluent function isObservationBP(Obs List<"USCoreBloodPressureProfile">):
+define fluent function isObservationBP(Obs List<"QICore.observation-bp">):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       
-define fluent function isObservationBodyHeight(Obs List<"USCoreBodyHeightProfile">):
+define fluent function isObservationBodyHeight(Obs List<"QICore.observation-bodyheight">):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       
-define fluent function isObservationBodyWeight(Obs List<"USCoreBodyWeightProfile">):
+define fluent function isObservationBodyWeight(Obs List<"QICore.observation-bodyweight">):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       
-define fluent function isObservationBMI(Obs List<"USCoreBMIProfile">):
+define fluent function isObservationBMI(Obs List<"QICore.observation-bmi">):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
 
 //Symptom
-define fluent function isSymptom(Obs List<Choice<"SimpleObservation", 
-"LaboratoryResultObservation", 
-"ObservationClinicalResult",
-"ObservationScreeningAssessment",
-"NonPatientObservation", 
-"ObservationCancelled">>):
+define fluent function isSymptom(Obs List<Observation>):
   Obs O
     where O.status in { 'preliminary', 'final', 'amended', 'corrected' }

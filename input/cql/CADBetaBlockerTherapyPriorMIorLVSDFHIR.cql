@@ -1,13 +1,6 @@
-/*
-@QICore6Uplift test impact: HL7 FHIR profile urls and resources should be updated to SimpleObservation and ConditionProblemsHealthConcerns
-*/
-
 library CADBetaBlockerTherapyPriorMIorLVSDFHIR version '0.2.000'
 
-/*
-@QICore6Uplift: Add 'using USCore version `6.1.0'`
-*/  
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -65,9 +58,7 @@ define "Has Atrioventricular Block with Qualifying CAD Encounter and Prior MI wi
 * @profile: http://hl7.org/fhir/StructureDefinition/heartrate 
 */
 
-/*
-@QICore6Uplift: Update 'observation-heartrate' to 'USCoreHeartRateProfile'
-*/   
+
 define "Has Consecutive Heart Rates Less than 50 with Qualifying CAD Encounter and Prior MI":
   exists ( from
       ["observation-heartrate"] HeartRate,
@@ -110,9 +101,6 @@ define "Has Cardiac Pacer Device Implanted with Qualifying CAD Encounter and Pri
         such that ImplantedCardiacPacer.performed.toInterval ( ) starts before end of CADEncounterMI.period
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/  
 define "Qualifying CAD Encounter and Prior MI":
   "Qualifying CAD Encounter" EncounterWithCADProxy
     with [Condition: "Myocardial Infarction"] MyocardialInfarction
@@ -133,9 +121,7 @@ define "Has Atrioventricular Block with Qualifying CAD Encounter and History of 
 * @profile: http://hl7.org/fhir/StructureDefinition/heartrate 
 */
 
-/*
-@QICore6Uplift: Update 'observation-heartrate' to 'USCoreHeartRateProfile'
-*/
+
 define "Has Consecutive Heart Rates Less than 50 with Qualifying CAD Encounter and History of Moderate or Severe LVSD":
   exists ( from
       ["observation-heartrate"] HeartRate,
@@ -215,123 +201,78 @@ define "Qualifying Encounter During Measurement Period":
     where ValidEncounter.period during day of "Measurement Period"
       and ValidEncounter.status = 'finished'
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Coronary Artery Disease Encounter":
   "Outpatient Encounter During Measurement Period" ValidQualifyingEncounter
     with [Condition: "Coronary Artery Disease No MI"] CoronaryArteryDisease
       such that CoronaryArteryDisease.overlapsDayOfEncounter ( ValidQualifyingEncounter )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Arrhythmia with Qualifying CAD Encounter and History of Moderate or Severe LVSD":
   exists ( [Condition: "Arrhythmia"] ArrhythmiaDiagnosis
       where ArrhythmiaDiagnosis.overlapsDayOfEncounter ( "Qualifying CAD Encounter and History of Moderate or Severe LVSD" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Arrhythmia with Qualifying CAD Encounter and Prior MI":
   exists ( [Condition: "Arrhythmia"] ArrhythmiaDiagnosis
       where ArrhythmiaDiagnosis.overlapsDayOfEncounter ( "Qualifying CAD Encounter and Prior MI" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Asthma with Qualifying CAD Encounter and History of Moderate or Severe LVSD":
   exists ( [Condition: "Asthma"] AsthmaDiagnosis
       where AsthmaDiagnosis.overlapsDayOfEncounter ( "Qualifying CAD Encounter and History of Moderate or Severe LVSD" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Asthma with Qualifying CAD Encounter and Prior MI":
   exists ( [Condition: "Asthma"] AsthmaDiagnosis
       where AsthmaDiagnosis.overlapsDayOfEncounter ( "Qualifying CAD Encounter and Prior MI" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Atrioventricular Block with Qualifying CAD Encounter and History of Moderate or Severe LVSD":
   exists ( [Condition: "Atrioventricular Block"] AtrioventricularBlock
       where AtrioventricularBlock.overlapsDayOfEncounter ( "Qualifying CAD Encounter and History of Moderate or Severe LVSD" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Atrioventricular Block with Qualifying CAD Encounter and Prior MI":
   exists ( [Condition: "Atrioventricular Block"] AtrioventricularBlock
       where AtrioventricularBlock.overlapsDayOfEncounter ( "Qualifying CAD Encounter and Prior MI" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Bradycardia with Qualifying CAD Encounter and History of Moderate or Severe LVSD":
   exists ( [Condition: "Bradycardia"] BradycardiaDiagnosis
       where BradycardiaDiagnosis.overlapsDayOfEncounter ( "Qualifying CAD Encounter and History of Moderate or Severe LVSD" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Bradycardia with Qualifying CAD Encounter and Prior MI":
   exists ( [Condition: "Bradycardia"] BradycardiaDiagnosis
       where BradycardiaDiagnosis.overlapsDayOfEncounter ( "Qualifying CAD Encounter and Prior MI" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Diagnosis of Allergy or Intolerance to Beta Blocker Therapy with Qualifying CAD Encounter and History of Moderate or Severe LVSD":
   exists ( ( [Condition: "Allergy to Beta Blocker Therapy"]
       union [Condition: "Intolerance to Beta Blocker Therapy"] ) BetaBlockerAllergyOrIntoleranceDiagnosis
       where BetaBlockerAllergyOrIntoleranceDiagnosis.overlapsAfterDayOfEncounter ( "Qualifying CAD Encounter and History of Moderate or Severe LVSD" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Diagnosis of Allergy or Intolerance to Beta Blocker Therapy with Qualifying CAD Encounter and Prior MI":
   exists ( ( [Condition: "Allergy to Beta Blocker Therapy"]
       union [Condition: "Intolerance to Beta Blocker Therapy"] ) BetaBlockerAllergyOrIntoleranceDiagnosis
       where BetaBlockerAllergyOrIntoleranceDiagnosis.overlapsAfterDayOfEncounter ( "Qualifying CAD Encounter and Prior MI" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Diagnosis of Cardiac Pacer in Situ with Qualifying CAD Encounter and History of Moderate or Severe LVSD":
   exists ( [Condition: "Cardiac Pacer in Situ"] CardiacPacerDiagnosis
       where CardiacPacerDiagnosis.overlapsDayOfEncounter ( "Qualifying CAD Encounter and History of Moderate or Severe LVSD" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Diagnosis of Cardiac Pacer in Situ with Qualifying CAD Encounter and Prior MI":
   exists ( [Condition: "Cardiac Pacer in Situ"] CardiacPacerDiagnosis
       where CardiacPacerDiagnosis.overlapsDayOfEncounter ( "Qualifying CAD Encounter and Prior MI" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Hypotension with Qualifying CAD Encounter and History of Moderate or Severe LVSD":
   exists ( [Condition: "Hypotension"] HypotensionDiagnosis
       where HypotensionDiagnosis.overlapsDayOfEncounter ( "Qualifying CAD Encounter and History of Moderate or Severe LVSD" )
   )
 
-/*
-@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
-*/
 define "Has Hypotension with Qualifying CAD Encounter and Prior MI":
   exists ( [Condition: "Hypotension"] HypotensionDiagnosis
       where HypotensionDiagnosis.overlapsDayOfEncounter ( "Qualifying CAD Encounter and Prior MI" )
@@ -434,26 +375,17 @@ define "Qualifying CAD Encounter":
   "Coronary Artery Disease Encounter"
     union "History of Cardiac Surgery Prior to Encounter"
 
-/*
-@QICore6Uplift: Update 'Condition' in function parameter to take in a choice of 'ConditionProblemsHealthConcerns' or 'ConditionEncounterDiagnosis'
-*/
 define fluent function overlapsDayOfEncounter(Diagnosis Condition, EncounterList List<Encounter>):
   AnyTrue(EncounterList Visit
       where Diagnosis.isActive()
       return Diagnosis.prevalenceInterval() overlaps day of Visit.period
   )
 
-/*
-@QICore6Uplift: Update 'Condition' in function parameter to take in a choice of 'ConditionProblemsHealthConcerns' or 'ConditionEncounterDiagnosis'
-*/
 define fluent function overlapsDayOfEncounter(Diagnosis Condition, TheEncounter Encounter):
   TheEncounter Visit
     where Diagnosis.isConfirmedActiveDiagnosis ( )
     return Diagnosis.prevalenceInterval ( ) overlaps day of Visit.period
 
-/*
-@QICore6Uplift: Update 'Condition' in function parameter to take in a choice of 'ConditionProblemsHealthConcerns' or 'ConditionEncounterDiagnosis'
-*/
 define fluent function overlapsAfterDayOfEncounter(Event Choice<AllergyIntolerance, Condition>, EncounterList List<Encounter>):
   AnyTrue(EncounterList Visit
       return case

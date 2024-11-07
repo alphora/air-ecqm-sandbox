@@ -1,6 +1,6 @@
 library CRLReceiptofSpecialistReportFHIR version '0.3.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -49,14 +49,14 @@ define "Initial Population":
     and "First Referral during First 10 Months of Measurement Period" is not null
 
 define "Has Encounter from Valuesets during Measurement Period":
-  exists ( ( [Encounter: type in "Behavioral/Neuropsych Assessment"]
-      union [Encounter: type in "Office Visit"]
-      union [Encounter: type in "Ophthalmological Services"]
-      union [Encounter: type in "Preventive Care Services Established Office Visit, 18 and Up"]
-      union [Encounter: type in "Preventive Care Services, Initial Office Visit, 0 to 17"]
-      union [Encounter: type in "Preventive Care Services Initial Office Visit, 18 and Up"]
-      union [Encounter: type in "Preventive Care, Established Office Visit, 0 to 17"]
-      union [Encounter: type in "Psych Visit Diagnostic Evaluation"] ) Encounter
+  exists ( ( [Encounter: "Behavioral/Neuropsych Assessment"]
+      union [Encounter: "Office Visit"]
+      union [Encounter: "Ophthalmological Services"]
+      union [Encounter: "Preventive Care Services Established Office Visit, 18 and Up"]
+      union [Encounter: "Preventive Care Services, Initial Office Visit, 0 to 17"]
+      union [Encounter: "Preventive Care Services Initial Office Visit, 18 and Up"]
+      union [Encounter: "Preventive Care, Established Office Visit, 0 to 17"]
+      union [Encounter: "Psych Visit Diagnostic Evaluation"] ) Encounter
       where Encounter.status = 'finished'
         and Encounter.period during day of "Measurement Period"
   )

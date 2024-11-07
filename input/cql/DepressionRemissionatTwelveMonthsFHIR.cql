@@ -1,10 +1,6 @@
-/*
-Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis, ObservationScreeningAssessment, and ObservationClinicalResult
-*/
-
 library DepressionRemissionatTwelveMonthsFHIR version '0.2.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -53,9 +49,6 @@ define "Denominator Exclusions":
     or "Patient Expired"
     or "Has Mental Health Disorder Diagnoses"
 
-/*
-@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
-*/ 
 define "Numerator":
   Last([Observation: "PHQ 9 and PHQ 9M Tools"] DepressionAssessment
       where ToDate(start of DepressionAssessment.effective.toInterval()) during "Measure Assessment Period"
@@ -78,17 +71,11 @@ define "SDE Sex":
 define "Denominator Identification Period":
   Interval[start of "Measurement Period" - 14 months, start of "Measurement Period" - 2 months )
 
-/*
-@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
-*/ 
 define "Depression Assessments Greater than 9":
   [Observation: "PHQ 9 and PHQ 9M Tools"] DepressionAssessment
     where DepressionAssessment.value > 9
       and DepressionAssessment.status in { 'final', 'amended', 'corrected' }
 
-/*
-@QICore6Uplift: Update both 'Condition' resources to be a union of 'ConditionProblemsHealthConcerns' and 'ConditionEncounterDiagnosis'
-*/ 
 define "Depression Diagnoses":
   ( [Condition: "Major Depression Including Remission"]
     union [Condition: "Dysthymia"] ) Depression
@@ -101,9 +88,6 @@ define "Depression Encounter":
         and ValidEncounter.period ends during "Denominator Identification Period"
         and ValidEncounter.status = 'finished'
 
-/*
-@QICore6Uplift: Update all 'Condition' to a union of 'ConditionProblemsHealthConcerns' and 'ConditionEncounterDiagnosis'
-*/ 
 define "Has Mental Health Disorder Diagnoses":
   exists ( ( [Condition: "Bipolar Disorder"]
       union [Condition: "Personality Disorder Emotionally Labile"]
@@ -133,10 +117,6 @@ define "Has Hospice Services in the Measure Assessment Period":
         where HospiceEncounter.period overlaps day of Interval[start of "Denominator Identification Period", end of "Measure Assessment Period"]
           and not ( HospiceEncounter.status in { 'cancelled', 'entered-in-error', 'unknown' } )
     )
-
-    /*
-    @QICore6Uplift: Update 'Observation' to 'NonPatientObservation'
-    */    
     or exists ( [Observation: "Hospice care [Minimum Data Set]"] HospiceAssessment
         where HospiceAssessment.value ~ "Yes (qualifier value)"
           and HospiceAssessment.effective.toInterval ( ) overlaps day of Interval[start of "Denominator Identification Period", end of "Measure Assessment Period"]
@@ -152,10 +132,6 @@ define "Has Hospice Services in the Measure Assessment Period":
         where HospicePerformed.performed.toInterval ( ) overlaps day of Interval[start of "Denominator Identification Period", end of "Measure Assessment Period"]
           and not ( HospicePerformed.status in { 'not-done', 'entered-in-error', 'unknown' } )
     )
-
-    /*
-    @QICore6Uplift: Update 'Condition' to a union of 'ConditionProblemsHealthConcerns' and 'ConditionEncounterDiagnosis'
-    */    
     or exists ( [Condition: "Hospice Diagnosis"] HospiceCareDiagnosis
         where HospiceCareDiagnosis.prevalenceInterval ( ) overlaps day of Interval[start of "Denominator Identification Period", end of "Measure Assessment Period"]
           and HospiceCareDiagnosis.isConfirmedActiveDiagnosis ( )
@@ -170,17 +146,10 @@ define "Index Depression Assessment":
   )
 
 define "Has Palliative Care in the Measure Assessment Period":
-  /*
-  @QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
-  */ 
   exists ( [Observation: "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)"] PalliativeAssessment
       where PalliativeAssessment.effective.toInterval ( ) overlaps Interval[start of "Denominator Identification Period", end of "Measure Assessment Period"]
         and PalliativeAssessment.status in { 'final', 'amended', 'corrected' }
   )
-
-    /*
-    @QICore6Uplift: Update 'Condition' to a union of 'ConditionProblemsHealthConcerns' and 'ConditionEncounterDiagnosis'
-    */
     or exists ( [Condition: "Palliative Care Diagnosis"] PalliativeDiagnosis
         where PalliativeDiagnosis.prevalenceInterval ( ) overlaps Interval[start of "Denominator Identification Period", end of "Measure Assessment Period"]
           and PalliativeDiagnosis.isConfirmedActiveDiagnosis ( )
@@ -194,9 +163,6 @@ define "Has Palliative Care in the Measure Assessment Period":
           and not ( PalliativeIntervention.status in { 'not-done', 'entered-in-error', 'unknown' } )
     )
 
-/*
-@QICore6Uplift: Update function parameter to include a choice of 'ConditionProblemsHealthConcerns' or 'ConditionEncounterDiagnosis'
-*/
 define fluent function isConfirmedActiveDiagnosis(condition Condition):
   condition.isActive ( )
     and condition.verificationStatus ~ QICoreCommon."confirmed"

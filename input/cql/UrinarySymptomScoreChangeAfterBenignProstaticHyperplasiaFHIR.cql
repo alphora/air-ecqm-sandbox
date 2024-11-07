@@ -1,13 +1,6 @@
-/*
-Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to USCoreBMIProfile, ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis, and ObservationScreeningAssessment
-*/
-
 library UrinarySymptomScoreChangeAfterBenignProstaticHyperplasiaFHIR version '1.4.000'
 
-/*
-@QICore6Uplift: Add `using USCore version `6.1.0``
-*/ 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -85,9 +78,6 @@ define "Urinary Symptom Score Improvement Greater Than or Equal To 3":
       where USSImprovement >= 3
   ) is not null
 
-/*
-@QICore6Uplift: Update Observation to ObservationScreeningAssessment
-*/ 
 define "Documented IPSS Assessment Result":
   [Observation: "International Prostate Symptom Score [IPSS]"] IPSSAssessment
     where IPSSAssessment.status in { 'final', 'amended', 'corrected' }
@@ -97,9 +87,6 @@ define "Documented IPSS Assessment Result":
       valueInteger: IPSSAssessment.value as Integer
     }
 
-/*
-@QICore6Uplift: Update Observation to ObservationScreeningAssessment
-*/ 
 define "AUA Symptom Index and Quality of Life Assessment Result":
   [Observation: "American Urological Association Symptom Index [AUASI]"] AUASIAssessment
     let LastQOLOnDate: Last([Observation: "If you were to spend the rest of your life with your urinary condition just the way it is now, how would you feel about that [IPSS]"] QOLAssessment
@@ -126,9 +113,6 @@ define "Morbid Obesity Diagnosis or BMI Exam Result Greater Than or Equal to 40 
   exists "Morbid Obesity Diagnosis On or Before Follow Up USS Assessment"
     or "BMI Exam Result Greater Than or Equal To 40 During Measurement Period and On or Before Follow Up USS Assessment"
 
-/*
-@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
-*/ 
 define "Urinary Retention Diagnosis Starts Within 1 Year After Initial BPH Diagnosis":
   [Condition: "Urinary retention"] UrinaryRetention
     with "Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Period" InitialBPHDiagnosis
@@ -155,9 +139,6 @@ define "Has Initial BPH Diagnosis Starts During or Within 30 Days After End of H
       such that InitialBPHDiagnosis.prevalenceInterval ( ) starts during Interval[start of InHospitalServices.period, end of InHospitalServices.period + 31 days]
         and InHospitalServices.status = 'finished'
 
-/*
-@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
-*/ 
 define "Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Period":
   First([Condition: "Benign prostatic hyperplasia with lower urinary tract symptoms"] NewBPHDiagnosis
       where NewBPHDiagnosis.prevalenceInterval() starts during Interval[start of "Measurement Period" - 6 months, start of "Measurement Period"]
@@ -165,9 +146,6 @@ define "Initial BPH Diagnosis Starts Within 6 Months Before the Measurement Peri
       sort by start of onset.toInterval()
   )
 
-/*
-@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
-*/ 
 define "Morbid Obesity Diagnosis On or Before Follow Up USS Assessment":
   [Condition: "Morbid Obesity"] MorbidObesity
     with "Urinary Symptom Score 6 to 12 Months After Initial BPH Diagnosis" FollowUpUSSAssessment
@@ -180,9 +158,7 @@ define "Morbid Obesity Diagnosis On or Before Follow Up USS Assessment":
 * @profile: http://hl7.org/fhir/StructureDefinition/bmi
 */
 
-/*
-@QICore6Uplift: Update 'observation-bmi' to 'USCoreBMIProfile'
-*/ 
+
 define "BMI Exam Result Greater Than or Equal To 40 During Measurement Period and On or Before Follow Up USS Assessment":
   exists ( ["observation-bmi"] BMIExam
       with "Urinary Symptom Score 6 to 12 Months After Initial BPH Diagnosis" FollowUpUSSAssessment
@@ -193,9 +169,6 @@ define "BMI Exam Result Greater Than or Equal To 40 During Measurement Period an
       return BMIExam.effective.earliest ( )
   )
 
-/*
-@QICore6Uplift: Update function parameter to include a choice of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
-*/ 
 define fluent function isConfirmedActiveDiagnosis(condition Condition):
   condition.isActive ( )
     and condition.verificationStatus ~ QICoreCommon."confirmed"

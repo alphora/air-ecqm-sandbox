@@ -1,6 +1,6 @@
 library HFACEIorARBorARNIforLVSDFHIR version '0.2.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -84,27 +84,18 @@ define "Has Allergy or Intolerance to ACEI or ARB or ARNI Ingredient":
       where ACEIOrARBOrARNIAllergyIntolerance.overlapsAfterHeartFailureOutpatientEncounter ( )
   )
 
-/*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
-*/ 
 define "Has Diagnosis of Allergy or Intolerance to ACEI or ARB":
   exists ( ( ["Condition": "Allergy to ACE Inhibitor or ARB"]
       union ["Condition": "Intolerance to ACE Inhibitor or ARB"] ) ACEIOrARBAllergyOrIntoleranceDiagnosis
       where ACEIOrARBAllergyOrIntoleranceDiagnosis.overlapsAfterHeartFailureOutpatientEncounter ( )
   )
 
-/*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
-*/ 
 define "Has Diagnosis of Pregnancy":
   exists ( [Condition: "Pregnancy"] PregnancyDiagnosis
       with AHA."Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
         such that PregnancyDiagnosis.prevalenceInterval ( ) starts 9 months or less before or on start of ModerateOrSevereLVSDHFOutpatientEncounter.period
   )
 
-/*
-@QICore6Uplift: Update Condition to ConditionEncounterDiagnosis
-*/ 
 define "Has Diagnosis of Renal Failure Due to ACEI":
   exists ( [Condition: "Acute renal failure caused by angiotensin-converting-enzyme inhibitor (disorder)"] RenalFailureDueToACEI
       where RenalFailureDueToACEI.overlapsHeartFailureOutpatientEncounter ( )

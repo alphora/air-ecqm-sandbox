@@ -1,10 +1,6 @@
-/*
-Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionEncounterDiagnosis, ConditionProblemsHealthConcerns, and LaboratoryResultObservation
-*/
-
 library IntravesicalBacillusCalmetteGuerinForBladderCancerFHIR version '1.4.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
@@ -84,9 +80,6 @@ define "July 1 of Year Prior to the Measurement Period":
 define "June 30 of the Measurement Period":
   DateTime((year from start of "Measurement Period"), 6, 30, 23, 59, 59, 0, 0)
 
-/*
-@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
-*/ 
 define "Acute Tuberculosis Diagnosis":
   [Condition: "Active Tuberculosis for Urology Care"] ActiveTuberculosis
     with "First Bladder Cancer Staging Procedure" FirstBladderCancerStaging
@@ -99,9 +92,6 @@ define "Cystectomy Done":
       such that Cystectomy.performed.toInterval ( ) 6 months or less before start of FirstBladderCancerStaging.performed.toInterval ( )
     where Cystectomy.status = 'completed'
 
-/*
-@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
-*/ 
 define "Has Excluding HIV, Immunocompromised Conditions or Mixed Histology Before Staging":
   exists ( ( [Condition: "HIV"]
       union [Condition: "Immunocompromised Conditions"]
@@ -145,9 +135,6 @@ define "Has Qualifying Encounter":
         and ValidEncounter.status = 'finished'
   )
 
-/*
-@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
-*/ 
 define "Bladder Cancer Diagnosis":
   [Condition: "Bladder Cancer for Urology Care"] BladderCancer
     where BladderCancer.prevalenceInterval ( ) starts before end of "Measurement Period"
@@ -174,9 +161,7 @@ define "First BCG Administered":
 
 /*Ta High Grade only to be included.  Ta low grade is to be excluded from this measure.*/
 
-/*
-@QICore6Uplift: Update `Observation` to `LaboratoryResultObservation: "Tumor staging (tumor staging)"`
-*/ 
+
 define "Has Most Recent Bladder Cancer Tumor Staging is Ta HG, Tis, T1":
   exists ( [Observation] StagingObservation
       where StagingObservation.getStagingProcedure ( ) is not null
@@ -188,9 +173,6 @@ define "Has Most Recent Bladder Cancer Tumor Staging is Ta HG, Tis, T1":
         and StagingObservation.status in { 'final', 'amended', 'corrected' }
   )
 
-/*
-@QICore6Uplift: Update function parameter from `Observation` to `LaboratoryResultObservation`
-*/ 
 define fluent function getStagingProcedure(StagingObservation Observation):
   StagingObservation.partOf StagingReference
     return "First Bladder Cancer Staging Procedure during 6 Months Prior to Measurement Period through the First 6 Months of Measurement Period" FirstBladderCancerStagingMP
@@ -219,9 +201,6 @@ define "Immunosuppressive Drugs":
     where ImmunosuppressiveDrugs.status in { 'active', 'completed' }
       and ImmunosuppressiveDrugs.intent = 'order'
 
-/*
-@QICore6Uplift: Update function parameter from Condition to a choice between ConditionEncounterDiagnosis or ConditionProblemsHealthConcerns
-*/ 
 define fluent function isConfirmedActiveDiagnosis(Condition Condition):
   Condition.isActive ( )
     and Condition.verificationStatus ~ QICoreCommon."confirmed"

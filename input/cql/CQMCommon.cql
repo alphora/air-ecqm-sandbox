@@ -6,7 +6,7 @@ Update principalDiagnosis function to correctly reference the 'use' element http
 
 library CQMCommon version '2.2.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
@@ -28,7 +28,7 @@ parameter "Measurement Period" Interval<DateTime>
 context Patient
 
 define "Inpatient Encounter":
-  [Encounter: type in "Encounter Inpatient"] EncounterInpatient
+  [Encounter: "Encounter Inpatient"] EncounterInpatient
 		where EncounterInpatient.status = 'finished'
 		and EncounterInpatient.period ends during day of "Measurement Period"
 
@@ -61,7 +61,7 @@ define fluent function lengthInDays(Value Interval<DateTime> ):
 */
 define function "ED Visit"(TheEncounter Encounter ):
   Last(
-    [Encounter: type in "Emergency Department Visit"] EDVisit
+    [Encounter: "Emergency Department Visit"] EDVisit
       where EDVisit.status = 'finished'
         and EDVisit.period ends 1 hour or less on or before start of TheEncounter.period
       sort by end of period
@@ -72,7 +72,7 @@ define function "ED Visit"(TheEncounter Encounter ):
 */
 define fluent function edVisit(TheEncounter Encounter ):
   Last(
-    [Encounter: type in "Emergency Department Visit"] EDVisit
+    [Encounter: "Emergency Department Visit"] EDVisit
       where EDVisit.status = 'finished'
         and EDVisit.period ends 1 hour or less on or before start of TheEncounter.period
       sort by end of period
@@ -222,19 +222,19 @@ define fluent function emergencyDepartmentArrivalTime(TheEncounter Encounter):
 */
 define function "HospitalizationWithObservationAndOutpatientSurgeryService"(TheEncounter "Encounter" ):
   TheEncounter Visit
-	  let ObsVisit: Last([Encounter: type in "Observation Services"] LastObs
+	  let ObsVisit: Last([Encounter: "Observation Services"] LastObs
 		  	where LastObs.status = 'finished'
           and LastObs.period ends 1 hour or less on or before start of Visit.period
 			  sort by	end of period
     	),
     	VisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),
-    	EDVisit: Last([Encounter: type in "Emergency Department Visit"] LastED
+    	EDVisit: Last([Encounter: "Emergency Department Visit"] LastED
 			  where LastED.status = 'finished'
           and LastED.period ends 1 hour or less on or before VisitStart
 			  sort by	end of period
     	),
     	VisitStartWithED: Coalesce(start of EDVisit.period, VisitStart),
-    	OutpatientSurgeryVisit: Last([Encounter: type in "Outpatient Surgery Service"] LastSurgeryOP
+    	OutpatientSurgeryVisit: Last([Encounter: "Outpatient Surgery Service"] LastSurgeryOP
 			  where LastSurgeryOP.period ends 1 hour or less on or before VisitStartWithED
 			  sort by	end of period
     	)
@@ -245,19 +245,19 @@ define function "HospitalizationWithObservationAndOutpatientSurgeryService"(TheE
 */
 define fluent function hospitalizationWithObservationAndOutpatientSurgeryService(TheEncounter "Encounter" ):
   TheEncounter Visit
-	  let ObsVisit: Last([Encounter: type in "Observation Services"] LastObs
+	  let ObsVisit: Last([Encounter: "Observation Services"] LastObs
 		  	where LastObs.status = 'finished'
           and LastObs.period ends 1 hour or less on or before start of Visit.period
 			  sort by	end of period
     	),
     	VisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),
-    	EDVisit: Last([Encounter: type in "Emergency Department Visit"] LastED
+    	EDVisit: Last([Encounter: "Emergency Department Visit"] LastED
 			  where LastED.status = 'finished'
           and LastED.period ends 1 hour or less on or before VisitStart
 			  sort by	end of period
     	),
     	VisitStartWithED: Coalesce(start of EDVisit.period, VisitStart),
-    	OutpatientSurgeryVisit: Last([Encounter: type in "Outpatient Surgery Service"] LastSurgeryOP
+    	OutpatientSurgeryVisit: Last([Encounter: "Outpatient Surgery Service"] LastSurgeryOP
 			  where LastSurgeryOP.period ends 1 hour or less on or before VisitStartWithED
 			  sort by	end of period
     	)
@@ -269,13 +269,13 @@ define fluent function hospitalizationWithObservationAndOutpatientSurgeryService
 */
 define function "HospitalizationWithObservation"(TheEncounter Encounter ):
   TheEncounter Visit
-  		let ObsVisit: Last([Encounter: type in "Observation Services"] LastObs
+  		let ObsVisit: Last([Encounter: "Observation Services"] LastObs
   				where LastObs.status = 'finished'
             and LastObs.period ends 1 hour or less on or before start of Visit.period
   				sort by end of period
   			),
   			VisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),
-  			EDVisit: Last([Encounter: type in "Emergency Department Visit"] LastED
+  			EDVisit: Last([Encounter: "Emergency Department Visit"] LastED
   				where LastED.status = 'finished'
             and LastED.period ends 1 hour or less on or before VisitStart
   				sort by end of period
@@ -287,13 +287,13 @@ define function "HospitalizationWithObservation"(TheEncounter Encounter ):
 */
 define fluent function hospitalizationWithObservation(TheEncounter Encounter ):
   TheEncounter Visit
-  		let ObsVisit: Last([Encounter: type in "Observation Services"] LastObs
+  		let ObsVisit: Last([Encounter: "Observation Services"] LastObs
   				where LastObs.status = 'finished'
             and LastObs.period ends 1 hour or less on or before start of Visit.period
   				sort by end of period
   			),
   			VisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),
-  			EDVisit: Last([Encounter: type in "Emergency Department Visit"] LastED
+  			EDVisit: Last([Encounter: "Emergency Department Visit"] LastED
   				where LastED.status = 'finished'
             and LastED.period ends 1 hour or less on or before VisitStart
   				sort by end of period
@@ -340,27 +340,27 @@ define fluent function firstInpatientIntensiveCareUnit(Encounter Encounter ):
 */
 define function "EncounterDiagnosis"(Encounter Encounter ):
   Encounter.diagnosis D
-	return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = D.condition.reference.getId())
+	return singleton from ([Condition] C where C.id = D.condition.reference.getId())
 
 /*
 @description: Returns the Condition resources referenced by the diagnosis element of the Encounter
 */
 define fluent function encounterDiagnosis(Encounter Encounter ):
   Encounter.diagnosis D
-    return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = D.condition.reference.getId())
+    return singleton from ([Condition] C where C.id = D.condition.reference.getId())
 
 /*
 @description: Returns the Condition resource for the given reference
 @deprecated: This function is deprecated. Use the fluent function `getCondition()` instead
 */
 define function "GetCondition"(reference Reference):
-  singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = reference.reference.getId())
+  singleton from ([Condition] C where C.id = reference.reference.getId())
 
 /*
 @description: Returns the Condition resource for the given reference
 */
 define fluent function getCondition(reference Reference):
-  singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = reference.reference.getId())
+  singleton from ([Condition] C where C.id = reference.reference.getId())
 
 /*
 @description: Returns the condition that is specified as the principal diagnosis for the encounter
@@ -369,7 +369,7 @@ define fluent function getCondition(reference Reference):
 define function "PrincipalDiagnosis"(Encounter Encounter ):
 	singleton from (
 	(Encounter.diagnosis D where D.rank = 1 and D.use ~ "Billing") PD
-      return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = PD.condition.reference.getId())
+      return singleton from ([Condition] C where C.id = PD.condition.reference.getId())
 	)
 
 /*
@@ -377,7 +377,7 @@ define function "PrincipalDiagnosis"(Encounter Encounter ):
 */
 define fluent function principalDiagnosis(Encounter Encounter ):
 	singleton from ((Encounter.diagnosis D where D.rank = 1 and D.use ~ "Billing") PD
-      return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = PD.condition.reference.getId())
+      return singleton from ([Condition] C where C.id = PD.condition.reference.getId())
 	)
 
 /*

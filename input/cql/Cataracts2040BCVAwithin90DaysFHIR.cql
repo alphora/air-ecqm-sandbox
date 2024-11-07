@@ -1,10 +1,6 @@
-/*
-Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis, and ObservationClinicalResult
-*/
-
 library Cataracts2040BCVAwithin90DaysFHIR version '0.1.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -90,9 +86,6 @@ define "Cataract Surgery Between January and September of Measurement Period":
       and CataractSurgery.performed.toInterval ( ) starts 92 days or more before end of "Measurement Period"
       and CataractSurgery.status = 'completed'
 
-/*
-@QICore6Uplift: Each Condition should be updated to be a union of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns
-*/ 
 define "Denominator Exclusions":
   "Cataract Surgery Between January and September of Measurement Period" CataractSurgeryPerformed
     with ( [Condition: "Acute and Subacute Iridocyclitis"]
@@ -153,9 +146,6 @@ define "Denominator Exclusions":
       such that ComorbidDiagnosis.prevalenceInterval ( ) overlaps before CataractSurgeryPerformed.performed.toInterval ( )
         and ComorbidDiagnosis.isActive ( )
 
-/*
-@QICore6Uplift: Update Observation to ObservationClinicalResult
-*/ 
 define "Numerator":
   "Cataract Surgery Between January and September of Measurement Period" CataractSurgeryPerformed
     with ( [Observation: "Best corrected visual acuity (observable entity)"]
