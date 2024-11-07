@@ -35,7 +35,9 @@ context Patient
                 * nursing facility visits (http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1012)
                 * office visits (http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001)
                 * outpatient consolutations (http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1008)
-*/   
+
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis, and consider adding 'type in' for Encounters
+*/    
 define "Heart Failure Outpatient Encounter":
   ( [Encounter: "Care Services in Long Term Residential Facility"]
       union [Encounter: "Home Healthcare Services"]
@@ -51,6 +53,8 @@ define "Heart Failure Outpatient Encounter":
 
 /*
 @description: Returns true if patient has confirmed heart transplant complications that start before the end of a heart failure outpatient encounter with history of moderate or severe LVSD
+
+@QICore6Uplift: Update Condition to ConditionEncounterDiagnosis
 */ 
 define "Has Heart Transplant Complications":
   exists ( 
@@ -74,6 +78,8 @@ define "Has Left Ventricular Assist Device":
 
 /*
 @description: Returns true if patient has active LVAD complications that start before the end of a heart failure outpatient encounter with history of moderate or severe LVSD
+
+@QICore6Uplift: Update Condition to ConditionEncounterDiagnosis
 */ 
 define "Has Left Ventricular Assist Device Complications":
   exists (
@@ -126,6 +132,10 @@ define "Heart Failure Outpatient Encounter with History of Moderate or Severe LV
 @description: Returns a union  of the following:
                 * Observations where the final, amended or correction ejection fraction result is <= 40
                 * Moderate or Severe LVSD conditions where the diagnosis has been confirmed as active
+
+@QICore6Uplift: Update the following resources in this define statement: 
+      * Observation to ObservationClinicalResult
+      * Condition to ConditionProblemsHealthConcerns
 */  
 define "Moderate or Severe LVSD Findings":
   ( [Observation: "Ejection Fraction"] EjectionFraction
@@ -156,6 +166,8 @@ define "Is Adults With Two Qualifying Outpatient Encounters and One Heart Failur
 
 /*
 @description: Returns true if the given Condition is confirmed as active
+
+@QICore6Uplift: Update function to include a choice of ConditionProblemsHealthConcerns or ConditionEncounterDiagnosis
 */
 define fluent function isConfirmedActiveDiagnosis(condition Condition):
     condition.isActive()
@@ -181,6 +193,8 @@ define fluent function isOrderedDuringHeartFailureOutpatientEncounter(Medication
 
 /*
 @description: Returns true if the given Condition overlaps the heart failure outpatient encounter with history of moderate or severe LVSD at any point
+
+@QICore6Uplift: Update function to include a choice of ConditionProblemsHealthConcerns or ConditionEncounterDiagnosis
 */
 define fluent function overlapsHeartFailureOutpatientEncounter(Condition Condition): 
   exists ( "Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
@@ -191,6 +205,7 @@ define fluent function overlapsHeartFailureOutpatientEncounter(Condition Conditi
 /*
 @overloaded
 @description: Returns true if the given Condition overlaps after the day of the heart failure outpatient encounter with history of moderate or severe LVSD
+@QICore6Uplift: Update function to include a choice of ConditionProblemsHealthConcerns or ConditionEncounterDiagnosis
 */
 define fluent function overlapsAfterHeartFailureOutpatientEncounter(Condition Condition): 
   exists ( "Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
@@ -241,6 +256,7 @@ define fluent function overlapsAfterHeartFailureOutpatientEncounter(MedicationRe
 /*
 @overloaded
 @description: Returns true if the given HeartRateObservation overlaps after the day of the heart failure outpatient encounter with history of moderate or severe LVSD
+@QICore6Uplift: Update 'observation-heartrate' to 'USCoreHeartRateProfile'
 */          
 define fluent function overlapsAfterHeartFailureOutpatientEncounter(HeartRateObservation "observation-heartrate"): 
   exists ( "Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
