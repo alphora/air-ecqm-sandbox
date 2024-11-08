@@ -5,7 +5,7 @@ using QICore version '6.0.0'
 include CQMCommon version '2.2.000' called CQMCommon
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
-include SupplementalDataElements version '3.4.000' called SDE
+include SupplementalDataElements version '3.5.000' called SDE
 include CumulativeMedicationDuration version '4.1.000' called CMD
 
 codesystem "CPT": 'http://www.ama-assn.org/go/cpt'

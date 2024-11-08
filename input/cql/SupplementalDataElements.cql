@@ -4,27 +4,13 @@ Updated FHIRHelpers version to 4.4.000.
 Added Male and Female codes and related AdministrativeGender code system
 Updated SDE Sex definition to use added codes from FHIR administrative-gender code system.
 */
-<<<<<<< HEAD
-library SupplementalDataElements version '3.5.000'
-=======
->>>>>>> parent of 2f645a86 (feat: Add impact analysis for AlaraCommonFunctions.cql)
-
 library SupplementalDataElements version '3.5.000'
 
-<<<<<<< HEAD
 include FHIRHelpers version '4.4.000' called FHIRHelpers
-<<<<<<< Updated upstream
-=======
 
 codesystem "AdministrativeGender": 'http://hl7.org/fhir/administrative-gender'
->>>>>>> Stashed changes
-=======
+
 using QICore version '6.0.0'
-
-include FHIRHelpers version '4.4.000' called FHIRHelpers
-
-codesystem "AdministrativeGender": 'http://hl7.org/fhir/administrative-gender'
->>>>>>> parent of 2f645a86 (feat: Add impact analysis for AlaraCommonFunctions.cql)
 
 valueset "Ethnicity": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837'
 valueset "ONC Administrative Sex": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1'
