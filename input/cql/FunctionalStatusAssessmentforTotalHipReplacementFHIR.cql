@@ -1,6 +1,10 @@
+/*
+@QICore6Uplift test impact: Change resource types and update qicore profiles in test cases to ObservationClinicalResult, ConditionEncounterDiagnosis, or ConditionProblemsHealthConcerns
+*/ 
+
 library FunctionalStatusAssessmentforTotalHipReplacementFHIR version '0.0.008'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
@@ -65,15 +69,15 @@ define "Initial Population":
     and AgeInYearsAt(date from start of "Measurement Period") >= 19
 
 define "Has Qualifying Encounter":
-  exists ( ( ( [Encounter: "Outpatient Consultation"]
-        union [Encounter: "Office Visit"]
+  exists ( ( ( [Encounter: type in "Outpatient Consultation"]
+        union [Encounter: type in "Office Visit"]
         union ( [Encounter] E
             where exists ( ( E.type ) T
                 where T ~ "Postoperative follow-up visit, normally included in the surgical package, to indicate that an evaluation and management service was performed during a postoperative period for a reason(s) related to the original procedure"
             )
         )
-        union [Encounter: "Telephone Visits"]
-        union [Encounter: "Virtual Encounter"]
+        union [Encounter: type in "Telephone Visits"]
+        union [Encounter: type in "Virtual Encounter"]
     ).isEncounterPerformed ( ) ) ValidEncounters
       where ValidEncounters.period.toInterval ( ) during day of Interval["August 1 Year Prior to the Measurement Period", end of "Measurement Period"]
   )
@@ -105,10 +109,16 @@ define "Denominator Exclusions":
     or "Has More Than One Elective Primary Total Hip Arthroplasty Performed"
     or "Death Within 300 Days of the THA Procedure"
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/
 define "Has Severe Cognitive Impairment":
   exists [Condition: "Severe cognitive impairment (finding)"] Dementia
     where Dementia.prevalenceInterval ( ) overlaps day of "Measurement Period"
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionEncounterDiagnosis'
+*/
 define "Has Total Hip Arthroplasty with 1 or More Lower Body Fractures":
   exists ( "Total Hip Arthroplasty Procedure" THAProcedure
       with [Condition: "Lower Body Fractures Excluding Ankle and Foot"] LowerBodyFracture
@@ -127,12 +137,18 @@ define "Has Revision Hip Arthroplasty Procedure or Implanted Device or Prosthesi
         such that RevisionTHAProcedure.performed.toInterval ( ) during day of THAProcedure.performed.toInterval ( )
   )
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/
 define "Has Malignant Neoplasm of Lower and Unspecified Limbs":
   exists ( [Condition: "Malignant Neoplasms of Lower and Unspecified Limbs"] MalignantNeoplasm
       with "Total Hip Arthroplasty Procedure" THAProcedure
         such that MalignantNeoplasm.prevalenceInterval ( ) overlaps day of THAProcedure.performed.toInterval ( )
   )
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionEncounterDiagnosis'
+*/
 define "Has Mechanical Complication":
   exists ( [Condition: "Mechanical Complications Excluding Upper Body"] MechanicalComplications
       with "Total Hip Arthroplasty Procedure" THAProcedure
@@ -166,6 +182,9 @@ define "Has THA with Initial and Follow Up HOOS Assessments":
         such that date from FollowUpHipAssessmentHOOS during day of Interval[date from end of TotalHip + 300 days, date from end of TotalHip + 425 days]
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date HOOS Total Assessment Completed":
   from
     ( ( [Observation: "Quality of life score [HOOS]"] ).isAssessmentPerformed ( ) ) HOOSLifeQuality,
@@ -198,6 +217,9 @@ define "Has THA with Initial and Follow Up HOOSJr Assessments":
         such that date from FollowUpHipAssessment during day of Interval[date from end of TotalHip + 300 days, date from end of TotalHip + 425 days]
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date HOOSJr Total Assessment Completed":
   ( ( ( [Observation: "Total interval score [HOOSJR]"] ).isAssessmentPerformed ( ) ) HOOSJr
     where HOOSJr.value is not null ) DocumentedHOOSJr
@@ -212,6 +234,9 @@ define "Has THA with Initial and Follow Up PROMIS10 Assessments":
         such that date from FollowUpHipAssessmentPROMIS10 during day of Interval[date from end of TotalHip + 300 days, date from end of TotalHip + 425 days]
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date PROMIS10 Total Assessment Completed":
   from
     ( ( [Observation: "PROMIS-10 Global Mental Health (GMH) score T-score"] ).isAssessmentPerformed ( ) ) PROMIS10MentalScore,
@@ -232,6 +257,9 @@ define "Has THA with Initial and Follow Up VR12 Oblique Assessments":
         such that date from FollowUpHipAssessmentOblique during day of Interval[date from end of TotalHip + 300 days, date from end of TotalHip + 425 days]
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date VR12 Oblique Total Assessment Completed":
   from
     ( ( [Observation: "VR-12 Mental component summary (MCS) score - oblique method T-score"] ).isAssessmentPerformed ( ) ) VR12MentalAssessment,
@@ -252,6 +280,9 @@ define "Has THA with Initial and Follow Up VR12 Orthogonal Assessments":
         such that date from FollowUpHipAssessmentOrthogonal during day of Interval[date from end of TotalHip + 300 days, date from end of TotalHip + 425 days]
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date VR12 Orthogonal Total Assessment Completed":
   from
     ( ( [Observation: "VR-12 Mental component summary (MCS) score - orthogonal method T-score"] ).isAssessmentPerformed ( ) ) VR12MentalAssessment,

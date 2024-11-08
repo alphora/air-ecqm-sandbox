@@ -1,6 +1,13 @@
+/*
+  @QICore6Uplift: Change resource types in test cases from Condition to ConditionEncounterDiagnosis or ConditionProblemsHealthConcerns
+*/ 
+
 library StatinsforthePreventionandTreatmentofCardiovascularDiseaseFHIR version '0.2.000'
 
-using QICore version '4.1.1'
+/*
+  @QICore6Uplift: Change to QICore version '6.0.0'
+*/ 
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include Hospice version '6.12.000' called Hospice
@@ -86,6 +93,9 @@ define "Denominator 3":
 define "Denominator 4":
   "Initial Population 4"
 
+/*
+@QICore6Uplift: Update Condition in Denominator Exclusions to ConditionEncounterDiagnosis
+*/ 
 define "Denominator Exclusions":
   exists ( ( [Condition: "Breastfeeding"]
       union [Condition: "Rhabdomyolysis"] ) ExclusionDiagnosis
@@ -108,6 +118,11 @@ define "Denominator Exceptions":
 define "Numerator":
   exists "Statin Therapy Prescribed Anytime during day of Measurement Period"
 
+/*
+@QICore6Uplift: Update the following Condition resources to these QICore v6 resources: 
+  - ConditionEncounterDiagnosis for "Myocardial Infarction" and "Cerebrovascular Disease Stroke or TIA"
+  - ConditionProblemsHealthConcerns for "Atherosclerosis and Peripheral Arterial Disease," "Ischemic Heart Disease or Other Related Diagnoses," and "Stable and Unstable Angina"
+*/ 
 define "ASVCD Diagnosis or Procedure before End of Measurement Period":
   ( ( [Condition: "Myocardial Infarction"]
       union [Condition: "Cerebrovascular Disease Stroke or TIA"]
@@ -127,6 +142,9 @@ define "ASVCD Diagnosis or Procedure before End of Measurement Period":
           and ASCVDProcedure.status = 'completed'
     )
 
+/*
+@QICore6Uplift: Update Condition to ConditionEncounterDiagnosis: "Subsequent non-ST elevation (NSTEMI) myocardial infarction"
+*/ 
 define "Myocardial Infarction before End of Measurement Period":
   [Condition: "Subsequent non-ST elevation (NSTEMI) myocardial infarction"] SubsequentMI
     where ( SubsequentMI.isProblemListItem ( )
@@ -145,6 +163,10 @@ define "Has Allergy to Statin":
         and StatinAllergy.clinicalStatus ~ QICoreCommon."allergy-active"
   )
 
+
+/*
+@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns: "Diabetes"
+*/ 
 define "Has Diabetes Diagnosis":
   exists ( [Condition: "Diabetes"] Diabetes
       where ( Diabetes.isProblemListItem ( )
@@ -153,6 +175,9 @@ define "Has Diabetes Diagnosis":
         and Diabetes.prevalenceInterval ( ) overlaps day of "Measurement Period"
   )
 
+/*
+@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns: "End Stage Renal Disease"
+*/ 
 define "Has ESRD Diagnosis":
   exists ( [Condition: "End Stage Renal Disease"] ESRD
       where ( ESRD.isProblemListItem ( )
@@ -161,6 +186,11 @@ define "Has ESRD Diagnosis":
         and ESRD.prevalenceInterval ( ) overlaps day of "Measurement Period"
   )
 
+/*
+@QICore6Uplift: Update the following Condition resources to these QICore v6 resources: 
+  - ConditionEncounterDiagnosis for "Hepatitis A"
+  - ConditionProblemsHealthConcerns for "Hepatitis B" and "Liver Disease"
+*/ 
 define "Has Hepatitis or Liver Disease Diagnosis":
   exists ( ( [Condition: "Hepatitis A"]
       union [Condition: "Hepatitis B"]
@@ -181,6 +211,9 @@ define "Has Medical Reason for Not Ordering Statin Therapy":
           and NoStatinTherapyOrdered.reasonCode in "Medical Reason"
   )
 
+/*
+@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns: "Statin Associated Muscle Symptoms"
+*/ 
 define "Has Statin Associated Muscle Symptoms":
   exists ( [Condition: "Statin Associated Muscle Symptoms"] StatinMuscleSymptom
       where ( StatinMuscleSymptom.isProblemListItem ( )
@@ -189,6 +222,9 @@ define "Has Statin Associated Muscle Symptoms":
         and StatinMuscleSymptom.prevalenceInterval ( ) overlaps day of "Measurement Period"
   )
 
+/*
+@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns: "Familial Hypercholesterolemia"
+*/ 
 define "Hypercholesterolemia Diagnosis":
   ( [Condition: "Familial Hypercholesterolemia"] Hypercholesterolemia
       where ( Hypercholesterolemia.isProblemListItem ( )

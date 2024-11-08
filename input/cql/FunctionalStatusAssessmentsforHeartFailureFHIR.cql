@@ -1,6 +1,10 @@
+/*
+@QICore6Uplift test impact: Change resource types and update qicore profiles in test cases to ConditionProblemsHealthConcerns or ObservationScreeningAssessment
+*/ 
+
 library FunctionalStatusAssessmentsforHeartFailureFHIR version '0.1.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
@@ -63,6 +67,9 @@ define "SDE Race":
 define "SDE Sex":
   SDE."SDE Sex"
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/
 define "Initial Population":
   AgeInYearsAt(date from start of "Measurement Period") >= 18
     and exists ( ( [Condition: "Heart Failure"] ) HeartFailure
@@ -73,6 +80,9 @@ define "Initial Population":
 define "Denominator":
   "Initial Population"
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/
 define "Denominator Exclusions":
   Hospice."Has Hospice Services"
     or exists ( ( [Condition: "Severe cognitive impairment (finding)"] ) SevereCognitiveImpairment
@@ -99,9 +109,9 @@ define "Two Outpatient Encounters during Measurement Period":
     return OfficeVisit1
 
 define "Qualifying Encounters":
-  ( ( [Encounter: "Office Visit"]
-      union [Encounter: "Telephone Visits"]
-      union [Encounter: "Virtual Encounter"]
+  ( ( [Encounter: type in "Office Visit"]
+      union [Encounter: type in "Telephone Visits"]
+      union [Encounter: type in "Virtual Encounter"]
   ).isEncounterPerformed ( ) ) ValidEncounter
     where ValidEncounter.period.toInterval ( ) during day of "Measurement Period"
 
@@ -116,6 +126,9 @@ define "Has Encounter with Initial and Follow Up PROMIS10 Assessments":
       return ValidEncounters
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date PROMIS10 Total Assessment Completed":
   from
     ( ( [Observation: "PROMIS-10 Global Mental Health (GMH) score T-score"] ).isAssessmentPerformed ( ) ) PROMIS10MentalScore,
@@ -138,6 +151,9 @@ define "Has Encounter with Initial and Follow Up PROMIS29 Assessments":
       return ValidEncounters
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date PROMIS29 Total Assessment Completed":
   from
     ( ( [Observation: "PROMIS-29 Sleep disturbance score T-score"] ).isAssessmentPerformed ( ) ) Promis29Sleep,
@@ -180,6 +196,9 @@ define "Has Encounter with Initial and Follow Up VR12 Oblique Assessments":
       return ValidEncounters
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date VR12 Oblique Total Assessment Completed":
   from
     ( ( [Observation: "VR-12 Mental component summary (MCS) score - oblique method T-score"] ).isAssessmentPerformed ( ) ) VR12MentalAssessment,
@@ -202,6 +221,9 @@ define "Has Encounter with Initial and Follow Up VR12 Orthogonal Assessments":
       return ValidEncounters
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date VR12 Orthogonal Total Assessment Completed":
   from
     ( ( [Observation: "VR-12 Mental component summary (MCS) score - orthogonal method T-score"] ).isAssessmentPerformed ( ) ) VR12MentalAssessment,
@@ -224,6 +246,9 @@ define "Has Encounter with Initial and Follow Up VR36 Oblique Assessments":
       return ValidEncounters
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date VR36 Oblique Total Assessment Completed":
   from
     ( ( [Observation: "VR-36 Mental component summary (MCS) score - oblique method T-score"] ).isAssessmentPerformed ( ) ) VR36MentalAssessment,
@@ -246,6 +271,9 @@ define "Has Encounter with Initial and Follow Up VR36 Orthogonal Assessments":
       return ValidEncounters
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date VR36 Orthogonal Total Assessment Completed":
   from
     ( ( [Observation: "VR-36 Mental component summary (MCS) score - orthogonal method T-score"] ).isAssessmentPerformed ( ) ) VR36MentalAssessment,
@@ -268,6 +296,9 @@ define "Has Encounter with Initial and Follow Up MLHFQ Assessments":
       return ValidEncounters
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date MLHFQ Total Assessment Completed":
   from
     ( ( [Observation: "Physical score [MLHFQ]"] ).isAssessmentPerformed ( ) ) MLHFQPhysical,
@@ -290,6 +321,9 @@ define "Has Encounter with Initial and Follow Up KCCQ12 Assessments":
       return ValidEncounters
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date KCCQ12 Total Assessment Completed":
   from
     ( ( [Observation: "Kansas City Cardiomyopathy Questionnaire - 12 item [KCCQ-12]"] ).isAssessmentPerformed ( ) ) KCCQ12Item,
@@ -312,6 +346,9 @@ define "Has Encounter with Initial and Follow Up KCCQ Domain Score Assessments":
       return ValidEncounters
   )
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date KCCQ Domain Assessment Completed":
   from
     ( ( [Observation: "Quality of life score [KCCQ]"] ).isAssessmentPerformed ( ) ) KCCQLifeQuality,
@@ -339,6 +376,9 @@ define "Date KCCQ Domain Assessment Completed":
       and KCCQLifeQuality.value is not null
     return KCCQLifeQualityDate
 
+/*
+@QICore6Uplift: Update 'Observation' to 'ObservationScreeningAssessment'
+*/
 define "Date KCCQ Total Assessment Completed":
   ( ( [Observation: "Overall summary score [KCCQ]"] ).isAssessmentPerformed ( ) ) KCCQSummaryScore
     let KCCQSummaryScoreDate: date from start of KCCQSummaryScore.effective.toInterval ( )
