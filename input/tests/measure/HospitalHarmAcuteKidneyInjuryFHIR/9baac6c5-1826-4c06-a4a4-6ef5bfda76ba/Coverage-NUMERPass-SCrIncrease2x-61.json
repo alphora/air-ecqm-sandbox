@@ -1,0 +1,25 @@
+{
+  "resourceType": "Coverage",
+  "id": "NUMERPass-SCrIncrease2x-61",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage" ]
+  },
+  "status": "active",
+  "type": {
+    "coding": [ {
+      "system": "https://nahdo.org/sopt",
+      "version": "9.2",
+      "code": "211",
+      "display": "Medicaid HMO"
+    } ]
+  },
+  "beneficiary": {
+    "reference": "Patient/9baac6c5-1826-4c06-a4a4-6ef5bfda76ba"
+  },
+  "period": {
+    "start": "2023-12-01T00:00:00+00:00"
+  },
+  "payor": [ {
+    "reference": "Organization/NUMERPass-SCrIncrease2x-98"
+  } ]
+}

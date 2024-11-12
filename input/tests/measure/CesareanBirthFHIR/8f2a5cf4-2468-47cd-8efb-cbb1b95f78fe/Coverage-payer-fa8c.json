@@ -1,0 +1,24 @@
+{
+  "resourceType": "Coverage",
+  "id": "payer-fa8c",
+  "status": "active",
+  "type": {
+    "coding": [ {
+      "system": "http://www.nlm.nih.gov/research/umls/sop",
+      "version": "9.2",
+      "code": "1",
+      "display": "MEDICARE",
+      "userSelected": true
+    } ]
+  },
+  "beneficiary": {
+    "reference": "Patient/8f2a5cf4-2468-47cd-8efb-cbb1b95f78fe"
+  },
+  "period": {
+    "start": "2025-11-28T08:00:00.000Z",
+    "end": "2025-11-30T08:15:00.000Z"
+  },
+  "payor": [ {
+    "reference": "Organization/123456"
+  } ]
+}

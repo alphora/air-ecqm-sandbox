@@ -1,0 +1,96 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "accb9c08-03ca-48a7-bfac-d37b290f2173",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "3f664d8b-1993-4f5b-a5bf-5db0e1176b2a-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "aadbfade-4898-4931-9e11-e5d7ba64ab27"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#3f664d8b-1993-4f5b-a5bf-5db0e1176b2a-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Patient receives Ticagrelor day after IP start at 1159 pm. No ED. No Obs. Testing Day of operator with HospitalizationWithObservation function.\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/AntithromboticTherapyByEndofHospitalDay2FHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exception",
+          "display": "Denominator Exception"
+        } ]
+      },
+      "count": 1
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/aadbfade-4898-4931-9e11-e5d7ba64ab27"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c954892b848462de0ae6215"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationAdministration/5de6c3865b87f90000eaf277"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5e20a36f1c76ba6c5896ec02"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/ischemic-stroke-9f09"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  } ]
+}

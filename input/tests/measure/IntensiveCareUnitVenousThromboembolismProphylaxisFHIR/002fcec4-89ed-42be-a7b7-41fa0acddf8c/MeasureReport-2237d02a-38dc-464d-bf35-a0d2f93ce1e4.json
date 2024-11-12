@@ -1,0 +1,106 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "2237d02a-38dc-464d-bf35-a0d2f93ce1e4",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "a2906191-5554-4ead-9847-f5d8295100a2-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "002fcec4-89ed-42be-a7b7-41fa0acddf8c"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#a2906191-5554-4ead-9847-f5d8295100a2-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": " Patient has 2 encounters, one in DENEX due to CMO and another pass Numerator \n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/IntensiveCareUnitVenousThromboembolismProphylaxisFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 2
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 2
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exception",
+          "display": "Denominator Exception"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/002fcec4-89ed-42be-a7b7-41fa0acddf8c"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5ce80971b848467c29eaf2c6"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5ce80971b848467c29eaf2c7"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5ce80971b848467c29eaf2c8"
+  }, {
+    "reference": "https://madie.cms.gov/ServiceRequest/5ce80971b848467c29eaf2cb"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5fa041081c76ba66d995910e"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationAdministration/5ce80971b848467c29eaf2ca"
+  }, {
+    "reference": "https://madie.cms.gov/Location/intensive-care-unit-0f90"
+  }, {
+    "reference": "https://madie.cms.gov/Location/Location-1"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

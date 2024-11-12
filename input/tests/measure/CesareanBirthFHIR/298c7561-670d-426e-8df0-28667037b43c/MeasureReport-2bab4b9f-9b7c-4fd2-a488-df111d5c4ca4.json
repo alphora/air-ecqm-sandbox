@@ -1,0 +1,99 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "2bab4b9f-9b7c-4fd2-a488-df111d5c4ca4",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "d762e309-8e0a-4e63-b108-ab09fecbb2da-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "298c7561-670d-426e-8df0-28667037b43c"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#d762e309-8e0a-4e63-b108-ab09fecbb2da-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Pt is 27 years of age,  encounter dx delivery of singleton, gravida=1red dt/time less than 42 weeks prior to delivery.  Both the LAST Est Deliv and the LAST Time of Deliv are NULL. However, previous EDD and Time of Del meet."
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/CesareanBirthFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/298c7561-670d-426e-8df0-28667037b43c"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5e6165403e992300009b6c80"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5e8a4fd5ae28560000469f52"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5e8a568dae2856000046a3cf"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5e9466d10f84f00000279c65"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5e946af80f84f00000279e53"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5d014eb2b84846087238056f"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/5d014eb2b848460872380570"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/delivery-of-singleton-776d"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/1"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

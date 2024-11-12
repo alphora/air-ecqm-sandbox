@@ -1,0 +1,100 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "6e560c2b-84fa-4500-a1f8-1e24ab911b62",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "468f7f80-fac5-49b0-bc41-2e94129bb94b-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "ee2d3d5b-7bda-4fae-b893-aff7f4ac163b"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#468f7f80-fac5-49b0-bc41-2e94129bb94b-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Rivaroxaban VTE Prophylaxis administered 2 day after neuraxial anesthesia which procedure ends 1 day after ICU Adm date\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/IntensiveCareUnitVenousThromboembolismProphylaxisFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exception",
+          "display": "Denominator Exception"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/ee2d3d5b-7bda-4fae-b893-aff7f4ac163b"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5ce80970b848467c29eaf287"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5fa0410a1c76ba66d9959135"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationAdministration/5e27196ab9a54c000051d56c"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/5ce80970b848467c29eaf28a"
+  }, {
+    "reference": "https://madie.cms.gov/Location/intensive-care-unit-c779"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

@@ -111,12 +111,7 @@ context Patient
 /*
 @description: Returns true if the given condition has a clinical status of active, recurrence, or relapse
 */
-
-/*
-@QICore6Uplift: Update below function to incorporate a choice of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns as the parameter
-*/ 
-
-define fluent function isActive(condition Condition):
+define fluent function isActive(condition Choice<"ConditionEncounterDiagnosis", "ConditionProblemsHealthConcerns">):
   condition.clinicalStatus ~ "active"
     or condition.clinicalStatus ~ "recurrence"
     or condition.clinicalStatus ~ "relapse"
@@ -124,12 +119,7 @@ define fluent function isActive(condition Condition):
 /*
 @description: Returns true if the given condition has the given category
 */
-
-/*
-@QICore6Uplift: Update below function to incorporate a choice of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns as the parameter
-*/ 
-
-define fluent function hasCategory(condition Condition, category Code):
+define fluent function hasCategory(condition Choice<"ConditionEncounterDiagnosis", "ConditionProblemsHealthConcerns">, category Code):
   exists (condition.category C
     where C ~ category
   )
@@ -137,7 +127,7 @@ define fluent function hasCategory(condition Condition, category Code):
 /*
 @description: Returns true if the given condition is a problem list item.
 */
-define fluent function isProblemListItem(condition Condition):
+define fluent function isProblemListItem(condition Choice<"ConditionEncounterDiagnosis", "ConditionProblemsHealthConcerns">):
   exists (condition.category C
     where C ~ "problem-list-item"
   )
@@ -145,12 +135,7 @@ define fluent function isProblemListItem(condition Condition):
 /*
 @description: Returns true if the given condition is an encounter diagnosis
 */
-
-/*
-@QICore6Uplift: Update below function with a parameter that includes ConditionEncounterDiagnosis
-*/ 
-
-define fluent function isEncounterDiagnosis(condition Condition):
+define fluent function isEncounterDiagnosis(condition Choice<"ConditionEncounterDiagnosis", "ConditionProblemsHealthConcerns">):
   exists (condition.category C
     where C ~ "encounter-diagnosis"
   )
@@ -158,12 +143,7 @@ define fluent function isEncounterDiagnosis(condition Condition):
 /*
 @description: Returns true if the given condition is a health concern
 */
-
-/*
-@QICore6Uplift: Update below function with a parameter that includes ConditionProblemsHealthConcerns
-*/ 
-
-define fluent function isHealthConcern(condition Condition):
+define fluent function isHealthConcern(condition Choice<"ConditionEncounterDiagnosis", "ConditionProblemsHealthConcerns">):
   exists (condition.category C
     where C ~ "health-concern"
   )
@@ -171,7 +151,13 @@ define fluent function isHealthConcern(condition Condition):
 /*
 @description: Returns true if the given observation has the given category
 */
-define fluent function hasCategory(observation Observation, category Code):
+define fluent function hasCategory(observation Choice<"SimpleObservation", 
+"ObservationCancelled",
+"NonPatientObservation",
+"LaboratoryResultObservation",
+"ObservationClinicalResult",
+"ObservationScreeningAssessment">, 
+category Code):
   exists (observation.category C
     where C ~ category
   )
@@ -179,7 +165,12 @@ define fluent function hasCategory(observation Observation, category Code):
 /*
 @description: Returns true if the given observation is a social history observation
 */
-define fluent function isSocialHistory(observation Observation):
+define fluent function isSocialHistory(observation Choice<"SimpleObservation", 
+"ObservationCancelled",
+"NonPatientObservation",
+"LaboratoryResultObservation",
+"ObservationClinicalResult",
+"ObservationScreeningAssessment">):
   exists (observation.category C
     where C ~ "social-history"
   )
@@ -187,7 +178,12 @@ define fluent function isSocialHistory(observation Observation):
 /*
 @description: Returns true if the given observation is a vital sign
 */
-define fluent function isVitalSign(observation Observation):
+define fluent function isVitalSign(observation Choice<"SimpleObservation", 
+"ObservationCancelled",
+"NonPatientObservation",
+"LaboratoryResultObservation",
+"ObservationClinicalResult",
+"ObservationScreeningAssessment">):
   exists (observation.category C
     where C ~ "vital-signs"
   )
@@ -195,7 +191,12 @@ define fluent function isVitalSign(observation Observation):
 /*
 @description: Returns true if the given observation is an imaging observation
 */
-define fluent function isImaging(observation Observation):
+define fluent function isImaging(observation Choice<"SimpleObservation", 
+"ObservationCancelled",
+"NonPatientObservation",
+"LaboratoryResultObservation",
+"ObservationClinicalResult",
+"ObservationScreeningAssessment">):
   exists (observation.category C
     where C ~ "imaging"
   )
@@ -203,7 +204,12 @@ define fluent function isImaging(observation Observation):
 /*
 @description: Returns true if the given observation is a laboratory observation
 */
-define fluent function isLaboratory(observation Observation):
+define fluent function isLaboratory(observation Choice<"SimpleObservation", 
+"ObservationCancelled",
+"NonPatientObservation",
+"LaboratoryResultObservation",
+"ObservationClinicalResult",
+"ObservationScreeningAssessment">):
   exists (observation.category C
     where C ~ "laboratory"
   )
@@ -211,7 +217,12 @@ define fluent function isLaboratory(observation Observation):
 /*
 @description: REturns true if the given observation is a procedure observation
 */
-define fluent function isProcedure(observation Observation):
+define fluent function isProcedure(observation Choice<"SimpleObservation", 
+"ObservationCancelled",
+"NonPatientObservation",
+"LaboratoryResultObservation",
+"ObservationClinicalResult",
+"ObservationScreeningAssessment">):
   exists (observation.category C
     where C ~ "procedure"
   )
@@ -219,7 +230,12 @@ define fluent function isProcedure(observation Observation):
 /*
 @description: Returns true if the given observation is a survey observation
 */
-define fluent function isSurvey(observation Observation):
+define fluent function isSurvey(observation Choice<"SimpleObservation", 
+"ObservationCancelled",
+"NonPatientObservation",
+"LaboratoryResultObservation",
+"ObservationClinicalResult",
+"ObservationScreeningAssessment">):
   exists (observation.category C
     where C ~ "survey"
   )
@@ -227,7 +243,12 @@ define fluent function isSurvey(observation Observation):
 /*
 @description: Returns true if the given observation is an exam observation
 */
-define fluent function isExam(observation Observation):
+define fluent function isExam(observation Choice<"SimpleObservation", 
+"ObservationCancelled",
+"NonPatientObservation",
+"LaboratoryResultObservation",
+"ObservationClinicalResult",
+"ObservationScreeningAssessment">):
   exists (observation.category C
     where C ~ "exam"
   )
@@ -235,7 +256,12 @@ define fluent function isExam(observation Observation):
 /*
 @description: Returns true if the given observation is a therapy observation
 */
-define fluent function isTherapy(observation Observation):
+define fluent function isTherapy(observation Choice<"SimpleObservation", 
+"ObservationCancelled",
+"NonPatientObservation",
+"LaboratoryResultObservation",
+"ObservationClinicalResult",
+"ObservationScreeningAssessment">):
   exists (observation.category C
     where C ~ "therapy"
   )
@@ -243,7 +269,12 @@ define fluent function isTherapy(observation Observation):
 /*
 @description: Returns true if the given observation is an activity observation
 */
-define fluent function isActivity(observation Observation):
+define fluent function isActivity(observation Choice<"SimpleObservation", 
+"ObservationCancelled",
+"NonPatientObservation",
+"LaboratoryResultObservation",
+"ObservationClinicalResult",
+"ObservationScreeningAssessment">):
   exists (observation.category C
     where C ~ "activity"
   )
@@ -380,12 +411,7 @@ which the abatement occurred. The result is an interval from the date the patien
 before one year later than the date the patient turned the ending age of the quantity interval.
 @deprecated: This function is deprecated. Use the fluent function `abatementInterval()` instead.
 */
-
-/*
-@QICore6Uplift: Update below function to incorporate a choice of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns as the parameter
-*/ 
-
-define function ToAbatementInterval(condition Condition):
+define function ToAbatementInterval(condition Choice<"ConditionEncounterDiagnosis", "ConditionProblemsHealthConcerns">):
 	if condition.abatement is DateTime then
 	  Interval[condition.abatement as DateTime, condition.abatement as DateTime]
 	else if condition.abatement is Quantity then
@@ -408,12 +434,7 @@ If the abatement is represented as a Quantity Interval, the quantities are expec
 which the abatement occurred. The result is an interval from the date the patient turned the starting age of the quantity interval, and ending immediately
 before one year later than the date the patient turned the ending age of the quantity interval.
 */
-
-/*
-@QICore6Uplift: Update below function to incorporate a choice of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns as the parameter
-*/ 
-
-define fluent function abatementInterval(condition Condition):
+define fluent function abatementInterval(condition Choice<"ConditionEncounterDiagnosis", "ConditionProblemsHealthConcerns">):
 	if condition.abatement is DateTime then
 	  Interval[condition.abatement as DateTime, condition.abatement as DateTime]
 	else if condition.abatement is Quantity then
@@ -433,12 +454,7 @@ onset to abatement as specified in the given Condition. If the condition is acti
 interval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary.
 @deprecated: This function is deprecated. Use the `prevalenceInterval()` fluent function instead
 */
-
-/*
-@QICore6Uplift: Update below function to incorporate a choice of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns as the parameter
-*/ 
-
-define function ToPrevalenceInterval(condition Condition):
+define function ToPrevalenceInterval(condition Choice<"ConditionEncounterDiagnosis", "ConditionProblemsHealthConcerns">):
 if condition.clinicalStatus ~ "active"
   or condition.clinicalStatus ~ "recurrence"
   or condition.clinicalStatus ~ "relapse" then
@@ -456,12 +472,7 @@ else
 onset to abatement as specified in the given Condition. If the condition is active, or has an abatement date the resulting 
 interval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary.
 */
-
-/*
-@QICore6Uplift: Update below function to incorporate a choice of ConditionEncounterDiagnosis and ConditionProblemsHealthConcerns as the parameter
-*/ 
-
-define fluent function prevalenceInterval(condition Condition):
+define fluent function prevalenceInterval(condition Choice<"ConditionEncounterDiagnosis", "ConditionProblemsHealthConcerns">):
 if condition.clinicalStatus ~ "active"
   or condition.clinicalStatus ~ "recurrence"
   or condition.clinicalStatus ~ "relapse" then
