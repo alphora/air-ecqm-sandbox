@@ -56,7 +56,8 @@ define "Heart Failure Outpatient Encounter":
 */ 
 define "Has Heart Transplant Complications":
   exists ( 
-          [ConditionEncounterDiagnosis: "Heart Transplant Complications"] HeartTransplantComplications
+          ([ConditionEncounterDiagnosis: "Heart Transplant Complications"]
+            union [ConditionProblemsHealthConcerns: "Heart Transplant Complications"]) HeartTransplantComplications
             let diagnosisStart: Coalesce( HeartTransplantComplications.recordedDate, start of HeartTransplantComplications.prevalenceInterval() )  
             with "Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
               such that diagnosisStart before end of ModerateOrSevereLVSDHFOutpatientEncounter.period
@@ -79,7 +80,8 @@ define "Has Left Ventricular Assist Device":
 */ 
 define "Has Left Ventricular Assist Device Complications":
   exists (
-            [ConditionEncounterDiagnosis: "Left Ventricular Assist Device Complications"] LVADComplications
+            ([ConditionEncounterDiagnosis: "Left Ventricular Assist Device Complications"]
+              union [ConditionProblemsHealthConcerns: "Left Ventricular Assist Device Complications"]) LVADComplications
               let diagnosisStart: Coalesce( LVADComplications.recordedDate, start of LVADComplications.prevalenceInterval() ) 
               with "Heart Failure Outpatient Encounter with History of Moderate or Severe LVSD" ModerateOrSevereLVSDHFOutpatientEncounter
                 such that diagnosisStart before end of ModerateOrSevereLVSDHFOutpatientEncounter.period  
@@ -135,12 +137,15 @@ define "Moderate or Severe LVSD Findings":
         and EjectionFraction.status in {'final', 'amended', 'corrected'} 
    )
    union ( 
-           ( [ConditionProblemsHealthConcerns: "Moderate or Severe LVSD"]
-             union ( [ConditionProblemsHealthConcerns: "Left ventricular systolic dysfunction (disorder)"] LVSDDiagnosis
-                       where LVSDDiagnosis.severity in "Moderate or Severe" )
-            ) ModerateOrSevereLVSD   
+          ( ([ConditionProblemsHealthConcerns: "Moderate or Severe LVSD"]
+            union [ConditionEncounterDiagnosis: "Moderate or Severe LVSD"]
+            union [ConditionProblemsHealthConcerns: "Left ventricular systolic dysfunction (disorder)"]
+            union [ConditionEncounterDiagnosis: "Left ventricular systolic dysfunction (disorder)"]
+            ) LVSDDiagnosis
+              where LVSDDiagnosis.severity in "Moderate or Severe" 
+          ) ModerateOrSevereLVSD   
             where ModerateOrSevereLVSD.isConfirmedActiveDiagnosis()
-          )
+        ) 
 
 /*
 @description: Returns true if the patient meets the following criteria:
