@@ -124,7 +124,7 @@
       "resourceType": "Condition",
       "id": "Condition-12",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ]
       },
       "clinicalStatus": {
         "coding": [ {
@@ -161,7 +161,7 @@
       "resourceType": "Observation",
       "id": "Observation-34",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment" ]
       },
       "status": "final",
       "category": [ {
@@ -198,7 +198,7 @@
       "resourceType": "Observation",
       "id": "Observation-35",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment" ]
       },
       "status": "final",
       "category": [ {
@@ -235,7 +235,7 @@
       "resourceType": "Observation",
       "id": "Observation-36",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment" ]
       },
       "status": "final",
       "category": [ {
@@ -272,7 +272,7 @@
       "resourceType": "Observation",
       "id": "Observation-37",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment" ]
       },
       "status": "final",
       "category": [ {

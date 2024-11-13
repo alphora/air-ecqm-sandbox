@@ -1,0 +1,87 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "cc559cb1-14dd-4085-869c-607ba4e2780f",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "ae587a33-511a-4841-b192-be8e4e9e04cf-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "26b12d5b-823a-4a45-9f1d-d52aa26d27a7"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#ae587a33-511a-4841-b192-be8e4e9e04cf-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Inpatient enc first day of MP. Opioid category \"inpatient\" (consumed in inpatient setting) and Benzo prescribed at discharge. "
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/SafeUseofOpioidsConcurrentPrescribingFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/26b12d5b-823a-4a45-9f1d-d52aa26d27a7"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/encounter-inpatient-53ef"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationRequest/schedule-ii-iii-opioid-medications-53f1"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationRequest/schedule-iv-benzodiazepines-1f02"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/1"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  } ]
+}

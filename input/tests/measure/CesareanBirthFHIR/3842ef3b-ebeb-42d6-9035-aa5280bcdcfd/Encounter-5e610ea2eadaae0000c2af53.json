@@ -1,0 +1,31 @@
+{
+  "resourceType": "Encounter",
+  "id": "5e610ea2eadaae0000c2af53",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ]
+  },
+  "status": "finished",
+  "class": {
+    "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+    "code": "IMP",
+    "display": "inpatient encounter"
+  },
+  "type": [ {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "183452005"
+    } ]
+  } ],
+  "subject": {
+    "reference": "Patient/3842ef3b-ebeb-42d6-9035-aa5280bcdcfd"
+  },
+  "period": {
+    "start": "2025-06-08T08:00:00.000Z",
+    "end": "2025-06-10T08:15:00.000Z"
+  },
+  "diagnosis": [ {
+    "condition": {
+      "reference": "Condition/delivery-of-singleton-09a3"
+    }
+  } ]
+}

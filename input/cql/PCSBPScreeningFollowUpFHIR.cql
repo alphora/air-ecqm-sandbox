@@ -1,6 +1,7 @@
 library PCSBPScreeningFollowUpFHIR version '0.2.000'
 
-using QICore version '4.1.1'
+//@QICore6Uplift: Add "using USCore version '6.1.0'"
+using QICore version '6.0.0'
 
 include CQMCommon version '2.2.000' called CQMCommon
 include FHIRHelpers version '4.4.000' called FHIRHelpers
@@ -44,6 +45,7 @@ define "Initial Population":
 define "Denominator":
   "Initial Population"
 
+//@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
 define "Denominator Exclusions":
   "Qualifying Encounter during Measurement Period" QualifyingEncounter
     with [Condition: "Diagnosis of Hypertension"] Hypertension
@@ -159,6 +161,7 @@ define "Encounter with Elevated Blood Pressure Reading SBP 120 to 129 AND DBP le
           such that Referral.authoredOn during day of ElevatedEncounter.period
     )
 
+//@QICore6Uplift: Update observation-bp to USCoreBloodPressureProfile
 define "Encounter with Normal Blood Pressure Reading":
   "Qualifying Encounter during Measurement Period" QualifyingEncounter
     let EncounterLastBP: Last(["observation-bp"] BloodPressure
@@ -169,6 +172,7 @@ define "Encounter with Normal Blood Pressure Reading":
     where EncounterLastBP.SystolicBP.value in Interval[1 'mm[Hg]', 120 'mm[Hg]' )
       and EncounterLastBP.DiastolicBP.value in Interval[1 'mm[Hg]', 80 'mm[Hg]' )
 
+//@QICore6Uplift: Update observation-bp to USCoreBloodPressureProfile
 define "Encounter with Elevated Blood Pressure Reading SBP 120 to 129 AND DBP less than 80":
   "Qualifying Encounter during Measurement Period" QualifyingEncounter
     let EncounterLastBP: Last(["observation-bp"] BloodPressure
@@ -180,6 +184,7 @@ define "Encounter with Elevated Blood Pressure Reading SBP 120 to 129 AND DBP le
         and EncounterLastBP.DiastolicBP.value in Interval[1 'mm[Hg]', 80 'mm[Hg]' )
     )
 
+//@QICore6Uplift: Update observation-bp to USCoreBloodPressureProfile
 define "Encounter with Second Hypertensive Reading SBP Greater than or Equal to 140 OR DBP Greater than or Equal to 90":
   ( "Qualifying Encounter during Measurement Period" QualifyingEncounter
       let EncounterLastBP: Last(["observation-bp"] BloodPressure
@@ -196,6 +201,7 @@ define "Encounter with Second Hypertensive Reading SBP Greater than or Equal to 
         and ( exists "Encounter with Hypertensive Reading Within Year Prior" )
   )
 
+//@QICore6Uplift: Update observation-bp to USCoreBloodPressureProfile
 define "Encounter with Second Hypertensive Reading SBP 130 to 139 OR DBP 80 to 89":
   ( "Qualifying Encounter during Measurement Period" QualifyingEncounter
       let EncounterLastBP: Last(["observation-bp"] BloodPressure
@@ -213,6 +219,7 @@ define "Encounter with Second Hypertensive Reading SBP 130 to 139 OR DBP 80 to 8
         and ( exists "Encounter with Hypertensive Reading Within Year Prior" )
   )
 
+//@QICore6Uplift: Update observation-bp to USCoreBloodPressureProfile
 define "Encounter with First Hypertensive Reading SBP Greater than or Equal to 130 OR DBP Greater than or Equal to 80":
   ( "Qualifying Encounter during Measurement Period" QualifyingEncounter
       let EncounterLastBP: Last(["observation-bp"] BloodPressure
@@ -229,6 +236,7 @@ define "Encounter with First Hypertensive Reading SBP Greater than or Equal to 1
   )
     except "Encounter with Hypertensive Reading Within Year Prior"
 
+//@QICore6Uplift: Update observation-bp to USCoreBloodPressureProfile
 define "Encounter with Hypertensive Reading Within Year Prior":
   ( "Qualifying Encounter during Measurement Period" QualifyingEncounter
       let EncounterLastBP: Last(["observation-bp"] BloodPressure
@@ -253,6 +261,7 @@ define "NonPharmacological Intervention Not Ordered":
     where NonPharmIntervention.reasonRefused in "Patient Declined"
       and NonPharmIntervention.status = 'completed'
 
+//@QICore6Uplift: Update ObservationNotDone to ObservationCancelled
 define "Encounter with Medical Reason for Not Obtaining or Patient Declined Blood Pressure Measurement":
   "Qualifying Encounter during Measurement Period" QualifyingEncounter
     with ( [ObservationNotDone: code ~ "Systolic blood pressure"]

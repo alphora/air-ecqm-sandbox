@@ -1,6 +1,6 @@
 library AdultOutpatientEncounters version '4.11.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
@@ -19,11 +19,11 @@ parameter "Measurement Period" Interval<DateTime>
 context Patient
 
 define "Qualifying Encounters":
-  ( ( [Encounter: "Office Visit"]
-    union [Encounter: "Annual Wellness Visit"]
-    union [Encounter: "Preventive Care Services Established Office Visit, 18 and Up"]
-    union [Encounter: "Preventive Care Services Initial Office Visit, 18 and Up"]
-    union [Encounter: "Home Healthcare Services"]
-    union [Encounter: "Virtual Encounter"]
-    union [Encounter: "Telephone Visits"] ).isEncounterPerformed() ) ValidEncounter
+  ( ( [Encounter: type in "Office Visit"]
+    union [Encounter: type in "Annual Wellness Visit"]
+    union [Encounter: type in "Preventive Care Services Established Office Visit, 18 and Up"]
+    union [Encounter: type in "Preventive Care Services Initial Office Visit, 18 and Up"]
+    union [Encounter: type in "Home Healthcare Services"]
+    union [Encounter: type in "Virtual Encounter"]
+    union [Encounter: type in "Telephone Visits"] ).isEncounterPerformed() ) ValidEncounter
     where ValidEncounter.period.toInterval() during day of "Measurement Period"

@@ -1,0 +1,62 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "9f219314-1341-4b4f-924d-9896872903e8",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "8ff59f01-37b9-471d-8061-46165f52916e-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "942960c8-37da-492d-85c8-0271d7b655b2"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#8ff59f01-37b9-471d-8061-46165f52916e-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Patient has 2 weight exams.\nOne exam occurred 1 minute before encounter, one exam occurred 1 minute after encounter started. "
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/HybridHospitalWideReadmissionFHIR",
+  "period": {
+    "start": "2025-07-01",
+    "end": "2026-06-30"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/942960c8-37da-492d-85c8-0271d7b655b2"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5dc2dc91831f330000d7437b"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5f98f60ba916680000fb70da"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5b562b10b84846558c53c18f"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5b562b10b84846558c53c191"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

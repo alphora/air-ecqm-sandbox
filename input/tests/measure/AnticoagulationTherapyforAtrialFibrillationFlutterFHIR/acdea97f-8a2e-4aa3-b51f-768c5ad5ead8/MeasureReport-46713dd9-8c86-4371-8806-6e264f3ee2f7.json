@@ -1,0 +1,100 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "46713dd9-8c86-4371-8806-6e264f3ee2f7",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "aa34098f-a5c3-4154-aa3b-ea4c0d3534b9-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "acdea97f-8a2e-4aa3-b51f-768c5ad5ead8"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#aa34098f-a5c3-4154-aa3b-ea4c0d3534b9-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "No discharge status indicated. Testing DENEX logic (intentional fail) with disposition to ICD\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/AnticoagulationTherapyforAtrialFibrillationFlutterFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exception",
+          "display": "Denominator Exception"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/acdea97f-8a2e-4aa3-b51f-768c5ad5ead8"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c953f96b848462de0ae4071"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c953f96b848462de0ae4072"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5f2c53d01c76ba5c996057a4"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/5c953f96b848462de0ae4074"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/ischemic-stroke-195a"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

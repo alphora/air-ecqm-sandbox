@@ -1,0 +1,89 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "52ca6ecc-0a69-401f-95d9-f8838a174eab",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "74d600ec-b259-4bba-9838-4c2e20367f36-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "0485e795-98c7-433b-8c70-20a888f5d9d0"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#74d600ec-b259-4bba-9838-4c2e20367f36-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "IP Encounter with at least one creatinine after 48 hours. Meets denominator criteria - must have at least 1 creatinine after first 48 hours.\nVScode: Denominator=[Encounter(id=DENOMPass-CreatinineAfter48Hours-01)],  Denominator Exclusion=[]"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/HospitalHarmAcuteKidneyInjuryFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/0485e795-98c7-433b-8c70-20a888f5d9d0"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/DENOMPass-CreatinineAfter48Hours-01"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/DENOMPass-CreatinineAfter48Hours-17"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/DENOMPass-CreatinineAfter48Hours-15"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/DENOMPass-CreatinineAfter48Hours-16"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/DENOMPass-CreatinineAfter48Hours-61"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/DENOMPass-CreatinineAfter48Hours-98"
+  } ]
+}

@@ -11,7 +11,7 @@
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><ul><li>Include codes from <a href=\"http://www.snomed.org/\"><code>http://snomed.info/sct</code></a> where concept  is-a  272125009 (Priorities)</li></ul></div>"
   },
   "url": "http://hl7.org/fhir/us/qicore/ValueSet/qicore-priority",
-  "version": "4.1.1",
+  "version": "6.0.0",
   "name": "QICorePriority",
   "title": "SNOMED CT Priorities Codes",
   "status": "draft",
