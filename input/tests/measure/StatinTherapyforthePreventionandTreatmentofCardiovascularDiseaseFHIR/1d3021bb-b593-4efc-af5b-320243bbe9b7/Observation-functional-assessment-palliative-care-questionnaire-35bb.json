@@ -2,7 +2,7 @@
   "resourceType": "Observation",
   "id": "functional-assessment-palliative-care-questionnaire-35bb",
   "meta": {
-    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment" ]
   },
   "status": "amended",
   "category": [ {
