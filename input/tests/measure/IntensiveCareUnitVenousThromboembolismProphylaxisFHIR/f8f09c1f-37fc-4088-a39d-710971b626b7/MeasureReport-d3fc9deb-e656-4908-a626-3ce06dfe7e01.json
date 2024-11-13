@@ -1,0 +1,100 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "d3fc9deb-e656-4908-a626-3ce06dfe7e01",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "4d857bce-bbf3-4bf7-ae02-8ca9130280ce-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "f8f09c1f-37fc-4088-a39d-710971b626b7"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#4d857bce-bbf3-4bf7-ae02-8ca9130280ce-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "meets IPP and Denominator, inpatient visit starts >1 hour after the end of ED visit(Global Hosp without Ed) AND Comfort Measures are performed 1 min before Ed. This case pass DenExcl because CM is on the same day as Adm even ED > 1 hr before Adm\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/IntensiveCareUnitVenousThromboembolismProphylaxisFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exception",
+          "display": "Denominator Exception"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/f8f09c1f-37fc-4088-a39d-710971b626b7"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5ce80971b848467c29eaf2b0"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5ce80971b848467c29eaf2b1"
+  }, {
+    "reference": "https://madie.cms.gov/Procedure/5ce80971b848467c29eaf2b2"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5fa041071c76ba66d99590f6"
+  }, {
+    "reference": "https://madie.cms.gov/Location/intensive-care-unit-7627"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/practitioner-123456"
+  } ]
+}

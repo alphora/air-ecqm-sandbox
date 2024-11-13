@@ -1,0 +1,98 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "ea267333-d161-4d6b-aee4-29717a349fd5",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "28c85879-850a-4f9d-862b-875794174924-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "cc23329d-6635-4347-8669-a98c921f4381"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#28c85879-850a-4f9d-862b-875794174924-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Patient receives INR of 3.6 the day of ED start. ED ends 60 minute before IP on the same day. No Obs. Testing Day of operator with HospitalizationWithObservation function.\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/AntithromboticTherapyByEndofHospitalDay2FHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exception",
+          "display": "Denominator Exception"
+        } ]
+      },
+      "count": 1
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/cc23329d-6635-4347-8669-a98c921f4381"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c954894b848462de0ae6306"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c954894b848462de0ae6307"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/5c954894b848462de0ae6309"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5e20a3711c76ba6c5896ec15"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/ischemic-stroke-9f1e"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  } ]
+}
