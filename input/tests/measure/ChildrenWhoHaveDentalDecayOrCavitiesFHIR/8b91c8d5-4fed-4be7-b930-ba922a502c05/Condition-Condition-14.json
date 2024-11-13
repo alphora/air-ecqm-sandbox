@@ -2,7 +2,7 @@
   "resourceType": "Condition",
   "id": "Condition-14",
   "meta": {
-    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ]
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ]
   },
   "clinicalStatus": {
     "coding": [ {
