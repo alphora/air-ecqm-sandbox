@@ -1,13 +1,18 @@
+/*@QICore6: Update Library and Measures resources and test cases 
+- Condition to ConditionProblemsHealthConcerns
+- Observation to SimpleObservation
+*/
+
 library BreastCancerScreeningFHIR version '0.0.001'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
-include SupplementalDataElements version '3.5.000' called SDE
+include SupplementalDataElements version '3.4.000' called SDE
 include QICoreCommon version '2.1.000' called QICoreCommon
 include AdultOutpatientEncounters version '4.11.000' called AdultOutpatientEncounters
 include Hospice version '6.12.000' called Hospice
-include Status version '1.8.000' called Status
+include Status version '1.6.000' called Status
 include PalliativeCare version '1.11.000' called PalliativeCare
 include AdvancedIllnessandFrailty version '1.16.000' called AIFrailLTCF
 
@@ -57,6 +62,7 @@ define "Denominator Exclusions":
     or AIFrailLTCF."Is Age 66 or Older Living Long Term in a Nursing Home"
     or PalliativeCare."Has Palliative Care in the Measurement Period"
 
+//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Right Mastectomy Diagnosis":
   ( [Condition: "Status Post Right Mastectomy"] RightMastectomyProcedure
     union ( [Condition: "Unilateral Mastectomy, Unspecified Laterality"] UnilateralMastectomyDiagnosis
@@ -70,6 +76,7 @@ define "Right Mastectomy Procedure":
   ( ( [Procedure: "Unilateral Mastectomy Right"] ).isProcedurePerformed ( ) ) UnilateralMastectomyRightPerformed
     where UnilateralMastectomyRightPerformed.performed.toInterval ( ) ends on or before end of "Measurement Period"
 
+//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Left Mastectomy Diagnosis":
   ( [Condition: "Status Post Left Mastectomy"]
     union ( [Condition: "Unilateral Mastectomy, Unspecified Laterality"] UnilateralMastectomyDiagnosis
@@ -83,6 +90,7 @@ define "Left Mastectomy Procedure":
   ( ( [Procedure: "Unilateral Mastectomy Left"] ).isProcedurePerformed ( ) ) UnilateralMastectomyLeftPerformed
     where UnilateralMastectomyLeftPerformed.performed.toInterval ( ) ends on or before end of "Measurement Period"
 
+//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Bilateral Mastectomy Diagnosis":
   [Condition: "History of bilateral mastectomy"] BilateralMastectomyHistory
     where BilateralMastectomyHistory.prevalenceInterval ( ) starts on or before end of "Measurement Period"
@@ -91,6 +99,7 @@ define "Bilateral Mastectomy Procedure":
   ( ( [Procedure: "Bilateral Mastectomy"] ).isProcedurePerformed ( ) ) BilateralMastectomyPerformed
     where BilateralMastectomyPerformed.performed.toInterval ( ) ends on or before end of "Measurement Period"
 
+//@QICore6: Update Observation to SimpleObservation
 define "Numerator":
   exists ( ( ( [Observation: "Mammography"] ).isDiagnosticStudyPerformed ( ) ) Mammogram
       where Mammogram.effective.toInterval ( ) ends during day of Interval["October 1 Two Years Prior to the Measurement Period", end of "Measurement Period"]
