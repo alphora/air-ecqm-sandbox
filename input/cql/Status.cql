@@ -78,12 +78,20 @@ define fluent function isLaboratoryTestOrder(ServiceRequest List<ServiceRequest>
     where S.status in { 'active', 'completed' }
       and S.intent = 'order'        
 
-//Diagnostic Study, Performed
-define function "Final Observation"(Obs List<Observation>):
+define function "Final Observation"(Obs List<Choice<"SimpleObservation",
+"ObservationCancelled",
+"NonPatientObservation",
+"LaboratoryResultObservation",
+"ObservationClinicalResult", 
+"ObservationScreeningAssessment">>):
   Obs O
     where O.status in {'final', 'amended', 'corrected' }
 
-define fluent function isDiagnosticStudyPerformed(Obs List<Observation>):
+//Diagnostic Study, Performed
+define fluent function isDiagnosticStudyPerformed(Obs List<Choice<"SimpleObservation", 
+"LaboratoryResultObservation", 
+"ObservationClinicalResult",
+"ObservationScreeningAssessment">>):
   Obs O
     where O.status in {'final', 'amended', 'corrected' }
     
@@ -129,14 +137,7 @@ define fluent function isProcedurePerformed(Proc List<Procedure>):
     where P.status ~ 'completed'
 
 //Laboratory Test, Performed
-define function "Final Lab Observation"(Obs List<Observation>):
-  Obs O
-    where O.status in { 'final', 'amended', 'corrected' }
-      and exists ( O.category ObservationCategory
-          where ( ObservationCategory ) ~ "laboratory"
-      )
-
-define fluent function isLaboratoryTestPerformed(Obs List<Observation>):
+define fluent function isLaboratoryTestPerformed(Obs List<"LaboratoryResultObservation">):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       and exists ( O.category ObservationCategory
@@ -175,14 +176,7 @@ define fluent function isMedicationOrder(MedicationRequest List<MedicationReques
       and M.intent = 'order'
 
 //Physical Exam, Performed
-define function "Final Exam Observation"(Obs List<Observation>):
-  Obs O
-    where O.status in { 'final', 'amended', 'corrected' }
-      and exists ( O.category ObservationCategory
-          where ( ObservationCategory ) ~ "exam"
-      )
-
-define fluent function isPhysicalExamPerformed(Obs List<Observation>):
+define fluent function isPhysicalExamPerformed(Obs List<Choice<"SimpleObservation","ObservationClinicalResult">>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       and exists ( O.category ObservationCategory
@@ -228,6 +222,9 @@ define function "Initial or Final Observation"(Obs List<Observation>):
   Obs O
     where O.status in { 'preliminary', 'final', 'amended', 'corrected' }
     
-define fluent function isSymptom(Obs List<Observation>):
+define fluent function isSymptom(Obs List<Choice<"SimpleObservation", 
+"LaboratoryResultObservation", 
+"ObservationClinicalResult",
+"ObservationScreeningAssessment">>):
   Obs O
     where O.status in { 'preliminary', 'final', 'amended', 'corrected' }

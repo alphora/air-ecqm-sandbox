@@ -1,4 +1,4 @@
-library FHIRHelpers version '4.4.000'
+ library FHIRHelpers version '4.4.000'
 
 using FHIR version '4.0.1'
 
@@ -10,13 +10,14 @@ boundary of the resulting interval will be open (meaning the start of the interv
 is unknown, as opposed to interpreted as the beginning of time).
 */
 define function ToInterval(period FHIR.Period):
-    if period is null then
+    if period."start" != null and period."end" != null then
+        Interval[period."start".value, period."end".value]
+    else if period."start" != null and period."end" is null then
+        Interval[period."start".value, period."start".value]
+    else if period."end" != null and period."start" is null then
+        Interval[period."end".value, period."end".value]
+    else 
         null
-    else
-        if period."start" is null then
-            Interval(period."start".value, period."end".value]
-        else
-            Interval[period."start".value, period."end".value]
 
 /*
 @description: Converts a UCUM definite duration unit to a CQL calendar duration
@@ -87,32 +88,20 @@ comparator is greater or equal, the resulting interval will start with a closed 
 If the comparator is greatter than, the resulting interval will start with an open boundary on the quantity and end with a closed null boundary.
 If no comparator is specified, the resulting interval will start and end with a closed boundary on the quantity.
 */
-define function ToInterval(quantity FHIR.Quantity):
-    if quantity is null then null else
-        case quantity.comparator.value
-            when '<' then
-                Interval[
-                    null,
-                    ToQuantityIgnoringComparator(quantity)
-                )
-            when '<=' then
-                Interval[
-                    null,
-                    ToQuantityIgnoringComparator(quantity)
-                ]
-            when '>=' then
-                Interval[
-                    ToQuantityIgnoringComparator(quantity),
-                    null
-                ]
-            when '>' then
-                Interval(
-                    ToQuantityIgnoringComparator(quantity),
-                    null
-                ]
-            else
-                Interval[ToQuantity(quantity), ToQuantity(quantity)]
-        end
+define function QuantityToInterval(quantity FHIR.Quantity):
+    if quantity.comparator.value = '<' then
+        Interval[null, ToQuantityIgnoringComparator(quantity))
+    else if quantity.comparator.value = '<=' then
+        Interval[null, ToQuantityIgnoringComparator(quantity)]
+    else if quantity.comparator.value = '>=' then
+        Interval[ToQuantityIgnoringComparator(quantity), null]
+    else if quantity.comparator.value = '>' then
+        Interval(ToQuantityIgnoringComparator(quantity), null]
+    else if quantity.comparator.value is null then 
+        Interval[ToQuantity(quantity), ToQuantity(quantity)]
+    else 
+        null
+       
 
 /*
 @description: Converts the given FHIR [Ratio](https://hl7.org/fhir/datatypes.html#Ratio) value to a CQL Ratio.
@@ -126,11 +115,11 @@ define function ToRatio(ratio FHIR.Ratio):
 /*
 @description: Converts the given FHIR [Range](https://hl7.org/fhir/datatypes.html#Range) value to a CQL Interval of Quantity
 */
-define function ToInterval(range FHIR.Range):
-    if range is null then
-        null
+define function RangeToInterval(range FHIR.Range):
+    if range then
+        Interval[ToQuantity(range.low), ToQuantity(range.high)] 
     else
-        Interval[ToQuantity(range.low), ToQuantity(range.high)]
+        null
 
 /*
 @description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code.
@@ -259,7 +248,7 @@ define function ToValue(value Choice<base64Binary,
       when value is Distance then ToQuantity(value as Distance)
       when value is Duration then ToQuantity(value as Duration)
       when value is Quantity then ToQuantity(value as Quantity)
-      when value is Range then ToInterval(value as Range)
+      when value is Range then RangeToInterval(value as Range)
       when value is Period then ToInterval(value as Period)
       when value is Ratio then ToRatio(value as Ratio)
       else value as Choice<Address,
