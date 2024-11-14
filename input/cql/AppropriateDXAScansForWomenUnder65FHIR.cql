@@ -1,5 +1,6 @@
 library AppropriateDXAScansForWomenUnder65FHIR version '0.2.001'
 
+//@QICore6Uplift: Add "using USCore version '6.1.0'"
 using QICore version '6.0.0'
 using USCore version '6.1.0'
 
@@ -121,6 +122,7 @@ define "First BMI in Measurement Period Less Than or Equal to 20 kg m2":
   "First BMI in Measurement Period" FirstBMI
     where FirstBMI.value as Quantity <= 20 'kg/m2'
 
+//@QICore6Uplift: Update observation-bmi to USCoreBMIProfile
 define "First BMI in Measurement Period":
   First(((["USCoreBMIProfile"]).isObservationBMI()) BMIRatio
       where BMIRatio.effective.toInterval() during "Measurement Period"
@@ -128,6 +130,7 @@ define "First BMI in Measurement Period":
       sort by start of effective.toInterval()
   )
 
+//@QICore6Uplift: Update Observation to ObservationScreeningAssessment
 define "First Average Number of Drinks Assessments Indicating More Than Two Per Day":
   First((([ObservationScreeningAssessment: "Alcoholic drinks per day"]).isAssessmentPerformed()) AverageDrinks
       where start of AverageDrinks.effective.toInterval() during "Measurement Period"
@@ -159,6 +162,7 @@ define "Has Risk Factor Any Time in History Prior to Measurement Period":
       )
   )
 
+//@QICore6Uplift: Update each Condition resource to a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 define "Has Risk Factor Any Time in History or During Measurement Period":
   "Has 90 or More Active Glucocorticoid Medication Days"
     or exists ( [ConditionProblemsHealthConcerns: "Osteoporosis With Current Fracture"]
@@ -258,6 +262,7 @@ define "DXA Scan Order During Measurement Period":
 define "Numerator Exclusion":
   exists "Osteoporosis Fracture Risk Assessment Prior to First DXA Scan"
 
+//@QICore6Uplift: Update each Observation resource to ObservationScreeningAssessment
 define "Osteoporosis Fracture Risk Assessment Prior to First DXA Scan":
   ( ( ( ( [ObservationScreeningAssessment: "Major osteoporotic fracture 10-year probability [Likelihood] Fracture Risk Assessment"] ).isAssessmentPerformed ( ) ) FRAX
       where FRAX.value >= 8.4 '%'

@@ -42,8 +42,9 @@ define "Denominator Exclusions":
 
 //@QICore6Uplift: Update Condition to a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 define "Numerator":
-  exists [Condition: "Dental Caries"] DentalCaries
-    where DentalCaries.prevalenceInterval ( ) overlaps "Measurement Period"
+  exists ([ConditionProblemsHealthConcerns: "Dental Caries"]
+    union [ConditionEncounterDiagnosis: "Dental Caries"]) DentalCaries
+      where DentalCaries.prevalenceInterval ( ) overlaps "Measurement Period"
 
 define "SDE Ethnicity":
   SDE."SDE Ethnicity"
