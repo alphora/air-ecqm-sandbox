@@ -323,7 +323,10 @@ define "Laboratory Test or ECG for Hypertension Not Ordered":
   ( [ServiceNotRequested: code = "12 lead EKG panel"]
     union [ServiceNotRequested: code = "EKG study"]
     union [ServiceNotRequested: "Laboratory Tests for Hypertension"] ) LabECGNotDone
-    where LabECGNotDone.reasonRefused in "Patient Declined"
+    where exists(LabECGNotDone.extension E
+      where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-doNotPerformReason' 
+      and E.value as Code in "Patient Declined"
+    )
 
 define "SDE Ethnicity":
   SDE."SDE Ethnicity"
