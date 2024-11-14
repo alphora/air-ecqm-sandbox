@@ -252,10 +252,7 @@ define "NonPharmacological Intervention Not Ordered":
     union [ServiceNotRequested: "Recommendation to Increase Physical Activity"]
     union [ServiceNotRequested: "Referral or Counseling for Alcohol Consumption"] ) NonPharmIntervention
       where NonPharmIntervention.status = 'completed'
-        and exists(NonPharmIntervention.extension E
-          where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-doNotPerformReason' 
-          and E.value as Code in "Patient Declined"
-        )
+        and NonPharmIntervention.reasonRefused in "Patient Declined"
 
 define "Encounter with Medical Reason for Not Obtaining or Patient Declined Blood Pressure Measurement":
   "Qualifying Encounter during Measurement Period" QualifyingEncounter
@@ -263,11 +260,8 @@ define "Encounter with Medical Reason for Not Obtaining or Patient Declined Bloo
       union [ObservationCancelled: code ~ "Diastolic blood pressure"] ) NoBPScreen
       such that NoBPScreen.issued during day of QualifyingEncounter.period
         and NoBPScreen.status = 'cancelled'
-        and exists(NoBPScreen.extension E 
-          where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-notDoneReason'
-          and (E.value as Code in "Patient Declined"
-            or E.value as Code in "Medical Reason"
-          )
+        and ( NoBPScreen.notDoneReason in "Patient Declined"
+          or NoBPScreen.notDoneReason in "Medical Reason"
         )
 
 define "Encounter with Order for Hypertension Follow Up Declined by Patient":
@@ -276,10 +270,7 @@ define "Encounter with Order for Hypertension Follow Up Declined by Patient":
           union [ServiceNotRequested: "Follow Up Within 6 Months"] ) ElevatedBPDeclinedInterventions
           such that ElevatedBPDeclinedInterventions.authoredOn during day of ElevatedBPEncounter.period
             and ElevatedBPDeclinedInterventions.status = 'completed'
-            and exists(ElevatedBPDeclinedInterventions.extension E
-              where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-doNotPerformReason' 
-              and E.value as Code in "Patient Declined"
-            )
+            and ElevatedBPDeclinedInterventions.reasonRefused in "Patient Declined"
     )
       union ( "Encounter with Elevated Blood Pressure Reading SBP 120 to 129 AND DBP less than 80" ElevatedBPEncounter
           with "NonPharmacological Intervention Not Ordered" NotOrdered
@@ -290,10 +281,7 @@ define "Encounter with Order for Hypertension Follow Up Declined by Patient":
             union [ServiceNotRequested: "Referral to Primary Care or Alternate Provider"] ) FirstHTNDeclinedInterventions
             such that FirstHTNDeclinedInterventions.authoredOn during day of FirstHTNEncounter.period
               and FirstHTNDeclinedInterventions.status = 'completed'
-              and exists(FirstHTNDeclinedInterventions.extension E 
-                where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-doNotPerformReason' 
-                and E.value as Code in "Patient Declined"
-              )
+              and FirstHTNDeclinedInterventions.reasonRefused in "Patient Declined"
       )
       union ( "Encounter with First Hypertensive Reading SBP Greater than or Equal to 130 OR DBP Greater than or Equal to 80" FirstHTNEncounter
           with "NonPharmacological Intervention Not Ordered" NoNonPharm
@@ -310,26 +298,19 @@ define "Encounter with Order for Hypertension Follow Up Declined by Patient":
   )
 
 define "Second Hypertensive Reading SBP 130 to 139 OR DBP 80 to 89 Interventions Declined":
-  ( ( ( [ServiceNotRequested: "Referral to Primary Care or Alternate Provider"]
+  ( ( [ServiceNotRequested: "Referral to Primary Care or Alternate Provider"]
         union [ServiceNotRequested: "Follow Up Within 6 Months"] ) SecondHTNDeclinedReferralAndFollowUp
         where SecondHTNDeclinedReferralAndFollowUp.status = 'completed'
-          and exists(SecondHTNDeclinedReferralAndFollowUp.extension E 
-            where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-doNotPerformReason' 
-            and E.value as Code in "Patient Declined"
-          )
+          and SecondHTNDeclinedReferralAndFollowUp.reasonRefused in "Patient Declined"
     )
       union "Laboratory Test or ECG for Hypertension Not Ordered"
       union "NonPharmacological Intervention Not Ordered"
-  )
 
 define "Second Hypertensive Reading SBP Greater than or Equal to 140 OR DBP Greater than or Equal to 90 Interventions Declined":
   ( ( ( [ServiceNotRequested: "Referral to Primary Care or Alternate Provider"]
         union [ServiceNotRequested: "Follow Up Within 4 Weeks"] ) SecondHTN140Over90ReferralFollowUpNotDone
         where SecondHTN140Over90ReferralFollowUpNotDone.status = 'completed'
-          and exists(SecondHTN140Over90ReferralFollowUpNotDone.extension E 
-            where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-doNotPerformReason' 
-            and E.value as Code in "Patient Declined"
-          )
+          and SecondHTN140Over90ReferralFollowUpNotDone.reasonRefused in "Patient Declined"
     )
       union ( [MedicationNotRequested: "Pharmacologic Therapy for Hypertension"] MedicationRequestNotOrdered
           where MedicationRequestNotOrdered.status = 'completed'
@@ -342,10 +323,7 @@ define "Laboratory Test or ECG for Hypertension Not Ordered":
   ( [ServiceNotRequested: code = "12 lead EKG panel"]
     union [ServiceNotRequested: code = "EKG study"]
     union [ServiceNotRequested: "Laboratory Tests for Hypertension"] ) LabECGNotDone
-    where exists(LabECGNotDone.extension E
-      where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-doNotPerformReason' 
-      and E.value as Code in "Patient Declined"
-    )
+    where LabECGNotDone.reasonRefused in "Patient Declined"
 
 define "SDE Ethnicity":
   SDE."SDE Ethnicity"
