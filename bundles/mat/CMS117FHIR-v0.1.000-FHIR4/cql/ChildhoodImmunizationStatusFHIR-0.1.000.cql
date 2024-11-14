@@ -1,15 +1,13 @@
-//@QICore6: Update Condition in Library and Measures resources and test cases to ConditionProblemsHealthConcerns
-
 library ChildhoodImmunizationStatusFHIR version '0.1.000'
 
 using QICore version '4.1.1'
 
-include FHIRHelpers version '4.3.000' called FHIRHelpers
-include SupplementalDataElements version '3.4.000' called SDE
-include CQMCommon version '1.4.000' called CQMCommon
-include Hospice version '6.7.000' called Hospice
-include Status version '1.6.000' called Status
-include QICoreCommon version '1.5.000' called QICoreCommon
+include FHIRHelpers version '4.4.000' called FHIRHelpers
+include SupplementalDataElements version '3.5.000' called SDE
+include CQMCommon version '2.2.000' called CQMCommon
+include Hospice version '6.12.000' called Hospice
+include Status version '1.8.000' called Status
+include QICoreCommon version '2.1.000' called QICoreCommon
 
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
 codesystem "CPT": 'http://www.ama-assn.org/go/cpt'
@@ -122,19 +120,16 @@ define "Has Immunodeficiency":
       where date from start of QICoreCommon."ToPrevalenceInterval" ( ImmuneDisorder ) during day of "First Two Years"
   )
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Has HIV":
   exists ( ( Status."Active Condition" ( [Condition: "HIV"] ) ) HIV
       where date from start of QICoreCommon."ToPrevalenceInterval" ( HIV ) during day of "First Two Years"
   )
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Has Lymphoreticular Cancer, Multiple Myeloma or Leukemia":
   exists ( ( Status."Active Condition" ( [Condition: "Malignant Neoplasm of Lymphatic and Hematopoietic Tissue"] ) ) LymphaticMalignantNeoplasm
       where date from start of QICoreCommon."ToPrevalenceInterval" ( LymphaticMalignantNeoplasm ) during day of "First Two Years"
   )
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Has Intussusception":
   exists ( ( Status."Active Condition" ( [Condition: "Intussusception"] ) ) IntussusceptionDisorder
       where date from start of QICoreCommon."ToPrevalenceInterval" ( IntussusceptionDisorder ) during day of "First Two Years"
@@ -208,7 +203,6 @@ define "Four DTaP Vaccinations":
       and DTaPVaccination4 1 day or more after day of DTaPVaccination3
     return all DTaPVaccination1
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "DTaP Numerator Inclusion Conditions":
   ( Status."Active Condition" ( [Condition: "Anaphylactic Reaction to DTaP Vaccine"]
     union [Condition: "Encephalitis Due to Diphtheria, Tetanus or Pertussis Vaccine"] ) ) DTaPConditions
@@ -245,7 +239,6 @@ define "Three Polio Vaccinations":
       and PolioVaccination3 1 day or more after day of PolioVaccination2
     return PolioVaccination1
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Polio Numerator Inclusion Conditions":
   ( Status."Active Condition" ( [Condition: "Anaphylaxis caused by vaccine product containing human poliovirus antigen (disorder)"] ) ) PolioConditions
     where date from start of QICoreCommon."ToPrevalenceInterval" ( PolioConditions ) during day of "First Two Years"
@@ -259,23 +252,19 @@ define "One MMR Vaccination":
       )
   )
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Measles Indicators":
   ( Status."Active Condition" ( [Condition: "Measles"] ) ) MeaslesDiagnosis
     where date from start of QICoreCommon."ToPrevalenceInterval" ( MeaslesDiagnosis ) during day of "First Two Years"
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Mumps Indicators":
   ( Status."Active Condition" ( [Condition: "Mumps"] ) ) MumpsDiagnosis
     where date from start of QICoreCommon."ToPrevalenceInterval" ( MumpsDiagnosis ) during day of "First Two Years"
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Rubella Indicators":
   ( ( Status."Active Condition" ( [Condition: "Rubella"] ) ) RubellaDiagnosis
       where date from start of QICoreCommon."ToPrevalenceInterval" ( RubellaDiagnosis ) during day of "First Two Years"
   )
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "MMR Numerator Inclusion Conditions":
   ( Status."Active Condition" ( [Condition: "Anaphylaxis caused by vaccine product containing Measles morbillivirus and Mumps orthorubulavirus and Rubella virus antigens (disorder)"] ) ) MMRConditions
     where date from start of QICoreCommon."ToPrevalenceInterval" ( MMRConditions ) during day of "First Two Years"
@@ -309,7 +298,6 @@ define "All Hib Vaccinations":
     without "Hib 3 or 4 Dose Immunizations" AllHibDoses2
       such that AllHibDoses1 less than 1 day before AllHibDoses2
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Hib Numerator Inclusion Conditions":
   ( Status."Active Condition" ( [Condition: "Anaphylaxis due to Haemophilus influenzae type b vaccine (disorder)"] ) ) HibReaction
     where date from start of QICoreCommon."ToPrevalenceInterval" ( HibReaction ) during day of "First Two Years"
@@ -340,7 +328,6 @@ define "Hib 4 Dose Immunizations or Procedures":
       )
   )
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Hepatitis B Numerator Inclusion Conditions":
   ( Status."Active Condition" ( [Condition: "Anaphylaxis due to Hepatitis B vaccine (disorder)"]
     union [Condition: "Hepatitis B"] ) ) HepBConditions
@@ -390,7 +377,6 @@ define "One Chicken Pox Vaccination":
       )
   )
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Varicella Zoster Numerator Inclusion Conditions":
   ( Status."Active Condition" ( [Condition: "Varicella Zoster"]
     union [Condition: "Anaphylaxis caused by vaccine containing Human alphaherpesvirus 3 antigen (disorder)"] ) ) VaricellaZoster
@@ -418,7 +404,6 @@ define "Pneumococcal Conjugate Immunizations or Procedures":
       )
   )
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Pneumococcal Conjugate Numerator Inclusion Conditions":
   ( Status."Active Condition" ( [Condition: "Anaphylaxis caused by vaccine product containing Streptococcus pneumoniae antigen (disorder)"] ) ) PneumococcalReaction
     where date from start of QICoreCommon."ToPrevalenceInterval" ( PneumococcalReaction ) during day of "First Two Years"
@@ -432,7 +417,6 @@ define "One Hepatitis A Vaccinations":
       )
   )
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Hepatitis A Numerator Inclusion Conditions":
   ( Status."Active Condition" ( [Condition: "Hepatitis A"]
     union [Condition: "Anaphylaxis caused by vaccine product containing Hepatitis A virus antigen (disorder)"] ) ) HepatitisADiagnosis
@@ -475,7 +459,6 @@ define "Rotavirus 2 or 3 Dose Immunizations":
   "Rotavirus 2 Dose Immunizations or Procedures"
     union "Rotavirus 3 Dose Immunizations or Procedures"
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Rotavirus Numerator Inclusion Conditions":
   ( ( Status."Active Condition" ( [Condition: "Anaphylaxis due to rotavirus vaccine (disorder)"] ) ) RotavirusConditions
       where date from start of QICoreCommon."ToPrevalenceInterval" ( RotavirusConditions ) during day of "First Two Years"
@@ -510,7 +493,6 @@ define "Two Influenza Vaccinations":
     where FluVaccination2 1 day or more after day of FluVaccination1
     return FluVaccination1
 
-//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Influenza Numerator Inclusion Conditions":
   ( Status."Active Condition" ( [Condition: "Anaphylaxis caused by vaccine product containing Influenza virus antigen (disorder)"] ) ) InfluenzaConditions
     where date from start of QICoreCommon."ToPrevalenceInterval" ( InfluenzaConditions ) during day of "First Two Years"
