@@ -6,11 +6,11 @@ Updated SDE Sex definition to use added codes from FHIR administrative-gender co
 */
 library SupplementalDataElements version '3.5.000'
 
+using QICore version '6.0.0'
+
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 
 codesystem "AdministrativeGender": 'http://hl7.org/fhir/administrative-gender'
-
-using QICore version '6.0.0'
 
 valueset "Ethnicity": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837'
 valueset "ONC Administrative Sex": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1'
