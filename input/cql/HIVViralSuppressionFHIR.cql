@@ -1,10 +1,6 @@
-/*
-@QICore6Uplift test impact: Change Condition and Observation resource types and qicore profiles in test cases to ConditionProblemsHealthConcerns and LaboratoryResultObservation, respectively
-*/ 
-
 library HIVViralSuppressionFHIR version '0.1.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 include CQMCommon version '2.2.000' called CQMCommon
 include FHIRHelpers version '4.4.000' called FHIRHelpers
@@ -55,9 +51,6 @@ define "SDE Race":
 define "SDE Sex":
   SDE."SDE Sex"
 
-/*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
-*/ 
 define "Has Active HIV Diagnosis Before or in First 90 Days of Measurement Period":
   exists ["Condition": "HIV"] HIVDx
     where HIVDx.prevalenceInterval ( ) starts before day of ( start of "Measurement Period" + 90 days )
@@ -66,9 +59,6 @@ define "Initial Population":
   "Has Active HIV Diagnosis Before or in First 90 Days of Measurement Period"
     and "Has Qualifying Encounter During First 240 Days of Measurement Period"
 
-/*
-@QICore6Uplift: Update Observation to LaboratoryResultObservation
-*/ 
 define "Most Recent Viral Load Test During Measurement Period":
   Last(["Observation": "HIV Viral Load"] ViralLoad
       where ViralLoad.effective.latest() during day of "Measurement Period"
@@ -78,9 +68,6 @@ define "Most Recent Viral Load Test During Measurement Period":
 define "Has Qualifying Encounter During First 240 Days of Measurement Period":
 /*Note: applied workaround using value set 'Preventive Care Services Other', as a DRC cannot be used directly from an encounter retrieve; additional info can be found in CQLIT-368*/
   
-/*
-@QICore6Uplift: Consider adding 'type in' after Encounter resources
-*/ 
   exists ( ["Encounter": "Office Visit"]
     union ["Encounter": "Outpatient Consultation"]
     union ["Encounter": "Annual Wellness Visit"]

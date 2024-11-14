@@ -1,10 +1,6 @@
-/*
-Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis, and ObservationClinicalResult
-*/
-
 library DRCommunicationWithPhysicianManagingDiabetesFHIR version '0.1.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 /*
 Notes: 
@@ -90,9 +86,6 @@ define "Qualifying Encounter During Measurement Period":
       and QualifyingEncounter.status = 'finished'
       and QualifyingEncounter.class !~ "virtual"
 
-/*
-@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
-*/ 
 define "Diabetic Retinopathy Encounter":
   "Qualifying Encounter During Measurement Period" ValidQualifyingEncounter
     with ["Condition": "Diabetic Retinopathy"] DiabeticRetinopathy
@@ -103,9 +96,6 @@ define "Diabetic Retinopathy Encounter":
             or DiabeticRetinopathy.verificationStatus ~ QICoreCommon."entered-in-error"
         )
 
-/*
-@QICore6Uplift: Update Observation to ObservationClinicalResult
-*/ 
 define "Macular Exam Performed":
   ["Observation": "Macular Exam"] MacularExam
     with "Diabetic Retinopathy Encounter" EncounterDiabeticRetinopathy

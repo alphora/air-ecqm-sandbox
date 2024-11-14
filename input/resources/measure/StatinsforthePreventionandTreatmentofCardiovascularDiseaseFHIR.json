@@ -115,7 +115,7 @@
         "valueString": "ASVCD Diagnosis or Procedure before End of Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define &quot;ASVCD Diagnosis or Procedure before End of Measurement Period&quot;:   ( ( [ConditionProblemsHealthConcerns: &quot;Myocardial Infarction&quot;]       union [ConditionProblemsHealthConcerns: &quot;Cerebrovascular Disease Stroke or TIA&quot;]       union [ConditionProblemsHealthConcerns: &quot;Atherosclerosis and Peripheral Arterial Disease&quot;]       union [ConditionProblemsHealthConcerns: &quot;Ischemic Heart Disease or Other Related Diagnoses&quot;]       union [ConditionProblemsHealthConcerns: &quot;Stable and Unstable Angina&quot;] ) ASCVDDiagnosis       where ( ASCVDDiagnosis.isProblemListItem ( )           or ASCVDDiagnosis.isHealthConcern ( )       )         and ASCVDDiagnosis.prevalenceInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;   )     union ( ( [Procedure: &quot;PCI&quot;]         union [Procedure: &quot;CABG Surgeries&quot;]         union [Procedure: &quot;Carotid Intervention&quot;]         union [Procedure: &quot;CABG or PCI Procedure&quot;] ) ASCVDProcedure         where ASCVDProcedure.performed.toInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;           and ASCVDProcedure.status = &#39;completed&#39;     )"
+        "valueString": "define &quot;ASVCD Diagnosis or Procedure before End of Measurement Period&quot;:   ( ( [Condition: &quot;Myocardial Infarction&quot;]       union [Condition: &quot;Cerebrovascular Disease Stroke or TIA&quot;]       union [Condition: &quot;Atherosclerosis and Peripheral Arterial Disease&quot;]       union [Condition: &quot;Ischemic Heart Disease or Other Related Diagnoses&quot;]       union [Condition: &quot;Stable and Unstable Angina&quot;] ) ASCVDDiagnosis       where ( ASCVDDiagnosis.isProblemListItem ( )           or ASCVDDiagnosis.isHealthConcern ( )       )         and ASCVDDiagnosis.prevalenceInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;   )     union ( ( [Procedure: &quot;PCI&quot;]         union [Procedure: &quot;CABG Surgeries&quot;]         union [Procedure: &quot;Carotid Intervention&quot;]         union [Procedure: &quot;CABG or PCI Procedure&quot;] ) ASCVDProcedure         where ASCVDProcedure.performed.toInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;           and ASCVDProcedure.status = &#39;completed&#39;     )"
       }, {
         "url": "displaySequence",
         "valueString": "0"
@@ -130,7 +130,7 @@
         "valueString": "Myocardial Infarction before End of Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Myocardial Infarction before End of Measurement Period&quot;:   [ConditionProblemsHealthConcerns: &quot;Subsequent non-ST elevation (NSTEMI) myocardial infarction&quot;] SubsequentMI     where ( SubsequentMI.isProblemListItem ( )         or SubsequentMI.isHealthConcern ( )     )       and SubsequentMI.prevalenceInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;"
+        "valueString": "define &quot;Myocardial Infarction before End of Measurement Period&quot;:   [Condition: &quot;Subsequent non-ST elevation (NSTEMI) myocardial infarction&quot;] SubsequentMI     where ( SubsequentMI.isProblemListItem ( )         or SubsequentMI.isHealthConcern ( )     )       and SubsequentMI.prevalenceInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;"
       }, {
         "url": "displaySequence",
         "valueString": "1"
@@ -205,7 +205,7 @@
         "valueString": "Hypercholesterolemia Diagnosis"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Hypercholesterolemia Diagnosis&quot;:   ( [ConditionProblemsHealthConcerns: &quot;Familial Hypercholesterolemia&quot;] Hypercholesterolemia       where ( Hypercholesterolemia.isProblemListItem ( )           or Hypercholesterolemia.isHealthConcern ( )       )         and Hypercholesterolemia.prevalenceInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;   )"
+        "valueString": "define &quot;Hypercholesterolemia Diagnosis&quot;:   ( [Condition: &quot;Familial Hypercholesterolemia&quot;] Hypercholesterolemia       where ( Hypercholesterolemia.isProblemListItem ( )           or Hypercholesterolemia.isHealthConcern ( )       )         and Hypercholesterolemia.prevalenceInterval ( ) starts on or before day of end of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
         "valueString": "6"
@@ -280,7 +280,7 @@
         "valueString": "Has Diabetes Diagnosis"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Has Diabetes Diagnosis&quot;:   exists ( [ConditionProblemsHealthConcerns: &quot;Diabetes&quot;] Diabetes       where ( Diabetes.isProblemListItem ( )           or Diabetes.isHealthConcern ( )       )         and Diabetes.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
+        "valueString": "define &quot;Has Diabetes Diagnosis&quot;:   exists ( [Condition: &quot;Diabetes&quot;] Diabetes       where ( Diabetes.isProblemListItem ( )           or Diabetes.isHealthConcern ( )       )         and Diabetes.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
         "valueString": "11"
@@ -535,7 +535,7 @@
         "valueString": "Denominator Exclusions"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Denominator Exclusions&quot;:   exists ( ( [ConditionProblemsHealthConcerns: &quot;Breastfeeding&quot;]       union [ConditionProblemsHealthConcerns: &quot;Rhabdomyolysis&quot;] ) ExclusionDiagnosis       where ( ExclusionDiagnosis.isProblemListItem ( )           or ExclusionDiagnosis.isHealthConcern ( )       )         and ExclusionDiagnosis.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
+        "valueString": "define &quot;Denominator Exclusions&quot;:   exists ( ( [Condition: &quot;Breastfeeding&quot;]       union [Condition: &quot;Rhabdomyolysis&quot;] ) ExclusionDiagnosis       where ( ExclusionDiagnosis.isProblemListItem ( )           or ExclusionDiagnosis.isHealthConcern ( )       )         and ExclusionDiagnosis.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
         "valueString": "28"
@@ -580,7 +580,7 @@
         "valueString": "Has Hospice Services"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Has Hospice Services&quot;:   exists ((([Encounter: &quot;Encounter Inpatient&quot;]).isEncounterPerformed()) InpatientEncounter       where (InpatientEncounter.hospitalization.dischargeDisposition ~ &quot;Discharge to home for hospice care (procedure)&quot;           or InpatientEncounter.hospitalization.dischargeDisposition ~ &quot;Discharge to healthcare facility for hospice care (procedure)&quot;       )         and InpatientEncounter.period.toInterval() ends during day of &quot;Measurement Period&quot;   )     or exists ((([Encounter: &quot;Hospice Encounter&quot;]).isEncounterPerformed()) HospiceEncounter         where HospiceEncounter.period.toInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists ((([Observation: &quot;Hospice care [Minimum Data Set]&quot;]).isAssessmentPerformed()) HospiceAssessment         where HospiceAssessment.value ~ &quot;Yes (qualifier value)&quot;           and HospiceAssessment.effective.toInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists ((([ServiceRequest: &quot;Hospice Care Ambulatory&quot;]).isInterventionOrder()) HospiceOrder         where HospiceOrder.authoredOn.toInterval() during day of &quot;Measurement Period&quot;         // and HospiceOrder.doNotPerform is not true         // https://oncprojectracking.healthit.gov/support/browse/CQLIT-447     )     or exists ((([Procedure: &quot;Hospice Care Ambulatory&quot;]).isInterventionPerformed()) HospicePerformed         where HospicePerformed.performed.toInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists (([ConditionProblemsHealthConcerns: &quot;Hospice Diagnosis&quot;]) HospiceCareDiagnosis         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of &quot;Measurement Period&quot;     )"
+        "valueString": "define &quot;Has Hospice Services&quot;:   exists ((([Encounter: &quot;Encounter Inpatient&quot;]).isEncounterPerformed()) InpatientEncounter       where (InpatientEncounter.hospitalization.dischargeDisposition ~ &quot;Discharge to home for hospice care (procedure)&quot;           or InpatientEncounter.hospitalization.dischargeDisposition ~ &quot;Discharge to healthcare facility for hospice care (procedure)&quot;       )         and InpatientEncounter.period.toInterval() ends during day of &quot;Measurement Period&quot;   )     or exists ((([Encounter: &quot;Hospice Encounter&quot;]).isEncounterPerformed()) HospiceEncounter         where HospiceEncounter.period.toInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists ((([Observation: &quot;Hospice care [Minimum Data Set]&quot;]).isAssessmentPerformed()) HospiceAssessment         where HospiceAssessment.value ~ &quot;Yes (qualifier value)&quot;           and HospiceAssessment.effective.toInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists ((([ServiceRequest: &quot;Hospice Care Ambulatory&quot;]).isInterventionOrder()) HospiceOrder         where HospiceOrder.authoredOn.toInterval() during day of &quot;Measurement Period&quot;         // and HospiceOrder.doNotPerform is not true         // https://oncprojectracking.healthit.gov/support/browse/CQLIT-447     )     or exists ((([Procedure: &quot;Hospice Care Ambulatory&quot;]).isInterventionPerformed()) HospicePerformed         where HospicePerformed.performed.toInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists (([Condition: &quot;Hospice Diagnosis&quot;]) HospiceCareDiagnosis         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of &quot;Measurement Period&quot;     )"
       }, {
         "url": "displaySequence",
         "valueString": "31"
@@ -595,7 +595,7 @@
         "valueString": "Has Palliative Care in the Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Has Palliative Care in the Measurement Period&quot;:   exists ((([Observation: &quot;Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)&quot;]).isAssessmentPerformed()) PalliativeAssessment       where PalliativeAssessment.effective.toInterval() overlaps day of &quot;Measurement Period&quot;   )     or exists ([ConditionProblemsHealthConcerns: &quot;Palliative Care Diagnosis&quot;] PalliativeDiagnosis         where PalliativeDiagnosis.prevalenceInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists ((([Encounter: &quot;Palliative Care Encounter&quot;]).isEncounterPerformed()) PalliativeEncounter         where PalliativeEncounter.period.toInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists ((([Procedure: &quot;Palliative Care Intervention&quot;]).isInterventionPerformed()) PalliativeIntervention         where PalliativeIntervention.performed.toInterval() overlaps day of &quot;Measurement Period&quot;     )"
+        "valueString": "define &quot;Has Palliative Care in the Measurement Period&quot;:   exists ((([Observation: &quot;Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)&quot;]).isAssessmentPerformed()) PalliativeAssessment       where PalliativeAssessment.effective.toInterval() overlaps day of &quot;Measurement Period&quot;   )     or exists ([Condition: &quot;Palliative Care Diagnosis&quot;] PalliativeDiagnosis         where PalliativeDiagnosis.prevalenceInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists ((([Encounter: &quot;Palliative Care Encounter&quot;]).isEncounterPerformed()) PalliativeEncounter         where PalliativeEncounter.period.toInterval() overlaps day of &quot;Measurement Period&quot;     )     or exists ((([Procedure: &quot;Palliative Care Intervention&quot;]).isInterventionPerformed()) PalliativeIntervention         where PalliativeIntervention.performed.toInterval() overlaps day of &quot;Measurement Period&quot;     )"
       }, {
         "url": "displaySequence",
         "valueString": "32"
@@ -610,7 +610,7 @@
         "valueString": "Has Hepatitis or Liver Disease Diagnosis"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Has Hepatitis or Liver Disease Diagnosis&quot;:   exists ( ( [ConditionProblemsHealthConcerns: &quot;Hepatitis A&quot;]       union [ConditionProblemsHealthConcerns: &quot;Hepatitis B&quot;]       union [ConditionProblemsHealthConcerns: &quot;Liver Disease&quot;] ) HepatitisLiverDisease       where ( HepatitisLiverDisease.isProblemListItem ( )           or HepatitisLiverDisease.isHealthConcern ( )       )         and HepatitisLiverDisease.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
+        "valueString": "define &quot;Has Hepatitis or Liver Disease Diagnosis&quot;:   exists ( ( [Condition: &quot;Hepatitis A&quot;]       union [Condition: &quot;Hepatitis B&quot;]       union [Condition: &quot;Liver Disease&quot;] ) HepatitisLiverDisease       where ( HepatitisLiverDisease.isProblemListItem ( )           or HepatitisLiverDisease.isHealthConcern ( )       )         and HepatitisLiverDisease.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
         "valueString": "33"
@@ -625,7 +625,7 @@
         "valueString": "Has Statin Associated Muscle Symptoms"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Has Statin Associated Muscle Symptoms&quot;:   exists ( [ConditionProblemsHealthConcerns: &quot;Statin Associated Muscle Symptoms&quot;] StatinMuscleSymptom       where ( StatinMuscleSymptom.isProblemListItem ( )           or StatinMuscleSymptom.isHealthConcern ( )       )         and StatinMuscleSymptom.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
+        "valueString": "define &quot;Has Statin Associated Muscle Symptoms&quot;:   exists ( [Condition: &quot;Statin Associated Muscle Symptoms&quot;] StatinMuscleSymptom       where ( StatinMuscleSymptom.isProblemListItem ( )           or StatinMuscleSymptom.isHealthConcern ( )       )         and StatinMuscleSymptom.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
         "valueString": "34"
@@ -640,7 +640,7 @@
         "valueString": "Has ESRD Diagnosis"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Has ESRD Diagnosis&quot;:   exists ( [ConditionProblemsHealthConcerns: &quot;End Stage Renal Disease&quot;] ESRD       where ( ESRD.isProblemListItem ( )           or ESRD.isHealthConcern ( )       )         and ESRD.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
+        "valueString": "define &quot;Has ESRD Diagnosis&quot;:   exists ( [Condition: &quot;End Stage Renal Disease&quot;] ESRD       where ( ESRD.isProblemListItem ( )           or ESRD.isHealthConcern ( )       )         and ESRD.prevalenceInterval ( ) overlaps day of &quot;Measurement Period&quot;   )"
       }, {
         "url": "displaySequence",
         "valueString": "35"
@@ -1178,48 +1178,48 @@
       "type": "Resource"
     } ],
     "dataRequirement": [ {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.403"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1047.44"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1047.21"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1047.46"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1047.47"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
@@ -1230,88 +1230,88 @@
         } ]
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1047.100"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.103.12.1001"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1047.73"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1047.102"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1024"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.67.1.101.1.269"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1047.42"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1108.85"
       } ]
     }, {
-      "type": "ConditionProblemsHealthConcerns",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code" ],
       "codeFilter": [ {
         "path": "code",
@@ -1458,16 +1458,16 @@
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ],
       "mustSupport": [ "url", "extension", "gender", "gender.value", "birthDate", "birthDate.value" ]
     }, {
-      "type": "LaboratoryResultObservation",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-lab" ],
+      "type": "Observation",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ],
       "mustSupport": [ "code", "value", "effective", "status", "status.value", "category" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1573"
       } ]
     }, {
-      "type": "ObservationClinicalResult",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result" ],
+      "type": "Observation",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ],
       "mustSupport": [ "code", "value", "effective", "status", "status.value", "category" ],
       "codeFilter": [ {
         "path": "code",
@@ -1478,8 +1478,8 @@
         } ]
       } ]
     }, {
-      "type": "ObservationClinicalResult",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-clinical-result" ],
+      "type": "Observation",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ],
       "mustSupport": [ "code", "value", "effective", "status", "status.value", "category" ],
       "codeFilter": [ {
         "path": "code",
@@ -1490,8 +1490,8 @@
         } ]
       } ]
     }, {
-      "type": "ObservationScreeningAssessment",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment" ],
+      "type": "Observation",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ],
       "mustSupport": [ "code", "value", "effective", "status", "status.value", "category" ],
       "codeFilter": [ {
         "path": "code",
@@ -1502,8 +1502,8 @@
         } ]
       } ]
     }, {
-      "type": "ObservationScreeningAssessment",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-screening-assessment" ],
+      "type": "Observation",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ],
       "mustSupport": [ "code", "effective", "value", "status", "status.value", "category" ],
       "codeFilter": [ {
         "path": "code",

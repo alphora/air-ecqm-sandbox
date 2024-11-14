@@ -1,13 +1,9 @@
-/*
-Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ObservationClinicalResult, and ObservationCancelled
-*/
-
 library POAGOpticNerveEvaluationFHIR version '0.1.000'
 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 
 /*Notews 1. 8/09.2023: Per BonnieMat-1455 and ticket  https://github.com/cqframework/cql-execution/issues/296 
-using QICore version '6.0.0'
+using QICore version '4.1.1'
 */
 
 
@@ -68,9 +64,6 @@ define "Initial Population":
   AgeInYearsAt(date from start of "Measurement Period") >= 18
     and exists "Primary Open Angle Glaucoma Encounter"
 
-/*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
-*/ 
 define "Primary Open Angle Glaucoma Encounter":
   "Qualifying Encounter During Measurement Period" ValidQualifyingEncounter
     with ["Condition": "Primary Open-Angle Glaucoma"] PrimaryOpenAngleGlaucoma
@@ -81,9 +74,6 @@ define "Primary Open Angle Glaucoma Encounter":
             or PrimaryOpenAngleGlaucoma.verificationStatus ~ QICoreCommon."entered-in-error"
         )
 
-/*
-@QICore6Uplift: Update Observation to ObservationClinicalResult
-*/ 
 define "Cup to Disc Ratio Performed with Result":
   ["Observation": "Cup to Disc Ratio"] CupToDiscExamPerformed
     with "Primary Open Angle Glaucoma Encounter" EncounterWithPOAG
@@ -91,9 +81,6 @@ define "Cup to Disc Ratio Performed with Result":
     where CupToDiscExamPerformed.value is not null
       and CupToDiscExamPerformed.status in { 'final', 'amended', 'corrected' }
 
-/*
-@QICore6Uplift: Update Observation to ObservationClinicalResult
-*/ 
 define "Optic Disc Exam Performed with Result":
   ["Observation": "Optic Disc Exam for Structural Abnormalities"] OpticDiscExamPerformed
     with "Primary Open Angle Glaucoma Encounter" EncounterWithPOAG
@@ -105,18 +92,12 @@ define "Numerator":
   exists "Cup to Disc Ratio Performed with Result"
     and exists "Optic Disc Exam Performed with Result"
 
-/*
-@QICore6Uplift: Update ObservationNotDone to ObservationCancelled
-*/ 
 define "Medical Reason for Not Performing Cup to Disc Ratio":
   ["ObservationNotDone": "Cup to Disc Ratio"] CupToDiscExamNotPerformed
     with "Primary Open Angle Glaucoma Encounter" EncounterWithPOAG
       such that CupToDiscExamNotPerformed.issued during EncounterWithPOAG.period
     where CupToDiscExamNotPerformed.notDoneReason in "Medical Reason"
 
-/*
-@QICore6Uplift: Update ObservationNotDone to ObservationCancelled
-*/ 
 define "Medical Reason for Not Performing Optic Disc Exam":
   ["ObservationNotDone": "Optic Disc Exam for Structural Abnormalities"] OpticDiscExamNotPerformed
     with "Primary Open Angle Glaucoma Encounter" EncounterWithPOAG
