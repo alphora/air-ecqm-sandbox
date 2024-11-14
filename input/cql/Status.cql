@@ -51,9 +51,7 @@ define fluent function isLaboratoryTestOrder(ServiceRequest List<ServiceRequest>
 define fluent function isDiagnosticStudyPerformed(Obs List<Choice<"SimpleObservation", 
 "LaboratoryResultObservation", 
 "ObservationClinicalResult",
-"ObservationScreeningAssessment",
-"NonPatientObservation", 
-"ObservationCancelled">>):
+"ObservationScreeningAssessment">>):
   Obs O
     where O.status in {'final', 'amended', 'corrected' }
     
@@ -79,12 +77,7 @@ define fluent function isProcedurePerformed(Proc List<Procedure>):
     where P.status ~ 'completed'
 
 //Laboratory Test, Performed
-define fluent function isLaboratoryTestPerformed(Obs List<Choice<"SimpleObservation", 
-"LaboratoryResultObservation", 
-"ObservationClinicalResult",
-"ObservationScreeningAssessment",
-"NonPatientObservation", 
-"ObservationCancelled">>):
+define fluent function isLaboratoryTestPerformed(Obs List<"LaboratoryResultObservation">):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       and exists ( O.category ObservationCategory
@@ -109,12 +102,7 @@ define fluent function isMedicationOrder(MedicationRequest List<MedicationReques
       and M.intent = 'order'
 
 //Physical Exam, Performed
-define fluent function isPhysicalExamPerformed(Obs List<Choice<"SimpleObservation", 
-"LaboratoryResultObservation", 
-"ObservationClinicalResult",
-"ObservationScreeningAssessment",
-"NonPatientObservation", 
-"ObservationCancelled">>):
+define fluent function isPhysicalExamPerformed(Obs List<Choice<"SimpleObservation","ObservationClinicalResult">>):
   Obs O
     where O.status in { 'final', 'amended', 'corrected' }
       and exists ( O.category ObservationCategory
@@ -142,8 +130,6 @@ define fluent function isObservationBMI(Obs List<"USCoreBMIProfile">):
 define fluent function isSymptom(Obs List<Choice<"SimpleObservation", 
 "LaboratoryResultObservation", 
 "ObservationClinicalResult",
-"ObservationScreeningAssessment",
-"NonPatientObservation", 
-"ObservationCancelled">>):
+"ObservationScreeningAssessment">>):
   Obs O
     where O.status in { 'preliminary', 'final', 'amended', 'corrected' }
