@@ -4,7 +4,6 @@ Updated FHIRHelpers version to 4.4.000.
 Added Male and Female codes and related AdministrativeGender code system
 Updated SDE Sex definition to use added codes from FHIR administrative-gender code system.
 */
-
 library SupplementalDataElements version '3.5.000'
 
 using QICore version '6.0.0'
