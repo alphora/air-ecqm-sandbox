@@ -1,13 +1,18 @@
+/*@QICore6: Update Library and Measures resources and test cases 
+- Condition to ConditionProblemsHealthConcerns
+- Observation to LaboratoryResultObservation
+*/
+
 library CervicalCancerScreeningFHIR version '0.0.001'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
-include SupplementalDataElements version '3.5.000' called SDE
+include SupplementalDataElements version '3.4.000' called SDE
 include QICoreCommon version '2.1.000' called QICoreCommon
 include Hospice version '6.12.000' called Hospice
 include PalliativeCare version '1.11.000' called PalliativeCare
-include Status version '1.8.000' called Status
+include Status version '1.6.000' called Status
 
 valueset "Congenital or Acquired Absence of Cervix": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1016'
 valueset "Home Healthcare Services": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016'
@@ -57,15 +62,18 @@ define "Absence of Cervix":
   ( ( ( [Procedure: "Hysterectomy with No Residual Cervix"] ).isProcedurePerformed ( ) ) NoCervixProcedure
       where NoCervixProcedure.performed.toInterval ( ) ends on or before end of "Measurement Period"
   )
+  //@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
     union ( [Condition: "Congenital or Acquired Absence of Cervix"] NoCervixDiagnosis
         where NoCervixDiagnosis.prevalenceInterval ( ) starts on or before end of "Measurement Period"
     )
 
+//@QICore6: Update Observation to LaboratoryResultObservation
 define "Cervical Cytology Within 3 Years":
   ( ( [Observation: "Pap Test"] ).isLaboratoryTestPerformed ( ) ) CervicalCytology
     where CervicalCytology.effective.latest ( ) during day of Interval[start of "Measurement Period" - 2 years, end of "Measurement Period"]
       and CervicalCytology.value is not null
 
+//@QICore6: Update Observation to LaboratoryResultObservation
 define "HPV Test Within 5 Years for Women Age 30 and Older":
   ( ( [Observation: "HPV Test"] ).isLaboratoryTestPerformed ( ) ) HPVTest
     where AgeInYearsAt(date from HPVTest.effective.latest()) >= 30
