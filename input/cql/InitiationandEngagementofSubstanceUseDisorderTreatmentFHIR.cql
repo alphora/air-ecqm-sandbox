@@ -1,3 +1,5 @@
+//@QICore6: Update Condition in Library and Measure resources and test cases to ConditionProblemsHealthConcerns
+
 library InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR version '0.0.002'
 
 using QICore version '6.0.0'
@@ -41,6 +43,7 @@ define "Initial Population":
     and "First SUD Episode During Measurement Period" is not null
     and not exists "History of SUD Diagnosis or Treatment"
 
+//@QICore6: Update Condition to ConditionProblemsHealthConcerns
 define "First SUD Episode During Measurement Period":
   First(("Qualifying Encounters") ValidEncounters
       with [Condition: "Substance Use Disorder"] SUDDiagnosis
