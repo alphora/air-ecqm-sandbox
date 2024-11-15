@@ -1,6 +1,8 @@
+//@QICore6: Update Library and Measure resources and test cases - Observation to ObservationScreeningAssessment
+
 library FallsScreeningForFutureFallRiskFHIR version '0.2.001'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
@@ -70,6 +72,7 @@ define "Denominator":
 define "Denominator Exclusions":
   Hospice."Has Hospice Services"
 
+//@QICore6: Update Observation to ObservationScreeningAssessment
 define "Numerator":
   exists ( ( ["Observation": "Falls Screening"] ).isAssessmentPerformed ( ) ) FallsScreening
     where FallsScreening.effective.toInterval ( ) during day of "Measurement Period"
