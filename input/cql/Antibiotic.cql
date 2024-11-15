@@ -1,6 +1,8 @@
+//QICore6: Update Library and Measure resources - Condition to ConditionProblemsHealthConcerns
+
 library Antibiotic version '1.6.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
@@ -9,12 +11,14 @@ parameter "Measurement Period" Interval<DateTime>
 
 context Patient
 
+//QICore6: Update list of Conditions to a list of ConditionProblemsHealthConcerns
 define function "Has Comorbid Condition History"(episodeDate List<Encounter>, comorbidConditions List<Condition>):
   episodeDate eDate
       with comorbidConditions comcondition
         such that date from start of (  comcondition.prevalenceInterval() ) during Interval[date from start of eDate.period.toInterval() - 1 year, date from start of eDate.period.toInterval()]
       return eDate
 
+//QICore6: Update list of Conditions to a list of ConditionProblemsHealthConcerns
 define function "Has Competing Diagnosis History"(episodeDate List<Encounter>, competingConditions List<Condition>):
   episodeDate eDate
       with competingConditions competcondition
