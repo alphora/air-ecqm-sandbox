@@ -1,6 +1,12 @@
+/*
+@QICore6: Update Library and Measure resources and test cases
+- Observation to ObservationScreeningAssessment
+- Condition to ConditionProblemsHealthConcerns
+*/
+
 library PreventiveCareAndTobaccoUseScreeningAndCessationInterventionFHIR version '0.0.001'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include Status version '1.8.000' called Status
 include FHIRHelpers version '4.4.000' called FHIRHelpers
@@ -83,6 +89,7 @@ define "Numerator 3":
         )
     )
 
+//@QICore6: Update Observation to ObservationScreeningAssessment
 define "Most Recent Tobacco Use Screening Indicates Tobacco Non User":
   ( Last((([Observation: "Tobacco Use Screening"]).isAssessmentPerformed()) TobaccoUseScreening
       where TobaccoUseScreening.effective.toInterval() during day of "Measurement Period"
@@ -94,6 +101,7 @@ define "Active Pharmacotherapy for Tobacco Cessation":
   ( ( [MedicationRequest: "Tobacco Use Cessation Pharmacotherapy"] ).isMedicationActive ( ) ) TakingCessationPharmacotherapy
     where TakingCessationPharmacotherapy.medicationRequestPeriod ( ) during day of Interval[start of "Measurement Period" - 6 months, end of "Measurement Period"]
 
+//@QICore6: Update Observation to ObservationScreeningAssessment
 define "Most Recent Tobacco Use Screening Indicates Tobacco User":
   ( Last((([Observation: "Tobacco Use Screening"]).isAssessmentPerformed()) TobaccoUseScreening
       where TobaccoUseScreening.effective.toInterval() during day of "Measurement Period"
@@ -109,6 +117,7 @@ define "Tobacco Cessation Counseling Given":
   ( ( ( [Procedure: "Tobacco Use Cessation Counseling"] ).isInterventionPerformed ( ) ) TobaccoCessationCounseling
       where TobaccoCessationCounseling.performed.toInterval ( ) during day of Interval[start of "Measurement Period" - 6 months, end of "Measurement Period"]
   )
+  //@QICore6: Update Condition to ConditionProblemsHealthConcerns
     union ( ( [Condition: "Tobacco abuse counseling"] ) TobaccoCounseling
         where TobaccoCounseling.prevalenceInterval ( ) starts during day of Interval[start of "Measurement Period" - 6 months, end of "Measurement Period"]
     )
