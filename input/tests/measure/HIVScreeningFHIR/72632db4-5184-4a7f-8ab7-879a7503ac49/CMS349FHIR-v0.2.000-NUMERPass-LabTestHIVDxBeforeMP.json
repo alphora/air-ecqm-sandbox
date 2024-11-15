@@ -72,7 +72,7 @@
       "resourceType": "Condition",
       "id": "5e5966f59ec84a00005dbc9a",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition-problems-health-concerns" ]
       },
       "clinicalStatus": {
         "coding": [ {
@@ -149,7 +149,7 @@
       "resourceType": "Observation",
       "id": "hiv-1-and-2-tests-meaningful-use-set-d9ca",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation-lab" ]
       },
       "status": "amended",
       "category": [ {

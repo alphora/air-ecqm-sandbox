@@ -1,11 +1,16 @@
+/*@QICore6: Update Library and Measures resources and test cases 
+- Condition to ConditionProblemsHealthConcerns
+- Observation to LaboratoryResultObservation
+*/
+
 library DiabetesGlycemicStatusAssessmentGreaterThan9PercentFHIR version '0.1.002'
 
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
-include SupplementalDataElements version '3.5.000' called SDE
-include Status version '1.8.000' called Status
+include SupplementalDataElements version '3.4.000' called SDE
+include Status version '1.6.000' called Status
 include CumulativeMedicationDuration version '4.1.000' called CMD
 include AdultOutpatientEncounters version '4.11.000' called AdultOutpatientEncounters
 include AdvancedIllnessandFrailty version '1.16.000' called AIFrailLTCF
@@ -35,6 +40,7 @@ define "SDE Race":
 define "SDE Sex":
   SDE."SDE Sex"
 
+//@QICore6: Update Condition to ConditionProblemsHealthConcerns (due to prevalenceInterval)
 define "Initial Population":
   AgeInYearsAt(date from 
     end of "Measurement Period"
@@ -58,6 +64,7 @@ define "Numerator":
     or "Has Most Recent Elevated Glycemic Status Assessment"
     or "Has No Record Of Glycemic Status Assessment"
 
+//@QICore6: Update Observation to LaboratoryResultObservation
 define "Glycemic Status Assessment":
   ( ( [Observation: "HbA1c Laboratory Test"]
       union [Observation: "Glucose management indicator"]

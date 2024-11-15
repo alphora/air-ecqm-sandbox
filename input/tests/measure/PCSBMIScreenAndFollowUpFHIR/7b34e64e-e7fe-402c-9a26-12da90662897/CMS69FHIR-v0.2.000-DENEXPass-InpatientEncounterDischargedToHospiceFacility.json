@@ -101,7 +101,7 @@
       "resourceType": "Observation",
       "id": "body-mass-index-bmi-ratio-5d32",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ]
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-bmi" ]
       },
       "status": "final",
       "category": [ {
@@ -126,7 +126,7 @@
       "valueQuantity": {
         "value": 40.0,
         "unit": "kg/m2",
-        "system": "https://ucum.org",
+        "system": "http://unitsofmeasure.org",
         "code": "kg/m2"
       }
     },
