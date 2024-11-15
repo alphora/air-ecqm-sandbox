@@ -1,0 +1,1364 @@
+<Measure xmlns="http://hl7.org/fhir">
+   <id value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-measure-cqfm"/>
+   </meta>
+   <contained>
+      <Library xmlns="http://hl7.org/fhir">
+         <id value="effective-data-requirements"/>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="428361000124107"/>
+               <display value="Discharge to home for hospice care (procedure)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="428371000124100"/>
+               <display value="Discharge to healthcare facility for hospice care (procedure)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+               <code value="survey"/>
+               <display value="survey"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://loinc.org"/>
+               <code value="45755-6"/>
+               <display value="Hospice care [Minimum Data Set]"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="373066001"/>
+               <display value="Yes (qualifier value)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Stratification 3"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Stratification 3&amp;quot;:   AgeInYearsAt(date from start of &amp;quot;Measurement Period&amp;quot;) &amp;gt;= 65"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="0"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Stratification 2"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Stratification 2&amp;quot;:   AgeInYearsAt(date from start of &amp;quot;Measurement Period&amp;quot;) in Interval[18, 64]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="1"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Stratification 1"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Stratification 1&amp;quot;:   AgeInYearsAt(date from start of &amp;quot;Measurement Period&amp;quot;) in Interval[13, 17]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="2"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Qualifying Encounters"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Qualifying Encounters&amp;quot;:   ( [Encounter: &amp;quot;Office Visit&amp;quot;]       union [Encounter: &amp;quot;Emergency Department Visit&amp;quot;]       union [Encounter: &amp;quot;Detoxification Visit&amp;quot;]       union [Encounter: &amp;quot;Initial Hospital Observation Care&amp;quot;]       union [Encounter: &amp;quot;Initial Hospital Inpatient Visit&amp;quot;]       union [Encounter: &amp;quot;Discharge Services Hospital Inpatient Same Day Discharge&amp;quot;]       union [Encounter: &amp;quot;Discharge Services Hospital Inpatient&amp;quot;]       union [Encounter: &amp;quot;Telephone Visits&amp;quot;]       union [Encounter: &amp;quot;Online Assessments&amp;quot;]   ).isEncounterPerformed ( )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="3"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="First SUD Episode During Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;First SUD Episode During Measurement Period&amp;quot;:   First((&amp;quot;Qualifying Encounters&amp;quot;) ValidEncounters       with [Condition: &amp;quot;Substance Use Disorder&amp;quot;] SUDDiagnosis         such that ValidEncounters.period.toInterval() during &amp;quot;Measurement Period&amp;quot;           and SUDDiagnosis.prevalenceInterval() starts during ValidEncounters.period.toInterval()           and SUDDiagnosis.prevalenceInterval() starts 47 days or more before day of            end of &amp;quot;Measurement Period&amp;quot;       return {         ValidEncounterDate: date from start of ValidEncounters.period.toInterval(),         ValidEncounter: ValidEncounters       }       sort by ValidEncounterDate   ).ValidEncounter"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="4"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Emergency Department or Detoxification Visit"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Emergency Department or Detoxification Visit&amp;quot;:   ( [Encounter: &amp;quot;Emergency Department Visit&amp;quot;]       union [Encounter: &amp;quot;Detoxification Visit&amp;quot;]   ).isEncounterPerformed ( )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="5"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="History of SUD Diagnosis or Treatment"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;History of SUD Diagnosis or Treatment&amp;quot;:   ( ( ( [Procedure: &amp;quot;Substance Use Disorder Treatment&amp;quot;]         union [Procedure: &amp;quot;Psych Visit Psychotherapy&amp;quot;]         union [Procedure: &amp;quot;Substance Use Disorder Long Acting Medication Administration&amp;quot;]         union [Procedure: &amp;quot;Substance Use Disorder Short Acting Medication Administration&amp;quot;]     ).isProcedurePerformed ( ) ) Interventions       with &amp;quot;First SUD Episode During Measurement Period&amp;quot; FirstSUDEpisode         such that Interventions.performed.toInterval ( ) starts 60 days or less before day of date from start of FirstSUDEpisode.period.toInterval ( )   )     union ( ( ( ( &amp;quot;Qualifying Encounters&amp;quot;           except &amp;quot;Emergency Department or Detoxification Visit&amp;quot; ) QualifyingEncounter           where exists ( ( QualifyingEncounter.encounterDiagnosis ( ) ) SUDDiagnosis               where SUDDiagnosis.code in &amp;quot;Substance Use Disorder&amp;quot;           )       ) ) SUDEncounterDx         with &amp;quot;First SUD Episode During Measurement Period&amp;quot; FirstSUDEpisode           such that SUDEncounterDx.period.toInterval ( ) starts 60 days or less before day of date from start of FirstSUDEpisode.period.toInterval ( )     )     union ( ( Status.&amp;quot;Active or Completed Medication Request&amp;quot; ( [&amp;quot;MedicationRequest&amp;quot;: &amp;quot;Substance Use Disorder Long Acting Medication&amp;quot;]         union [MedicationRequest: &amp;quot;Substance Use Disorder Short Acting Medication&amp;quot;] ) ) SUDMedication         with &amp;quot;First SUD Episode During Measurement Period&amp;quot; FirstSUDEpisode           such that SUDMedication.authoredOn.toInterval ( ) 60 days or less before day of date from start of FirstSUDEpisode.period.toInterval ( )     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="6"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Initial Population"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Initial Population&amp;quot;:   AgeInYearsAt(date from start of &amp;quot;Measurement Period&amp;quot;) &amp;gt;= 13     and &amp;quot;First SUD Episode During Measurement Period&amp;quot; is not null     and not exists &amp;quot;History of SUD Diagnosis or Treatment&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="7"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator&amp;quot;:   &amp;quot;Initial Population&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="8"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Psychosocial Visit"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Psychosocial Visit&amp;quot;:   ( ( ( [Procedure: &amp;quot;Substance Use Disorder Treatment&amp;quot;]         union [Procedure: &amp;quot;Psych Visit Psychotherapy&amp;quot;]     ).isProcedurePerformed ( )   )     union ( ( [Encounter: &amp;quot;Telephone Visits&amp;quot;]         union [Encounter: &amp;quot;Online Assessments&amp;quot;]     ).isEncounterPerformed ( ) ) TelehealthEncounter       where exists ( ( TelehealthEncounter.encounterDiagnosis ( ) ) SUDDiagnosis           where SUDDiagnosis.code in &amp;quot;Substance Use Disorder&amp;quot;       ) ) SUDEncounterDx"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="9"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Treatment Initiation With Non Medication Intervention Dates"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Treatment Initiation With Non Medication Intervention Dates&amp;quot;:   &amp;quot;Psychosocial Visit&amp;quot; PsychosocialVisit     let treatmentDate: date from start of PsychosocialVisit.period.toInterval ( )     with &amp;quot;First SUD Episode During Measurement Period&amp;quot; FirstSUDEpisode       such that treatmentDate during Interval[date from start of FirstSUDEpisode.period.toInterval ( ), date from start of FirstSUDEpisode.period.toInterval ( ) + 14 days )         and PsychosocialVisit.id !~ FirstSUDEpisode.id     return all treatmentDate"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="10"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Treatment Initiation With Medication Order Dates"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Treatment Initiation With Medication Order Dates&amp;quot;:   ( ( [MedicationRequest: &amp;quot;Substance Use Disorder Short Acting Medication&amp;quot;]       union [MedicationRequest: &amp;quot;Substance Use Disorder Long Acting Medication&amp;quot;] ) SUDMedication       let treatmentDate: date from start of SUDMedication.authoredOn.toInterval ( )       with &amp;quot;First SUD Episode During Measurement Period&amp;quot; FirstSUDEpisode         such that treatmentDate during Interval[date from start of FirstSUDEpisode.period.toInterval ( ), date from start of FirstSUDEpisode.period.toInterval ( ) + 14 days )       return all treatmentDate   )     union ( ( ( [Procedure: &amp;quot;Substance Use Disorder Short Acting Medication Administration&amp;quot;]           union [Procedure: &amp;quot;Substance Use Disorder Long Acting Medication Administration&amp;quot;]       ).isProcedurePerformed ( ) ) SUDMedAdministration         let treatmentDate: date from start of SUDMedAdministration.performed.toInterval ( )         with &amp;quot;First SUD Episode During Measurement Period&amp;quot; FirstSUDEpisode           such that treatmentDate during Interval[date from start of FirstSUDEpisode.period.toInterval ( ), date from start of FirstSUDEpisode.period.toInterval ( ) + 14 days )         return all treatmentDate     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="11"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Numerator 1"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Numerator 1&amp;quot;:   exists &amp;quot;Treatment Initiation With Non Medication Intervention Dates&amp;quot;     or exists &amp;quot;Treatment Initiation With Medication Order Dates&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="12"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Treatment Engagement With Long Acting Medication"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Treatment Engagement With Long Acting Medication&amp;quot;:   exists ( ( [MedicationRequest: &amp;quot;Substance Use Disorder Long Acting Medication&amp;quot;] LongActingMedOrder         with ( Min(&amp;quot;Treatment Initiation With Non Medication Intervention Dates&amp;quot;             union &amp;quot;Treatment Initiation With Medication Order Dates&amp;quot;         ) ) InitiationTreatmentDate           such that date from start of LongActingMedOrder.authoredOn.toInterval ( ) 34 days or less after InitiationTreatmentDate     )       union ( ( ( [Procedure: &amp;quot;Substance Use Disorder Long Acting Medication Administration&amp;quot;] ).isProcedurePerformed ( ) ) LongActingTreatment           with ( Min(&amp;quot;Treatment Initiation With Non Medication Intervention Dates&amp;quot;               union &amp;quot;Treatment Initiation With Medication Order Dates&amp;quot;           ) ) InitiationTreatmentDate             such that date from start of LongActingTreatment.performed.toInterval ( ) 34 days or less after InitiationTreatmentDate       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="13"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Two or More Treatment Engagements With Short Acting Medication or Non Medication Intervention"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Two or More Treatment Engagements With Short Acting Medication or Non Medication Intervention&amp;quot;:   Count(((&amp;quot;Psychosocial Visit&amp;quot;         union(([Procedure: &amp;quot;Substance Use Disorder Short Acting Medication Administration&amp;quot;]).isProcedurePerformed())) ShortActingTreatment         with(Min(&amp;quot;Treatment Initiation With Non Medication Intervention Dates&amp;quot;             union &amp;quot;Treatment Initiation With Medication Order Dates&amp;quot;         )) InitiationTreatmentDate           such that date from start of ShortActingTreatment.performed.toInterval() 34 days or less after InitiationTreatmentDate             or date from start of ShortActingTreatment.period.toInterval() 34 days or less after InitiationTreatmentDate         return all ShortActingTreatment     )       union([MedicationRequest: &amp;quot;Substance Use Disorder Short Acting Medication&amp;quot;] ShortActingMedOrder           with(Min(&amp;quot;Treatment Initiation With Non Medication Intervention Dates&amp;quot;               union &amp;quot;Treatment Initiation With Medication Order Dates&amp;quot;           )) InitiationTreatmentDate             such that date from start of ShortActingMedOrder.authoredOn.toInterval() 34 days or less after InitiationTreatmentDate           return all ShortActingMedOrder       )   ) &amp;gt;= 2"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="14"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Numerator 2"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Numerator 2&amp;quot;:   &amp;quot;Has Treatment Engagement With Long Acting Medication&amp;quot;     or &amp;quot;Has Two or More Treatment Engagements With Short Acting Medication or Non Medication Intervention&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="15"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Hospice"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Hospice Services"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Hospice Services&amp;quot;:   exists ((([Encounter: &amp;quot;Encounter Inpatient&amp;quot;]).isEncounterPerformed()) InpatientEncounter       where (InpatientEncounter.hospitalization.dischargeDisposition ~ &amp;quot;Discharge to home for hospice care (procedure)&amp;quot;           or InpatientEncounter.hospitalization.dischargeDisposition ~ &amp;quot;Discharge to healthcare facility for hospice care (procedure)&amp;quot;       )         and InpatientEncounter.period.toInterval() ends during day of &amp;quot;Measurement Period&amp;quot;   )     or exists ((([Encounter: &amp;quot;Hospice Encounter&amp;quot;]).isEncounterPerformed()) HospiceEncounter         where HospiceEncounter.period.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([Observation: &amp;quot;Hospice care [Minimum Data Set]&amp;quot;]).isAssessmentPerformed()) HospiceAssessment         where HospiceAssessment.value ~ &amp;quot;Yes (qualifier value)&amp;quot;           and HospiceAssessment.effective.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([ServiceRequest: &amp;quot;Hospice Care Ambulatory&amp;quot;]).isInterventionOrder()) HospiceOrder         where HospiceOrder.authoredOn.toInterval() during day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([Procedure: &amp;quot;Hospice Care Ambulatory&amp;quot;]).isInterventionPerformed()) HospicePerformed         where HospicePerformed.performed.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists (([Condition: &amp;quot;Hospice Diagnosis&amp;quot;]) HospiceCareDiagnosis         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="16"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator Exclusions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator Exclusions&amp;quot;:   Hospice.&amp;quot;Has Hospice Services&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="17"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isEncounterPerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isEncounterPerformed(Enc List&amp;lt;Encounter&amp;gt;):   Enc E     where E.status in {&amp;#39;finished&amp;#39;, &amp;#39;arrived&amp;#39;, &amp;#39;triaged&amp;#39;, &amp;#39;in-progress&amp;#39;, &amp;#39;onleave&amp;#39;}"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="18"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="toInterval"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Normalizes a value that is a choice of timing-valued types to an equivalent interval @comment: Normalizes a choice type of DateTime, Quanitty, Interval&amp;lt;DateTime&amp;gt;, or Interval&amp;lt;Quantity&amp;gt; types to an equivalent interval. This selection of choice types is a superset of the majority of choice types that are used as possible representations for timing-valued elements in QICore, allowing this function to be used across any resource. The input can be provided as a DateTime, Quantity, Interval&amp;lt;DateTime&amp;gt; or Interval&amp;lt;Quantity&amp;gt;. The intent of this function is to provide a clear and concise mechanism to treat single elements that have multiple possible representations as intervals so that logic doesn&amp;#39;t have to account for the variability. More complex calculations (such as medication request period or dispense period calculation) need specific guidance and consideration. That guidance may make use of this function, but the focus of this function is on single element calculations where the semantics are unambiguous. If the input is a DateTime, the result a DateTime Interval beginning and ending on that DateTime. If the input is a Quantity, the quantity is expected to be a calendar-duration interpreted as an Age, and the result is a DateTime Interval beginning on the Date the patient turned that age and ending immediately before one year later. If the input is a DateTime Interval, the result is the input. If the input is a Quantity Interval, the quantities are expected to be calendar-durations interpreted as an Age, and the result is a DateTime Interval beginning on the date the patient turned the age given as the start of the quantity interval, and ending immediately before one year later than the date the patient turned the age given as the end of the quantity interval. If the input is a Timing, an error will be thrown indicating that Timing calculations are not implemented. Any other input will reslt in a null DateTime Interval */ define fluent function toInterval(choice Choice&amp;lt;DateTime, Quantity, Interval&amp;lt;DateTime&amp;gt;, Interval&amp;lt;Quantity&amp;gt;, Timing&amp;gt;):   case    when choice is DateTime then      Interval[choice as DateTime, choice as DateTime]   when choice is Interval&amp;lt;DateTime&amp;gt; then     choice as Interval&amp;lt;DateTime&amp;gt;   when choice is Quantity then     Interval[Patient.birthDate + (choice as Quantity),      Patient.birthDate + (choice as Quantity) + 1 year)   when choice is Interval&amp;lt;Quantity&amp;gt; then     Interval[Patient.birthDate + (choice.low as Quantity),      Patient.birthDate + (choice.high as Quantity) + 1 year)   when choice is Timing then       Message(null, true, &amp;#39;NOT_IMPLEMENTED&amp;#39;, &amp;#39;Error&amp;#39;, &amp;#39;Calculation of an interval from a Timing value is not supported&amp;#39;) as Interval&amp;lt;DateTime&amp;gt;   else    null as Interval&amp;lt;DateTime&amp;gt;  end"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="19"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="prevalenceInterval"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns an interval representing the normalized prevalence period of a given Condition. @comment: Uses the ToInterval and ToAbatementInterval functions to determine the widest potential interval from onset to abatement as specified in the given Condition. If the condition is active, or has an abatement date the resulting  interval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary. */ define fluent function prevalenceInterval(condition Condition): if condition.clinicalStatus ~ &amp;quot;active&amp;quot;   or condition.clinicalStatus ~ &amp;quot;recurrence&amp;quot;   or condition.clinicalStatus ~ &amp;quot;relapse&amp;quot; then   Interval[start of condition.onset.toInterval(), end of condition.abatementInterval()] else     (end of ToAbatementInterval(condition)) abatementDate     return if abatementDate is null then       Interval[start of ToInterval(condition.onset), abatementDate)     else       Interval[start of ToInterval(condition.onset), abatementDate]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="20"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isProcedurePerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isProcedurePerformed(Proc List&amp;lt;Procedure&amp;gt;):   Proc P     where P.status ~ &amp;#39;completed&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="21"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CQMCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="encounterDiagnosis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns the Condition resources referenced by the diagnosis element of the Encounter */ define fluent function encounterDiagnosis(Encounter Encounter ):   Encounter.diagnosis D     return singleton from ([Condition] C where C.id = D.condition.reference.getId())"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="22"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="getId"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns the tail of the given uri (i.e. everything after the last slash in the URI). @comment: This function can be used to determine the logical id of a given resource. It can be used in a single-server environment to trace references. However, this function does not attempt to resolve or distinguish the base of the given url, and so cannot be used safely in multi-server environments. */ define fluent function getId(uri String):   Last(Split(uri, &amp;#39;/&amp;#39;))"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="23"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Active or Completed Medication Request"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="//Medication, Order: active and completed only define function &amp;quot;Active or Completed Medication Request&amp;quot;(MedicationRequest List&amp;lt;MedicationRequest&amp;gt;):   MedicationRequest M     where M.status in { &amp;#39;active&amp;#39;, &amp;#39;completed&amp;#39; }       and M.intent = &amp;#39;order&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="24"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isAssessmentPerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="//Similar but different from QICoreCommon.isSurvey, which does not have status constraints define fluent function isAssessmentPerformed(Obs List&amp;lt;Observation&amp;gt;):   Obs O     where O.status in { &amp;#39;final&amp;#39;, &amp;#39;amended&amp;#39;, &amp;#39;corrected&amp;#39; }           and exists ( O.category ObservationCategory           where ( ObservationCategory ) ~ &amp;quot;survey&amp;quot;       )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="25"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FHIRHelpers"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToConcept"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept. */ define function ToConcept(concept FHIR.CodeableConcept):     if concept is null then         null     else         System.Concept {             codes: concept.coding C return ToCode(C),             display: concept.text.value         }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="26"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isInterventionOrder"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isInterventionOrder(ServiceRequest List&amp;lt;ServiceRequest&amp;gt;):   ServiceRequest S     where S.status in { &amp;#39;active&amp;#39;, &amp;#39;completed&amp;#39; }       and S.intent = &amp;#39;order&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="27"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isInterventionPerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isInterventionPerformed(Proc List&amp;lt;Procedure&amp;gt;):   Proc P     where P.status ~ &amp;#39;completed&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="28"/>
+            </extension>
+         </extension>
+         <status value="active"/>
+         <type>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/library-type"/>
+               <code value="module-definition"/>
+            </coding>
+         </type>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library Status"/>
+            <resource value="Library/Status|1.6.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library QICoreCommon"/>
+            <resource value="Library/QICoreCommon|2.0.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library FHIRHelpers"/>
+            <resource value="Library/FHIRHelpers|4.3.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library CQMCommon"/>
+            <resource value="Library/CQMCommon|2.0.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library Hospice"/>
+            <resource value="Library/Hospice|6.9.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system SNOMEDCT"/>
+            <resource value="http://snomed.info/sct"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ObservationCategoryCodes"/>
+            <resource value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system LOINC"/>
+            <resource value="http://loinc.org"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Office Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Emergency Department Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1010"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Detoxification Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1059"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Initial Hospital Observation Care"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1002"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Initial Hospital Inpatient Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1004"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Discharge Services Hospital Inpatient Same Day Discharge"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1006"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Discharge Services Hospital Inpatient"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1007"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Telephone Visits"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Online Assessments"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Substance Use Disorder"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.106.12.1001"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Substance Use Disorder Treatment"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.106.12.1005"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Psych Visit Psychotherapy"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1496"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Substance Use Disorder Long Acting Medication Administration"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1156"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Substance Use Disorder Short Acting Medication Administration"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1157"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Substance Use Disorder Long Acting Medication"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1149"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Substance Use Disorder Short Acting Medication"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1150"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Encounter Inpatient"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Encounter"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Care Ambulatory"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Diagnosis"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"/>
+         </relatedArtifact>
+         <parameter>
+            <name value="Measurement Period"/>
+            <use value="in"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Period"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Numerator 1"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Numerator 2"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Initial Population"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator Exclusions"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Stratification 3"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Stratification 2"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Stratification 1"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <dataRequirement>
+            <type value="Patient"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient"/>
+            <mustSupport value="birthDate"/>
+            <mustSupport value="birthDate.value"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1002"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1004"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1006"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1007"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1010"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1059"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="hospitalization"/>
+            <mustSupport value="hospitalization.dischargeDisposition"/>
+            <mustSupport value="period"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.106.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="id"/>
+            <mustSupport value="id.value"/>
+            <mustSupport value="code"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.106.12.1005"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1496"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1156"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1157"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1149"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1150"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication.reference"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Medication"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication"/>
+            <mustSupport value="id"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="value"/>
+            <mustSupport value="effective"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="category"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://loinc.org"/>
+                  <code value="45755-6"/>
+                  <display value="Hospice care [Minimum Data Set]"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="ServiceRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest"/>
+            <mustSupport value="code"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+            </codeFilter>
+         </dataRequirement>
+      </Library>
+   </contained>
+   <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements">
+      <valueReference>
+         <reference value="#effective-data-requirements"/>
+      </valueReference>
+   </extension>
+   <url value="https://madie.cms.gov/Measure/InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+   <identifier>
+      <use value="usual"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="short-name"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/shortName"/>
+      <value value="CMS137FHIR"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-independent"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:7738a412-7fff-4276-a140-8ee4c08503a2"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-specific"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:ca9fdce9-1c6a-41a7-a5a8-09fae9f4b3af"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="publisher"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/cmsId"/>
+      <value value="137FHIR"/>
+      <assigner>
+         <display value="CMS"/>
+      </assigner>
+   </identifier>
+   <version value="0.0.002"/>
+   <name value="InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+   <title value="Initiation and Engagement of Substance Use Disorder TreatmentFHIR"/>
+   <status value="active"/>
+   <experimental value="false"/>
+   <date value="2024-04-18T13:50:53+00:00"/>
+   <publisher value="National Committee for Quality Assurance"/>
+   <contact>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.ncqa.org/"/>
+      </telecom>
+   </contact>
+   <description value="Percentage of patients 13 years of age and older with a new substance use disorder (SUD) episode who received the following (Two rates are reported):  a. Percentage of patients who initiated treatment, including either an intervention or medication for the treatment of SUD, within 14 days of the new SUD episode.  b. Percentage of patients who engaged in ongoing treatment, including two additional interventions or short-term medications, or one long-term medication for the treatment of SUD, within 34 days of the initiation."/>
+   <purpose value="UNKNOWN"/>
+   <usage value="This eCQM is a patient-based measure.  This FHIR-based measure has been derived from the QDM-based measure: CMS137v12.  Please refer to the HL7 QI-Core Implementation Guide (http://hl7.org/fhir/us/qicore/index.html) for more information on QI-Core and mapping recommendations from QDM to QI-Core 4.1.1 (http://hl7.org/fhir/us/qicore/qdm-to-qicore.html)."/>
+   <copyright value="This Physician Performance Measure (Measure) and related data specifications are owned and were developed by the National Committee for Quality Assurance (NCQA). NCQA is not responsible for any use of the Measure. NCQA makes no representations, warranties, or endorsement about the quality of any organization or physician that uses or reports performance measures and NCQA has no liability to anyone who relies on such measures or specifications. NCQA holds a copyright in the Measure. The Measure can be reproduced and distributed, without modification, for noncommercial purposes (e.g., use by healthcare providers in connection with their practices) without obtaining approval from NCQA. Commercial use is defined as the sale, licensing, or distribution of the Measure for commercial gain, or incorporation of the Measure into a product or service that is sold, licensed or distributed for commercial gain. All commercial uses or requests for modification must be approved by NCQA and are subject to a license at the discretion of NCQA. (C) 2012-2021 National Committee for Quality Assurance. All Rights Reserved.  Limited proprietary coding is contained in the Measure specifications for user convenience. Users of proprietary code sets should obtain all necessary licenses from the owners of the code sets. NCQA disclaims all liability for use or accuracy of any third party codes contained in the specifications.  CPT(R) contained in the Measure specifications is copyright 2004-2021 American Medical Association. LOINC(R) copyright 2004-2021 Regenstrief Institute, Inc. This material contains SNOMED Clinical Terms(R) (SNOMED CT[R]) copyright 2004-2021 International Health Terminology Standards Development Organisation. ICD-10 copyright 2021 World Health Organization. All Rights Reserved."/>
+   <effectivePeriod>
+      <start value="2025-01-01"/>
+      <end value="2025-12-31"/>
+   </effectivePeriod>
+   <author>
+      <name value="National Committee for Quality Assurance"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.ncqa.org/"/>
+      </telecom>
+   </author>
+   <library value="https://madie.cms.gov/Library/InitiationandEngagementofSubstanceUseDisorderTreatmentFHIR"/>
+   <disclaimer value="The performance Measure is not a clinical guideline and does not establish a standard of medical care, and has not been tested for all potential applications. THE MEASURE AND SPECIFICATIONS ARE PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND.   Due to technical limitations, registered trademarks are indicated by (R) or [R] and unregistered trademarks are indicated by (TM) or [TM]."/>
+   <rationale value="There are more deaths, illnesses and disabilities from substance abuse than from any other preventable health condition. In 2018, 20.3 million individuals in the U.S. age 12 or older (approximately 8 percent of the population) were classified as having an SUD within the past year (Substance Abuse and Mental Health Services Administration, 2019). Despite the high prevalence of SUD in the U.S., fewer than 20 percent of individuals with SUD receive any substance use treatment and only 12 percent receive treatment in a specialty SUD program (SAMHSA, 2019)."/>
+   <clinicalRecommendationStatement value="American Society of Addiction Medicine (2020)  * All Food and Drug Administration approved medications for the treatment of opioid use disorder should be available to all patients. Clinicians should consider the patients preferences, past treatment history, current state of illness, and treatment setting when deciding between the use of methadone, buprenorphine, and naltrexone. * There is no recommended time limit for pharmacological treatment * Patients psychosocial needs should be assessed, and patients should be offered or referred to psychosocial treatment based on their individual needs. However, a patients decision to decline psychosocial treatment or the absence of available psychosocial treatment should not preclude or delay pharmacotherapy, with appropriate medication management. Motivational interviewing or enhancement can be used to encourage patients to engage in psychosocial treatment services appropriate for addressing individual needs.  American Psychiatric Association (2018) * Patients with alcohol use disorder should have a documented comprehensive and person-centered treatment plan that includes evidence-based nonpharmacological and pharmacological treatments. [1C] * Naltrexone or acamprosate should be offered to patients with moderate to severe alcohol use disorder who have a goal of reducing alcohol consumption or achieving abstinence, prefer pharmacotherapy or have not responded to nonpharmacological treatments alone, and have no contraindications to the use of these medications. [1B] * Disulfiram should be offered to patients with moderate to severe alcohol use disorder who have a goal of achieving abstinence, prefer disulfiram or are intolerant to or have not responded to naltrexone and acamprosate, are capable of understanding the risks of alcohol consumption while taking disulfiram, and have no contraindications to the use of this medication. [2C] * Topiramate or gabapentin should be offered to patients with moderate to severe alcohol use disorder who have a goal of reducing alcohol consumption or achieving abstinence, prefer topiramate or gabapentin or are intolerant to or have not responded to naltrexone and acamprosate, and have no contraindications to the use of these medications. [2C]  American Psychiatric Association (2006) * Because many substance use disorders are chronic, patients usually require long-term treatment, although the intensity and specific components of treatment may vary over time [I rating].  * It is important to intensify the monitoring for substance use during periods when the patient is at a high risk of relapsing, including during the early stages of treatment, times of transition to less intensive levels of care, and the first year after active treatment has ceased [I rating]. * Outpatient treatment of substance use disorders is appropriate for patients whose clinical condition or environmental circumstances do not require a more intensive level of care [I rating]. As in other treatment settings, a comprehensive approach is optimal, using, where indicated, a variety of psychotherapeutic and pharmacological interventions along with behavioral monitoring [I rating ]. * Disulfiram is also recommended for patients with alcohol dependence [II rating].  * Naltrexone, injectable naltrexone, acamprosate, a y-aminobutyric acid (GABA) are recommended for patients with alcohol dependence [I rating]. Disulfiram is also recommended for patients with alcohol dependence [II rating].  * Methadone and buprenorphine are recommended for patients with opioid dependence [I rating].  * Naltrexone is an alternative strategy [I rating].  American Society of Addiction Medicine (2015)  * Methadone and buprenorphine are recommended for opioid use disorder treatment and withdrawal management. * Naltrexone (oral; extended-release injectable) is recommended for relapse prevention.  Michigan Quality Improvement Consortium (2017) * Patients with substance use disorder or risky substance use: Patient Education and Brief Intervention by PCP or Trained Staff (e.g. RN, MSW) * If diagnosed with substance use disorder or risky substance use, initiate an intervention within 14 days. * Frequent follow-up is helpful to support behavior change; preferably 2 visits within 30 days. * Refer to a substance abuse health specialist, an addiction physician specialist, or a physician experienced in pharmacologic management of addiction.  Department of Veterans Affairs/Department of Defense (2015) * Offer referral to specialty SUD care for addiction treatment if based on willingness to engage. [B] * For patients with moderate-severe alcohol use disorder, we recommend: Acamprosate, Disulfiram, Naltrexone- oral or extended release, or Topiramate. [A] * Medications should be offered in combined with addiction-focused counseling. offering one or more of the following interventions considering patient preference and provider training/competence: Behavioral Couples Therapy for alcohol use disorder, Cognitive Behavioral Therapy for substance use disorders, Community Reinforcement Approach, Motivational Enhancement Therapy, 12-Step Facilitation. [A] * For patients with opioid use disorder we recommend buprenorphine/naloxone or methadone in an Opioid Treatment Program. For patients for whom agonist treatment is contraindicated, unacceptable, unavailable, or discontinued, we recommend extended-release injectable naltrexone. [A] * For patients initiated in an intensive phase of outpatient or residential treatment, recommend ongoing systematic relapse prevention efforts or recovery support, individualized on the basis of treatment response. [A]"/>
+   <group id="64e38a012ad653247b573ab3">
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-scoring">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-scoring"/>
+               <code value="proportion"/>
+               <display value="Proportion"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis">
+         <valueCode value="boolean"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-type">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-type"/>
+               <code value="process"/>
+               <display value="Process"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-rateAggregation">
+         <valueCode value="None"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-improvementNotation">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-improvement-notation"/>
+               <code value="decrease"/>
+               <display value="increase"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <population id="2AB71D1F-3D6C-4896-A79B-DB28834F5A01">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="initial-population"/>
+               <display value="Initial Population"/>
+            </coding>
+         </code>
+         <description value="Patients age 13 years of age and older as of the start of the measurement period who were diagnosed with a new SUD episode during a visit between January 1 and November 14 of the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Initial Population"/>
+         </criteria>
+      </population>
+      <population id="0F1B9F33-DB7A-47F3-8B0F-FFD81DAE517F">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator"/>
+               <display value="Denominator"/>
+            </coding>
+         </code>
+         <description value="Equals Initial Population"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator"/>
+         </criteria>
+      </population>
+      <population id="33E4E5A3-BDB4-42DB-9D81-C014D01AB16B">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator-exclusion"/>
+               <display value="Denominator Exclusion"/>
+            </coding>
+         </code>
+         <description value="Exclude patients who are in hospice care for any part of the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator Exclusions"/>
+         </criteria>
+      </population>
+      <population id="A2196039-2428-4D84-9F64-A825725FA260">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="numerator"/>
+               <display value="Numerator"/>
+            </coding>
+         </code>
+         <description value="Numerator 1: Initiation of treatment includes either an intervention or medication for the treatment of SUD within 14 days of the new SUD episode"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Numerator 1"/>
+         </criteria>
+      </population>
+      <stratifier id="14cb5b29-3b16-45f6-adc4-c076fb6493de">
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-appliesTo">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+                  <code value="initial-population"/>
+                  <display value="Initial Population"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <description value="Patients age 13-17 at the start of the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Stratification 1"/>
+         </criteria>
+      </stratifier>
+      <stratifier id="a674c6ef-41d8-44a4-a560-a100fc3ecbc6">
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-appliesTo">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+                  <code value="initial-population"/>
+                  <display value="Initial Population"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <description value="Patients age 18-64 at the start of the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Stratification 2"/>
+         </criteria>
+      </stratifier>
+      <stratifier id="32b4a9d9-dc33-4bff-a68b-787ee473162b">
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-appliesTo">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+                  <code value="initial-population"/>
+                  <display value="Initial Population"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <description value="Patients age 65 and older at the start of the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Stratification 3"/>
+         </criteria>
+      </stratifier>
+   </group>
+   <group id="64e38a012ad653247b573ab4">
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-scoring">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-scoring"/>
+               <code value="proportion"/>
+               <display value="Proportion"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis">
+         <valueCode value="boolean"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-type">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-type"/>
+               <code value="process"/>
+               <display value="Process"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-rateAggregation">
+         <valueCode value="None"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-improvementNotation">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-improvement-notation"/>
+               <code value="decrease"/>
+               <display value="increase"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <population id="37CC01EF-E227-4F4B-A7A8-28CD8E9BF672">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="initial-population"/>
+               <display value="Initial Population"/>
+            </coding>
+         </code>
+         <description value="Patients age 13 years of age and older as of the start of the measurement period who were diagnosed with a new SUD episode during a visit between January 1 and November 14 of the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Initial Population"/>
+         </criteria>
+      </population>
+      <population id="1EA2FDFF-35F0-450A-9648-EC2C9B10EBD3">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator"/>
+               <display value="Denominator"/>
+            </coding>
+         </code>
+         <description value="Equals Initial Population"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator"/>
+         </criteria>
+      </population>
+      <population id="CEB148AB-98D6-400D-874E-668C4E24282F">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator-exclusion"/>
+               <display value="Denominator Exclusion"/>
+            </coding>
+         </code>
+         <description value="Exclude patients who are in hospice care for any part of the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator Exclusions"/>
+         </criteria>
+      </population>
+      <population id="444B3FC7-026D-4491-8480-22C28A19D053">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="numerator"/>
+               <display value="Numerator"/>
+            </coding>
+         </code>
+         <description value="Numerator 2: Engagement in ongoing SUD treatment within 34 days of initiation includes:  1. A long-acting SUD medication on the day after the initiation through 34 days after the initiation of treatment  2. One of the following options on the day after the initiation of treatment through 34 days after the initiation of treatment: a) two engagement visits, b) two engagement medication treatment events, c) one engagement visit and one engagement medication treatment event"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Numerator 2"/>
+         </criteria>
+      </population>
+      <stratifier id="b6c71573-42ed-4305-9a39-2cdff748cf57">
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-appliesTo">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+                  <code value="initial-population"/>
+                  <display value="Initial Population"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <description value="Patients age 13-17 at the start of the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Stratification 1"/>
+         </criteria>
+      </stratifier>
+      <stratifier id="54a441ef-4e4d-4c50-8140-b4544d44022c">
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-appliesTo">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+                  <code value="initial-population"/>
+                  <display value="Initial Population"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <description value="Patients age 18-64 at the start of the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Stratification 2"/>
+         </criteria>
+      </stratifier>
+      <stratifier id="47be3929-6f47-4a4c-93d6-2323d6f6fe80">
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-appliesTo">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+                  <code value="initial-population"/>
+                  <display value="Initial Population"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <description value="Patients age 65 and older at the start of the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Stratification 3"/>
+         </criteria>
+      </stratifier>
+   </group>
+</Measure>
