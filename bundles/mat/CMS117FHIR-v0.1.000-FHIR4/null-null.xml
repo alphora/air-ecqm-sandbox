@@ -1,0 +1,2616 @@
+<Measure xmlns="http://hl7.org/fhir">
+   <meta>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-measure-cqfm"/>
+   </meta>
+   <contained>
+      <Library xmlns="http://hl7.org/fhir">
+         <id value="effective-data-requirements"/>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+               <code value="active"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="471321000124106"/>
+               <display value="Anaphylaxis caused by vaccine product containing human poliovirus antigen (disorder)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="471331000124109"/>
+               <display value="Anaphylaxis caused by vaccine product containing Measles morbillivirus and Mumps orthorubulavirus and Rubella virus antigens (disorder)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="433621000124101"/>
+               <display value="Anaphylaxis due to Haemophilus influenzae type b vaccine (disorder)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://www.cms.gov/Medicare/Coding/ICD10"/>
+               <code value="3E0234Z"/>
+               <display value="Introduction of Serum, Toxoid and Vaccine into Muscle, Percutaneous Approach"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="428321000124101"/>
+               <display value="Anaphylaxis due to Hepatitis B vaccine (disorder)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="471341000124104"/>
+               <display value="Anaphylaxis caused by vaccine containing Human alphaherpesvirus 3 antigen (disorder)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="471141000124102"/>
+               <display value="Anaphylaxis caused by vaccine product containing Streptococcus pneumoniae antigen (disorder)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="471311000124103"/>
+               <display value="Anaphylaxis caused by vaccine product containing Hepatitis A virus antigen (disorder)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://hl7.org/fhir/sid/cvx"/>
+               <code value="119"/>
+               <display value="rotavirus, live, monovalent vaccine"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="428331000124103"/>
+               <display value="Anaphylaxis due to rotavirus vaccine (disorder)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="471361000124100"/>
+               <display value="Anaphylaxis caused by vaccine product containing Influenza virus antigen (disorder)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://www.ama-assn.org/go/cpt"/>
+               <code value="99211"/>
+               <display value="Office or other outpatient visit for the evaluation and management of an established patient that may not require the presence of a physician or other qualified health care professional"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="428361000124107"/>
+               <display value="Discharge to home for hospice care (procedure)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="428371000124100"/>
+               <display value="Discharge to healthcare facility for hospice care (procedure)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+               <code value="survey"/>
+               <display value="survey"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://loinc.org"/>
+               <code value="45755-6"/>
+               <display value="Hospice care [Minimum Data Set]"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="373066001"/>
+               <display value="Yes (qualifier value)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Date of Second Birthday"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Date of Second Birthday&amp;quot;:   Patient.birthDate + 2 years"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="0"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Vaccine Administration Interval - 42 Days up to 2 Years Old"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;:   Interval[date from Patient.birthDate + 42 days, &amp;quot;Date of Second Birthday&amp;quot;]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="1"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="DTaP Immunizations or Procedures"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;DTaP Immunizations or Procedures&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;DTaP Vaccine&amp;quot;] ) ) DTaPVaccination         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( DTaPVaccination.occurrence ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;         return all date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( DTaPVaccination.occurrence ) )     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;DTaP Vaccine Administered&amp;quot;] ) ) DTaPProcedure           where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( DTaPProcedure.performed ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;           return all date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( DTaPProcedure.performed ) )       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="2"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Four DTaP Vaccinations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Four DTaP Vaccinations&amp;quot;:   from     &amp;quot;DTaP Immunizations or Procedures&amp;quot; DTaPVaccination1,     &amp;quot;DTaP Immunizations or Procedures&amp;quot; DTaPVaccination2,     &amp;quot;DTaP Immunizations or Procedures&amp;quot; DTaPVaccination3,     &amp;quot;DTaP Immunizations or Procedures&amp;quot; DTaPVaccination4     where DTaPVaccination2 1 day or more after day of DTaPVaccination1       and DTaPVaccination3 1 day or more after day of DTaPVaccination2       and DTaPVaccination4 1 day or more after day of DTaPVaccination3     return all DTaPVaccination1"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="3"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="First Two Years"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;First Two Years&amp;quot;:   Interval[date from Patient.birthDate, &amp;quot;Date of Second Birthday&amp;quot;]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="4"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="DTaP Numerator Inclusion Conditions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;DTaP Numerator Inclusion Conditions&amp;quot;:   ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Anaphylactic Reaction to DTaP Vaccine&amp;quot;]     union [Condition: &amp;quot;Encephalitis Due to Diphtheria, Tetanus or Pertussis Vaccine&amp;quot;] ) ) DTaPConditions     where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( DTaPConditions ) during day of &amp;quot;First Two Years&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="5"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Polio Immunizations or Procedures"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Polio Immunizations or Procedures&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;Inactivated Polio Vaccine (IPV)&amp;quot;] ) ) PolioVaccination         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( PolioVaccination.occurrence ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;         return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( PolioVaccination.occurrence ) )     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Inactivated Polio Vaccine (IPV) Administered&amp;quot;] ) ) PolioProcedure           where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( PolioProcedure.performed ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;           return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( PolioProcedure.performed ) )       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="6"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Three Polio Vaccinations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Three Polio Vaccinations&amp;quot;:   from     &amp;quot;Polio Immunizations or Procedures&amp;quot; PolioVaccination1,     &amp;quot;Polio Immunizations or Procedures&amp;quot; PolioVaccination2,     &amp;quot;Polio Immunizations or Procedures&amp;quot; PolioVaccination3     where PolioVaccination2 1 day or more after day of PolioVaccination1       and PolioVaccination3 1 day or more after day of PolioVaccination2     return PolioVaccination1"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="7"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Polio Numerator Inclusion Conditions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Polio Numerator Inclusion Conditions&amp;quot;:   ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Anaphylaxis caused by vaccine product containing human poliovirus antigen (disorder)&amp;quot;] ) ) PolioConditions     where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( PolioConditions ) during day of &amp;quot;First Two Years&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="8"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Date of First Birthday"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Date of First Birthday&amp;quot;:   date from Patient.birthDate + 1 year"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="9"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Date of First Birthday to Date of Second Birthday"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Date of First Birthday to Date of Second Birthday&amp;quot;:   Interval[&amp;quot;Date of First Birthday&amp;quot;, &amp;quot;Date of Second Birthday&amp;quot;]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="10"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="One MMR Vaccination"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;One MMR Vaccination&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;Measles, Mumps and Rubella (MMR) Vaccine&amp;quot;] ) ) MMRVaccination         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( MMRVaccination.occurrence ) ) during &amp;quot;Date of First Birthday to Date of Second Birthday&amp;quot;     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Measles, Mumps and Rubella (MMR) Vaccine Administered&amp;quot;] ) ) MMRProcedure           where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( MMRProcedure.performed ) ) during &amp;quot;Date of First Birthday to Date of Second Birthday&amp;quot;       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="11"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="MMR Numerator Inclusion Conditions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;MMR Numerator Inclusion Conditions&amp;quot;:   ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Anaphylaxis caused by vaccine product containing Measles morbillivirus and Mumps orthorubulavirus and Rubella virus antigens (disorder)&amp;quot;] ) ) MMRConditions     where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( MMRConditions ) during day of &amp;quot;First Two Years&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="12"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Measles Indicators"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Measles Indicators&amp;quot;:   ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Measles&amp;quot;] ) ) MeaslesDiagnosis     where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( MeaslesDiagnosis ) during day of &amp;quot;First Two Years&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="13"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Mumps Indicators"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Mumps Indicators&amp;quot;:   ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Mumps&amp;quot;] ) ) MumpsDiagnosis     where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( MumpsDiagnosis ) during day of &amp;quot;First Two Years&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="14"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Rubella Indicators"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Rubella Indicators&amp;quot;:   ( ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Rubella&amp;quot;] ) ) RubellaDiagnosis       where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( RubellaDiagnosis ) during day of &amp;quot;First Two Years&amp;quot;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="15"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Hib 3 Dose Immunizations or Procedures"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Hib 3 Dose Immunizations or Procedures&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;Hib Vaccine (3 dose schedule)&amp;quot;] ) ) ThreeDoseHibVaccine         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( ThreeDoseHibVaccine.occurrence ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;         return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( ThreeDoseHibVaccine.occurrence ) )     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Hib Vaccine (3 dose schedule) Administered&amp;quot;] ) ) ThreeDoseHibProcedure           where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( ThreeDoseHibProcedure.performed ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;           return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( ThreeDoseHibProcedure.performed ) )       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="16"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Hib 4 Dose Immunizations or Procedures"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Hib 4 Dose Immunizations or Procedures&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;Hib Vaccine (4 dose schedule)&amp;quot;] ) ) HibVaccine         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( HibVaccine.occurrence ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;         return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( HibVaccine.occurrence ) )     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Hib Vaccine (4 dose schedule) Administered&amp;quot;] ) ) HibProcedure           where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( HibProcedure.performed ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;           return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( HibProcedure.performed ) )       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="17"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Hib 3 or 4 Dose Immunizations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Hib 3 or 4 Dose Immunizations&amp;quot;:   &amp;quot;Hib 3 Dose Immunizations or Procedures&amp;quot;     union &amp;quot;Hib 4 Dose Immunizations or Procedures&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="18"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="All Hib Vaccinations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;All Hib Vaccinations&amp;quot;:   &amp;quot;Hib 3 or 4 Dose Immunizations&amp;quot; AllHibDoses1     without &amp;quot;Hib 3 or 4 Dose Immunizations&amp;quot; AllHibDoses2       such that AllHibDoses1 less than 1 day before AllHibDoses2"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="19"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Appropriate Number of Hib Immunizations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Appropriate Number of Hib Immunizations&amp;quot;:   exists ( &amp;quot;All Hib Vaccinations&amp;quot; HibImmunization //union of 3 and 4 dose immunizations //4 dose test                     let HasFourDose: Count(&amp;quot;Hib 4 Dose Immunizations or Procedures&amp;quot;) &amp;gt; 0       where ( HasFourDose //if pt had at least one 4 dose code                      and Count(distinct(&amp;quot;All Hib Vaccinations&amp;quot; HibVaccinations                 return HibVaccinations             )           ) &amp;gt;= 4 //pt must have 4 regimens (e.g., 3,3,4,4 or 4,3,4,4)              )         or ( HasFourDose is false //if pt did not have at least one 4 dose code                          and Count(distinct(&amp;quot;All Hib Vaccinations&amp;quot; HibVaccinations                   return HibVaccinations               )             ) &amp;gt;= 3 //pt must have 3 regimens of 3 dose codes                  )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="20"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Hib Numerator Inclusion Conditions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Hib Numerator Inclusion Conditions&amp;quot;:   ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Anaphylaxis due to Haemophilus influenzae type b vaccine (disorder)&amp;quot;] ) ) HibReaction     where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( HibReaction ) during day of &amp;quot;First Two Years&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="21"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Hepatitis B Immunizations or Procedures"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Hepatitis B Immunizations or Procedures&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;Hepatitis B Vaccine&amp;quot;] ) ) HepatitisBVaccination         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( HepatitisBVaccination.occurrence ) ) during day of &amp;quot;First Two Years&amp;quot;         return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( HepatitisBVaccination.occurrence ) )     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Hepatitis B Vaccine Administered&amp;quot;] ) ) HepatitisBProcedure           where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( HepatitisBProcedure.performed ) ) during day of &amp;quot;First Two Years&amp;quot;           return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( HepatitisBProcedure.performed ) )       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="22"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Three Hepatitis B Vaccinations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Three Hepatitis B Vaccinations&amp;quot;:   from     &amp;quot;Hepatitis B Immunizations or Procedures&amp;quot; HepatitisBVaccination1,     &amp;quot;Hepatitis B Immunizations or Procedures&amp;quot; HepatitisBVaccination2,     &amp;quot;Hepatitis B Immunizations or Procedures&amp;quot; HepatitisBVaccination3     where HepatitisBVaccination2 1 day or more after day of HepatitisBVaccination1       and HepatitisBVaccination3 1 day or more after day of HepatitisBVaccination2     return HepatitisBVaccination1"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="23"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="NewBorn Vaccine Requirement"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;NewBorn Vaccine Requirement&amp;quot;:   ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Introduction of Serum, Toxoid and Vaccine into Muscle, Percutaneous Approach&amp;quot;] ) ) NewBornVaccine     where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( NewBornVaccine.performed ) ) during day of Interval[date from Patient.birthDate, date from Patient.birthDate + 7 days]     return date from start of QICoreCommon.&amp;quot;ToInterval&amp;quot; ( NewBornVaccine.performed )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="24"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Meets HepB Vaccination Requirement"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Meets HepB Vaccination Requirement&amp;quot;:   from     &amp;quot;Hepatitis B Immunizations or Procedures&amp;quot; HepatitisBVaccination1,     &amp;quot;Hepatitis B Immunizations or Procedures&amp;quot; HepatitisBVaccination2,     &amp;quot;NewBorn Vaccine Requirement&amp;quot; NewBornVaccine3     where HepatitisBVaccination2 1 day or more after day of HepatitisBVaccination1       and HepatitisBVaccination1 1 day or more after day of NewBornVaccine3       and HepatitisBVaccination2 1 day or more after day of NewBornVaccine3     return HepatitisBVaccination1"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="25"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Hepatitis B Numerator Inclusion Conditions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Hepatitis B Numerator Inclusion Conditions&amp;quot;:   ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Anaphylaxis due to Hepatitis B vaccine (disorder)&amp;quot;]     union [Condition: &amp;quot;Hepatitis B&amp;quot;] ) ) HepBConditions     where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( HepBConditions ) during day of &amp;quot;First Two Years&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="26"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="One Chicken Pox Vaccination"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;One Chicken Pox Vaccination&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;Varicella Zoster Vaccine (VZV)&amp;quot;] ) ) ChickenPoxVaccination         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( ChickenPoxVaccination.occurrence ) ) during &amp;quot;Date of First Birthday to Date of Second Birthday&amp;quot;     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Varicella Zoster Vaccine (VZV) Administered&amp;quot;] ) ) ChickenPoxProcedure           where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( ChickenPoxProcedure.performed ) ) during &amp;quot;Date of First Birthday to Date of Second Birthday&amp;quot;       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="27"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Varicella Zoster Numerator Inclusion Conditions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Varicella Zoster Numerator Inclusion Conditions&amp;quot;:   ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Varicella Zoster&amp;quot;]     union [Condition: &amp;quot;Anaphylaxis caused by vaccine containing Human alphaherpesvirus 3 antigen (disorder)&amp;quot;] ) ) VaricellaZoster     where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( VaricellaZoster ) during day of &amp;quot;First Two Years&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="28"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Pneumococcal Conjugate Immunizations or Procedures"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Pneumococcal Conjugate Immunizations or Procedures&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;Pneumococcal Conjugate Vaccine&amp;quot;] ) ) PneumococcalVaccination         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( PneumococcalVaccination.occurrence ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;         return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( PneumococcalVaccination.occurrence ) )     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Pneumococcal Conjugate Vaccine Administered&amp;quot;] ) ) PneumococcalProcedure           where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( PneumococcalProcedure.performed ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;           return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( PneumococcalProcedure.performed ) )       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="29"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Four Pneumococcal Conjugate Vaccinations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Four Pneumococcal Conjugate Vaccinations&amp;quot;:   from     &amp;quot;Pneumococcal Conjugate Immunizations or Procedures&amp;quot; PneumococcalVaccination1,     &amp;quot;Pneumococcal Conjugate Immunizations or Procedures&amp;quot; PneumococcalVaccination2,     &amp;quot;Pneumococcal Conjugate Immunizations or Procedures&amp;quot; PneumococcalVaccination3,     &amp;quot;Pneumococcal Conjugate Immunizations or Procedures&amp;quot; PneumococcalVaccination4     where PneumococcalVaccination2 1 day or more after day of PneumococcalVaccination1       and PneumococcalVaccination3 1 day or more after day of PneumococcalVaccination2       and PneumococcalVaccination4 1 day or more after day of PneumococcalVaccination3     return PneumococcalVaccination1"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="30"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Pneumococcal Conjugate Numerator Inclusion Conditions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Pneumococcal Conjugate Numerator Inclusion Conditions&amp;quot;:   ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Anaphylaxis caused by vaccine product containing Streptococcus pneumoniae antigen (disorder)&amp;quot;] ) ) PneumococcalReaction     where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( PneumococcalReaction ) during day of &amp;quot;First Two Years&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="31"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="One Hepatitis A Vaccinations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;One Hepatitis A Vaccinations&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;Hepatitis A Vaccine&amp;quot;] ) ) HepatitisAVaccination         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( HepatitisAVaccination.occurrence ) ) during &amp;quot;Date of First Birthday to Date of Second Birthday&amp;quot;     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Hepatitis A Vaccine Administered&amp;quot;] ) ) HepatitisAProcedure           where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( HepatitisAProcedure.performed ) ) during &amp;quot;Date of First Birthday to Date of Second Birthday&amp;quot;       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="32"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Hepatitis A Numerator Inclusion Conditions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Hepatitis A Numerator Inclusion Conditions&amp;quot;:   ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Hepatitis A&amp;quot;]     union [Condition: &amp;quot;Anaphylaxis caused by vaccine product containing Hepatitis A virus antigen (disorder)&amp;quot;] ) ) HepatitisADiagnosis     where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( HepatitisADiagnosis ) during day of &amp;quot;First Two Years&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="33"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Rotavirus 2 Dose Immunizations or Procedures"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Rotavirus 2 Dose Immunizations or Procedures&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;rotavirus, live, monovalent vaccine&amp;quot;] ) ) TwoDoseRotavirusVaccine         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( TwoDoseRotavirusVaccine.occurrence ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;         return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( TwoDoseRotavirusVaccine.occurrence ) )     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Rotavirus Vaccine (2 dose schedule) Administered&amp;quot;] ) ) TwoDoseRotavirusProcedure           where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( TwoDoseRotavirusProcedure.performed ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;           return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( TwoDoseRotavirusProcedure.performed ) )       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="34"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Rotavirus 3 Dose Immunizations or Procedures"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Rotavirus 3 Dose Immunizations or Procedures&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;Rotavirus Vaccine (3 dose schedule)&amp;quot;] ) ) ThreeDoseRotavirusVaccine         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( ThreeDoseRotavirusVaccine.occurrence ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;         return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( ThreeDoseRotavirusVaccine.occurrence ) )     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Rotavirus Vaccine (3 dose schedule) Administered&amp;quot;] ) ) ThreeDoseRotavirusAdministered           where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( ThreeDoseRotavirusAdministered.performed ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;           return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( ThreeDoseRotavirusAdministered.performed ) )       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="35"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Rotavirus 2 or 3 Dose Immunizations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Rotavirus 2 or 3 Dose Immunizations&amp;quot;:   &amp;quot;Rotavirus 2 Dose Immunizations or Procedures&amp;quot;     union &amp;quot;Rotavirus 3 Dose Immunizations or Procedures&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="36"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="All Rotavirus Vaccinations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;All Rotavirus Vaccinations&amp;quot;:   &amp;quot;Rotavirus 2 or 3 Dose Immunizations&amp;quot; AllRotavirusDoses1     without &amp;quot;Rotavirus 2 or 3 Dose Immunizations&amp;quot; AllRotavirusDoses2       such that AllRotavirusDoses1 less than 1 day before AllRotavirusDoses2"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="37"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Appropriate Number of Rotavirus Immunizations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Appropriate Number of Rotavirus Immunizations&amp;quot;:   exists ( &amp;quot;All Rotavirus Vaccinations&amp;quot; RotavirusImmunization       let HasThreeDose: Count(&amp;quot;Rotavirus 3 Dose Immunizations or Procedures&amp;quot;) &amp;gt; 0       where ( HasThreeDose           and Count(distinct(&amp;quot;All Rotavirus Vaccinations&amp;quot; RotavirusVaccinations                 return RotavirusVaccinations             )           ) &amp;gt;= 3       )         or ( HasThreeDose is false             and Count(distinct(&amp;quot;All Rotavirus Vaccinations&amp;quot; RotavirusVaccinations                   return RotavirusVaccinations               )             ) &amp;gt;= 2         )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="38"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Rotavirus Numerator Inclusion Conditions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Rotavirus Numerator Inclusion Conditions&amp;quot;:   ( ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Anaphylaxis due to rotavirus vaccine (disorder)&amp;quot;] ) ) RotavirusConditions       where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( RotavirusConditions ) during day of &amp;quot;First Two Years&amp;quot;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="39"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Vaccine Administration Interval - 180 Days up to 2 Years Old"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Vaccine Administration Interval - 180 Days up to 2 Years Old&amp;quot;:   Interval[date from Patient.birthDate + 180 days, &amp;quot;Date of Second Birthday&amp;quot;]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="40"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Influenza Immunizations or Procedures"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Influenza Immunizations or Procedures&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;Child Influenza Immunization Administered&amp;quot;] ) ) InfluenzaVaccine         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( InfluenzaVaccine.occurrence ) ) during day of &amp;quot;Vaccine Administration Interval - 42 Days up to 2 Years Old&amp;quot;         return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( InfluenzaVaccine.occurrence ) )     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Child Influenza Vaccine Administered&amp;quot;] ) ) InfluenzaAdministration           where QICoreCommon.&amp;quot;ToInterval&amp;quot; ( InfluenzaAdministration.performed ) during day of &amp;quot;Vaccine Administration Interval - 180 Days up to 2 Years Old&amp;quot;           return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( InfluenzaAdministration.performed ) )       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="41"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Two Influenza Vaccinations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Two Influenza Vaccinations&amp;quot;:   from     &amp;quot;Influenza Immunizations or Procedures&amp;quot; FluVaccination1,     &amp;quot;Influenza Immunizations or Procedures&amp;quot; FluVaccination2     where FluVaccination2 1 day or more after day of FluVaccination1     return FluVaccination1"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="42"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="LAIV Vaccinations"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;LAIV Vaccinations&amp;quot;:   ( ( ( Status.&amp;quot;Completed Immunization&amp;quot; ( [Immunization: &amp;quot;Influenza Virus LAIV Immunization&amp;quot;] ) ) LAIVVaccine         where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( LAIVVaccine.occurrence ) ) during day of Interval[&amp;quot;Date of Second Birthday&amp;quot;, &amp;quot;Date of Second Birthday&amp;quot;]         return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( LAIVVaccine.occurrence ) )     )       union ( ( Status.&amp;quot;Completed Procedure&amp;quot; ( [Procedure: &amp;quot;Influenza Virus LAIV Procedure&amp;quot;] ) ) InfluenzaAdministration           where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( InfluenzaAdministration.performed ) ) during day of Interval[&amp;quot;Date of Second Birthday&amp;quot;, &amp;quot;Date of Second Birthday&amp;quot;]           return date from start of CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( QICoreCommon.&amp;quot;ToInterval&amp;quot; ( InfluenzaAdministration.performed ) )       )   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="43"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Two Influenza Vaccinations Including One LAIV Vaccination"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Two Influenza Vaccinations Including One LAIV Vaccination&amp;quot;:   exists &amp;quot;LAIV Vaccinations&amp;quot;     and exists &amp;quot;Influenza Immunizations or Procedures&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="44"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Influenza Numerator Inclusion Conditions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Influenza Numerator Inclusion Conditions&amp;quot;:   ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Anaphylaxis caused by vaccine product containing Influenza virus antigen (disorder)&amp;quot;] ) ) InfluenzaConditions     where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( InfluenzaConditions ) during day of &amp;quot;First Two Years&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="45"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Numerator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Numerator&amp;quot;:   ( exists ( &amp;quot;Four DTaP Vaccinations&amp;quot; )       or exists ( &amp;quot;DTaP Numerator Inclusion Conditions&amp;quot; )   )     and ( exists ( &amp;quot;Three Polio Vaccinations&amp;quot; )         or exists ( &amp;quot;Polio Numerator Inclusion Conditions&amp;quot; )     )     and ( exists ( &amp;quot;One MMR Vaccination&amp;quot; )         or exists ( &amp;quot;MMR Numerator Inclusion Conditions&amp;quot; )         or ( exists ( &amp;quot;Measles Indicators&amp;quot; )             and exists ( &amp;quot;Mumps Indicators&amp;quot; )             and exists ( &amp;quot;Rubella Indicators&amp;quot; )         )     )     and ( &amp;quot;Has Appropriate Number of Hib Immunizations&amp;quot;         or exists ( &amp;quot;Hib Numerator Inclusion Conditions&amp;quot; )     )     and ( exists ( &amp;quot;Three Hepatitis B Vaccinations&amp;quot; )         or ( exists ( &amp;quot;Meets HepB Vaccination Requirement&amp;quot; )             or exists ( &amp;quot;Hepatitis B Numerator Inclusion Conditions&amp;quot; )         )     )     and ( exists ( &amp;quot;One Chicken Pox Vaccination&amp;quot; )         or exists ( &amp;quot;Varicella Zoster Numerator Inclusion Conditions&amp;quot; )     )     and ( exists ( &amp;quot;Four Pneumococcal Conjugate Vaccinations&amp;quot; )         or exists ( &amp;quot;Pneumococcal Conjugate Numerator Inclusion Conditions&amp;quot; )     )     and ( exists ( &amp;quot;One Hepatitis A Vaccinations&amp;quot; )         or exists ( &amp;quot;Hepatitis A Numerator Inclusion Conditions&amp;quot; )     )     and ( &amp;quot;Has Appropriate Number of Rotavirus Immunizations&amp;quot;         or exists ( &amp;quot;Rotavirus Numerator Inclusion Conditions&amp;quot; )     )     and ( exists ( &amp;quot;Two Influenza Vaccinations&amp;quot; )         or ( &amp;quot;Two Influenza Vaccinations Including One LAIV Vaccination&amp;quot; )         or exists ( &amp;quot;Influenza Numerator Inclusion Conditions&amp;quot; )     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="46"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Qualifying Encounters"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Qualifying Encounters&amp;quot;:   ( Status.&amp;quot;Finished Encounter&amp;quot; ( [Encounter: &amp;quot;Office Visit&amp;quot;]     union [Encounter: &amp;quot;Home Healthcare Services&amp;quot;]     union [Encounter: &amp;quot;Preventive Care, Established Office Visit, 0 to 17&amp;quot;]     union [Encounter: &amp;quot;Preventive Care Services, Initial Office Visit, 0 to 17&amp;quot;]     union ( [Encounter] E         where exists ( ( E.type ) T             where T ~ &amp;quot;Office or other outpatient visit for the evaluation and management of an established patient that may not require the presence of a physician or other qualified health care professional&amp;quot;         )     )     union [Encounter: &amp;quot;Online Assessments&amp;quot;]     union [Encounter: &amp;quot;Telephone Visits&amp;quot;] ) ) ValidEncounters     where QICoreCommon.&amp;quot;ToInterval&amp;quot; ( ValidEncounters.period ) during day of &amp;quot;Measurement Period&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="47"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Initial Population"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Initial Population&amp;quot;:   AgeInYearsAt(date from      end of &amp;quot;Measurement Period&amp;quot;   ) = 2     and exists ( &amp;quot;Qualifying Encounters&amp;quot; )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="48"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator&amp;quot;:   &amp;quot;Initial Population&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="49"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Hospice"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Hospice Services"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Hospice Services&amp;quot;:   exists ((([Encounter: &amp;quot;Encounter Inpatient&amp;quot;]).isEncounterPerformed()) InpatientEncounter       where (InpatientEncounter.hospitalization.dischargeDisposition ~ &amp;quot;Discharge to home for hospice care (procedure)&amp;quot;           or InpatientEncounter.hospitalization.dischargeDisposition ~ &amp;quot;Discharge to healthcare facility for hospice care (procedure)&amp;quot;       )         and InpatientEncounter.period.toInterval() ends during day of &amp;quot;Measurement Period&amp;quot;   )     or exists ((([Encounter: &amp;quot;Hospice Encounter&amp;quot;]).isEncounterPerformed()) HospiceEncounter         where HospiceEncounter.period.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([Observation: &amp;quot;Hospice care [Minimum Data Set]&amp;quot;]).isAssessmentPerformed()) HospiceAssessment         where HospiceAssessment.value ~ &amp;quot;Yes (qualifier value)&amp;quot;           and HospiceAssessment.effective.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([ServiceRequest: &amp;quot;Hospice Care Ambulatory&amp;quot;]).isInterventionOrder()) HospiceOrder         where HospiceOrder.authoredOn.toInterval() during day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([Procedure: &amp;quot;Hospice Care Ambulatory&amp;quot;]).isInterventionPerformed()) HospicePerformed         where HospicePerformed.performed.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists (([Condition: &amp;quot;Hospice Diagnosis&amp;quot;]) HospiceCareDiagnosis         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="50"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Severe Combined Immunodeficiency"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Severe Combined Immunodeficiency&amp;quot;:   exists ( ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Severe Combined Immunodeficiency&amp;quot;] ) ) SevereImmuneDisorder       where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( SevereImmuneDisorder ) during day of &amp;quot;First Two Years&amp;quot;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="51"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Immunodeficiency"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Immunodeficiency&amp;quot;:   exists ( ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Disorders of the Immune System&amp;quot;] ) ) ImmuneDisorder       where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( ImmuneDisorder ) during day of &amp;quot;First Two Years&amp;quot;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="52"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has HIV"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has HIV&amp;quot;:   exists ( ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;HIV&amp;quot;] ) ) HIV       where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( HIV ) during day of &amp;quot;First Two Years&amp;quot;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="53"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Lymphoreticular Cancer, Multiple Myeloma or Leukemia"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Lymphoreticular Cancer, Multiple Myeloma or Leukemia&amp;quot;:   exists ( ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Malignant Neoplasm of Lymphatic and Hematopoietic Tissue&amp;quot;] ) ) LymphaticMalignantNeoplasm       where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( LymphaticMalignantNeoplasm ) during day of &amp;quot;First Two Years&amp;quot;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="54"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Intussusception"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Intussusception&amp;quot;:   exists ( ( Status.&amp;quot;Active Condition&amp;quot; ( [Condition: &amp;quot;Intussusception&amp;quot;] ) ) IntussusceptionDisorder       where date from start of QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; ( IntussusceptionDisorder ) during day of &amp;quot;First Two Years&amp;quot;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="55"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="ChildhoodImmunizationStatusFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator Exclusions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator Exclusions&amp;quot;:   Hospice.&amp;quot;Has Hospice Services&amp;quot;     or &amp;quot;Has Severe Combined Immunodeficiency&amp;quot;     or &amp;quot;Has Immunodeficiency&amp;quot;     or &amp;quot;Has HIV&amp;quot;     or &amp;quot;Has Lymphoreticular Cancer, Multiple Myeloma or Leukemia&amp;quot;     or &amp;quot;Has Intussusception&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="56"/>
+            </extension>
+         </extension>
+         <status value="active"/>
+         <type>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/library-type"/>
+               <code value="module-definition"/>
+            </coding>
+         </type>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library Status"/>
+            <resource value="Library/Status|1.6.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library CQMCommon"/>
+            <resource value="Library/CQMCommon|1.4.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library QICoreCommon"/>
+            <resource value="Library/QICoreCommon|1.5.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library FHIRHelpers"/>
+            <resource value="Library/FHIRHelpers|4.3.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library FHIRHelpers"/>
+            <resource value="Library/FHIRHelpers|4.3.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library Hospice"/>
+            <resource value="Library/Hospice|6.7.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library Status"/>
+            <resource value="Library/Status|1.6.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library QICoreCommon"/>
+            <resource value="Library/QICoreCommon|1.5.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ConditionClinicalStatusCodes"/>
+            <resource value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system SNOMEDCT"/>
+            <resource value="http://snomed.info/sct"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ICD10"/>
+            <resource value="http://www.cms.gov/Medicare/Coding/ICD10"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system CVX"/>
+            <resource value="http://hl7.org/fhir/sid/cvx"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system CPT"/>
+            <resource value="http://www.ama-assn.org/go/cpt"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system SNOMEDCT"/>
+            <resource value="http://snomed.info/sct"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ObservationCategoryCodes"/>
+            <resource value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system LOINC"/>
+            <resource value="http://loinc.org"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set DTaP Vaccine"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1214"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set DTaP Vaccine Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1022"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Anaphylactic Reaction to DTaP Vaccine"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.199.12.1031"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Encephalitis Due to Diphtheria, Tetanus or Pertussis Vaccine"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1164"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Inactivated Polio Vaccine (IPV)"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1219"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Inactivated Polio Vaccine (IPV) Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1045"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Measles, Mumps and Rubella (MMR) Vaccine"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1224"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Measles, Mumps and Rubella (MMR) Vaccine Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1031"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Measles"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1053"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Mumps"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1032"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Rubella"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1037"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hib Vaccine (3 dose schedule)"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1083"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hib Vaccine (3 dose schedule) Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1084"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hib Vaccine (4 dose schedule)"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1085"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hib Vaccine (4 dose schedule) Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1086"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hepatitis B Vaccine"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1216"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hepatitis B Vaccine Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1042"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hepatitis B"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1025"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Varicella Zoster Vaccine (VZV)"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1170"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Varicella Zoster Vaccine (VZV) Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1040"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Varicella Zoster"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1039"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Pneumococcal Conjugate Vaccine"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1221"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Pneumococcal Conjugate Vaccine Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1046"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hepatitis A Vaccine"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1215"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hepatitis A Vaccine Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1041"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hepatitis A"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1024"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Rotavirus Vaccine (2 dose schedule) Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1048"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Rotavirus Vaccine (3 dose schedule)"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1223"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Rotavirus Vaccine (3 dose schedule) Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1047"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Child Influenza Immunization Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1218"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Child Influenza Vaccine Administered"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1044"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Influenza Virus LAIV Immunization"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1087"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Influenza Virus LAIV Procedure"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1088"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Office Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Home Healthcare Services"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care, Established Office Visit, 0 to 17"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1024"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services, Initial Office Visit, 0 to 17"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1022"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Online Assessments"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Telephone Visits"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Encounter Inpatient"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Encounter"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Care Ambulatory"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Diagnosis"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Severe Combined Immunodeficiency"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1007"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Disorders of the Immune System"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1001"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set HIV"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1003"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Malignant Neoplasm of Lymphatic and Hematopoietic Tissue"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1009"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Intussusception"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.199.12.1056"/>
+         </relatedArtifact>
+         <parameter>
+            <name value="Measurement Period"/>
+            <use value="in"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Period"/>
+         </parameter>
+         <parameter>
+            <name value="Numerator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Initial Population"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator Exclusions"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <dataRequirement>
+            <type value="Patient"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Patient"/>
+            <profile value="http://hl7.org/fhir/Patient"/>
+            <mustSupport value="birthDate"/>
+            <mustSupport value="birthDate.value"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Patient"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1214"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1214"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1022"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1022"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.199.12.1031"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1164"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1219"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1219"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1045"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1045"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="471321000124106"/>
+                  <display value="Anaphylaxis caused by vaccine product containing human poliovirus antigen (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="471321000124106"/>
+                  <display value="Anaphylaxis caused by vaccine product containing human poliovirus antigen (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1224"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1224"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1031"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1031"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="471331000124109"/>
+                  <display value="Anaphylaxis caused by vaccine product containing Measles morbillivirus and Mumps orthorubulavirus and Rubella virus antigens (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="471331000124109"/>
+                  <display value="Anaphylaxis caused by vaccine product containing Measles morbillivirus and Mumps orthorubulavirus and Rubella virus antigens (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1053"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1053"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1032"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1032"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1037"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1037"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1083"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1083"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1084"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1084"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1085"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1085"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1086"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1086"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="433621000124101"/>
+                  <display value="Anaphylaxis due to Haemophilus influenzae type b vaccine (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="433621000124101"/>
+                  <display value="Anaphylaxis due to Haemophilus influenzae type b vaccine (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1216"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1216"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1042"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1042"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://www.cms.gov/Medicare/Coding/ICD10"/>
+                  <code value="3E0234Z"/>
+                  <display value="Introduction of Serum, Toxoid and Vaccine into Muscle, Percutaneous Approach"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://www.cms.gov/Medicare/Coding/ICD10"/>
+                  <code value="3E0234Z"/>
+                  <display value="Introduction of Serum, Toxoid and Vaccine into Muscle, Percutaneous Approach"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://www.cms.gov/Medicare/Coding/ICD10"/>
+                  <code value="3E0234Z"/>
+                  <display value="Introduction of Serum, Toxoid and Vaccine into Muscle, Percutaneous Approach"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="428321000124101"/>
+                  <display value="Anaphylaxis due to Hepatitis B vaccine (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1025"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1170"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1170"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1040"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1040"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1039"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="471341000124104"/>
+                  <display value="Anaphylaxis caused by vaccine containing Human alphaherpesvirus 3 antigen (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1221"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1221"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1046"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1046"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="471141000124102"/>
+                  <display value="Anaphylaxis caused by vaccine product containing Streptococcus pneumoniae antigen (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="471141000124102"/>
+                  <display value="Anaphylaxis caused by vaccine product containing Streptococcus pneumoniae antigen (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1215"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1215"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1041"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1041"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1024"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="471311000124103"/>
+                  <display value="Anaphylaxis caused by vaccine product containing Hepatitis A virus antigen (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <code>
+                  <system value="http://hl7.org/fhir/sid/cvx"/>
+                  <code value="119"/>
+                  <display value="rotavirus, live, monovalent vaccine"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <code>
+                  <system value="http://hl7.org/fhir/sid/cvx"/>
+                  <code value="119"/>
+                  <display value="rotavirus, live, monovalent vaccine"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1048"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1048"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1223"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1223"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1047"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1047"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="428331000124103"/>
+                  <display value="Anaphylaxis due to rotavirus vaccine (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="428331000124103"/>
+                  <display value="Anaphylaxis due to rotavirus vaccine (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1218"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1218"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1044"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1044"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1087"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Immunization"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-immunization"/>
+            <mustSupport value="vaccineCode"/>
+            <mustSupport value="occurrence"/>
+            <mustSupport value="occurrence.value"/>
+            <codeFilter>
+               <path value="vaccineCode"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1087"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1088"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1088"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="471361000124100"/>
+                  <display value="Anaphylaxis caused by vaccine product containing Influenza virus antigen (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="471361000124100"/>
+                  <display value="Anaphylaxis caused by vaccine product containing Influenza virus antigen (disorder)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1024"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1022"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="hospitalization"/>
+            <mustSupport value="hospitalization.dischargeDisposition"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://loinc.org"/>
+                  <code value="45755-6"/>
+                  <display value="Hospice care [Minimum Data Set]"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="value"/>
+            <mustSupport value="effective"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://loinc.org"/>
+                  <code value="45755-6"/>
+                  <display value="Hospice care [Minimum Data Set]"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="ServiceRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="ServiceRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest"/>
+            <mustSupport value="code"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1007"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1007"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1003"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1003"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1009"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1009"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.199.12.1056"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.199.12.1056"/>
+            </codeFilter>
+         </dataRequirement>
+      </Library>
+   </contained>
+   <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements">
+      <valueReference>
+         <reference value="#effective-data-requirements"/>
+      </valueReference>
+   </extension>
+   <url value="http://ecqi.healthit.gov/ecqms/Measure/ChildhoodImmunizationStatusFHIR"/>
+   <identifier>
+      <use value="usual"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="short-name"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/shortName"/>
+      <value value="CMS117FHIR"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-independent"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:020b451b-0c5e-4582-b069-90128f33a482"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-specific"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:2c928084808a95890180ce7f7b0c1438"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="publisher"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/cmsId"/>
+      <value value="117FHIR"/>
+      <assigner>
+         <display value="CMS"/>
+      </assigner>
+   </identifier>
+   <version value="0.1.000"/>
+   <name value="ChildhoodImmunizationStatusFHIR"/>
+   <title value="Childhood Immunization StatusFHIR"/>
+   <status value="active"/>
+   <experimental value="false"/>
+   <date value="2023-09-08T14:02:58+00:00"/>
+   <publisher value="National Committee for Quality Assurance"/>
+   <contact>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.ncqa.org/"/>
+      </telecom>
+   </contact>
+   <description value="Percentage of children 2 years of age who had four diphtheria, tetanus and acellular pertussis (DTaP); three polio (IPV), one measles, mumps and rubella (MMR); three or four H influenza type B (Hib); three hepatitis B (Hep B); one chicken pox (VZV); four pneumococcal conjugate (PCV); one hepatitis A (Hep A); two or three rotavirus (RV); and two influenza (flu) vaccines by their second birthday"/>
+   <purpose value="UNKNOWN"/>
+   <usage value="The measure allows a grace period by measuring compliance with these recommendations between birth and age two.  This eCQM is a patient-based measure.   This FHIR-based measure has been derived from the QDM-based measure: CMS117v12.  Please refer to the HL7 QI-Core Implementation Guide (http://hl7.org/fhir/us/qicore/index.html) for more information on QI-Core and mapping recommendations from QDM to QI-Core 4.1.1 (http://hl7.org/fhir/us/qicore/qdm-to-qicore.html)."/>
+   <copyright value="This Physician Performance Measure (Measure) and related data specifications are owned and were developed by the National Committee for Quality Assurance (NCQA). NCQA is not responsible for any use of the Measure. NCQA makes no representations, warranties, or endorsement about the quality of any organization or physician that uses or reports performance measures and NCQA has no liability to anyone who relies on such measures or specifications. NCQA holds a copyright in the Measure. The Measure can be reproduced and distributed, without modification, for noncommercial purposes (e.g., use by healthcare providers in connection with their practices) without obtaining approval from NCQA. Commercial use is defined as the sale, licensing, or distribution of the Measure for commercial gain, or incorporation of the Measure into a product or service that is sold, licensed or distributed for commercial gain. All commercial uses or requests for modification must be approved by NCQA and are subject to a license at the discretion of NCQA. (C) 2012-2022 National Committee for Quality Assurance. All Rights Reserved.  Limited proprietary coding is contained in the Measure specifications for user convenience. Users of proprietary code sets should obtain all necessary licenses from the owners of the code sets. NCQA disclaims all liability for use or accuracy of any third-party codes contained in the specifications.  CPT(R) codes, descriptions and other data are copyright 2022. American Medical Association. All rights reserved. CPT is a trademark of the American Medical Association. No fee schedules, basic units, relative values or related listings are included in CPT. The AMA assumes no liability for the data contained herein. Applicable FARS/DFARS restrictions apply to government use.  LOINC(R) copyright 2004-2022 Regenstrief Institute, Inc.  This material contains SNOMED Clinical Terms(R) (SNOMED CT[R]) copyright 2004-2022 International Health Terminology Standards Development Organisation.  ICD-10 copyright 2022 World Health Organization. All Rights Reserved."/>
+   <approvalDate value="2023-09-08"/>
+   <lastReviewDate value="2023-09-08"/>
+   <effectivePeriod>
+      <start value="2024-01-01"/>
+      <end value="2024-12-31"/>
+   </effectivePeriod>
+   <author>
+      <name value="National Committee for Quality Assurance"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.ncqa.org/"/>
+      </telecom>
+   </author>
+   <library value="http://ecqi.healthit.gov/ecqms/Library/ChildhoodImmunizationStatusFHIR"/>
+   <disclaimer value="The performance Measure is not a clinical guideline and does not establish a standard of medical care, and has not been tested for all potential applications. THE MEASURE AND SPECIFICATIONS ARE PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND.   Due to technical limitations, registered trademarks are indicated by (R) or [R] and unregistered trademarks are indicated by (TM) or [TM]."/>
+   <rationale value="Infants and toddlers are particularly vulnerable to infectious diseases because their immune systems have not built up the necessary defenses to fight infection (CDC, 2019). One study estimated that routine childhood vaccines administered in 2019 prevented 24 million diseases (Talbird et al., 2022). Another recent study estimated that routine childhood vaccinations prevented 17.8 million cases of disease and 31,000 deaths for children born in 2017, in addition to saving $13.7 billion in health care costs (Carrico et al., 2022).  Immunizing a child not only protects that child's health but also the health of the community, especially for those who are not immunized or are unable to be immunized due to other health complications (CDC, 2019)."/>
+   <clinicalRecommendationStatement value="This measure looks for childhood vaccinations that should be completed by age 2, in accordance with the Centers for Disease Control and Prevention Advisory Committee on Immunization Practices (CDC ACIP) recommended child and adolescent immunization schedule (CDC ACIP, 2022).   -- For the 2022–23 season, see the 2022–23 ACIP influenza vaccine recommendations (Grohskopf, 2022)."/>
+   <group id="649b429f4c79454c026f748c">
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-scoring">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-scoring"/>
+               <code value="proportion"/>
+               <display value="Proportion"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis">
+         <valueCode value="boolean"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-type">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-type"/>
+               <code value="process"/>
+               <display value="Process"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <population id="29842ACF-C4DD-4A1B-858A-912E8E96578C">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="initial-population"/>
+               <display value="Initial Population"/>
+            </coding>
+         </code>
+         <description value="Children who turn 2 years of age during the measurement period and have a visit during the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Initial Population"/>
+         </criteria>
+      </population>
+      <population id="CDEE5C44-71BA-4278-B3AB-77CFD972CDE8">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator"/>
+               <display value="Denominator"/>
+            </coding>
+         </code>
+         <description value="Equals Initial Population"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator"/>
+         </criteria>
+      </population>
+      <population id="68220280-0C3F-447A-9649-127712B5760E">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator-exclusion"/>
+               <display value="Denominator Exclusion"/>
+            </coding>
+         </code>
+         <description value="Exclude children with any of the following on or before the child’s second birthday: - Severe combined immunodeficiency - Immunodeficiency - HIV - Lymphoreticular cancer, multiple myeloma or leukemia - Intussusception  Exclude children who are in hospice care for any part of the measurement period."/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator Exclusions"/>
+         </criteria>
+      </population>
+      <population id="963B9E59-C83D-4D8E-BE2A-F53E675864C5">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="numerator"/>
+               <display value="Numerator"/>
+            </coding>
+         </code>
+         <description value="DTaP Children with any of the following on or before the child’s second birthday meet criteria: - At least four DTaP vaccinations, with different dates of service. Do not count a vaccination administered prior to 42 days after birth. - Anaphylaxis due to the diphtheria, tetanus or pertussis vaccine. - Encephalitis due to the diphtheria, tetanus or pertussis vaccine.  IPV Children with either of the following on or before the child’s second birthday meet criteria: - At least three IPV vaccinations, with different dates of service. Do not count a vaccination administered prior to 42 days after birth. - Anaphylaxis due to the IPV vaccine.  MMR Children with any of the following meet criteria: - At least one MMR vaccination on or between the child’s first and second birthdays. - Anaphylaxis due to the MMR vaccine on or before the child’s second birthday. - All of the following anytime on or before the child’s second birthday (on the same or different date of service):        - History of measles.        - History of mumps.        - History of rubella.  HiB Children with either of the following meet criteria on or before the child’s second birthday: - At least three HiB vaccinations, with different dates of service. Do not count a vaccination administered prior to 42 days after birth. - Anaphylaxis due to the HiB vaccine.  Hep B Children with any of the following on or before the child’s second birthday meet criteria: - At least three hepatitis B vaccinations, with different dates of service.        - One of the three vaccinations can be a newborn hepatitis B vaccination during the eight-day period that begins on the date of birth and ends seven days after the date of birth. For example, if the member’s date of birth is December 1, the newborn hepatitis B vaccination must be on or between December 1 and December 8. - Anaphylaxis due to the hepatitis B vaccine. - History of hepatitis B illness.  VZV Children with any of the following meet criteria: - At least one VZV vaccination, with a date of service on or between the child’s first and second birthdays. - Anaphylaxis due to the VZV vaccine on or before the child’s second birthday. - History of varicella zoster (e.g., chicken pox) illness on or before the child’s second birthday.  PCV Children with either of the following on or before the child’s second birthday meet criteria: - At least four pneumococcal conjugate vaccinations, with different dates of service on or before the child’s second birthday. Do not count a vaccination administered prior to 42 days after birth. - Anaphylaxis due to the pneumococcal vaccine.  Hep A Children with any of the following meet criteria: - At least one hepatitis A vaccination, with a date of service on or between the child’s first and second birthdays. - Anaphylaxis due to the hepatitis A vaccine on or before the child’s second birthday. - History of hepatitis A illness on or before the child’s second birthday.  RV Children with any of the following meet criteria: - At least two doses of the two-dose rotavirus vaccine on different dates of service on or before the child’s second birthday. Do not count a vaccination administered prior to 42 days after birth. - At least three doses of the three-dose rotavirus vaccine on different dates of service on or before the child’s second birthday. Do not count a vaccination administered prior to 42 days after birth. - At least one dose of the two-dose rotavirus vaccine and at least two doses of the three-dose rotavirus vaccine, all on different dates of service, on or before the child’s second birthday. Do not count a vaccination administered prior to 42 days after birth. - Anaphylaxis due to the rotavirus vaccine on or before the child’s second birthday.  Flu Children with either of the following on or before their second birthday meet criteria: - At least two influenza vaccinations, with different dates of service on or before the child’s second birthday. Do not count a vaccination administered prior to 6 months (180 days) after birth.        - One of the two vaccinations can be a Live Attenuated Influenza Vaccine (LAIV) vaccination administered on the child’s second birthday. Do not count a LAIV vaccination administered before the child’s second birthday. - Anaphylaxis due to the influenza vaccine."/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Numerator"/>
+         </criteria>
+      </population>
+      <population id="ccf0a203-05a3-4c63-ac31-e430acb5b919">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="numerator-exclusion"/>
+               <display value="Numerator Exclusion"/>
+            </coding>
+         </code>
+         <criteria>
+            <language value="text/cql-identifier"/>
+         </criteria>
+      </population>
+      <population id="e53701b2-9f44-4cdd-b63d-f24eb4946391">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator-exception"/>
+               <display value="Denominator Exception"/>
+            </coding>
+         </code>
+         <criteria>
+            <language value="text/cql-identifier"/>
+         </criteria>
+      </population>
+   </group>
+</Measure>
