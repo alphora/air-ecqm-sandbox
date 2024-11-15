@@ -1,6 +1,12 @@
+/*
+@QICore6: Update Measure and Library resources and test cases
+- Condition to ConditionProblemsHealthConcerns and/or ConditionEncounterDiagnosis
+- Observation to LaboratoryResultObservation
+*/
+
 library AppropriateTestingforPharyngitisFHIR version '0.1.001'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -66,16 +72,16 @@ define "Encounter With Pharyngitis or Tonsillitis With Antibiotic":
     where AcutePharyngitisTonsillitis.prevalenceInterval ( ) starts during VisitWithAntibiotic.period.toInterval ( )
     return VisitWithAntibiotic
 
+//@QICore6: Update Conditions to a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 define "Pharyngitis or Tonsillitis":
   ( [Condition: "Acute Pharyngitis"]
       union [Condition: "Acute Tonsillitis"]
   )
-//   )
-
 
 define "Denominator":
   "Initial Population"
 
+//@QICore6: Update Conditions to a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 define "Denominator Exclusions":
   "In Hospice"
     union Antibiotic."Has Antibiotic Medication History" ( "Encounter With Pharyngitis or Tonsillitis With Antibiotic", ( [MedicationRequest: "Antibiotic Medications for Pharyngitis"] ) )
@@ -128,6 +134,7 @@ define "Numerator":
     where GroupAStreptococcusTest.effective.toInterval ( ) starts during day of Interval[( end of EncounterWithPharyngitis.period ) - 3 days, ( end of EncounterWithPharyngitis.period ) + 3 days]
     return EncounterWithPharyngitis
 
+//@QICore6: Update Observation to LaboratoryResultObservation
 define "Group A Streptococcus Lab Test With Result":
   ( ( [Observation: "Group A Streptococcus Test"] ).isLaboratoryTestPerformed ( ) ) GroupAStreptococcusTest
     where GroupAStreptococcusTest.value is not null
