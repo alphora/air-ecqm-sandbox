@@ -1,14 +1,20 @@
+/*
+@QICore6: Update Library and Measure resources and test cases
+- Observation to ObservationScreeningAssessment or LaboratoryResultObservation
+- Condition to ConditionProblemsHealthConcerns 
+*/
+
 library ChlamydiaScreeninginWomenFHIR version '0.1.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
-include FHIRHelpers version '4.3.000' called FHIRHelpers
-include QICoreCommon version '1.5.000' called QICoreCommon
-include CQMCommon version '1.4.000' called CQMCommon
-include SupplementalDataElements version '3.4.000' called SDE
-include Hospice version '6.7.000' called Hospice
-include CumulativeMedicationDuration version '3.3.000' called CMD
-include Status version '1.6.000' called Status
+include FHIRHelpers version '4.4.000' called FHIRHelpers
+include QICoreCommon version '2.1.000' called QICoreCommon
+include CQMCommon version '2.2.000' called CQMCommon
+include SupplementalDataElements version '3.5.000' called SDE
+include Hospice version '6.12.000' called Hospice
+include CumulativeMedicationDuration version '4.1.000' called CMD
+include Status version '1.8.000' called Status
 
 codesystem "AdministrativeGender": 'http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender'
 codesystem "LOINC": 'http://loinc.org'
@@ -83,6 +89,9 @@ define "Qualifying Encounters":
       where QICoreCommon."ToInterval" ( ValidEncounters.period ) during day of "Measurement Period"
   )
 
+/*
+@QICore6: Update all Condition to ConditionProblemsHealthConcerns 
+*/
 define "Has Diagnoses Identifying Sexual Activity":
   exists ( ( [Condition: "Diagnoses Used to Indicate Sexual Activity"]
       union [Condition: "HIV"]
@@ -151,6 +160,9 @@ define "Has Pregnancy Test Exclusion":
       )
   )
 
+/*
+@QICore6: Update Observation to LaboratoryResultObservation
+*/
 define "Numerator":
   exists ( ( Status."Final Lab Observation" ( [Observation: "Chlamydia Screening"] ) ) ChlamydiaTest
       where QICoreCommon."Latest" ( ChlamydiaTest.effective ) during day of "Measurement Period"
@@ -167,6 +179,9 @@ define "Stratification 2":
     end of "Measurement Period"
   ) in Interval[21, 24]
 
+/*
+@QICore6: Update Observation to ObservationScreeningAssessment
+*/
 define "Has Assessments Identifying Sexual Activity":
   exists ( ( Status."Final Survey Observation" ( [Observation: "Have you ever had vaginal intercourse [PhenX]"] ) ) SexualActivityAssessment
       where SexualActivityAssessment.value ~ "Yes (qualifier value)"
