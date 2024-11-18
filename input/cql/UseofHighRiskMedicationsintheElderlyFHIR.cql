@@ -1,6 +1,10 @@
+/*
+@QICore6: Update Condition to ConditionProblemsHealthConcerns in test cases and Library and Measure resources
+*/
+
 library UseofHighRiskMedicationsintheElderlyFHIR version '0.2.001'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -149,6 +153,9 @@ define "High Risk Medications with Average Daily Dose Criteria":
         where ( DoxepinOrdered ).averageDailyDose ( ) > 6 'mg/d'
     )
 
+/*
+@QICore6: Update all Condition to ConditionProblemsHealthConcerns
+*/
 define "Numerator 2":
   ( "More than One Antipsychotic Order"
       and ( not exists ( ( [Condition: "Schizophrenia"]
