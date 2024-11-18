@@ -10,8 +10,7 @@ wget -q --spider tx.fhir.org
 
 if [ $? -eq 0 ]; then
 	echo "Online"
-	fsoption=""
-	#fsoption="-fs=https://cqf-ruler.ecqm.icfcloud.com/fhir"
+	fsoption="-fs=https://cqf-ruler.ecqm.icfcloud.com/fhir"
 else
 	echo "Offline"
 	fsoption=""
