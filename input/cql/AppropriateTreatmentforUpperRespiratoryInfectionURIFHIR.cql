@@ -1,12 +1,16 @@
+/*
+@QICore6: Update Condition to ConditionProblemsHealthConcerns and/or ConditionEncounterDiagnosis in Library and Measure resources and test cases
+*/
+
 library AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR version '0.1.001'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
-include CQMCommon version '2.1.000' called CQMCommon
-include Hospice version '6.10.000' called Hospice
-include Status version '1.7.000' called Status
+include CQMCommon version '2.2.000' called CQMCommon
+include Hospice version '6.12.000' called Hospice
+include Status version '1.8.000' called Status
 include QICoreCommon version '2.1.000' called QICoreCommon
 include Antibiotic version '1.6.000' called Antibiotic
 
@@ -59,6 +63,9 @@ define "Encounters and Assessments with Hospice Patient":
   "Initial Population" EligibleEncounters
     where Hospice."Has Hospice Services"
 
+/*
+@QICore6: Update both Condition to ConditionProblemsHealthConcerns
+*/
 define "Encounters with Acute Pharyngitis and Acute Tonsillitis":
   "Encounter with Upper Respiratory Infection" EncounterWithURI
     with ( [Condition: "Acute Pharyngitis"]
@@ -69,6 +76,9 @@ define "Encounters with Acute Pharyngitis and Acute Tonsillitis":
 define "Denominator":
   "Initial Population"
 
+/*
+@QICore6: Update both Condition to a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
+*/
 define "Denominator Exclusions":
   "Encounters and Assessments with Hospice Patient"
     union "Encounters with Acute Pharyngitis and Acute Tonsillitis"
@@ -76,6 +86,9 @@ define "Denominator Exclusions":
     union Antibiotic."Has Antibiotic Medication History" ( "Encounter with Upper Respiratory Infection", ( [MedicationRequest: "Antibiotic Medications for Upper Respiratory Infection"] ) )
     union Antibiotic."Has Competing Diagnosis History" ( "Encounter with Upper Respiratory Infection", ( [Condition: "Competing Conditions for Respiratory Conditions"] ) )
 
+/*
+@QICore6: Update Condition to ConditionProblemsHealthConcerns
+*/
 define "Encounter with Upper Respiratory Infection":
   from
     "Qualifying Encounters" QualifyingEncounters,
