@@ -114,8 +114,13 @@ define "Medical Reason or Patient Reason for Not Performing BMI Exam":
     with "Qualifying Encounter during Day of Measurement Period" QualifyingEncounter
       such that NoBMI.effective.toInterval ( ) ends same day as start of QualifyingEncounter.period
     where NoBMI.status = 'cancelled'
-      and ( NoBMI.notDoneReason in "Patient Declined"
-          or NoBMI.notDoneReason in "Medical Reason"
+      // and ( NoBMI.notDoneReason in "Patient Declined"
+      //     or NoBMI.notDoneReason in "Medical Reason"
+      // )
+      and exists(
+        (NoBMI.extension E where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-notDoneReason' return E.value as System.Concept) notDoneReason 
+          where notDoneReason in "Patient Declined"
+            or notDoneReason in "Medical Reason"
       )
 
 define "Low BMI Interventions Ordered":
@@ -158,7 +163,11 @@ define "Medical Reason for Not Documenting a Follow up Plan for Low or High BMI"
       with "Qualifying Encounter during Day of Measurement Period" QualifyingEncounter
         such that NoBMIFollowUp.authoredOn same day as start of QualifyingEncounter.period
       where NoBMIFollowUp.status ~ 'completed'
-        and NoBMIFollowUp.reasonRefused in "Medical Reason"
+        //and NoBMIFollowUp.reasonRefused in "Medical Reason"
+        and exists(
+          (NoBMIFollowUp.extension E where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-doNotPerformReason' return E.value as System.Concept) reasonRefused 
+            where reasonRefused in "Medical Reason"
+        )
   )
     union ( ( [MedicationNotRequested: "Medications for Above Normal BMI"]
         union [MedicationNotRequested: "Medications for Below Normal BMI"] ) NoBMIFollowUp
