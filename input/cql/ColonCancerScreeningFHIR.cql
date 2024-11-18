@@ -1,16 +1,22 @@
+/*
+@QICore6: Update Library and Measure resources and test cases
+- Observation to LaboratoryResultObservation or SimpleObservation
+- Condition to ConditionProblemsHealthConcerns
+*/
+
 library ColonCancerScreeningFHIR version '0.1.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
-include FHIRHelpers version '4.3.000' called FHIRHelpers
-include SupplementalDataElements version '3.4.000' called SDE
-include CQMCommon version '1.4.000' called CQMCommon
-include Hospice version '6.7.000' called Hospice
-include PalliativeCare version '1.7.000' called PalliativeCare
-include AdultOutpatientEncounters version '4.6.000' called AdultOutpatientEncounters
-include AdvancedIllnessandFrailty version '1.6.000' called AIFrailLTCF
-include Status version '1.6.000' called Status
-include QICoreCommon version '1.5.000' called QICoreCommon
+include FHIRHelpers version '4.4.000' called FHIRHelpers
+include SupplementalDataElements version '3.5.000' called SDE
+include CQMCommon version '2.2.000' called CQMCommon
+include Hospice version '6.12.000' called Hospice
+include PalliativeCare version '1.11.000' called PalliativeCare
+include AdultOutpatientEncounters version '4.11.000' called AdultOutpatientEncounters
+include AdvancedIllnessandFrailty version '1.16.000' called AIFrailLTCF
+include Status version '1.8.000' called Status
+include QICoreCommon version '2.1.000' called QICoreCommon
 
 valueset "Colonoscopy": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1020'
 valueset "CT Colonography": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1038'
@@ -60,11 +66,17 @@ define "Numerator":
     or exists "CT Colonography Performed"
     or exists "Colonoscopy Performed"
 
+/*
+@QICore6: Update Observation to LaboratoryResultObservation
+*/
 define "Fecal Occult Blood Test Performed":
   ( Status."Final Lab Observation" ( ["Observation": "Fecal Occult Blood Test (FOBT)"] ) ) FecalOccultResult
     where FecalOccultResult.value is not null
       and QICoreCommon."Latest" ( FecalOccultResult.effective ) during day of "Measurement Period"
 
+/*
+@QICore6: Update Condition to ConditionProblemsHealthConcerns
+*/
 define "Malignant Neoplasm":
   ( Status."Active Condition" ( ["Condition": "Malignant Neoplasm of Colon"] ) ) ColorectalCancer
     where QICoreCommon."ToPrevalenceInterval" ( ColorectalCancer ) starts on or before day of end of "Measurement Period"
@@ -91,10 +103,16 @@ define "Flexible Sigmoidoscopy Performed":
   ( Status."Completed Procedure" ( ["Procedure": "Flexible Sigmoidoscopy"] ) ) FlexibleSigmoidoscopy
     where QICoreCommon."ToInterval" ( FlexibleSigmoidoscopy.performed ) ends during day of Interval[start of "Measurement Period" - 4 years, end of "Measurement Period"]
 
+/*
+@QICore6: Update Observation to SimpleObservation
+*/
 define "CT Colonography Performed":
   ( Status."Final Observation" ( ["Observation": "CT Colonography"] ) ) Colonography
     where QICoreCommon."ToInterval" ( Colonography.effective ) ends during day of Interval[start of "Measurement Period" - 4 years, end of "Measurement Period"]
 
+/*
+@QICore6: Update Observation to LaboratoryResultObservation
+*/
 define "Stool DNA with FIT Test Performed":
   ( Status."Final Lab Observation" ( ["Observation": "sDNA FIT Test"] ) ) sDNATest
     where sDNATest.value is not null
