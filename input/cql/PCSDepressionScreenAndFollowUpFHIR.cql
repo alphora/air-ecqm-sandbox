@@ -133,7 +133,7 @@ define "Medical or Patient Reason for Not Screening Adolescent for Depression":
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that NoAdolescentScreen.issued during QualifyingEncounter.period
     where exists(
-        (NoAdolescentScreen.extension E where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-notDoneReason' return E.value as System.Code) notDoneReason 
+        (NoAdolescentScreen.extension E where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-notDoneReason' return E.value as System.Concept) notDoneReason 
           where notDoneReason ~ "Depression screening declined (situation)"
             or notDoneReason in "Medical Reason"
       )
@@ -144,7 +144,7 @@ define "Medical or Patient Reason for Not Screening Adult for Depression":
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that NoAdultScreen.issued during QualifyingEncounter.period
     where exists(
-        (NoAdultScreen.extension E where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-notDoneReason' return E.value as System.Code) notDoneReason 
+        (NoAdultScreen.extension E where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-notDoneReason' return E.value as System.Concept) notDoneReason 
           where notDoneReason ~ "Depression screening declined (situation)"
             or notDoneReason in "Medical Reason"
       )
