@@ -1,15 +1,21 @@
+/*
+@QICore6: Update Library and Measure resources and test cases
+- Observation to ObservationScreeningAssessment
+- Condition to ConditionProblemsHealthConcerns
+*/
+
 library DiabetesEyeExamFHIR version '0.0.002'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
-include FHIRHelpers version '4.3.000' called FHIRHelpers
-include SupplementalDataElements version '3.4.000' called SDE
-include QICoreCommon version '2.0.000' called QICoreCommon
-include CQMCommon version '2.0.000' called CQMCommon
-include Hospice version '6.9.000' called Hospice
-include Status version '1.6.000' called Status
-include PalliativeCare version '1.9.000' called PalliativeCare
-include AdvancedIllnessandFrailty version '1.8.000' called AIFrailLTCF
+include FHIRHelpers version '4.4.000' called FHIRHelpers
+include SupplementalDataElements version '3.5.000' called SDE
+include QICoreCommon version '2.1.000' called QICoreCommon
+include CQMCommon version '2.2.000' called CQMCommon
+include Hospice version '6.12.000' called Hospice
+include Status version '1.8.000' called Status
+include PalliativeCare version '1.11.000' called PalliativeCare
+include AdvancedIllnessandFrailty version '1.16.000' called AIFrailLTCF
 
 valueset "Annual Wellness Visit": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240'
 valueset "Diabetes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.103.12.1001'
@@ -30,6 +36,9 @@ parameter "Measurement Period" Interval<DateTime>
 
 context Patient
 
+/*
+@QICore6: Update Condition to ConditionProblemsHealthConcerns
+*/
 define "Initial Population":
   AgeInYearsAt(date from 
     end of "Measurement Period"
@@ -67,14 +76,23 @@ define "Numerator":
         and exists ( "Retinal Exam in Measurement Period or Year Prior" )
     )
 
+/*
+@QICore6: Update Observation to ObservationScreeningAssessment
+*/
 define "Retinal Exam in Measurement Period":
   ( ( [Observation: "Retinal or Dilated Eye Exam"] ).isAssessmentPerformed ( ) ) RetinalExam
     where RetinalExam.effective.toInterval ( ) during day of "Measurement Period"
 
+/*
+@QICore6: Update Observation to ObservationScreeningAssessment
+*/
 define "Retinal Exam in Measurement Period or Year Prior":
   ( ( [Observation: "Retinal or Dilated Eye Exam"] ).isAssessmentPerformed ( ) ) RetinalExam
     where RetinalExam.effective.toInterval ( ) during day of Interval[start of "Measurement Period" - 1 year, end of "Measurement Period"]
 
+/*
+@QICore6: Update Condition to ConditionProblemsHealthConcerns
+*/
 define "Diabetic Retinopathy Overlapping Measurement Period":
   exists ( [Condition: "Diabetic Retinopathy"] Retinopathy
       where Retinopathy.prevalenceInterval ( ) overlaps day of "Measurement Period"
