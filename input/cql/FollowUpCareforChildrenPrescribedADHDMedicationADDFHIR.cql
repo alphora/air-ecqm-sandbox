@@ -1,14 +1,19 @@
+/*
+@QICore6: Update Library and Measure resources and test cases
+- Condition to ConditionProblemsHealthConcerns or ConditionEncounterDiagnosis
+*/
+
 library FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR version '0.1.001'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
-include FHIRHelpers version '4.3.000' called FHIRHelpers
-include SupplementalDataElements version '3.4.000' called SDE
-include QICoreCommon version '2.0.000' called QICoreCommon
-include CQMCommon version '2.0.000' called CQMCommon
-include Hospice version '6.9.000' called Hospice
-include CumulativeMedicationDuration version '4.0.000' called CMD
-include Status version '1.6.000' called Status
+include FHIRHelpers version '4.4.000' called FHIRHelpers
+include SupplementalDataElements version '3.5.000' called SDE
+include QICoreCommon version '2.1.000' called QICoreCommon
+include CQMCommon version '2.2.000' called CQMCommon
+include Hospice version '6.12.000' called Hospice
+include CumulativeMedicationDuration version '4.1.000' called CMD
+include Status version '1.8.000' called Status
 
 codesystem "RXNORM": 'http://www.nlm.nih.gov/research/umls/rxnorm'
 
@@ -115,6 +120,9 @@ define "Inpatient Stay with Qualifying Diagnosis":
         where EncounterDiagnosis.code in "Mental Behavioral and Neurodevelopmental Disorders"
     )
 
+/*
+@QICore6: Update Condition to ConditionEncounterDiagnosis
+*/
 define function "PrincipalDiagnosis"(Encounter Encounter):
   ( Encounter.diagnosis D
     where D.rank = 1 ) PD
@@ -129,6 +137,9 @@ define "Denominator Exclusions":
   Hospice."Has Hospice Services"
     or exists ( "Narcolepsy Exclusion" )
 
+/*
+@QICore6: Update Condition to ConditionProblemsHealthConcerns
+*/
 define "Narcolepsy Exclusion":
   ["Condition": "Narcolepsy"] Narcolepsy
     where Narcolepsy.prevalenceInterval ( ) starts on or before end of "Measurement Period"
