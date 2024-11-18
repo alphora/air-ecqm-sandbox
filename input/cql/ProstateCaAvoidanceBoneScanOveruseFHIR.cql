@@ -1,6 +1,6 @@
 library ProstateCaAvoidanceBoneScanOveruseFHIR version '0.3.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -60,17 +60,17 @@ define "Denominator Exceptions":
     or "Has Bone Scan Study Performed with Documented Reason"
 
 define "Bone Scan Study Performed":
-  [Observation: "Bone Scan"] BoneScan
+  [ObservationClinicalResult: "Bone Scan"] BoneScan
     with "Prostate Cancer Diagnosis" ActiveProstateCancer
-      such that BoneScan.effective.toInterval ( ) starts after start of ActiveProstateCancer.prevalenceInterval ( )
-    where BoneScan.effective.toInterval ( ) ends during day of "Measurement Period"
+      such that QICoreCommon.ToInterval(BoneScan.effective) starts after start of ActiveProstateCancer.prevalenceInterval ( )
+    where QICoreCommon.ToInterval(BoneScan.effective) ends during day of "Measurement Period"
 
 define "Has Bone Scan Study Performed with Documented Reason":
   exists "Bone Scan Study Performed" BoneScanAfterDiagnosis
     where BoneScanAfterDiagnosis.value ~ "Procedure reason record (record artifact)"
 
 define "Has Diagnosis of Pain related to Prostate Cancer":
-  exists ( [Condition: "Pain Warranting Further Investigation for Prostate Cancer"] ProstateCancerPain
+  exists ( [ConditionProblemsHealthConcerns: "Pain Warranting Further Investigation for Prostate Cancer"] ProstateCancerPain
       with "Prostate Cancer Diagnosis" ActiveProstateCancer
         such that ProstateCancerPain.prevalenceInterval ( ) starts after start of ActiveProstateCancer.prevalenceInterval ( )
           and ( ProstateCancerPain.isProblemListItem ( )
@@ -80,40 +80,40 @@ define "Has Diagnosis of Pain related to Prostate Cancer":
 
 define "First Prostate Cancer Treatment during day of Measurement Period":
   First([Procedure: "Prostate Cancer Treatment"] ProstateCancerTreatment
-      where ProstateCancerTreatment.performed.toInterval() ends during day of "Measurement Period"
+      where QICoreCommon.ToInterval(ProstateCancerTreatment.performed) ends during day of "Measurement Period"
         and ProstateCancerTreatment.status = 'completed'
-      sort by start of performed.toInterval()
+      sort by start of QICoreCommon.ToInterval(performed)
   )
 
 define "Most Recent PSA Test Result is Low":
-  ( Last([Observation: "Prostate Specific Antigen Test"] PSATest
+  ( Last([LaboratoryResultObservation: "Prostate Specific Antigen Test"] PSATest
       with "Most Recent Prostate Cancer Staging Tumor Size T1a to T2a" MostRecentProstateCancerStaging
-        such that PSATest.effective.toInterval() starts before MostRecentProstateCancerStaging.effective.toInterval()
+        such that QICoreCommon.ToInterval(PSATest.effective) starts before MostRecentProstateCancerStaging.effective.toInterval()
           and PSATest.status in { 'final', 'amended', 'corrected' }
-      sort by start of effective.toInterval()
+      sort by start of QICoreCommon.ToInterval(effective)
   ) ) LastPSATest
     return LastPSATest.value as Quantity < 10 'ng/mL'
 
 define "Has Salvage Therapy Performed after Prostate Cancer Diagnosis":
   exists ( [Procedure: "Salvage Therapy"] SalvageTherapy
       with "Prostate Cancer Diagnosis" ActiveProstateCancer
-        such that SalvageTherapy.performed.toInterval ( ) starts after start of ActiveProstateCancer.prevalenceInterval ( )
+        such that QICoreCommon.ToInterval(SalvageTherapy.performed) starts after start of ActiveProstateCancer.prevalenceInterval ( )
           and SalvageTherapy.status = 'completed'
   )
 
 define "Most Recent Gleason Score is Low":
-  ( Last([Observation: "Gleason score in Specimen Qualitative"] GleasonScore
+  ( Last([ObservationClinicalResult: "Gleason score in Specimen Qualitative"] GleasonScore
       with "First Prostate Cancer Treatment during day of Measurement Period" FirstProstateCancerTreatment
-        such that GleasonScore.effective.toInterval() starts before start of FirstProstateCancerTreatment.performed.toInterval()
+        such that QICoreCommon.ToInterval(GleasonScore.effective) starts before start of FirstProstateCancerTreatment.performed.toInterval()
           and GleasonScore.status in { 'final', 'amended', 'corrected' }
-      sort by start of effective.toInterval()
+      sort by start of QICoreCommon.ToInterval(effective)
   ) ) LastGleasonScore
     return LastGleasonScore.value as Integer <= 6
 
 define "Most Recent Prostate Cancer Staging Tumor Size T1a to T2a":
-  ( Last([Observation: "Tumor staging (tumor staging)"] ProstateCancerStaging
+  ( Last([ObservationClinicalResult: "Tumor staging (tumor staging)"] ProstateCancerStaging
       with "First Prostate Cancer Treatment during day of Measurement Period" FirstProstateCancerTreatment
-        such that ProstateCancerStaging.effective.toInterval() starts before start of FirstProstateCancerTreatment.performed.toInterval()
+        such that QICoreCommon.ToInterval(ProstateCancerStaging.effective) starts before start of FirstProstateCancerTreatment.performed.toInterval()
           and ProstateCancerStaging.status in { 'final', 'amended', 'corrected' }
       sort by start of effective.toInterval()
   ) ) LastProstateCancerStaging
@@ -124,7 +124,7 @@ define "Most Recent Prostate Cancer Staging Tumor Size T1a to T2a":
     )
 
 define "Prostate Cancer Diagnosis":
-  [Condition: "Prostate Cancer"] ProstateCancer
+  [ConditionProblemsHealthConcerns: "Prostate Cancer"] ProstateCancer
     where ProstateCancer.prevalenceInterval ( ) overlaps day of "Measurement Period"
       and ( ProstateCancer.isProblemListItem ( )
           or ProstateCancer.isHealthConcern ( )

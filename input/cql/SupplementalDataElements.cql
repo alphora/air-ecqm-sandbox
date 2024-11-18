@@ -6,7 +6,7 @@ Updated SDE Sex definition to use added codes from FHIR administrative-gender co
 */
 library SupplementalDataElements version '3.5.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 
@@ -23,10 +23,20 @@ code "F": 'F' from "AdministrativeGender" display 'Female'
 context Patient
 
 define "SDE Ethnicity":
-  Patient.ethnicity E
+  Patient.extension E
+    where E.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity' 
     return Tuple {
-      codes: { E.ombCategory } union E.detailed,
-      display: E.text
+      codes: { 
+        E.extension e
+          where e.url = 'ombCategory'
+          return e.value as Code
+      } 
+      union {
+        E.extension e
+          where e.url = 'detailed'
+          return e.value as Code
+      },
+      display: E.value
     }
 
 define "SDE Payer":
@@ -37,10 +47,20 @@ define "SDE Payer":
     }
 
 define "SDE Race":
-  Patient.race R
+  Patient.extension E
+    where E.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race' 
     return Tuple {
-      codes: R.ombCategory union R.detailed,
-      display: R.text
+      codes: { 
+        E.extension e
+          where e.url = 'ombCategory'
+          return e.value as Code
+      } 
+      union {
+        E.extension e
+          where e.url = 'detailed'
+          return e.value as Code
+      },
+      display: E.value
     }
 
 define "SDE Sex":

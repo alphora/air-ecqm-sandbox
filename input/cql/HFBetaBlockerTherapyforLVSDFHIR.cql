@@ -1,6 +1,13 @@
+/*
+@QICore6Uplift test impact: HL7 FHIR profile urls and resources should be updated to SimpleObservation and ConditionProblemsHealthConcerns
+*/
+
 library HFBetaBlockerTherapyforLVSDFHIR version '1.4.000'
 
-using QICore version '4.1.1'
+/*
+@QICore6Uplift: Add 'using USCore version `6.1.0'`
+*/  
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -92,18 +99,27 @@ define "Is Currently Taking Beta Blocker Therapy for LVSD":
       where ActiveBetaBlocker.overlapsAfterHeartFailureOutpatientEncounter ( )
   )
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/     
 define "Has Hypotension Diagnosis":
   exists ( ["Condition": "Hypotension"] Hypotension
       where Hypotension.overlapsHeartFailureOutpatientEncounter ( )
         and Hypotension.isConfirmedActiveDiagnosis ( )
   )
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/  
 define "Has Diagnosis of Cardiac Pacer in Situ":
   exists ( ["Condition": "Cardiac Pacer in Situ"] CardiacPacerDiagnosis
       where CardiacPacerDiagnosis.overlapsAfterHeartFailureOutpatientEncounter ( )
         and CardiacPacerDiagnosis.isConfirmedActiveDiagnosis ( )
   )
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/  
 define "Has Diagnosis of Allergy or Intolerance to Beta Blocker Therapy":
   exists ( ( ["Condition": "Allergy to Beta Blocker Therapy"]
       union ["Condition": "Intolerance to Beta Blocker Therapy"] ) BetaBlockerAllergyOrIntoleranceDiagnosis
@@ -111,12 +127,18 @@ define "Has Diagnosis of Allergy or Intolerance to Beta Blocker Therapy":
         and BetaBlockerAllergyOrIntoleranceDiagnosis.isConfirmedActiveDiagnosis ( )
   )
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/  
 define "Has Bradycardia Diagnosis":
   exists ( [Condition: "Bradycardia"] Bradycardia
       where Bradycardia.overlapsHeartFailureOutpatientEncounter ( )
         and Bradycardia.isConfirmedActiveDiagnosis ( )
   )
 
+/*
+@QICore6Uplift: Update 'observation-heartrate' to 'USCoreHeartRateProfile'
+*/   
 define "Has Consecutive Heart Rates Less than 50":
   exists ( from
       ["observation-heartrate"] HeartRate,
@@ -152,18 +174,27 @@ define "Has Allergy or Intolerance to Beta Blocker Therapy Ingredient":
         )
   )
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/  
 define "Has Arrhythmia Diagnosis":
   exists ( [Condition: "Arrhythmia"] Arrhythmia
       where Arrhythmia.overlapsHeartFailureOutpatientEncounter ( )
         and Arrhythmia.isConfirmedActiveDiagnosis ( )
   )
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/  
 define "Has Asthma Diagnosis":
   exists ( [Condition: "Asthma"] Asthma
       where Asthma.overlapsHeartFailureOutpatientEncounter ( )
         and Asthma.isConfirmedActiveDiagnosis ( )
   )
 
+/*
+@QICore6Uplift: Update 'Condition' to 'ConditionProblemsHealthConcerns'
+*/  
 define "Has Atrioventricular Block Diagnosis":
   exists ( [Condition: "Atrioventricular Block"] AtrioventricularBlock
       where AtrioventricularBlock.overlapsHeartFailureOutpatientEncounter ( )

@@ -1,0 +1,99 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "09cf18ec-5935-4266-94ad-b3327dd8813d",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "109cb0c0-f82a-4579-a0a1-0d8145863490-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "ce6698d6-ca56-44f7-9390-17e3e7a3dfde"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#109cb0c0-f82a-4579-a0a1-0d8145863490-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Both Enc Cr after 48 hrs: 1.81, 1.82. This is double of earlier creat 0.9, .91. Meets Numerator for both Enc.\nVScode: Numerator=[Encounter(id=NUMERPass-TwoEncountersCreatinineDoubled-01), Encounter(id=NUMERPass-TwoEncountersCreatinineDoubled-02)]\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/HospitalHarmAcuteKidneyInjuryFHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 2
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 2
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 2
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/ce6698d6-ca56-44f7-9390-17e3e7a3dfde"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/NUMERPass-TwoEncountersCreatinineDoubled-01"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/NUMERPass-TwoEncountersCreatinineDoubled-02"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/NUMERPass-TwoEncountersCreatinineDoubled-21"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/NUMERPass-TwoEncountersCreatinineDoubled-20"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/NUMERPass-TwoEncountersCreatinineDoubled-19"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/NUMERPass-TwoEncountersCreatinineDoubled-18"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/NUMERPass-TwoEncountersCreatinineDoubled-17"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/NUMERPass-TwoEncountersCreatinineDoubled-15"
+  }, {
+    "reference": "https://madie.cms.gov/Observation/NUMERPass-TwoEncountersCreatinineDoubled-16"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/NUMERPass-TwoEncountersCreatinineDoubled-61"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/NUMERPass-TwoEncountersCreatinineDoubled-98"
+  } ]
+}

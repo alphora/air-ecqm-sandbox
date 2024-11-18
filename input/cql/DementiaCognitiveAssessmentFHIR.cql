@@ -1,6 +1,10 @@
+/*
+Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis, ObservationScreeningAssessment, and ObservationCancelled
+*/
+
 library DementiaCognitiveAssessmentFHIR version '0.1.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 /*Note ws 1. 8/09/2023: Negation issue as outlined in BonnieMat-1455 and ticket https://github.com/cqframework/cql-execution/issues/296 */
 
@@ -44,6 +48,9 @@ define "Numerator":
 define "Denominator Exceptions":
   exists "Patient Reason for Not Performing Assessment of Cognition Using Standardized Tools or Alternate Methods"
 
+/*
+@QICore6Uplift: Update both Observation resources to ObservationScreeningAssessment
+*/ 
 define "Assessment of Cognition Using Standardized Tools or Alternate Methods":
   ( ["Observation": "Standardized Tools Score for Assessment of Cognition"]
     union ["Observation": "Cognitive Assessment"] ) CognitiveAssessment
@@ -52,6 +59,9 @@ define "Assessment of Cognition Using Standardized Tools or Alternate Methods":
     where CognitiveAssessment.value is not null
       and CognitiveAssessment.status in { 'final', 'amended', 'corrected', 'preliminary' }
 
+/*
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
+*/ 
 define "Dementia Encounter During Measurement Period":
   "Encounter to Assess Cognition" EncounterAssessCognition
     with [Condition: "Dementia & Mental Degenerations"] Dementia
@@ -77,6 +87,9 @@ define "Encounter to Assess Cognition":
 define "Patient Reason for Not Performing Assessment of Cognition Using Standardized Tools or Alternate Methods":
 /*8/09/2023: Negation issue as outlined in BonnieMat-1455 and ticket https://github.com/cqframework/cql-execution/issues/296 */
   
+/*
+@QICore6Uplift: Update both ObservationNotDone resources to ObservationCancelled
+*/ 
   ( [ObservationNotDone: code in "Standardized Tools Score for Assessment of Cognition"]
     union [ObservationNotDone: code in "Cognitive Assessment"] ) NoCognitiveAssessment
     with "Dementia Encounter During Measurement Period" EncounterDementia

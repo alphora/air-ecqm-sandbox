@@ -1,6 +1,6 @@
 library ChildrenWhoHaveDentalDecayOrCavitiesFHIR version '0.0.001'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include QICoreCommon version '2.1.000' called QICoreCommon
 include FHIRHelpers version '4.4.000' called FHIRHelpers
@@ -40,9 +40,11 @@ define "Denominator":
 define "Denominator Exclusions":
   Hospice."Has Hospice Services"
 
+//@QICore6Uplift: Update Condition to a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
 define "Numerator":
-  exists [Condition: "Dental Caries"] DentalCaries
-    where DentalCaries.prevalenceInterval ( ) overlaps "Measurement Period"
+  exists ([ConditionProblemsHealthConcerns: "Dental Caries"]
+    union [ConditionEncounterDiagnosis: "Dental Caries"]) DentalCaries
+      where DentalCaries.prevalenceInterval ( ) overlaps "Measurement Period"
 
 define "SDE Ethnicity":
   SDE."SDE Ethnicity"
