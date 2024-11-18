@@ -132,18 +132,22 @@ define "Medical or Patient Reason for Not Screening Adolescent for Depression":
   [ObservationNotDone: code ~ "Adolescent depression screening assessment"] NoAdolescentScreen
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that NoAdolescentScreen.issued during QualifyingEncounter.period
-    where ( NoAdolescentScreen.notDoneReason ~ "Depression screening declined (situation)"
-        or NoAdolescentScreen.notDoneReason in "Medical Reason"
-    )
+    where exists(
+        (NoAdolescentScreen.extension E where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-notDoneReason' return E.value as System.Concept) notDoneReason 
+          where notDoneReason ~ "Depression screening declined (situation)"
+            or notDoneReason in "Medical Reason"
+      )
       and NoAdolescentScreen.status = 'cancelled'
 
 define "Medical or Patient Reason for Not Screening Adult for Depression":
   [ObservationNotDone: code ~ "Adult depression screening assessment"] NoAdultScreen
     with "Qualifying Encounter During Measurement Period" QualifyingEncounter
       such that NoAdultScreen.issued during QualifyingEncounter.period
-    where ( NoAdultScreen.notDoneReason ~ "Depression screening declined (situation)"
-        or NoAdultScreen.notDoneReason in "Medical Reason"
-    )
+    where exists(
+        (NoAdultScreen.extension E where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-notDoneReason' return E.value as System.Concept) notDoneReason 
+          where notDoneReason ~ "Depression screening declined (situation)"
+            or notDoneReason in "Medical Reason"
+      )
       and NoAdultScreen.status = 'cancelled'
 
 define "Most Recent Adolescent Depression Screening":

@@ -512,7 +512,7 @@
         "valueString": "Medical Reason for Not Documenting a Follow up Plan for Low or High BMI"
       }, {
         "url": "statement",
-        "valueString": "define \"Medical Reason for Not Documenting a Follow up Plan for Low or High BMI\":\n  ( ( [ServiceNotRequested: \"Referrals Where Weight Assessment May Occur\"]\n      union [ServiceNotRequested: \"Follow Up for Above Normal BMI\"]\n      union [ServiceNotRequested: \"Follow Up for Below Normal BMI\"] ) NoBMIFollowUp\n      with \"Qualifying Encounter during Day of Measurement Period\" QualifyingEncounter\n        such that NoBMIFollowUp.authoredOn same day as start of QualifyingEncounter.period\n      where NoBMIFollowUp.status ~ 'completed'\n        and NoBMIFollowUp.reasonRefused in \"Medical Reason\"\n  )\n    union ( ( [MedicationNotRequested: \"Medications for Above Normal BMI\"]\n        union [MedicationNotRequested: \"Medications for Below Normal BMI\"] ) NoBMIFollowUp\n        with \"Qualifying Encounter during Day of Measurement Period\" QualifyingEncounter\n          such that NoBMIFollowUp.authoredOn same day as start of QualifyingEncounter.period\n        where NoBMIFollowUp.status ~ 'completed'\n          and NoBMIFollowUp.reasonCode in \"Medical Reason\"\n    )"
+        "valueString": "define \"Medical Reason for Not Documenting a Follow up Plan for Low or High BMI\":\n  ( ( [ServiceNotRequested: \"Referrals Where Weight Assessment May Occur\"]\n      union [ServiceNotRequested: \"Follow Up for Above Normal BMI\"]\n      union [ServiceNotRequested: \"Follow Up for Below Normal BMI\"] ) NoBMIFollowUp\n      with \"Qualifying Encounter during Day of Measurement Period\" QualifyingEncounter\n        such that NoBMIFollowUp.authoredOn same day as start of QualifyingEncounter.period\n      where NoBMIFollowUp.status ~ 'completed'\n        //and NoBMIFollowUp.reasonRefused in \"Medical Reason\"\n        and exists(\n          (NoBMIFollowUp.extension E where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-doNotPerformReason' return E.value as System.Concept) reasonRefused \n            where reasonRefused in \"Medical Reason\"\n        )\n  )\n    union ( ( [MedicationNotRequested: \"Medications for Above Normal BMI\"]\n        union [MedicationNotRequested: \"Medications for Below Normal BMI\"] ) NoBMIFollowUp\n        with \"Qualifying Encounter during Day of Measurement Period\" QualifyingEncounter\n          such that NoBMIFollowUp.authoredOn same day as start of QualifyingEncounter.period\n        where NoBMIFollowUp.status ~ 'completed'\n          and NoBMIFollowUp.reasonCode in \"Medical Reason\"\n    )"
       }, {
         "url": "displaySequence",
         "valueInteger": 26
@@ -527,7 +527,7 @@
         "valueString": "Medical Reason or Patient Reason for Not Performing BMI Exam"
       }, {
         "url": "statement",
-        "valueString": "define \"Medical Reason or Patient Reason for Not Performing BMI Exam\":\n  [ObservationNotDone: code = \"Body mass index (BMI) [Ratio]\"] NoBMI\n    with \"Qualifying Encounter during Day of Measurement Period\" QualifyingEncounter\n      such that NoBMI.effective.toInterval ( ) ends same day as start of QualifyingEncounter.period\n    where NoBMI.status = 'cancelled'\n      and ( NoBMI.notDoneReason in \"Patient Declined\"\n          or NoBMI.notDoneReason in \"Medical Reason\"\n      )"
+        "valueString": "define \"Medical Reason or Patient Reason for Not Performing BMI Exam\":\n  [ObservationNotDone: code = \"Body mass index (BMI) [Ratio]\"] NoBMI\n    with \"Qualifying Encounter during Day of Measurement Period\" QualifyingEncounter\n      such that NoBMI.effective.toInterval ( ) ends same day as start of QualifyingEncounter.period\n    where NoBMI.status = 'cancelled'\n      // and ( NoBMI.notDoneReason in \"Patient Declined\"\n      //     or NoBMI.notDoneReason in \"Medical Reason\"\n      // )\n      and exists(\n        (NoBMI.extension E where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-notDoneReason' return E.value as System.Concept) notDoneReason \n          where notDoneReason in \"Patient Declined\"\n            or notDoneReason in \"Medical Reason\"\n      )"
       }, {
         "url": "displaySequence",
         "valueInteger": 27
@@ -696,21 +696,6 @@
       }, {
         "url": "displaySequence",
         "valueInteger": 38
-      } ]
-    }, {
-      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
-      "extension": [ {
-        "url": "libraryName",
-        "valueString": "FHIRHelpers"
-      }, {
-        "url": "name",
-        "valueString": "ToString"
-      }, {
-        "url": "statement",
-        "valueString": "define function ToString(value uri): value.value"
-      }, {
-        "url": "displaySequence",
-        "valueInteger": 39
       } ]
     } ],
     "name": "EffectiveDataRequirements",
@@ -1105,7 +1090,7 @@
         "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-relatedRequirement",
         "extension": [ {
           "url": "targetId",
-          "valueString": "1378"
+          "valueString": "1385"
         }, {
           "url": "targetProperty",
           "valueString": "effective"
@@ -1255,7 +1240,7 @@
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1562"
       } ]
     }, {
-      "id": "1378",
+      "id": "1385",
       "type": "Observation",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observationnotdone" ],
       "mustSupport": [ "code", "effective", "status", "status.value", "extension" ],
@@ -1265,6 +1250,11 @@
           "system": "http://loinc.org",
           "code": "39156-5",
           "display": "Body mass index (BMI) [Ratio]"
+        } ]
+      }, {
+        "path": "status.value",
+        "code": [ {
+          "code": "cancelled"
         } ]
       } ]
     } ]
@@ -1287,15 +1277,15 @@
       }
     } ]
   }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
+    "valueReference": {
+      "reference": "Device/cqf-tooling"
+    }
+  }, {
     "id": "effective-data-requirements",
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements",
     "valueReference": {
       "reference": "#effective-data-requirements"
-    }
-  }, {
-    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
-    "valueReference": {
-      "reference": "Device/cqf-tooling"
     }
   } ],
   "url": "https://madie.cms.gov/Measure/PCSBMIScreenAndFollowUpFHIR",
@@ -1352,7 +1342,7 @@
   "title": "Preventive Care and Screening Body Mass Index Screening and Follow Up PlanFHIR",
   "status": "draft",
   "experimental": false,
-  "date": "2024-11-18T21:30:38+00:00",
+  "date": "2024-11-18T23:28:10+00:00",
   "publisher": "Centers for Medicare & Medicaid Services (CMS)",
   "contact": [ {
     "telecom": [ {

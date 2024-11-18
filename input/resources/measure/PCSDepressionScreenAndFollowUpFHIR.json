@@ -470,7 +470,7 @@
         "valueString": "Medical or Patient Reason for Not Screening Adolescent for Depression"
       }, {
         "url": "statement",
-        "valueString": "define \"Medical or Patient Reason for Not Screening Adolescent for Depression\":\n  [ObservationNotDone: code ~ \"Adolescent depression screening assessment\"] NoAdolescentScreen\n    with \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n      such that NoAdolescentScreen.issued during QualifyingEncounter.period\n    where ( NoAdolescentScreen.notDoneReason ~ \"Depression screening declined (situation)\"\n        or NoAdolescentScreen.notDoneReason in \"Medical Reason\"\n    )\n      and NoAdolescentScreen.status = 'cancelled'"
+        "valueString": "define \"Medical or Patient Reason for Not Screening Adolescent for Depression\":\n  [ObservationNotDone: code ~ \"Adolescent depression screening assessment\"] NoAdolescentScreen\n    with \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n      such that NoAdolescentScreen.issued during QualifyingEncounter.period\n    where exists(\n        (NoAdolescentScreen.extension E where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-notDoneReason' return E.value as System.Concept) notDoneReason \n          where notDoneReason ~ \"Depression screening declined (situation)\"\n            or notDoneReason in \"Medical Reason\"\n      )\n      and NoAdolescentScreen.status = 'cancelled'"
       }, {
         "url": "displaySequence",
         "valueInteger": 26
@@ -500,7 +500,7 @@
         "valueString": "Medical or Patient Reason for Not Screening Adult for Depression"
       }, {
         "url": "statement",
-        "valueString": "define \"Medical or Patient Reason for Not Screening Adult for Depression\":\n  [ObservationNotDone: code ~ \"Adult depression screening assessment\"] NoAdultScreen\n    with \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n      such that NoAdultScreen.issued during QualifyingEncounter.period\n    where ( NoAdultScreen.notDoneReason ~ \"Depression screening declined (situation)\"\n        or NoAdultScreen.notDoneReason in \"Medical Reason\"\n    )\n      and NoAdultScreen.status = 'cancelled'"
+        "valueString": "define \"Medical or Patient Reason for Not Screening Adult for Depression\":\n  [ObservationNotDone: code ~ \"Adult depression screening assessment\"] NoAdultScreen\n    with \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n      such that NoAdultScreen.issued during QualifyingEncounter.period\n    where exists(\n        (NoAdultScreen.extension E where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-notDoneReason' return E.value as System.Concept) notDoneReason \n          where notDoneReason ~ \"Depression screening declined (situation)\"\n            or notDoneReason in \"Medical Reason\"\n      )\n      and NoAdultScreen.status = 'cancelled'"
       }, {
         "url": "displaySequence",
         "valueInteger": 28
@@ -594,21 +594,6 @@
       }, {
         "url": "displaySequence",
         "valueInteger": 34
-      } ]
-    }, {
-      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
-      "extension": [ {
-        "url": "libraryName",
-        "valueString": "FHIRHelpers"
-      }, {
-        "url": "name",
-        "valueString": "ToString"
-      }, {
-        "url": "statement",
-        "valueString": "define function ToString(value uri): value.value"
-      }, {
-        "url": "displaySequence",
-        "valueInteger": 35
       } ]
     } ],
     "name": "EffectiveDataRequirements",
@@ -939,6 +924,11 @@
           "code": "73831-0",
           "display": "Adolescent depression screening assessment"
         } ]
+      }, {
+        "path": "status.value",
+        "code": [ {
+          "code": "cancelled"
+        } ]
       } ]
     }, {
       "type": "Observation",
@@ -950,6 +940,11 @@
           "system": "http://loinc.org",
           "code": "73832-8",
           "display": "Adult depression screening assessment"
+        } ]
+      }, {
+        "path": "status.value",
+        "code": [ {
+          "code": "cancelled"
         } ]
       } ]
     } ]
@@ -972,15 +967,15 @@
       }
     } ]
   }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
+    "valueReference": {
+      "reference": "Device/cqf-tooling"
+    }
+  }, {
     "id": "effective-data-requirements",
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements",
     "valueReference": {
       "reference": "#effective-data-requirements"
-    }
-  }, {
-    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
-    "valueReference": {
-      "reference": "Device/cqf-tooling"
     }
   } ],
   "url": "https://madie.cms.gov/Measure/PCSDepressionScreenAndFollowUpFHIR",
@@ -1037,7 +1032,7 @@
   "title": "Preventive Care and Screening: Screening for Depression and Follow-Up PlanFHIR",
   "status": "draft",
   "experimental": false,
-  "date": "2024-11-18T21:30:37+00:00",
+  "date": "2024-11-18T23:28:09+00:00",
   "publisher": "Centers for Medicare & Medicaid Services (CMS)",
   "contact": [ {
     "telecom": [ {

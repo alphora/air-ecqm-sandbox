@@ -146,11 +146,11 @@ define "Has Allergy to Statin":
   )
 
 define "Has Diabetes Diagnosis":
-  exists ( [Condition: "Diabetes"] Diabetes
-      where ( Diabetes.isProblemListItem ( )
-          or Diabetes.isHealthConcern ( )
+  exists ( [Condition: "Diabetes"] DiabetesCondition
+      where ( DiabetesCondition.isProblemListItem ( )
+          or DiabetesCondition.isHealthConcern ( )
       )
-        and Diabetes.prevalenceInterval ( ) overlaps day of "Measurement Period"
+        and DiabetesCondition.prevalenceInterval ( ) overlaps day of "Measurement Period"
   )
 
 define "Has ESRD Diagnosis":
