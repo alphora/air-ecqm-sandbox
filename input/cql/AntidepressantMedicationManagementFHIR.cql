@@ -1,6 +1,10 @@
+/*
+@QICore6: Update Condition in Library and Measure resources and test cases to ConditionProblemsHealthConcerns
+*/
+
 library AntidepressantMedicationManagementFHIR version '0.1.001'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -38,6 +42,9 @@ define "April 30 of the Measurement Period":
 define "IPSD":
   "Earliest Antidepressant Dispensed During Intake Period"
 
+/*
+@QICore6: Update Condition to ConditionProblemsHealthConcerns
+*/
 define "Has IPSD and Major Depression Diagnosis":
   exists ( [Condition: "Major Depression"] MajorDepression
       where "IPSD" is not null
@@ -82,7 +89,6 @@ define "Denominator Exclusions":
           where "IPSD" is not null
             and CQMCommon.ToDateInterval ( ActiveAntidepressant.medicationRequestPeriod ( ) ) overlaps Interval["IPSD" - 105 days, "IPSD" )
       )
-    )
 
 define "Numerator 1":
   "Cumulative Medication Duration Greater Than or Equal to 84 Days"
