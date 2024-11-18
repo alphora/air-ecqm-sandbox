@@ -1,0 +1,1726 @@
+<Measure xmlns="http://hl7.org/fhir">
+   <id value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-measure-cqfm"/>
+   </meta>
+   <contained>
+      <Library xmlns="http://hl7.org/fhir">
+         <id value="effective-data-requirements"/>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://www.nlm.nih.gov/research/umls/rxnorm"/>
+               <code value="977860"/>
+               <display value="methamphetamine hydrochloride 5 MG Oral Tablet"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="428361000124107"/>
+               <display value="Discharge to home for hospice care (procedure)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="428371000124100"/>
+               <display value="Discharge to healthcare facility for hospice care (procedure)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+               <code value="survey"/>
+               <display value="survey"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://loinc.org"/>
+               <code value="45755-6"/>
+               <display value="Hospice care [Minimum Data Set]"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="373066001"/>
+               <display value="Yes (qualifier value)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="March 1 of Year Prior to Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;March 1 of Year Prior to Measurement Period&amp;quot;:   DateTime((year from start of &amp;quot;Measurement Period&amp;quot; - 1), 3, 1, 0, 0, 0, 0, 0)"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="0"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Last Calendar Day of February of Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Last Calendar Day of February of Measurement Period&amp;quot;:   ( DateTime(year from start of &amp;quot;Measurement Period&amp;quot;, 3, 1, 23, 59, 59, 0, 0) ) - 1 day"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="1"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Intake Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Intake Period&amp;quot;:   Interval[&amp;quot;March 1 of Year Prior to Measurement Period&amp;quot;, &amp;quot;Last Calendar Day of February of Measurement Period&amp;quot;]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="2"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ADHD Medication Prescribed During Intake Period and Not Previously on ADHD Medication"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;ADHD Medication Prescribed During Intake Period and Not Previously on ADHD Medication&amp;quot;:   ( ( ( [MedicationRequest: &amp;quot;Atomoxetine&amp;quot;]     union [MedicationRequest: &amp;quot;Clonidine&amp;quot;]     union [MedicationRequest: &amp;quot;Dexmethylphenidate&amp;quot;]     union [MedicationRequest: &amp;quot;Dextroamphetamine&amp;quot;]     union [MedicationRequest: &amp;quot;Lisdexamfetamine&amp;quot;]     union [MedicationRequest: &amp;quot;methamphetamine hydrochloride 5 MG Oral Tablet&amp;quot;]     union [MedicationRequest: &amp;quot;Methylphenidate&amp;quot;]     union [MedicationRequest: &amp;quot;Guanfacine&amp;quot;] ) ADHDMedications     where CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( ADHDMedications ) starts during &amp;quot;Intake Period&amp;quot; ) ADHDMedicationOrder     without ( [MedicationRequest: &amp;quot;Atomoxetine&amp;quot;]       union [MedicationRequest: &amp;quot;Clonidine&amp;quot;]       union [MedicationRequest: &amp;quot;Dexmethylphenidate&amp;quot;]       union [MedicationRequest: &amp;quot;Dextroamphetamine&amp;quot;]       union [MedicationRequest: &amp;quot;Lisdexamfetamine&amp;quot;]       union [MedicationRequest: &amp;quot;methamphetamine hydrochloride 5 MG Oral Tablet&amp;quot;]       union [MedicationRequest: &amp;quot;Methylphenidate&amp;quot;]       union [MedicationRequest: &amp;quot;Guanfacine&amp;quot;] ) ActiveADHDMedication       such that CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( ActiveADHDMedication ) overlaps Interval[date from start of CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( ADHDMedicationOrder ) - 120 days, date from start of CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( ADHDMedicationOrder ) ) ) QualifyingMed     return all {       startDate: start of CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( QualifyingMed )     }     sort by startDate asc"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="3"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="First ADHD Medication Prescribed During Intake Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;First ADHD Medication Prescribed During Intake Period&amp;quot;:   First(&amp;quot;ADHD Medication Prescribed During Intake Period and Not Previously on ADHD Medication&amp;quot;.startDate)"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="4"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="IPSD"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/*Index Prescription Start Date (IPSD)*/   define &amp;quot;IPSD&amp;quot;:   &amp;quot;First ADHD Medication Prescribed During Intake Period&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="5"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Qualifying Encounter"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Qualifying Encounter&amp;quot;:   ( ( [Encounter: &amp;quot;Office Visit&amp;quot;]       union [Encounter: &amp;quot;Home Healthcare Services&amp;quot;]       union [Encounter: &amp;quot;Preventive Care, Established Office Visit, 0 to 17&amp;quot;]       union [Encounter: &amp;quot;Preventive Care Services, Initial Office Visit, 0 to 17&amp;quot;]   ).isEncounterPerformed ( ) ) ValidEncounters     where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( ValidEncounters.period.toInterval ( ) ) during day of Interval[&amp;quot;IPSD&amp;quot; - 6 months, &amp;quot;IPSD&amp;quot;]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="6"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ADHD Medications Taken on IPSD or During Continuation and Maintenance Phase"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;ADHD Medications Taken on IPSD or During Continuation and Maintenance Phase&amp;quot;:   ( ( CMD.&amp;quot;RolloutIntervals&amp;quot; ( ( [MedicationRequest: &amp;quot;Atomoxetine&amp;quot;] AtomoxetineMed         return all {           period: CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( AtomoxetineMed ),           periodStart: start of CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( AtomoxetineMed )         }         sort by periodStart     ).period )   )     union ( CMD.&amp;quot;RolloutIntervals&amp;quot; ( ( [MedicationRequest: &amp;quot;Clonidine&amp;quot;] ClonidineMed           return all {             period: CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( ClonidineMed ),             periodStart: start of CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( ClonidineMed )           }           sort by periodStart       ).period )     )     union ( CMD.&amp;quot;RolloutIntervals&amp;quot; ( ( [MedicationRequest: &amp;quot;Dexmethylphenidate&amp;quot;] DexmethylphenidateMed           return all {             period: CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( DexmethylphenidateMed ),             periodStart: start of CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( DexmethylphenidateMed )           }           sort by periodStart       ).period )     )     union ( CMD.&amp;quot;RolloutIntervals&amp;quot; ( ( [MedicationRequest: &amp;quot;Dextroamphetamine&amp;quot;] DextroamphetamineMed           return all {             period: CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( DextroamphetamineMed ),             periodStart: start of CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( DextroamphetamineMed )           }           sort by periodStart       ).period )     )     union ( CMD.&amp;quot;RolloutIntervals&amp;quot; ( ( [MedicationRequest: &amp;quot;Lisdexamfetamine&amp;quot;] LisdexamfetamineMed           return all {             period: CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( LisdexamfetamineMed ),             periodStart: start of CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( LisdexamfetamineMed )           }           sort by periodStart       ).period )     )     union ( CMD.&amp;quot;RolloutIntervals&amp;quot; ( ( [MedicationRequest: &amp;quot;Methylphenidate&amp;quot;] MethylphenidateMed           return all {             period: CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( MethylphenidateMed ),             periodStart: start of CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( MethylphenidateMed )           }           sort by periodStart       ).period )     )     union ( CMD.&amp;quot;RolloutIntervals&amp;quot; ( ( [MedicationRequest: &amp;quot;Guanfacine&amp;quot;] GuanfacineMed           return all {             period: CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( GuanfacineMed ),             periodStart: start of CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( GuanfacineMed )           }           sort by periodStart       ).period )     )     union ( CMD.&amp;quot;RolloutIntervals&amp;quot; ( ( [MedicationRequest: &amp;quot;methamphetamine hydrochloride 5 MG Oral Tablet&amp;quot;] MethamphetamineMed           return all {             period: CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( MethamphetamineMed ),             periodStart: start of CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( MethamphetamineMed )           }           sort by periodStart       ).period )     ) ) ADHDMedication     let IPSDAndContinuationMaintenancePhase: Interval[&amp;quot;IPSD&amp;quot;, &amp;quot;IPSD&amp;quot; + 300 days]     return all ADHDMedication       intersect IPSDAndContinuationMaintenancePhase"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="7"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ADHD Cumulative Medication Duration"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;ADHD Cumulative Medication Duration&amp;quot;:   CMD.&amp;quot;CumulativeDuration&amp;quot; ( &amp;quot;ADHD Medications Taken on IPSD or During Continuation and Maintenance Phase&amp;quot; )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="8"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has ADHD Cumulative Medication Duration Greater Than or Equal to 210 Days"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has ADHD Cumulative Medication Duration Greater Than or Equal to 210 Days&amp;quot;:   &amp;quot;ADHD Cumulative Medication Duration&amp;quot; &amp;gt;= 210"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="9"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Inpatient Stay with Qualifying Diagnosis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Inpatient Stay with Qualifying Diagnosis&amp;quot;:   [&amp;quot;Encounter&amp;quot;: &amp;quot;Encounter Inpatient&amp;quot;] InpatientStay     where exists ( ( &amp;quot;PrincipalDiagnosis&amp;quot;(InpatientStay) ) EncounterDiagnosis         where EncounterDiagnosis.code in &amp;quot;Mental Behavioral and Neurodevelopmental Disorders&amp;quot;     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="10"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Inpatient Stay with Qualifying Diagnosis During Continuation and Maintenance Phase"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Inpatient Stay with Qualifying Diagnosis During Continuation and Maintenance Phase&amp;quot;:   &amp;quot;Inpatient Stay with Qualifying Diagnosis&amp;quot; InpatientStay     where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( InpatientStay.period.toInterval ( ) ) starts 300 days or less after day of &amp;quot;IPSD&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="11"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Initial Population 2"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Initial Population 2&amp;quot;:   AgeInYearsAt(date from start of &amp;quot;Intake Period&amp;quot;) &amp;gt;= 6     and AgeInYearsAt(date from        end of &amp;quot;Intake Period&amp;quot;     ) &amp;lt;= 12     and exists &amp;quot;Qualifying Encounter&amp;quot;     and &amp;quot;First ADHD Medication Prescribed During Intake Period&amp;quot; is not null     and &amp;quot;Has ADHD Cumulative Medication Duration Greater Than or Equal to 210 Days&amp;quot;     and not exists &amp;quot;Inpatient Stay with Qualifying Diagnosis During Continuation and Maintenance Phase&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="12"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator 2"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator 2&amp;quot;:   &amp;quot;Initial Population 2&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="13"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Qualifying Numerator Encounter"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Qualifying Numerator Encounter&amp;quot;:   ( [&amp;quot;Encounter&amp;quot;: &amp;quot;Office Visit&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Initial Hospital Observation Care&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Preventive Care Services Group Counseling&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Behavioral Health Follow up Visit&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Preventive Care Services Individual Counseling&amp;quot;]       union ( [&amp;quot;Encounter&amp;quot;: &amp;quot;Psychotherapy and Pharmacologic Management&amp;quot;] PsychPharmManagement           where exists ( PsychPharmManagement.location Location               where CQMCommon.&amp;quot;GetLocation&amp;quot; ( Location.location ).type in &amp;quot;Ambulatory&amp;quot;           )       )       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Outpatient Consultation&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Home Healthcare Services&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Preventive Care Services, Initial Office Visit, 0 to 17&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Preventive Care, Established Office Visit, 0 to 17&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Psych Visit Diagnostic Evaluation&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Psych Visit Psychotherapy&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Telephone Visits&amp;quot;]   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="14"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Encounter During Initiation Phase"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Encounter During Initiation Phase&amp;quot;:   &amp;quot;Qualifying Numerator Encounter&amp;quot; ValidNumeratorEncounter     where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( ValidNumeratorEncounter.period.toInterval ( ) ) starts 30 days or less after day of &amp;quot;IPSD&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="15"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Numerator 1"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Numerator 1&amp;quot;:   exists ( &amp;quot;Encounter During Initiation Phase&amp;quot; )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="16"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Encounter 31 to 300 Days into Continuation and Maintenance Phase"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Encounter 31 to 300 Days into Continuation and Maintenance Phase&amp;quot;:   &amp;quot;Qualifying Numerator Encounter&amp;quot; ValidNumeratorEncounter     where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( ValidNumeratorEncounter.period.toInterval ( ) ) starts during day of Interval[&amp;quot;IPSD&amp;quot; + 31 days, &amp;quot;IPSD&amp;quot; + 300 days]     return date from start of ValidNumeratorEncounter.period"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="17"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Two or More Encounters 31 to 300 Days into Continuation and Maintenance Phase"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Two or More Encounters 31 to 300 Days into Continuation and Maintenance Phase&amp;quot;:   Count(&amp;quot;Encounter 31 to 300 Days into Continuation and Maintenance Phase&amp;quot;) &amp;gt;= 2"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="18"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Online Assessment 31 to 300 Days into Continuation and Maintenance Phase"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Online Assessment 31 to 300 Days into Continuation and Maintenance Phase&amp;quot;:   [&amp;quot;Encounter&amp;quot;: &amp;quot;Online Assessments&amp;quot;] OnlineAssessment     where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( OnlineAssessment.period.toInterval ( ) ) starts during day of Interval[&amp;quot;IPSD&amp;quot; + 31 days, &amp;quot;IPSD&amp;quot; + 300 days]     return date from start of OnlineAssessment.period"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="19"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Numerator 2"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Numerator 2&amp;quot;:   exists ( &amp;quot;Encounter During Initiation Phase&amp;quot; )     and ( ( &amp;quot;Two or More Encounters 31 to 300 Days into Continuation and Maintenance Phase&amp;quot; )         or ( exists ( &amp;quot;Encounter 31 to 300 Days into Continuation and Maintenance Phase&amp;quot; Encounter1               with &amp;quot;Online Assessment 31 to 300 Days into Continuation and Maintenance Phase&amp;quot; Encounter2                 such that Encounter1 is not null                   and Encounter2 is not null                   and Encounter1 !~ Encounter2           )         )     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="20"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Inpatient Stay with Qualifying Diagnosis During Initiation Phase"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Inpatient Stay with Qualifying Diagnosis During Initiation Phase&amp;quot;:   &amp;quot;Inpatient Stay with Qualifying Diagnosis&amp;quot; InpatientStay     where CQMCommon.&amp;quot;ToDateInterval&amp;quot; ( InpatientStay.period.toInterval ( ) ) starts 30 days or less after day of &amp;quot;IPSD&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="21"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Initial Population 1"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Initial Population 1&amp;quot;:   AgeInYearsAt(date from start of &amp;quot;Intake Period&amp;quot;) &amp;gt;= 6     and AgeInYearsAt(date from        end of &amp;quot;Intake Period&amp;quot;     ) &amp;lt;= 12     and exists &amp;quot;Qualifying Encounter&amp;quot;     and &amp;quot;First ADHD Medication Prescribed During Intake Period&amp;quot; is not null     and not exists &amp;quot;Inpatient Stay with Qualifying Diagnosis During Initiation Phase&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="22"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Hospice"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Hospice Services"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Hospice Services&amp;quot;:   exists ((([Encounter: &amp;quot;Encounter Inpatient&amp;quot;]).isEncounterPerformed()) InpatientEncounter       where (InpatientEncounter.hospitalization.dischargeDisposition ~ &amp;quot;Discharge to home for hospice care (procedure)&amp;quot;           or InpatientEncounter.hospitalization.dischargeDisposition ~ &amp;quot;Discharge to healthcare facility for hospice care (procedure)&amp;quot;       )         and InpatientEncounter.period.toInterval() ends during day of &amp;quot;Measurement Period&amp;quot;   )     or exists ((([Encounter: &amp;quot;Hospice Encounter&amp;quot;]).isEncounterPerformed()) HospiceEncounter         where HospiceEncounter.period.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([Observation: &amp;quot;Hospice care [Minimum Data Set]&amp;quot;]).isAssessmentPerformed()) HospiceAssessment         where HospiceAssessment.value ~ &amp;quot;Yes (qualifier value)&amp;quot;           and HospiceAssessment.effective.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([ServiceRequest: &amp;quot;Hospice Care Ambulatory&amp;quot;]).isInterventionOrder()) HospiceOrder         where HospiceOrder.authoredOn.toInterval() during day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([Procedure: &amp;quot;Hospice Care Ambulatory&amp;quot;]).isInterventionPerformed()) HospicePerformed         where HospicePerformed.performed.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists (([Condition: &amp;quot;Hospice Diagnosis&amp;quot;]) HospiceCareDiagnosis         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="23"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Narcolepsy Exclusion"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Narcolepsy Exclusion&amp;quot;:   [&amp;quot;Condition&amp;quot;: &amp;quot;Narcolepsy&amp;quot;] Narcolepsy     where Narcolepsy.prevalenceInterval ( ) starts on or before end of &amp;quot;Measurement Period&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="24"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator Exclusions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator Exclusions&amp;quot;:   Hospice.&amp;quot;Has Hospice Services&amp;quot;     or exists ( &amp;quot;Narcolepsy Exclusion&amp;quot; )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="25"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator 1"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator 1&amp;quot;:   &amp;quot;Initial Population 1&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="26"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isEncounterPerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isEncounterPerformed(Enc List&amp;lt;Encounter&amp;gt;):   Enc E     where E.status in {&amp;#39;finished&amp;#39;, &amp;#39;arrived&amp;#39;, &amp;#39;triaged&amp;#39;, &amp;#39;in-progress&amp;#39;, &amp;#39;onleave&amp;#39;}"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="27"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CQMCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToDateInterval"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns an interval of date values extracted from the input interval of date-time values @comment: This function returns an interval constructed using the `date from` extractor on the start and end values of the input date-time interval. Note that using a precision specifier such as `day of` as part of a timing phrase is preferred to communicate intent to perform day-level comparison, as well as for general readability. */ define function &amp;quot;ToDateInterval&amp;quot;(period Interval&amp;lt;DateTime&amp;gt;):   Interval[date from start of period, date from end of period]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="28"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="toInterval"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Normalizes a value that is a choice of timing-valued types to an equivalent interval @comment: Normalizes a choice type of DateTime, Quanitty, Interval&amp;lt;DateTime&amp;gt;, or Interval&amp;lt;Quantity&amp;gt; types to an equivalent interval. This selection of choice types is a superset of the majority of choice types that are used as possible representations for timing-valued elements in QICore, allowing this function to be used across any resource. The input can be provided as a DateTime, Quantity, Interval&amp;lt;DateTime&amp;gt; or Interval&amp;lt;Quantity&amp;gt;. The intent of this function is to provide a clear and concise mechanism to treat single elements that have multiple possible representations as intervals so that logic doesn&amp;#39;t have to account for the variability. More complex calculations (such as medication request period or dispense period calculation) need specific guidance and consideration. That guidance may make use of this function, but the focus of this function is on single element calculations where the semantics are unambiguous. If the input is a DateTime, the result a DateTime Interval beginning and ending on that DateTime. If the input is a Quantity, the quantity is expected to be a calendar-duration interpreted as an Age, and the result is a DateTime Interval beginning on the Date the patient turned that age and ending immediately before one year later. If the input is a DateTime Interval, the result is the input. If the input is a Quantity Interval, the quantities are expected to be calendar-durations interpreted as an Age, and the result is a DateTime Interval beginning on the date the patient turned the age given as the start of the quantity interval, and ending immediately before one year later than the date the patient turned the age given as the end of the quantity interval. If the input is a Timing, an error will be thrown indicating that Timing calculations are not implemented. Any other input will reslt in a null DateTime Interval */ define fluent function toInterval(choice Choice&amp;lt;DateTime, Quantity, Interval&amp;lt;DateTime&amp;gt;, Interval&amp;lt;Quantity&amp;gt;, Timing&amp;gt;):   case    when choice is DateTime then      Interval[choice as DateTime, choice as DateTime]   when choice is Interval&amp;lt;DateTime&amp;gt; then     choice as Interval&amp;lt;DateTime&amp;gt;   when choice is Quantity then     Interval[Patient.birthDate + (choice as Quantity),      Patient.birthDate + (choice as Quantity) + 1 year)   when choice is Interval&amp;lt;Quantity&amp;gt; then     Interval[Patient.birthDate + (choice.low as Quantity),      Patient.birthDate + (choice.high as Quantity) + 1 year)   when choice is Timing then       Message(null, true, &amp;#39;NOT_IMPLEMENTED&amp;#39;, &amp;#39;Error&amp;#39;, &amp;#39;Calculation of an interval from a Timing value is not supported&amp;#39;) as Interval&amp;lt;DateTime&amp;gt;   else    null as Interval&amp;lt;DateTime&amp;gt;  end"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="29"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CumulativeMedicationDuration"/>
+            </extension>
+            <extension url="name">
+               <valueString value="MedicationRequestPeriod"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* Now that we have a ToDaily function, we can approach calculation of the duration of medication for an order. First, consider the definitions for each element: * 1 and only 1 dosageInstruction * 1 and only 1 doseAndRate * 1 timing with 1 repeat * frequency, frequencyMax, defaulting to 1 * period, periodUnit, defaulting to 1 &amp;#39;d&amp;#39; * doseQuantity or doseRange * timeOfDay * authoredOn: The date the prescription was written * dispenseRequest.validityPeriod: Time period supply is authorized for * dispenseRequest.quantity: amount of medication supplied per dispense * dispenseRequest.numberOfRepeatsAllowed: number of refills authorized * dispenseRequest.expectedSupplyDuration: number of days supply per dispense * dosageInstruction.timing.repeat.boundsDuration: total duration of the repeat * dosageInstruction.timing.repeat.boundsRange: range of durations of the repeat * dosageInstruction.timing.repeat.boundsPeriod: period bounds of the repeat * dosageInstruction.timing.repeat.count: number of times to repeat * dosageInstruction.timing.repeat.countMax: maximum number of times to repeat * dosageInstruction.timing.repeat.frequency: event occurs frequency times per period * dosageInstruction.timing.repeat.frequencyMax: event occurs up to frequencyMax times per period * dosageInstruction.timing.repeat.period: event occurs frequency times per period * dosageInstruction.timing.repeat.periodMax: upper limit of period * dosageInstruction.timing.repeat.periodUnit: period duration (s | min | h | d | wk | mo | a) * dosageInstruction.timing.repeat.timeOfDay: time of day for the event (0..*) * dosageInstruction.timing.repeat.when: event timing (HS | WAKE | C | CM | CD | CV | AC | ACM...) * dosageInstruction.timing.code: BID | TID | QID | AM | PM | QD | QOD... * dosageInstruction.asNeeded * dosageInstruction.doseAndRate.doseQuantity * dosageInstruction.doseAndRate.doseRange If expectedSupplyDuration is present, then the duration is     expectedSupplyDuration * (1 + numberOfRepeatsAllowed) If expectedSupplyDuration is not present, then it must be calculated based on the quantity, dosage, and frequency:     (quantity / (dosage * frequency)) * (1 + numberOfRepeatsAllowed)     dosage: Coalesce(end of doseAndRate.doseRange, doseAndRate.doseQuantity)     frequency: Coalesce(frequencyMax, frequency)     period: Quantity(period, periodUnit) If expectedSupplyDuration is not present and cannot be calculated, and the boundsPeriod is present (and completely specified), we can use that directly     dosage.timing.repeat.boundsPeriod This calculation results in a number of days, which can then be turned into a period by anchoring that to the start of the validityPeriod or the authoredOn:     Interval[earliestDispensable, earliestDispensable + expectedSupplyDuration - 1]     earliestDispensable: Coalesce(start of validityPeriod, authoredOn) The following function illustrates this completely: */  /* Calculates the Medication Period for a single MedicationRequest. MedicationRequest instances provided to this function are expected to conform to the [MMEMedicationRequest](http://build.fhir.org/ig/cqframework/opioid-mme-r4/StructureDefinition-mmemedicationrequest.html) profile, which expects: * 1 and only 1 dosageInstruction, multiple dosageInstruction elements will result in an error * 1 and only 1 doseAndRate, multiple doseAndRate elements will result in an error * 1 timing with 1 repeat, missing timing or repeat elements will result in a null * frequency, frequencyMax, defaulting to 1 * period, periodUnit, defaulting to 1 &amp;#39;d&amp;#39; * timeOfDay * doseQuantity or doseRange, missing doseQuantity and doseRange will result in a null Note that MedicationRequest status is not considered by this calculation, as the list of MedicationRequest instances provided to this function should already have considered appropriate statuses, depending on the use case, typically `completed`. */ define function MedicationRequestPeriod(Request &amp;quot;MedicationRequest&amp;quot;):   Request R     let       dosage: singleton from R.dosageInstruction,       doseAndRate: singleton from dosage.doseAndRate,       timing: dosage.timing,       frequency: Coalesce(timing.repeat.frequencyMax, timing.repeat.frequency),       period: Quantity(timing.repeat.period, timing.repeat.periodUnit),       doseRange: doseAndRate.dose,       doseQuantity: doseAndRate.dose,       dose: Coalesce(end of doseRange, doseQuantity),       dosesPerDay: Coalesce(ToDaily(frequency, period), Count(timing.repeat.timeOfDay), 1.0),       boundsPeriod: timing.repeat.bounds as Interval&amp;lt;DateTime&amp;gt;,       daysSupply: (convert R.dispenseRequest.expectedSupplyDuration to days).value,       quantity: R.dispenseRequest.quantity,       refills: Coalesce(R.dispenseRequest.numberOfRepeatsAllowed, 0),       startDate:         Coalesce(           date from start of boundsPeriod,           date from R.authoredOn,           date from start of R.dispenseRequest.validityPeriod         ),       totalDaysSupplied: Coalesce(daysSupply, quantity.value / (dose.value * dosesPerDay)) * (1 + refills)     return       if startDate is not null and totalDaysSupplied is not null then         Interval[startDate, startDate + Quantity(totalDaysSupplied - 1, &amp;#39;day&amp;#39;) ]       else if startDate is not null and boundsPeriod.&amp;quot;high&amp;quot; is not null then         Interval[startDate, date from end of boundsPeriod]       else         null"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="30"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CumulativeMedicationDuration"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Quantity"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/**********************************************************************/ /* Functions in this region are copied from opioid-mme-r4             */ /**********************************************************************/  define function Quantity(value Decimal, unit String):   if value is not null then     System.Quantity { value: value, unit: unit }   else     null"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="31"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CumulativeMedicationDuration"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToDaily"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/*  Goal is to get to number of days  Two broad approaches to the calculation:   1) Based on supply and frequency, calculate the number of expected days the medication will cover/has covered   2) Based on relevant period, determine a covered interval and calculate the length of that interval in days This topic covers several use cases and illustrates how to calculate Cumulative Medication Duration for each type of medication resource using the supply and frequency approach. */  /*   For the first approach, we need to get from frequency to a frequency/day   So we define ToDaily */  /*   Calculates daily frequency given frequency within a period */ define function ToDaily(frequency System.Integer, period System.Quantity):   case period.unit     when &amp;#39;h&amp;#39; then frequency * (24.0 / period.value)     when &amp;#39;min&amp;#39; then frequency * (24.0 / period.value) * 60     when &amp;#39;s&amp;#39; then frequency * (24.0 / period.value) * 60 * 60     when &amp;#39;d&amp;#39; then frequency * (24.0 / period.value) / 24     when &amp;#39;wk&amp;#39; then frequency * (24.0 / period.value) / (24 * 7)     when &amp;#39;mo&amp;#39; then frequency * (24.0 / period.value) / (24 * 30) /* assuming 30 days in month */     when &amp;#39;a&amp;#39; then frequency * (24.0 / period.value) / (24 * 365) /* assuming 365 days in year */     when &amp;#39;hour&amp;#39; then frequency * (24.0 / period.value)     when &amp;#39;minute&amp;#39; then frequency * (24.0 / period.value) * 60     when &amp;#39;second&amp;#39; then frequency * (24.0 / period.value) * 60 * 60     when &amp;#39;day&amp;#39; then frequency * (24.0 / period.value) / 24     when &amp;#39;week&amp;#39; then frequency * (24.0 / period.value) / (24 * 7)     when &amp;#39;month&amp;#39; then frequency * (24.0 / period.value) / (24 * 30) /* assuming 30 days in month */     when &amp;#39;year&amp;#39; then frequency * (24.0 / period.value) / (24 * 365) /* assuming 365 days in year */     when &amp;#39;hours&amp;#39; then frequency * (24.0 / period.value)     when &amp;#39;minutes&amp;#39; then frequency * (24.0 / period.value) * 60     when &amp;#39;seconds&amp;#39; then frequency * (24.0 / period.value) * 60 * 60     when &amp;#39;days&amp;#39; then frequency * (24.0 / period.value) / 24     when &amp;#39;weeks&amp;#39; then frequency * (24.0 / period.value) / (24 * 7)     when &amp;#39;months&amp;#39; then frequency * (24.0 / period.value) / (24 * 30) /* assuming 30 days in month */     when &amp;#39;years&amp;#39; then frequency * (24.0 / period.value) / (24 * 365) /* assuming 365 days in year */     else Message(null, true, &amp;#39;CMDLogic.ToDaily.UnknownUnit&amp;#39;, ErrorLevel, &amp;#39;Unknown unit &amp;#39; &amp;amp; period.unit)   end"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="32"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CumulativeMedicationDuration"/>
+            </extension>
+            <extension url="name">
+               <valueString value="CumulativeDuration"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* Now that we have functions for determining the medication period for individual prescriptions, administrations, and dispenses, we can combine those using an overall cumulative medication duration calculation. There are two broad approaches to calculating cumulative duration, one that _collapses_ overlapping intervals so that calculations are not duplicated, and one that _rolls out_ overlapping intervals so that the durations are laid end-to-end. First, we define a function that simply calculates CumulativeDuration of a set of intervals: */ define function CumulativeDuration(Intervals List&amp;lt;Interval&amp;lt;Date&amp;gt;&amp;gt;):    if Intervals is not null then ( Sum((collapse Intervals per day)X         return all(difference in days between start of X and            end of X         )+ 1     )   )      else null"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="33"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CumulativeMedicationDuration"/>
+            </extension>
+            <extension url="name">
+               <valueString value="RolloutIntervals"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* Next, we define a function that rolls out intervals: */ define function RolloutIntervals(intervals List&amp;lt;Interval&amp;lt;Date&amp;gt;&amp;gt;):  intervals I aggregate all R starting ( null as List&amp;lt;Interval&amp;lt;Date&amp;gt;&amp;gt;): R     union ( { I X         let S: Max({            end of Last(R)+ 1 day, start of X }         ),         E: S + Quantity(Coalesce(duration in days of X, 0), &amp;#39;day&amp;#39;)         return Interval[S, E]}     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="34"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="PrincipalDiagnosis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define function &amp;quot;PrincipalDiagnosis&amp;quot;(Encounter Encounter):   ( Encounter.diagnosis D     where D.rank = 1 ) PD     return singleton from ( [Condition] C         where C.id = PD.condition.reference.getId ( )     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="35"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="getId"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns the tail of the given uri (i.e. everything after the last slash in the URI). @comment: This function can be used to determine the logical id of a given resource. It can be used in a single-server environment to trace references. However, this function does not attempt to resolve or distinguish the base of the given url, and so cannot be used safely in multi-server environments. */ define fluent function getId(uri String):   Last(Split(uri, &amp;#39;/&amp;#39;))"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="36"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CQMCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="GetLocation"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns the Location resource specified by the given reference @deprecated: This function is deprecated. Use the fluent function `getLocation()` instead. */ define function &amp;quot;GetLocation&amp;quot;(reference Reference ):   singleton from (     [Location] L where L.id = reference.reference.getId()   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="37"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FHIRHelpers"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToConcept"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept. */ define function ToConcept(concept FHIR.CodeableConcept):     if concept is null then         null     else         System.Concept {             codes: concept.coding C return ToCode(C),             display: concept.text.value         }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="38"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isAssessmentPerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="//Similar but different from QICoreCommon.isSurvey, which does not have status constraints define fluent function isAssessmentPerformed(Obs List&amp;lt;Observation&amp;gt;):   Obs O     where O.status in { &amp;#39;final&amp;#39;, &amp;#39;amended&amp;#39;, &amp;#39;corrected&amp;#39; }           and exists ( O.category ObservationCategory           where ( ObservationCategory ) ~ &amp;quot;survey&amp;quot;       )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="39"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isInterventionOrder"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isInterventionOrder(ServiceRequest List&amp;lt;ServiceRequest&amp;gt;):   ServiceRequest S     where S.status in { &amp;#39;active&amp;#39;, &amp;#39;completed&amp;#39; }       and S.intent = &amp;#39;order&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="40"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isInterventionPerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isInterventionPerformed(Proc List&amp;lt;Procedure&amp;gt;):   Proc P     where P.status ~ &amp;#39;completed&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="41"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="prevalenceInterval"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns an interval representing the normalized prevalence period of a given Condition. @comment: Uses the ToInterval and ToAbatementInterval functions to determine the widest potential interval from onset to abatement as specified in the given Condition. If the condition is active, or has an abatement date the resulting  interval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary. */ define fluent function prevalenceInterval(condition Condition): if condition.clinicalStatus ~ &amp;quot;active&amp;quot;   or condition.clinicalStatus ~ &amp;quot;recurrence&amp;quot;   or condition.clinicalStatus ~ &amp;quot;relapse&amp;quot; then   Interval[start of condition.onset.toInterval(), end of condition.abatementInterval()] else     (end of ToAbatementInterval(condition)) abatementDate     return if abatementDate is null then       Interval[start of ToInterval(condition.onset), abatementDate)     else       Interval[start of ToInterval(condition.onset), abatementDate]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="42"/>
+            </extension>
+         </extension>
+         <status value="active"/>
+         <type>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/library-type"/>
+               <code value="module-definition"/>
+            </coding>
+         </type>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library Status"/>
+            <resource value="Library/Status|1.6.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library CQMCommon"/>
+            <resource value="Library/CQMCommon|2.0.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library QICoreCommon"/>
+            <resource value="Library/QICoreCommon|2.0.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library FHIRHelpers"/>
+            <resource value="Library/FHIRHelpers|4.3.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library CMD"/>
+            <resource value="Library/CumulativeMedicationDuration|4.0.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library Hospice"/>
+            <resource value="Library/Hospice|6.9.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system RXNORM"/>
+            <resource value="http://www.nlm.nih.gov/research/umls/rxnorm"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system SNOMEDCT"/>
+            <resource value="http://snomed.info/sct"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ObservationCategoryCodes"/>
+            <resource value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system LOINC"/>
+            <resource value="http://loinc.org"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Office Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Home Healthcare Services"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care, Established Office Visit, 0 to 17"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1024"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services, Initial Office Visit, 0 to 17"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1022"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Atomoxetine"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1170"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Clonidine"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1171"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Dexmethylphenidate"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1172"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Dextroamphetamine"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1173"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Lisdexamfetamine"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1174"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Methylphenidate"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1176"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Guanfacine"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.11.1252"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Encounter Inpatient"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Mental Behavioral and Neurodevelopmental Disorders"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.105.12.1203"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Initial Hospital Observation Care"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1002"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services Group Counseling"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1027"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Behavioral Health Follow up Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1054"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services Individual Counseling"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1026"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Psychotherapy and Pharmacologic Management"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1055"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Ambulatory"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.122.12.1003"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Outpatient Consultation"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1008"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Psych Visit Diagnostic Evaluation"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1492"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Psych Visit Psychotherapy"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1496"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Telephone Visits"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Online Assessments"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Encounter"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Care Ambulatory"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Diagnosis"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Narcolepsy"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.114.12.1011"/>
+         </relatedArtifact>
+         <parameter>
+            <name value="Measurement Period"/>
+            <use value="in"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Period"/>
+         </parameter>
+         <parameter>
+            <name value="ErrorLevel"/>
+            <use value="in"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="string"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator 2"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Numerator 1"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Numerator 2"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Initial Population 1"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Initial Population 2"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator Exclusions"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator 1"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <dataRequirement>
+            <type value="Patient"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient"/>
+            <mustSupport value="birthDate"/>
+            <mustSupport value="birthDate.value"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="dispenseRequest"/>
+            <mustSupport value="dispenseRequest.expectedSupplyDuration"/>
+            <mustSupport value="dispenseRequest.quantity"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dispenseRequest.validityPeriod"/>
+            <mustSupport value="startDate"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1170"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="dispenseRequest"/>
+            <mustSupport value="dispenseRequest.expectedSupplyDuration"/>
+            <mustSupport value="dispenseRequest.quantity"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dispenseRequest.validityPeriod"/>
+            <mustSupport value="startDate"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1171"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="dispenseRequest"/>
+            <mustSupport value="dispenseRequest.expectedSupplyDuration"/>
+            <mustSupport value="dispenseRequest.quantity"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dispenseRequest.validityPeriod"/>
+            <mustSupport value="startDate"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1172"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="dispenseRequest"/>
+            <mustSupport value="dispenseRequest.expectedSupplyDuration"/>
+            <mustSupport value="dispenseRequest.quantity"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dispenseRequest.validityPeriod"/>
+            <mustSupport value="startDate"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1173"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="dispenseRequest"/>
+            <mustSupport value="dispenseRequest.expectedSupplyDuration"/>
+            <mustSupport value="dispenseRequest.quantity"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dispenseRequest.validityPeriod"/>
+            <mustSupport value="startDate"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1174"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="dispenseRequest"/>
+            <mustSupport value="dispenseRequest.expectedSupplyDuration"/>
+            <mustSupport value="dispenseRequest.quantity"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dispenseRequest.validityPeriod"/>
+            <mustSupport value="startDate"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1176"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="dispenseRequest"/>
+            <mustSupport value="dispenseRequest.expectedSupplyDuration"/>
+            <mustSupport value="dispenseRequest.quantity"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dispenseRequest.validityPeriod"/>
+            <mustSupport value="startDate"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.11.1252"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="dispenseRequest"/>
+            <mustSupport value="dispenseRequest.expectedSupplyDuration"/>
+            <mustSupport value="dispenseRequest.quantity"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dispenseRequest.validityPeriod"/>
+            <mustSupport value="startDate"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="medication"/>
+               <code>
+                  <system value="http://www.nlm.nih.gov/research/umls/rxnorm"/>
+                  <code value="977860"/>
+                  <display value="methamphetamine hydrochloride 5 MG Oral Tablet"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication.reference"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="dispenseRequest"/>
+            <mustSupport value="dispenseRequest.expectedSupplyDuration"/>
+            <mustSupport value="dispenseRequest.quantity"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dispenseRequest.validityPeriod"/>
+            <mustSupport value="startDate"/>
+            <mustSupport value="period"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Medication"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication"/>
+            <mustSupport value="id"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1002"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1027"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1054"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1026"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="location"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1055"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1008"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1022"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1024"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1492"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1496"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <mustSupport value="hospitalization"/>
+            <mustSupport value="hospitalization.dischargeDisposition"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="rank"/>
+            <mustSupport value="rank.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="id"/>
+            <mustSupport value="id.value"/>
+            <mustSupport value="code"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.114.12.1011"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Location"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-location"/>
+            <mustSupport value="id"/>
+            <mustSupport value="id.value"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="value"/>
+            <mustSupport value="effective"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="category"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://loinc.org"/>
+                  <code value="45755-6"/>
+                  <display value="Hospice care [Minimum Data Set]"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="ServiceRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest"/>
+            <mustSupport value="code"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+            </codeFilter>
+         </dataRequirement>
+      </Library>
+   </contained>
+   <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements">
+      <valueReference>
+         <reference value="#effective-data-requirements"/>
+      </valueReference>
+   </extension>
+   <url value="https://madie.cms.gov/Measure/FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+   <identifier>
+      <use value="usual"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="short-name"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/shortName"/>
+      <value value="CMS136FHIR"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-independent"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:fd12596b-b29b-4584-b592-defc57f1acd6"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-specific"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:ef642a58-b5a2-41eb-9006-078bc959c184"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="publisher"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/cmsId"/>
+      <value value="136FHIR"/>
+      <assigner>
+         <display value="CMS"/>
+      </assigner>
+   </identifier>
+   <version value="0.1.001"/>
+   <name value="FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+   <title value="Follow-Up Care for Children Prescribed ADHD Medication (ADD)FHIR"/>
+   <status value="active"/>
+   <experimental value="false"/>
+   <date value="2024-04-18T13:50:26+00:00"/>
+   <publisher value="National Committee for Quality Assurance"/>
+   <contact>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.ncqa.org/"/>
+      </telecom>
+   </contact>
+   <description value="Percentage of children 6-12 years of age and newly prescribed a medication for attention-deficit/hyperactivity disorder (ADHD) who had appropriate follow-up care. Two rates are reported.   a. Percentage of children who had one follow-up visit with a practitioner with prescribing authority during the 30-Day Initiation Phase. b. Percentage of children who remained on ADHD medication for at least 210 treatment days and who, in addition to the visit in the Initiation Phase, had at least two additional follow-up visits with a practitioner within 270 days (9 months) after the Initiation Phase ended."/>
+   <purpose value="UNKNOWN"/>
+   <usage value="This eCQM is a patient-based measure.  This FHIR-based measure has been derived from the QDM-based measure: CMS136v13.    Please refer to the HL7 QI-Core Implementation Guide (http://hl7.org/fhir/us/qicore/index.html) for more information on QI-Core and mapping recommendations from QDM to QI-Core 4.1.1 (http://hl7.org/fhir/us/qicore/qdm-to-qicore.html)."/>
+   <copyright value="This Physician Performance Measure (Measure) and related data specifications are owned and were developed by the National Committee for Quality Assurance (NCQA). NCQA is not responsible for any use of the Measure. NCQA makes no representations, warranties, or endorsement about the quality of any organization or physician that uses or reports performance measures and NCQA has no liability to anyone who relies on such measures or specifications. NCQA holds a copyright in the Measure. The Measure can be reproduced and distributed, without modification, for noncommercial purposes (e.g., use by healthcare providers in connection with their practices) without obtaining approval from NCQA. Commercial use is defined as the sale, licensing, or distribution of the Measure for commercial gain, or incorporation of the Measure into a product or service that is sold, licensed or distributed for commercial gain. All commercial uses or requests for modification must be approved by NCQA and are subject to a license at the discretion of NCQA. (C) 2012-2022 National Committee for Quality Assurance. All Rights Reserved.  Limited proprietary coding is contained in the Measure specifications for user convenience. Users of proprietary code sets should obtain all necessary licenses from the owners of the code sets. NCQA disclaims all liability for use or accuracy of any third-party codes contained in the specifications.  CPT(R) codes, descriptions and other data are copyright 2022. American Medical Association. All rights reserved. CPT is a trademark of the American Medical Association. No fee schedules, basic units, relative values or related listings are included in CPT. The AMA assumes no liability for the data contained herein. Applicable FARS/DFARS restrictions apply to government use.  LOINC(R) copyright 2004-2022 Regenstrief Institute, Inc.   This material contains SNOMED Clinical Terms(R) (SNOMED CT[R]) copyright 2004-2022 International Health Terminology Standards Development Organisation.   ICD-10 copyright 2022 World Health Organization. All Rights Reserved."/>
+   <effectivePeriod>
+      <start value="2025-01-01"/>
+      <end value="2025-12-31"/>
+   </effectivePeriod>
+   <author>
+      <name value="National Committee for Quality Assurance"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.ncqa.org/"/>
+      </telecom>
+   </author>
+   <library value="https://madie.cms.gov/Library/FollowUpCareforChildrenPrescribedADHDMedicationADDFHIR"/>
+   <disclaimer value="The performance Measure is not a clinical guideline and does not establish a standard of medical care, and has not been tested for all potential applications. THE MEASURE AND SPECIFICATIONS ARE PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND.   Due to technical limitations, registered trademarks are indicated by (R) or [R] and unregistered trademarks are indicated by (TM) or [TM]."/>
+   <rationale value="ADHD is one of the more common chronic conditions of childhood. Children with ADHD may experience significant functional problems, such as school difficulties; academic underachievement; troublesome relationships with family members and peers; and behavioral problems (AAP, 2000). Given the high prevalence of ADHD among school-aged children (4%–12%), primary care clinicians will regularly encounter children with ADHD and should have a strategy for diagnosing and long-term management of this condition (AAP, 2001).   Practitioners can convey the efficacy of pharmacotherapy to their patients. American Academy of Pediatrics (AAP) guidelines recommend that once a child is stable, an office visit every three to six months allows assessment of learning and behavior (AAP, 2001). Follow-up appointments should be made at least monthly until the child’s symptoms have been stabilized (AACAP, 2007).  Providers have an opportunity to track medication use in patients and provide the appropriate follow-up care to monitor clinical symptoms and potential adverse events."/>
+   <clinicalRecommendationStatement value="American Academy of Pediatrics Clinical Practice Guideline for the Diagnosis, Evaluation and Treatment of ADHD in Children and Adolescents (2019) - Key Action Statement (KAS) 1: The pediatrician or other primary care clinicians (PCC) should initiate an evaluation for ADHD for any child or adolescent age 4 years to the 18th birthday who presents with academic or behavioral problems and symptoms of inattention, hyperactivity, or impulsivity. Grade B: Strong Recommendation - KAS 4: ADHD is a chronic condition; therefore, the PCC should manage children and adolescents with ADHD in the same manner that they would children and youth with special health care needs, following the principles of the chronic care model and the medical home. Grade B: Strong Recommendation - KAS 5b: For elementary and middle school-aged children (age 6 years to the 12th birthday) with ADHD, the PCC should prescribe FDA-approved medications for ADHD, along with parent training in behavior management (PTBM) and/or behavioral classroom intervention (preferably both PTBM and behavioral classroom interventions). Educational interventions and individualized instructional supports, including school environment, class placement, instructional placement, and behavioral supports, are a necessary part of any treatment plan and often include an IEP or a rehabilitation plan (504 plan). Grade A: Strong Recommendation - KAS 6. “The PCC should titrate doses of medication for ADHD to achieve maximum benefit with tolerable side effects”. Grade B, strong recommendation  American Academy of Child and Adolescent Psychiatry (AACAP) Practice Parameter for the Assessment and Treatment of Children and Adolescents with ADHD (2007) - Overall Guideline: The key to effective long-term management of the patient with ADHD is continuity of care with a clinician experienced in the treatment of ADHD. The frequency and duration of follow-up sessions should be individualized for each family and patient, depending on the severity of ADHD symptoms; the degree of comorbidity of other psychiatric illness; the response to treatment; and the degree of impairment in home, school, work, or peer-related activities. The clinician should establish an effective mechanism for receiving feedback from the family and other important informants in the patient's environment to be sure symptoms are well controlled and side effects are minimal. Although this parameter does not seek to set a formula for the method of follow-up, significant contact with the clinician should typically occur two to four times per year in cases of uncomplicated ADHD and up to weekly sessions at times of severe dysfunction or complications of treatment. - Recommendation 6: A Well-Thought-Out and Comprehensive Treatment Plan Should Be Developed for the Patient With ADHD. The treatment plan should be reviewed regularly and modified if the patient's symptoms do not respond. Minimal Standard [MS] - Recommendation 9. During a Psychopharmacological Intervention for ADHD, the Patient Should Be Monitored for Treatment-Emergent Side Effects. Minimal Standard [MS] - Recommendation 12. Patients Should Be Assessed Periodically to Determine Whether There Is Continued Need for Treatment or If Symptoms Have Remitted. Treatment of ADHD Should Continue as Long as Symptoms Remain Present and Cause Impairment. Minimal Standard [MS]"/>
+   <group id="64fe0cd9da013638e7b3da9e">
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-scoring">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-scoring"/>
+               <code value="proportion"/>
+               <display value="Proportion"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis">
+         <valueCode value="boolean"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-type">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-type"/>
+               <code value="process"/>
+               <display value="Process"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-rateAggregation">
+         <valueCode value="None"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-improvementNotation">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-improvement-notation"/>
+               <code value="decrease"/>
+               <display value="increase"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <population id="3A08EAA7-9BF1-45D3-83B8-1E5BFFB1337A">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="initial-population"/>
+               <display value="Initial Population"/>
+            </coding>
+         </code>
+         <description value="Initial Population 1: Children 6-12 years of age as of the Intake Period who had an IPSD and who had a visit within 6 months prior to the IPSD including the IPSD. Children are removed if they had an acute inpatient stay with a principal diagnosis of mental, behavioral or neurodevelopmental disorder during the Initiation Phase.  "/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Initial Population 1"/>
+         </criteria>
+      </population>
+      <population id="CD80DEB0-9B0E-4387-9CFD-F2DBC128DA55">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator"/>
+               <display value="Denominator"/>
+            </coding>
+         </code>
+         <description value="Equals Initial Population"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator 1"/>
+         </criteria>
+      </population>
+      <population id="6F5F25E0-9DED-4A47-8E7D-FE5985E0D5B8">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator-exclusion"/>
+               <display value="Denominator Exclusion"/>
+            </coding>
+         </code>
+         <description value="Exclude patients diagnosed with narcolepsy at any point in their history or during the measurement period.  Exclude patients who are in hospice care for any part of the measurement period."/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator Exclusions"/>
+         </criteria>
+      </population>
+      <population id="C6412DB9-537F-4150-A26C-EE45C562E0DE">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="numerator"/>
+               <display value="Numerator"/>
+            </coding>
+         </code>
+         <description value="Numerator 1: Patients who had at least one visit with a practitioner with prescribing authority during the Initiation Phase."/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Numerator 1"/>
+         </criteria>
+      </population>
+   </group>
+   <group id="64fe0cd9da013638e7b3da9f">
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-scoring">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-scoring"/>
+               <code value="proportion"/>
+               <display value="Proportion"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis">
+         <valueCode value="boolean"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-type">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-type"/>
+               <code value="process"/>
+               <display value="Process"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-rateAggregation">
+         <valueCode value="None"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-improvementNotation">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-improvement-notation"/>
+               <code value="decrease"/>
+               <display value="increase"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <population id="7D8F94F8-1301-4983-A649-3466CFF5DC0C">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="initial-population"/>
+               <display value="Initial Population"/>
+            </coding>
+         </code>
+         <description value="Initial Population 2: Children 6-12 years of age as of the Intake Period who had an IPSD and remained on the medication for at least 210 treatment days during the 301-day period, beginning on the IPSD through 300 days after the IPSD, and who had a visit within 6 months prior to the IPSD including the IPSD. Children are removed if they had an acute inpatient stay with a principal diagnosis of mental, behavioral or neurodevelopmental disorder during the Continuation and Maintenance Phase."/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Initial Population 2"/>
+         </criteria>
+      </population>
+      <population id="193A3EA7-0008-46FB-B4AE-3092F188712E">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator"/>
+               <display value="Denominator"/>
+            </coding>
+         </code>
+         <description value="Equals Initial Population"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator 2"/>
+         </criteria>
+      </population>
+      <population id="A61265B9-E48C-49E4-B823-029707F34FBC">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator-exclusion"/>
+               <display value="Denominator Exclusion"/>
+            </coding>
+         </code>
+         <description value="Exclude patients diagnosed with narcolepsy at any point in their history or during the measurement period.  Exclude patients who are in hospice care for any part of the measurement period."/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator Exclusions"/>
+         </criteria>
+      </population>
+      <population id="7337D3B4-2AB1-4E0C-84EE-20255AF7ACBA">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="numerator"/>
+               <display value="Numerator"/>
+            </coding>
+         </code>
+         <description value="Numerator 2: Patients who had at least one visit with a practitioner with prescribing authority during the Initiation Phase, and at least two follow-up visits on different dates of service during the 31-300 days after the IPSD."/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Numerator 2"/>
+         </criteria>
+      </population>
+   </group>
+</Measure>
