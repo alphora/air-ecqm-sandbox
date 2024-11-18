@@ -80,10 +80,10 @@
         "valueString": "SDE Sex"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Sex&quot;:   case     when Patient.gender = &#39;male&#39; then &quot;M&quot;     when Patient.gender = &#39;female&#39; then &quot;F&quot;     else null   end"
+        "valueString": "define \"SDE Sex\":\n  case\n    when Patient.gender = 'male' then \"M\"\n    when Patient.gender = 'female' then \"F\"\n    else null\n  end"
       }, {
         "url": "displaySequence",
-        "valueString": "0"
+        "valueInteger": 0
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -95,10 +95,10 @@
         "valueString": "SDE Sex"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Sex&quot;:   SDE.&quot;SDE Sex&quot;"
+        "valueString": "define \"SDE Sex\":\n  SDE.\"SDE Sex\""
       }, {
         "url": "displaySequence",
-        "valueString": "1"
+        "valueInteger": 1
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -110,10 +110,10 @@
         "valueString": "Patient Age 12 to 16 Years at Start of Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Patient Age 12 to 16 Years at Start of Measurement Period&quot;:   AgeInYearsAt(date from start of &quot;Measurement Period&quot;) in Interval[12, 16]"
+        "valueString": "define \"Patient Age 12 to 16 Years at Start of Measurement Period\":\n  AgeInYearsAt(date from start of \"Measurement Period\") in Interval[12, 16]"
       }, {
         "url": "displaySequence",
-        "valueString": "2"
+        "valueInteger": 2
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -125,10 +125,10 @@
         "valueString": "Qualifying Encounter During Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Qualifying Encounter During Measurement Period&quot;:   ( [Encounter: &quot;Encounter to Screen for Depression&quot;]     union [Encounter: &quot;Physical Therapy Evaluation&quot;]     union [Encounter: &quot;Telephone Visits&quot;] ) QualifyingEncounter     where QualifyingEncounter.period during day of &quot;Measurement Period&quot;       and QualifyingEncounter.status = &#39;finished&#39;"
+        "valueString": "define \"Qualifying Encounter During Measurement Period\":\n  ( [Encounter: \"Encounter to Screen for Depression\"]\n    union [Encounter: \"Physical Therapy Evaluation\"]\n    union [Encounter: \"Telephone Visits\"] ) QualifyingEncounter\n    where QualifyingEncounter.period during day of \"Measurement Period\"\n      and QualifyingEncounter.status = 'finished'"
       }, {
         "url": "displaySequence",
-        "valueString": "3"
+        "valueInteger": 3
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -140,10 +140,10 @@
         "valueString": "Most Recent Adolescent Depression Screening"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Most Recent Adolescent Depression Screening&quot;:   Last([Observation: &quot;Adolescent depression screening assessment&quot;] AdolescentDepressionScreening       with &quot;Qualifying Encounter During Measurement Period&quot; QualifyingEncounter         such that AdolescentDepressionScreening.effective.toInterval() 14 days or less on or before day of start of QualifyingEncounter.period           and AdolescentDepressionScreening.value is not null           and AdolescentDepressionScreening.status = &#39;final&#39;       sort by start of effective.toInterval()   )"
+        "valueString": "define \"Most Recent Adolescent Depression Screening\":\n  Last([Observation: \"Adolescent depression screening assessment\"] AdolescentDepressionScreening\n      with \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n        such that AdolescentDepressionScreening.effective.toInterval() 14 days or less on or before day of start of QualifyingEncounter.period\n          and AdolescentDepressionScreening.value is not null\n          and AdolescentDepressionScreening.status = 'final'\n      sort by start of effective.toInterval()\n  )"
       }, {
         "url": "displaySequence",
-        "valueString": "4"
+        "valueInteger": 4
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -155,10 +155,10 @@
         "valueString": "Has Most Recent Adolescent Screening Negative"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Has Most Recent Adolescent Screening Negative&quot;:   ( &quot;Most Recent Adolescent Depression Screening&quot; AdolescentScreen       where AdolescentScreen.value ~ &quot;Depression screening negative (finding)&quot;   ) is not null"
+        "valueString": "define \"Has Most Recent Adolescent Screening Negative\":\n  ( \"Most Recent Adolescent Depression Screening\" AdolescentScreen\n      where AdolescentScreen.value ~ \"Depression screening negative (finding)\"\n  ) is not null"
       }, {
         "url": "displaySequence",
-        "valueString": "5"
+        "valueInteger": 5
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -170,10 +170,10 @@
         "valueString": "Follow Up Intervention for Positive Adolescent Depression Screening"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Follow Up Intervention for Positive Adolescent Depression Screening&quot;:   ( ( [MedicationRequest: &quot;Adolescent Depression Medications&quot;] AdolescentMed         where AdolescentMed.status in { &#39;active&#39;, &#39;completed&#39; }           and AdolescentMed.intent = &#39;order&#39;     )       union ( [ServiceRequest: &quot;Referral for Adolescent Depression&quot;] AdolescentReferral           where AdolescentReferral.status in { &#39;active&#39;, &#39;completed&#39; }       )       union ( [Procedure: &quot;Follow Up for Adolescent Depression&quot;] AdolescentFollowUp           where AdolescentFollowUp.status = &#39;completed&#39;       )   )"
+        "valueString": "define \"Follow Up Intervention for Positive Adolescent Depression Screening\":\n  ( ( [MedicationRequest: \"Adolescent Depression Medications\"] AdolescentMed\n        where AdolescentMed.status in { 'active', 'completed' }\n          and AdolescentMed.intent = 'order'\n    )\n      union ( [ServiceRequest: \"Referral for Adolescent Depression\"] AdolescentReferral\n          where AdolescentReferral.status in { 'active', 'completed' }\n      )\n      union ( [Procedure: \"Follow Up for Adolescent Depression\"] AdolescentFollowUp\n          where AdolescentFollowUp.status = 'completed'\n      )\n  )"
       }, {
         "url": "displaySequence",
-        "valueString": "6"
+        "valueInteger": 6
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -185,10 +185,10 @@
         "valueString": "Most Recent Adolescent Depression Screening Positive and Follow Up Provided"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Most Recent Adolescent Depression Screening Positive and Follow Up Provided&quot;:   from     &quot;Most Recent Adolescent Depression Screening&quot; LastAdolescentScreen,     &quot;Follow Up Intervention for Positive Adolescent Depression Screening&quot; FollowUpPositiveAdolescentScreen,     &quot;Qualifying Encounter During Measurement Period&quot; QualifyingEncounter     where LastAdolescentScreen.effective.toInterval ( ) starts 14 days or less on or before day of start of QualifyingEncounter.period       and LastAdolescentScreen.value ~ &quot;Depression screening positive (finding)&quot;       and ( start of FollowUpPositiveAdolescentScreen.performed.toInterval ( ) during QualifyingEncounter.period           or FollowUpPositiveAdolescentScreen.authoredOn 2 days or less on or after day of end of QualifyingEncounter.period       )       and ( Coalesce(start of FollowUpPositiveAdolescentScreen.performed.toInterval(), FollowUpPositiveAdolescentScreen.authoredOn) during day of &quot;Measurement Period&quot; )"
+        "valueString": "define \"Most Recent Adolescent Depression Screening Positive and Follow Up Provided\":\n  from\n    \"Most Recent Adolescent Depression Screening\" LastAdolescentScreen,\n    \"Follow Up Intervention for Positive Adolescent Depression Screening\" FollowUpPositiveAdolescentScreen,\n    \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n    where LastAdolescentScreen.effective.toInterval ( ) starts 14 days or less on or before day of start of QualifyingEncounter.period\n      and LastAdolescentScreen.value ~ \"Depression screening positive (finding)\"\n      and ( start of FollowUpPositiveAdolescentScreen.performed.toInterval ( ) during QualifyingEncounter.period\n          or FollowUpPositiveAdolescentScreen.authoredOn 2 days or less on or after day of end of QualifyingEncounter.period\n      )\n      and ( Coalesce(start of FollowUpPositiveAdolescentScreen.performed.toInterval(), FollowUpPositiveAdolescentScreen.authoredOn) during day of \"Measurement Period\" )"
       }, {
         "url": "displaySequence",
-        "valueString": "7"
+        "valueInteger": 7
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -200,10 +200,10 @@
         "valueString": "Patient Age 17 Years at Start of Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Patient Age 17 Years at Start of Measurement Period&quot;:   AgeInYearsAt(date from start of &quot;Measurement Period&quot;) = 17"
+        "valueString": "define \"Patient Age 17 Years at Start of Measurement Period\":\n  AgeInYearsAt(date from start of \"Measurement Period\") = 17"
       }, {
         "url": "displaySequence",
-        "valueString": "8"
+        "valueInteger": 8
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -215,10 +215,10 @@
         "valueString": "Most Recent Adult Depression Screening"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Most Recent Adult Depression Screening&quot;:   Last([Observation: &quot;Adult depression screening assessment&quot;] AdultDepressionScreening       with &quot;Qualifying Encounter During Measurement Period&quot; QualifyingEncounter         such that AdultDepressionScreening.effective.toInterval() 14 days or less on or before day of start of QualifyingEncounter.period           and AdultDepressionScreening.value is not null           and AdultDepressionScreening.status = &#39;final&#39;       sort by start of effective.toInterval()   )"
+        "valueString": "define \"Most Recent Adult Depression Screening\":\n  Last([Observation: \"Adult depression screening assessment\"] AdultDepressionScreening\n      with \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n        such that AdultDepressionScreening.effective.toInterval() 14 days or less on or before day of start of QualifyingEncounter.period\n          and AdultDepressionScreening.value is not null\n          and AdultDepressionScreening.status = 'final'\n      sort by start of effective.toInterval()\n  )"
       }, {
         "url": "displaySequence",
-        "valueString": "9"
+        "valueInteger": 9
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -230,10 +230,10 @@
         "valueString": "Has Most Recent Adult Screening Negative"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Has Most Recent Adult Screening Negative&quot;:   ( &quot;Most Recent Adult Depression Screening&quot; AdultScreen       where AdultScreen.value ~ &quot;Depression screening negative (finding)&quot;   ) is not null"
+        "valueString": "define \"Has Most Recent Adult Screening Negative\":\n  ( \"Most Recent Adult Depression Screening\" AdultScreen\n      where AdultScreen.value ~ \"Depression screening negative (finding)\"\n  ) is not null"
       }, {
         "url": "displaySequence",
-        "valueString": "10"
+        "valueInteger": 10
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -245,10 +245,10 @@
         "valueString": "Follow Up Intervention for Positive Adult Depression Screening"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Follow Up Intervention for Positive Adult Depression Screening&quot;:   ( ( [MedicationRequest: &quot;Adult Depression Medications&quot;] AdultMed         where AdultMed.status in { &#39;active&#39;, &#39;completed&#39; }           and AdultMed.intent = &#39;order&#39;     )       union ( [ServiceRequest: &quot;Referral for Adult Depression&quot;] AdultReferral           where AdultReferral.status in { &#39;active&#39;, &#39;completed&#39; }       )       union ( [Procedure: &quot;Follow Up for Adult Depression&quot;] AdultFollowUp           where AdultFollowUp.status = &#39;completed&#39;       )   )"
+        "valueString": "define \"Follow Up Intervention for Positive Adult Depression Screening\":\n  ( ( [MedicationRequest: \"Adult Depression Medications\"] AdultMed\n        where AdultMed.status in { 'active', 'completed' }\n          and AdultMed.intent = 'order'\n    )\n      union ( [ServiceRequest: \"Referral for Adult Depression\"] AdultReferral\n          where AdultReferral.status in { 'active', 'completed' }\n      )\n      union ( [Procedure: \"Follow Up for Adult Depression\"] AdultFollowUp\n          where AdultFollowUp.status = 'completed'\n      )\n  )"
       }, {
         "url": "displaySequence",
-        "valueString": "11"
+        "valueInteger": 11
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -260,10 +260,10 @@
         "valueString": "Most Recent Adult Depression Screening Positive and Follow Up Provided"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Most Recent Adult Depression Screening Positive and Follow Up Provided&quot;:   from     &quot;Most Recent Adult Depression Screening&quot; LastAdultScreen,     &quot;Follow Up Intervention for Positive Adult Depression Screening&quot; FollowUpPositiveAdultScreen,     &quot;Qualifying Encounter During Measurement Period&quot; QualifyingEncounter     where LastAdultScreen.effective.toInterval ( ) starts 14 days or less on or before day of start of QualifyingEncounter.period       and LastAdultScreen.value ~ &quot;Depression screening positive (finding)&quot;       and ( start of FollowUpPositiveAdultScreen.performed.toInterval ( ) during QualifyingEncounter.period           or FollowUpPositiveAdultScreen.authoredOn 2 days or less on or after day of end of QualifyingEncounter.period       )       and ( Coalesce(start of FollowUpPositiveAdultScreen.performed.toInterval(), FollowUpPositiveAdultScreen.authoredOn) during day of &quot;Measurement Period&quot; )"
+        "valueString": "define \"Most Recent Adult Depression Screening Positive and Follow Up Provided\":\n  from\n    \"Most Recent Adult Depression Screening\" LastAdultScreen,\n    \"Follow Up Intervention for Positive Adult Depression Screening\" FollowUpPositiveAdultScreen,\n    \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n    where LastAdultScreen.effective.toInterval ( ) starts 14 days or less on or before day of start of QualifyingEncounter.period\n      and LastAdultScreen.value ~ \"Depression screening positive (finding)\"\n      and ( start of FollowUpPositiveAdultScreen.performed.toInterval ( ) during QualifyingEncounter.period\n          or FollowUpPositiveAdultScreen.authoredOn 2 days or less on or after day of end of QualifyingEncounter.period\n      )\n      and ( Coalesce(start of FollowUpPositiveAdultScreen.performed.toInterval(), FollowUpPositiveAdultScreen.authoredOn) during day of \"Measurement Period\" )"
       }, {
         "url": "displaySequence",
-        "valueString": "12"
+        "valueInteger": 12
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -275,10 +275,10 @@
         "valueString": "Patient Age 18 Years or Older at Start of Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Patient Age 18 Years or Older at Start of Measurement Period&quot;:   AgeInYearsAt(date from start of &quot;Measurement Period&quot;) &gt;= 18"
+        "valueString": "define \"Patient Age 18 Years or Older at Start of Measurement Period\":\n  AgeInYearsAt(date from start of \"Measurement Period\") >= 18"
       }, {
         "url": "displaySequence",
-        "valueString": "13"
+        "valueInteger": 13
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -290,10 +290,10 @@
         "valueString": "Numerator"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Numerator&quot;:   ( &quot;Patient Age 12 to 16 Years at Start of Measurement Period&quot;       and ( &quot;Has Most Recent Adolescent Screening Negative&quot;           or exists &quot;Most Recent Adolescent Depression Screening Positive and Follow Up Provided&quot;       )   )     or ( &quot;Patient Age 17 Years at Start of Measurement Period&quot;         and ( &quot;Has Most Recent Adolescent Screening Negative&quot;             or exists &quot;Most Recent Adolescent Depression Screening Positive and Follow Up Provided&quot;             or &quot;Has Most Recent Adult Screening Negative&quot;             or exists &quot;Most Recent Adult Depression Screening Positive and Follow Up Provided&quot;         )     )     or ( &quot;Patient Age 18 Years or Older at Start of Measurement Period&quot;         and ( &quot;Has Most Recent Adult Screening Negative&quot;             or exists &quot;Most Recent Adult Depression Screening Positive and Follow Up Provided&quot;         )     )"
+        "valueString": "define \"Numerator\":\n  ( \"Patient Age 12 to 16 Years at Start of Measurement Period\"\n      and ( \"Has Most Recent Adolescent Screening Negative\"\n          or exists \"Most Recent Adolescent Depression Screening Positive and Follow Up Provided\"\n      )\n  )\n    or ( \"Patient Age 17 Years at Start of Measurement Period\"\n        and ( \"Has Most Recent Adolescent Screening Negative\"\n            or exists \"Most Recent Adolescent Depression Screening Positive and Follow Up Provided\"\n            or \"Has Most Recent Adult Screening Negative\"\n            or exists \"Most Recent Adult Depression Screening Positive and Follow Up Provided\"\n        )\n    )\n    or ( \"Patient Age 18 Years or Older at Start of Measurement Period\"\n        and ( \"Has Most Recent Adult Screening Negative\"\n            or exists \"Most Recent Adult Depression Screening Positive and Follow Up Provided\"\n        )\n    )"
       }, {
         "url": "displaySequence",
-        "valueString": "14"
+        "valueInteger": 14
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -305,10 +305,10 @@
         "valueString": "Patient Age 12 Years or Older at Start of Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Patient Age 12 Years or Older at Start of Measurement Period&quot;:   AgeInYearsAt(date from start of &quot;Measurement Period&quot;) &gt;= 12"
+        "valueString": "define \"Patient Age 12 Years or Older at Start of Measurement Period\":\n  AgeInYearsAt(date from start of \"Measurement Period\") >= 12"
       }, {
         "url": "displaySequence",
-        "valueString": "15"
+        "valueInteger": 15
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -320,10 +320,10 @@
         "valueString": "Initial Population"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Initial Population&quot;:   &quot;Patient Age 12 Years or Older at Start of Measurement Period&quot;     and exists ( &quot;Qualifying Encounter During Measurement Period&quot; )"
+        "valueString": "define \"Initial Population\":\n  \"Patient Age 12 Years or Older at Start of Measurement Period\"\n    and exists ( \"Qualifying Encounter During Measurement Period\" )"
       }, {
         "url": "displaySequence",
-        "valueString": "16"
+        "valueInteger": 16
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -335,10 +335,10 @@
         "valueString": "Denominator"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Denominator&quot;:   &quot;Initial Population&quot;"
+        "valueString": "define \"Denominator\":\n  \"Initial Population\""
       }, {
         "url": "displaySequence",
-        "valueString": "17"
+        "valueInteger": 17
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -350,10 +350,10 @@
         "valueString": "SDE Payer"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Payer&quot;:   [Coverage: type in &quot;Payer Type&quot;] Payer     return {       code: Payer.type,       period: Payer.period     }"
+        "valueString": "define \"SDE Payer\":\n  [Coverage: type in \"Payer Type\"] Payer\n    return {\n      code: Payer.type,\n      period: Payer.period\n    }"
       }, {
         "url": "displaySequence",
-        "valueString": "18"
+        "valueInteger": 18
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -365,10 +365,10 @@
         "valueString": "SDE Payer"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Payer&quot;:   SDE.&quot;SDE Payer&quot;"
+        "valueString": "define \"SDE Payer\":\n  SDE.\"SDE Payer\""
       }, {
         "url": "displaySequence",
-        "valueString": "19"
+        "valueInteger": 19
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -380,10 +380,10 @@
         "valueString": "SDE Ethnicity"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Ethnicity&quot;:   Patient.ethnicity E     return Tuple {       codes: { E.ombCategory } union E.detailed,       display: E.text     }"
+        "valueString": "define \"SDE Ethnicity\":\n  Patient.extension E\n    where E.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity' \n    return Tuple {\n      codes: { \n        E.extension e\n          where e.url = 'ombCategory'\n          return e.value as Code\n      } \n      union {\n        E.extension e\n          where e.url = 'detailed'\n          return e.value as Code\n      },\n      display: E.value\n    }"
       }, {
         "url": "displaySequence",
-        "valueString": "20"
+        "valueInteger": 20
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -395,10 +395,10 @@
         "valueString": "SDE Ethnicity"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Ethnicity&quot;:   SDE.&quot;SDE Ethnicity&quot;"
+        "valueString": "define \"SDE Ethnicity\":\n  SDE.\"SDE Ethnicity\""
       }, {
         "url": "displaySequence",
-        "valueString": "21"
+        "valueInteger": 21
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -410,10 +410,10 @@
         "valueString": "History of Bipolar Diagnosis Before Qualifying Encounter"
       }, {
         "url": "statement",
-        "valueString": "define &quot;History of Bipolar Diagnosis Before Qualifying Encounter&quot;:   [Condition: &quot;Bipolar Disorder&quot;] BipolarDiagnosis     with &quot;Qualifying Encounter During Measurement Period&quot; QualifyingEncounter       such that ( BipolarDiagnosis.isProblemListItem ( )           or BipolarDiagnosis.isHealthConcern ( )       )         and BipolarDiagnosis.prevalenceInterval ( ) starts before QualifyingEncounter.period"
+        "valueString": "define \"History of Bipolar Diagnosis Before Qualifying Encounter\":\n  [Condition: \"Bipolar Disorder\"] BipolarDiagnosis\n    with \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n      such that ( BipolarDiagnosis.isProblemListItem ( )\n          or BipolarDiagnosis.isHealthConcern ( )\n      )\n        and BipolarDiagnosis.prevalenceInterval ( ) starts before QualifyingEncounter.period"
       }, {
         "url": "displaySequence",
-        "valueString": "22"
+        "valueInteger": 22
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -425,10 +425,10 @@
         "valueString": "Denominator Exclusions"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Denominator Exclusions&quot;:   exists &quot;History of Bipolar Diagnosis Before Qualifying Encounter&quot;"
+        "valueString": "define \"Denominator Exclusions\":\n  exists \"History of Bipolar Diagnosis Before Qualifying Encounter\""
       }, {
         "url": "displaySequence",
-        "valueString": "23"
+        "valueInteger": 23
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -440,10 +440,10 @@
         "valueString": "SDE Race"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Race&quot;:   Patient.race R     return Tuple {       codes: R.ombCategory union R.detailed,       display: R.text     }"
+        "valueString": "define \"SDE Race\":\n  Patient.extension E\n    where E.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race' \n    return Tuple {\n      codes: { \n        E.extension e\n          where e.url = 'ombCategory'\n          return e.value as Code\n      } \n      union {\n        E.extension e\n          where e.url = 'detailed'\n          return e.value as Code\n      },\n      display: E.value\n    }"
       }, {
         "url": "displaySequence",
-        "valueString": "24"
+        "valueInteger": 24
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -455,10 +455,10 @@
         "valueString": "SDE Race"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Race&quot;:   SDE.&quot;SDE Race&quot;"
+        "valueString": "define \"SDE Race\":\n  SDE.\"SDE Race\""
       }, {
         "url": "displaySequence",
-        "valueString": "25"
+        "valueInteger": 25
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -470,10 +470,10 @@
         "valueString": "Medical or Patient Reason for Not Screening Adolescent for Depression"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Medical or Patient Reason for Not Screening Adolescent for Depression&quot;:   [ObservationNotDone: code ~ &quot;Adolescent depression screening assessment&quot;] NoAdolescentScreen     with &quot;Qualifying Encounter During Measurement Period&quot; QualifyingEncounter       such that NoAdolescentScreen.issued during QualifyingEncounter.period     where ( NoAdolescentScreen.notDoneReason ~ &quot;Depression screening declined (situation)&quot;         or NoAdolescentScreen.notDoneReason in &quot;Medical Reason&quot;     )       and NoAdolescentScreen.status = &#39;cancelled&#39;"
+        "valueString": "define \"Medical or Patient Reason for Not Screening Adolescent for Depression\":\n  [ObservationNotDone: code ~ \"Adolescent depression screening assessment\"] NoAdolescentScreen\n    with \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n      such that NoAdolescentScreen.issued during QualifyingEncounter.period\n    where ( NoAdolescentScreen.notDoneReason ~ \"Depression screening declined (situation)\"\n        or NoAdolescentScreen.notDoneReason in \"Medical Reason\"\n    )\n      and NoAdolescentScreen.status = 'cancelled'"
       }, {
         "url": "displaySequence",
-        "valueString": "26"
+        "valueInteger": 26
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -485,10 +485,10 @@
         "valueString": "Has Adolescent Depression Screening"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Has Adolescent Depression Screening&quot;:   exists ( [Observation: &quot;Adolescent depression screening assessment&quot;] AdolescentScreening       with &quot;Qualifying Encounter During Measurement Period&quot; QualifyingEncounter         such that AdolescentScreening.effective.toInterval ( ) 14 days or less on or before day of start of QualifyingEncounter.period           and AdolescentScreening.value is not null           and AdolescentScreening.status = &#39;final&#39;   )"
+        "valueString": "define \"Has Adolescent Depression Screening\":\n  exists ( [Observation: \"Adolescent depression screening assessment\"] AdolescentScreening\n      with \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n        such that AdolescentScreening.effective.toInterval ( ) 14 days or less on or before day of start of QualifyingEncounter.period\n          and AdolescentScreening.value is not null\n          and AdolescentScreening.status = 'final'\n  )"
       }, {
         "url": "displaySequence",
-        "valueString": "27"
+        "valueInteger": 27
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -500,10 +500,10 @@
         "valueString": "Medical or Patient Reason for Not Screening Adult for Depression"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Medical or Patient Reason for Not Screening Adult for Depression&quot;:   [ObservationNotDone: code ~ &quot;Adult depression screening assessment&quot;] NoAdultScreen     with &quot;Qualifying Encounter During Measurement Period&quot; QualifyingEncounter       such that NoAdultScreen.issued during QualifyingEncounter.period     where ( NoAdultScreen.notDoneReason ~ &quot;Depression screening declined (situation)&quot;         or NoAdultScreen.notDoneReason in &quot;Medical Reason&quot;     )       and NoAdultScreen.status = &#39;cancelled&#39;"
+        "valueString": "define \"Medical or Patient Reason for Not Screening Adult for Depression\":\n  [ObservationNotDone: code ~ \"Adult depression screening assessment\"] NoAdultScreen\n    with \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n      such that NoAdultScreen.issued during QualifyingEncounter.period\n    where ( NoAdultScreen.notDoneReason ~ \"Depression screening declined (situation)\"\n        or NoAdultScreen.notDoneReason in \"Medical Reason\"\n    )\n      and NoAdultScreen.status = 'cancelled'"
       }, {
         "url": "displaySequence",
-        "valueString": "28"
+        "valueInteger": 28
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -515,10 +515,10 @@
         "valueString": "Has Adult Depression Screening"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Has Adult Depression Screening&quot;:   exists ( [Observation: &quot;Adult depression screening assessment&quot;] AdultScreening       with &quot;Qualifying Encounter During Measurement Period&quot; QualifyingEncounter         such that AdultScreening.effective.toInterval ( ) 14 days or less on or before day of start of QualifyingEncounter.period           and AdultScreening.value is not null           and AdultScreening.status = &#39;final&#39;   )"
+        "valueString": "define \"Has Adult Depression Screening\":\n  exists ( [Observation: \"Adult depression screening assessment\"] AdultScreening\n      with \"Qualifying Encounter During Measurement Period\" QualifyingEncounter\n        such that AdultScreening.effective.toInterval ( ) 14 days or less on or before day of start of QualifyingEncounter.period\n          and AdultScreening.value is not null\n          and AdultScreening.status = 'final'\n  )"
       }, {
         "url": "displaySequence",
-        "valueString": "29"
+        "valueInteger": 29
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -530,10 +530,70 @@
         "valueString": "Denominator Exceptions"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Denominator Exceptions&quot;:   ( exists &quot;Medical or Patient Reason for Not Screening Adolescent for Depression&quot;       and not &quot;Has Adolescent Depression Screening&quot;   )     or ( exists &quot;Medical or Patient Reason for Not Screening Adult for Depression&quot;         and not &quot;Has Adult Depression Screening&quot;     )"
+        "valueString": "define \"Denominator Exceptions\":\n  ( exists \"Medical or Patient Reason for Not Screening Adolescent for Depression\"\n      and not \"Has Adolescent Depression Screening\"\n  )\n    or ( exists \"Medical or Patient Reason for Not Screening Adult for Depression\"\n        and not \"Has Adult Depression Screening\"\n    )"
       }, {
         "url": "displaySequence",
-        "valueString": "30"
+        "valueInteger": 30
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "QICoreCommon"
+      }, {
+        "url": "name",
+        "valueString": "toInterval"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Normalizes a value that is a choice of timing-valued types to an equivalent interval\n@comment: Normalizes a choice type of DateTime, Quanitty, Interval<DateTime>, or Interval<Quantity> types\nto an equivalent interval. This selection of choice types is a superset of the majority of choice types that are used as possible\nrepresentations for timing-valued elements in QICore, allowing this function to be used across any resource.\nThe input can be provided as a DateTime, Quantity, Interval<DateTime> or Interval<Quantity>.\nThe intent of this function is to provide a clear and concise mechanism to treat single\nelements that have multiple possible representations as intervals so that logic doesn't have to account\nfor the variability. More complex calculations (such as medication request period or dispense period\ncalculation) need specific guidance and consideration. That guidance may make use of this function, but\nthe focus of this function is on single element calculations where the semantics are unambiguous.\nIf the input is a DateTime, the result a DateTime Interval beginning and ending on that DateTime.\nIf the input is a Quantity, the quantity is expected to be a calendar-duration interpreted as an Age,\nand the result is a DateTime Interval beginning on the Date the patient turned that age and ending immediately before one year later.\nIf the input is a DateTime Interval, the result is the input.\nIf the input is a Quantity Interval, the quantities are expected to be calendar-durations interpreted as an Age, and the result\nis a DateTime Interval beginning on the date the patient turned the age given as the start of the quantity interval, and ending\nimmediately before one year later than the date the patient turned the age given as the end of the quantity interval.\nIf the input is a Timing, an error will be thrown indicating that Timing calculations are not implemented. Any other input will reslt in a null DateTime Interval\n*/\ndefine fluent function toInterval(choice Choice<DateTime, Quantity, Interval<DateTime>, Interval<Quantity>, Timing>):\n  case\n\t  when choice is DateTime then\n    \tInterval[choice as DateTime, choice as DateTime]\n\t\twhen choice is Interval<DateTime> then\n  \t\tchoice as Interval<DateTime>\n\t\twhen choice is Quantity then\n\t\t  Interval[Patient.birthDate + (choice as Quantity),\n\t\t\t  Patient.birthDate + (choice as Quantity) + 1 year)\n\t\twhen choice is Interval<Quantity> then\n\t\t  Interval[Patient.birthDate + (choice.low as Quantity),\n\t\t\t  Patient.birthDate + (choice.high as Quantity) + 1 year)\n\t\twhen choice is Timing then\n      Message(null, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a Timing value is not supported') as Interval<DateTime>\n\t\telse\n\t\t\tnull as Interval<DateTime>\n\tend"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 31
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "QICoreCommon"
+      }, {
+        "url": "name",
+        "valueString": "isProblemListItem"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Returns true if the given condition is a problem list item.\n*/\ndefine fluent function isProblemListItem(condition Condition):\n  exists (condition.category C\n    where C ~ \"problem-list-item\"\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 32
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToConcept"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept.\n*/\ndefine function ToConcept(concept FHIR.CodeableConcept):\n    if concept is null then\n        null\n    else\n        System.Concept {\n            codes: concept.coding C return ToCode(C),\n            display: concept.text.value\n        }"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 33
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "QICoreCommon"
+      }, {
+        "url": "name",
+        "valueString": "isHealthConcern"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Returns true if the given condition is a health concern\n*/\ndefine fluent function isHealthConcern(condition Condition):\n  exists (condition.category C\n    where C ~ \"health-concern\"\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 34
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -548,69 +608,10 @@
         "valueString": "define function ToString(value uri): value.value"
       }, {
         "url": "displaySequence",
-        "valueString": "31"
-      } ]
-    }, {
-      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
-      "extension": [ {
-        "url": "libraryName",
-        "valueString": "FHIRHelpers"
-      }, {
-        "url": "name",
-        "valueString": "ToCode"
-      }, {
-        "url": "statement",
-        "valueString": "/* @description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code. */ define function ToCode(coding FHIR.Coding):     if coding is null then         null     else         System.Code {           code: coding.code.value,           system: coding.system.value,           version: coding.version.value,           display: coding.display.value         }"
-      }, {
-        "url": "displaySequence",
-        "valueString": "32"
-      } ]
-    }, {
-      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
-      "extension": [ {
-        "url": "libraryName",
-        "valueString": "QICoreCommon"
-      }, {
-        "url": "name",
-        "valueString": "isProblemListItem"
-      }, {
-        "url": "statement",
-        "valueString": "/* @description: Returns true if the given condition is a problem list item. */ define fluent function isProblemListItem(condition Condition):   exists (condition.category C     where C ~ &quot;problem-list-item&quot;   )"
-      }, {
-        "url": "displaySequence",
-        "valueString": "33"
-      } ]
-    }, {
-      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
-      "extension": [ {
-        "url": "libraryName",
-        "valueString": "FHIRHelpers"
-      }, {
-        "url": "name",
-        "valueString": "ToConcept"
-      }, {
-        "url": "statement",
-        "valueString": "/* @description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept. */ define function ToConcept(concept FHIR.CodeableConcept):     if concept is null then         null     else         System.Concept {             codes: concept.coding C return ToCode(C),             display: concept.text.value         }"
-      }, {
-        "url": "displaySequence",
-        "valueString": "34"
-      } ]
-    }, {
-      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
-      "extension": [ {
-        "url": "libraryName",
-        "valueString": "QICoreCommon"
-      }, {
-        "url": "name",
-        "valueString": "isHealthConcern"
-      }, {
-        "url": "statement",
-        "valueString": "/* @description: Returns true if the given condition is a health concern */ define fluent function isHealthConcern(condition Condition):   exists (condition.category C     where C ~ &quot;health-concern&quot;   )"
-      }, {
-        "url": "displaySequence",
-        "valueString": "35"
+        "valueInteger": 35
       } ]
     } ],
+    "name": "EffectiveDataRequirements",
     "status": "active",
     "type": {
       "coding": [ {
@@ -706,6 +707,12 @@
       "max": "1",
       "type": "Period"
     }, {
+      "name": "SDE Sex",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "Coding"
+    }, {
       "name": "Numerator",
       "use": "out",
       "min": 0,
@@ -718,11 +725,23 @@
       "max": "1",
       "type": "boolean"
     }, {
+      "name": "SDE Payer",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Resource"
+    }, {
       "name": "Initial Population",
       "use": "out",
       "min": 0,
       "max": "1",
       "type": "boolean"
+    }, {
+      "name": "SDE Ethnicity",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Resource"
     }, {
       "name": "Denominator Exclusions",
       "use": "out",
@@ -730,40 +749,41 @@
       "max": "1",
       "type": "boolean"
     }, {
-      "name": "Denominator Exceptions",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "boolean"
-    }, {
-      "name": "SDE Sex",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "Coding"
-    }, {
-      "name": "SDE Payer",
+      "name": "SDE Race",
       "use": "out",
       "min": 0,
       "max": "*",
       "type": "Resource"
     }, {
-      "name": "SDE Ethnicity",
+      "name": "Denominator Exceptions",
       "use": "out",
       "min": 0,
       "max": "1",
-      "type": "Resource"
-    }, {
-      "name": "SDE Race",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "Resource"
+      "type": "boolean"
     } ],
     "dataRequirement": [ {
       "type": "Patient",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ]
+    }, {
+      "type": "Patient",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ],
-      "mustSupport": [ "gender", "gender.value", "url", "extension" ]
+      "mustSupport": [ "url", "url.value", "extension", "value" ],
+      "codeFilter": [ {
+        "path": "url.value",
+        "code": [ {
+          "code": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+        } ]
+      } ]
+    }, {
+      "type": "Patient",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ],
+      "mustSupport": [ "url", "url.value", "extension", "value" ],
+      "codeFilter": [ {
+        "path": "url.value",
+        "code": [ {
+          "code": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+        } ]
+      } ]
     }, {
       "type": "Encounter",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
@@ -799,6 +819,11 @@
           "code": "73831-0",
           "display": "Adolescent depression screening assessment"
         } ]
+      }, {
+        "path": "status.value",
+        "code": [ {
+          "code": "final"
+        } ]
       } ]
     }, {
       "type": "Observation",
@@ -811,7 +836,20 @@
           "code": "73832-8",
           "display": "Adult depression screening assessment"
         } ]
+      }, {
+        "path": "status.value",
+        "code": [ {
+          "code": "final"
+        } ]
       } ]
+    }, {
+      "type": "Medication",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication" ],
+      "mustSupport": [ "id" ]
+    }, {
+      "type": "Medication",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication" ],
+      "mustSupport": [ "id" ]
     }, {
       "type": "MedicationRequest",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
@@ -823,19 +861,15 @@
     }, {
       "type": "MedicationRequest",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
+      "mustSupport": [ "medication.reference", "status", "status.value", "intent", "intent.value" ]
+    }, {
+      "type": "MedicationRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
       "mustSupport": [ "medication", "status", "status.value", "intent", "intent.value" ],
       "codeFilter": [ {
         "path": "medication",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1566"
       } ]
-    }, {
-      "type": "MedicationRequest",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
-      "mustSupport": [ "medication.reference", "status", "status.value", "intent", "intent.value" ]
-    }, {
-      "type": "Medication",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication" ],
-      "mustSupport": [ "id" ]
     }, {
       "type": "ServiceRequest",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
@@ -859,6 +893,11 @@
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1569"
+      }, {
+        "path": "status.value",
+        "code": [ {
+          "code": "completed"
+        } ]
       } ]
     }, {
       "type": "Procedure",
@@ -867,6 +906,11 @@
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1568"
+      }, {
+        "path": "status.value",
+        "code": [ {
+          "code": "completed"
+        } ]
       } ]
     }, {
       "type": "Coverage",
@@ -928,9 +972,15 @@
       }
     } ]
   }, {
+    "id": "effective-data-requirements",
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements",
     "valueReference": {
       "reference": "#effective-data-requirements"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
+    "valueReference": {
+      "reference": "Device/cqf-tooling"
     }
   } ],
   "url": "https://madie.cms.gov/Measure/PCSDepressionScreenAndFollowUpFHIR",
@@ -987,7 +1037,7 @@
   "title": "Preventive Care and Screening: Screening for Depression and Follow-Up PlanFHIR",
   "status": "draft",
   "experimental": false,
-  "date": "2024-05-16T13:02:41+00:00",
+  "date": "2024-11-18T21:30:37+00:00",
   "publisher": "Centers for Medicare & Medicaid Services (CMS)",
   "contact": [ {
     "telecom": [ {

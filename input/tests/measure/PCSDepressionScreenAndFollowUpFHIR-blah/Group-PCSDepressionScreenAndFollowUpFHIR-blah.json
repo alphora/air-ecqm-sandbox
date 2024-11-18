@@ -1,0 +1,11 @@
+{
+  "resourceType": "Group",
+  "id": "PCSDepressionScreenAndFollowUpFHIR-blah",
+  "extension": [ {
+    "url": "http://hl7.org/fhir/StructureDefinition/artifact-testArtifact",
+    "valueCanonical": "http://ecqi.healthit.gov/ecqms/Measure/PCSDepressionScreenAndFollowUpFHIR-blah"
+  } ],
+  "active": true,
+  "type": "person",
+  "actual": true
+}

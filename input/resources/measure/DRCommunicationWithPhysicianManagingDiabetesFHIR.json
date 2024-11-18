@@ -80,10 +80,10 @@
         "valueString": "SDE Sex"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Sex&quot;:\n  case\n    when Patient.gender = &#39;male&#39; then &quot;M&quot;\n    when Patient.gender = &#39;female&#39; then &quot;F&quot;\n    else null\n  end"
+        "valueString": "define \"SDE Sex\":\n  case\n    when Patient.gender = 'male' then \"M\"\n    when Patient.gender = 'female' then \"F\"\n    else null\n  end"
       }, {
         "url": "displaySequence",
-        "valueString": "0"
+        "valueInteger": 0
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -95,10 +95,10 @@
         "valueString": "SDE Sex"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Sex&quot;:\n  SDE.&quot;SDE Sex&quot;"
+        "valueString": "define \"SDE Sex\":\n  SDE.\"SDE Sex\""
       }, {
         "url": "displaySequence",
-        "valueString": "1"
+        "valueInteger": 1
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -110,10 +110,10 @@
         "valueString": "Qualifying Encounter During Measurement Period"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Qualifying Encounter During Measurement Period&quot;:\n  ( [&quot;Encounter&quot;: &quot;Office Visit&quot;]\n    union [&quot;Encounter&quot;: &quot;Ophthalmological Services&quot;]\n    union [&quot;Encounter&quot;: &quot;Outpatient Consultation&quot;]\n    union [&quot;Encounter&quot;: &quot;Care Services in Long-Term Residential Facility&quot;]\n    union [&quot;Encounter&quot;: &quot;Nursing Facility Visit&quot;] ) QualifyingEncounter\n    where QualifyingEncounter.period during &quot;Measurement Period&quot;\n      and QualifyingEncounter.status = &#39;finished&#39;\n      and QualifyingEncounter.class !~ &quot;virtual&quot;"
+        "valueString": "define \"Qualifying Encounter During Measurement Period\":\n  ( [\"Encounter\": \"Office Visit\"]\n    union [\"Encounter\": \"Ophthalmological Services\"]\n    union [\"Encounter\": \"Outpatient Consultation\"]\n    union [\"Encounter\": \"Care Services in Long-Term Residential Facility\"]\n    union [\"Encounter\": \"Nursing Facility Visit\"] ) QualifyingEncounter\n    where QualifyingEncounter.period during \"Measurement Period\"\n      and QualifyingEncounter.status = 'finished'\n      and QualifyingEncounter.class !~ \"virtual\""
       }, {
         "url": "displaySequence",
-        "valueString": "2"
+        "valueInteger": 2
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -125,10 +125,10 @@
         "valueString": "Diabetic Retinopathy Encounter"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Diabetic Retinopathy Encounter&quot;:\n  &quot;Qualifying Encounter During Measurement Period&quot; ValidQualifyingEncounter\n    with [&quot;Condition&quot;: &quot;Diabetic Retinopathy&quot;] DiabeticRetinopathy\n      such that DiabeticRetinopathy.prevalenceInterval ( ) overlaps ValidQualifyingEncounter.period\n        and DiabeticRetinopathy.isActive ( )\n        and not ( DiabeticRetinopathy.verificationStatus ~ QICoreCommon.&quot;unconfirmed&quot;\n            or DiabeticRetinopathy.verificationStatus ~ QICoreCommon.&quot;refuted&quot;\n            or DiabeticRetinopathy.verificationStatus ~ QICoreCommon.&quot;entered-in-error&quot;\n        )"
+        "valueString": "define \"Diabetic Retinopathy Encounter\":\n  \"Qualifying Encounter During Measurement Period\" ValidQualifyingEncounter\n    with [\"Condition\": \"Diabetic Retinopathy\"] DiabeticRetinopathy\n      such that DiabeticRetinopathy.prevalenceInterval ( ) overlaps ValidQualifyingEncounter.period\n        and DiabeticRetinopathy.isActive ( )\n        and not ( DiabeticRetinopathy.verificationStatus ~ QICoreCommon.\"unconfirmed\"\n            or DiabeticRetinopathy.verificationStatus ~ QICoreCommon.\"refuted\"\n            or DiabeticRetinopathy.verificationStatus ~ QICoreCommon.\"entered-in-error\"\n        )"
       }, {
         "url": "displaySequence",
-        "valueString": "3"
+        "valueInteger": 3
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -140,10 +140,10 @@
         "valueString": "Level of Severity of Retinopathy Findings Communicated"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Level of Severity of Retinopathy Findings Communicated&quot;:\n  [&quot;Communication&quot;: &quot;Level of Severity of Retinopathy Findings&quot;] LevelOfSeverityCommunicated\n    with &quot;Diabetic Retinopathy Encounter&quot; EncounterDiabeticRetinopathy\n      such that LevelOfSeverityCommunicated.sent after start of EncounterDiabeticRetinopathy.period\n        and LevelOfSeverityCommunicated.sent during day of &quot;Measurement Period&quot;\n    where LevelOfSeverityCommunicated.status = &#39;completed&#39;"
+        "valueString": "define \"Level of Severity of Retinopathy Findings Communicated\":\n  [\"Communication\": \"Level of Severity of Retinopathy Findings\"] LevelOfSeverityCommunicated\n    with \"Diabetic Retinopathy Encounter\" EncounterDiabeticRetinopathy\n      such that LevelOfSeverityCommunicated.sent after start of EncounterDiabeticRetinopathy.period\n        and LevelOfSeverityCommunicated.sent during day of \"Measurement Period\"\n    where LevelOfSeverityCommunicated.status = 'completed'"
       }, {
         "url": "displaySequence",
-        "valueString": "4"
+        "valueInteger": 4
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -155,10 +155,10 @@
         "valueString": "Macular Edema Absence Communicated"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Macular Edema Absence Communicated&quot;:\n  [&quot;Communication&quot;: &quot;Macular edema absent (situation)&quot;] MacularEdemaAbsentCommunicated\n    with &quot;Diabetic Retinopathy Encounter&quot; EncounterDiabeticRetinopathy\n      such that MacularEdemaAbsentCommunicated.sent after start of EncounterDiabeticRetinopathy.period\n        and MacularEdemaAbsentCommunicated.sent during day of &quot;Measurement Period&quot;\n    where MacularEdemaAbsentCommunicated.status = &#39;completed&#39;"
+        "valueString": "define \"Macular Edema Absence Communicated\":\n  [\"Communication\": \"Macular edema absent (situation)\"] MacularEdemaAbsentCommunicated\n    with \"Diabetic Retinopathy Encounter\" EncounterDiabeticRetinopathy\n      such that MacularEdemaAbsentCommunicated.sent after start of EncounterDiabeticRetinopathy.period\n        and MacularEdemaAbsentCommunicated.sent during day of \"Measurement Period\"\n    where MacularEdemaAbsentCommunicated.status = 'completed'"
       }, {
         "url": "displaySequence",
-        "valueString": "5"
+        "valueInteger": 5
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -170,10 +170,10 @@
         "valueString": "Macular Edema Presence Communicated"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Macular Edema Presence Communicated&quot;:\n  [&quot;Communication&quot;: &quot;Macular Edema Findings Present&quot;] MacularEdemaPresentCommunicated\n    with &quot;Diabetic Retinopathy Encounter&quot; EncounterDiabeticRetinopathy\n      such that MacularEdemaPresentCommunicated.sent after start of EncounterDiabeticRetinopathy.period\n        and MacularEdemaPresentCommunicated.sent during day of &quot;Measurement Period&quot;\n    where MacularEdemaPresentCommunicated.status = &#39;completed&#39;"
+        "valueString": "define \"Macular Edema Presence Communicated\":\n  [\"Communication\": \"Macular Edema Findings Present\"] MacularEdemaPresentCommunicated\n    with \"Diabetic Retinopathy Encounter\" EncounterDiabeticRetinopathy\n      such that MacularEdemaPresentCommunicated.sent after start of EncounterDiabeticRetinopathy.period\n        and MacularEdemaPresentCommunicated.sent during day of \"Measurement Period\"\n    where MacularEdemaPresentCommunicated.status = 'completed'"
       }, {
         "url": "displaySequence",
-        "valueString": "6"
+        "valueInteger": 6
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -185,10 +185,10 @@
         "valueString": "Numerator"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Numerator&quot;:\n  exists &quot;Level of Severity of Retinopathy Findings Communicated&quot;\n    and ( exists &quot;Macular Edema Absence Communicated&quot;\n        or exists &quot;Macular Edema Presence Communicated&quot;\n    )"
+        "valueString": "define \"Numerator\":\n  exists \"Level of Severity of Retinopathy Findings Communicated\"\n    and ( exists \"Macular Edema Absence Communicated\"\n        or exists \"Macular Edema Presence Communicated\"\n    )"
       }, {
         "url": "displaySequence",
-        "valueString": "7"
+        "valueInteger": 7
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -200,10 +200,10 @@
         "valueString": "Initial Population"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Initial Population&quot;:\n  AgeInYearsAt(date from start of &quot;Measurement Period&quot;) &gt;= 18\n    and exists &quot;Diabetic Retinopathy Encounter&quot;"
+        "valueString": "define \"Initial Population\":\n  AgeInYearsAt(date from start of \"Measurement Period\") >= 18\n    and exists \"Diabetic Retinopathy Encounter\""
       }, {
         "url": "displaySequence",
-        "valueString": "8"
+        "valueInteger": 8
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -215,10 +215,10 @@
         "valueString": "Macular Exam Performed"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Macular Exam Performed&quot;:\n  [&quot;Observation&quot;: &quot;Macular Exam&quot;] MacularExam\n    with &quot;Diabetic Retinopathy Encounter&quot; EncounterDiabeticRetinopathy\n      such that MacularExam.effective.toInterval ( ) during EncounterDiabeticRetinopathy.period\n    where MacularExam.value is not null\n      and MacularExam.status in { &#39;final&#39;, &#39;amended&#39;, &#39;corrected&#39;, &#39;preliminary&#39; }"
+        "valueString": "define \"Macular Exam Performed\":\n  [\"Observation\": \"Macular Exam\"] MacularExam\n    with \"Diabetic Retinopathy Encounter\" EncounterDiabeticRetinopathy\n      such that MacularExam.effective.toInterval ( ) during EncounterDiabeticRetinopathy.period\n    where MacularExam.value is not null\n      and MacularExam.status in { 'final', 'amended', 'corrected', 'preliminary' }"
       }, {
         "url": "displaySequence",
-        "valueString": "9"
+        "valueInteger": 9
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -230,10 +230,10 @@
         "valueString": "Denominator"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Denominator&quot;:\n  &quot;Initial Population&quot;\n    and exists &quot;Macular Exam Performed&quot;"
+        "valueString": "define \"Denominator\":\n  \"Initial Population\"\n    and exists \"Macular Exam Performed\""
       }, {
         "url": "displaySequence",
-        "valueString": "10"
+        "valueInteger": 10
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -245,10 +245,10 @@
         "valueString": "SDE Payer"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Payer&quot;:\n  [Coverage: type in &quot;Payer Type&quot;] Payer\n    return {\n      code: Payer.type,\n      period: Payer.period\n    }"
+        "valueString": "define \"SDE Payer\":\n  [Coverage: type in \"Payer Type\"] Payer\n    return {\n      code: Payer.type,\n      period: Payer.period\n    }"
       }, {
         "url": "displaySequence",
-        "valueString": "11"
+        "valueInteger": 11
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -260,10 +260,10 @@
         "valueString": "SDE Payer"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Payer&quot;:\n  SDE.&quot;SDE Payer&quot;"
+        "valueString": "define \"SDE Payer\":\n  SDE.\"SDE Payer\""
       }, {
         "url": "displaySequence",
-        "valueString": "12"
+        "valueInteger": 12
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -275,10 +275,10 @@
         "valueString": "SDE Ethnicity"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Ethnicity&quot;:\n  Patient.ethnicity E\n    return Tuple {\n      codes: { E.ombCategory } union E.detailed,\n      display: E.text\n    }"
+        "valueString": "define \"SDE Ethnicity\":\n  Patient.extension E\n    where E.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity' \n    return Tuple {\n      codes: { \n        E.extension e\n          where e.url = 'ombCategory'\n          return e.value as Code\n      } \n      union {\n        E.extension e\n          where e.url = 'detailed'\n          return e.value as Code\n      },\n      display: E.value\n    }"
       }, {
         "url": "displaySequence",
-        "valueString": "13"
+        "valueInteger": 13
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -290,10 +290,10 @@
         "valueString": "SDE Ethnicity"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Ethnicity&quot;:\n  SDE.&quot;SDE Ethnicity&quot;"
+        "valueString": "define \"SDE Ethnicity\":\n  SDE.\"SDE Ethnicity\""
       }, {
         "url": "displaySequence",
-        "valueString": "14"
+        "valueInteger": 14
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -305,10 +305,10 @@
         "valueString": "SDE Race"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Race&quot;:\n  Patient.race R\n    return Tuple {\n      codes: R.ombCategory union R.detailed,\n      display: R.text\n    }"
+        "valueString": "define \"SDE Race\":\n  Patient.extension E\n    where E.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race' \n    return Tuple {\n      codes: { \n        E.extension e\n          where e.url = 'ombCategory'\n          return e.value as Code\n      } \n      union {\n        E.extension e\n          where e.url = 'detailed'\n          return e.value as Code\n      },\n      display: E.value\n    }"
       }, {
         "url": "displaySequence",
-        "valueString": "15"
+        "valueInteger": 15
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -320,10 +320,10 @@
         "valueString": "SDE Race"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Race&quot;:\n  SDE.&quot;SDE Race&quot;"
+        "valueString": "define \"SDE Race\":\n  SDE.\"SDE Race\""
       }, {
         "url": "displaySequence",
-        "valueString": "16"
+        "valueInteger": 16
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -335,10 +335,10 @@
         "valueString": "Medical or Patient Reason for Not Communicating Level of Severity of Retinopathy"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Medical or Patient Reason for Not Communicating Level of Severity of Retinopathy&quot;:\n  [CommunicationNotDone: &quot;Level of Severity of Retinopathy Findings&quot;] LevelOfSeverityNotCommunicated\n    with &quot;Diabetic Retinopathy Encounter&quot; EncounterDiabeticRetinopathy\n      such that LevelOfSeverityNotCommunicated.sent during EncounterDiabeticRetinopathy.period\n    where ( LevelOfSeverityNotCommunicated.statusReason in &quot;Medical Reason&quot;\n        or LevelOfSeverityNotCommunicated.statusReason in &quot;Patient Reason&quot;\n    )"
+        "valueString": "define \"Medical or Patient Reason for Not Communicating Level of Severity of Retinopathy\":\n  [CommunicationNotDone: \"Level of Severity of Retinopathy Findings\"] LevelOfSeverityNotCommunicated\n    with \"Diabetic Retinopathy Encounter\" EncounterDiabeticRetinopathy\n      such that LevelOfSeverityNotCommunicated.sent during EncounterDiabeticRetinopathy.period\n    where ( LevelOfSeverityNotCommunicated.statusReason in \"Medical Reason\"\n        or LevelOfSeverityNotCommunicated.statusReason in \"Patient Reason\"\n    )"
       }, {
         "url": "displaySequence",
-        "valueString": "17"
+        "valueInteger": 17
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -350,10 +350,10 @@
         "valueString": "Medical or Patient Reason for Not Communicating Absence of Macular Edema"
       }, {
         "url": "statement",
-        "valueString": "/* Note: \nbelow definition workaround for \nhttps://oncprojectracking.healthit.gov/support/browse/CQLIT-371. Using value set workaround has been applied for now\nbut when QI Core STU 5 gets in the tool, it may be reverted back to a DRC */\n\n\ndefine &quot;Medical or Patient Reason for Not Communicating Absence of Macular Edema&quot;:\n  [CommunicationNotDone: &quot;Macular edema absent (situation)&quot;] MacularEdemaAbsentNotCommunicated\n    with &quot;Diabetic Retinopathy Encounter&quot; EncounterDiabeticRetinopathy\n      such that MacularEdemaAbsentNotCommunicated.sent during EncounterDiabeticRetinopathy.period\n    where ( MacularEdemaAbsentNotCommunicated.statusReason in &quot;Medical Reason&quot;\n        or MacularEdemaAbsentNotCommunicated.statusReason in &quot;Patient Reason&quot;\n    )"
+        "valueString": "/* Note: \nbelow definition workaround for \nhttps://oncprojectracking.healthit.gov/support/browse/CQLIT-371. Using value set workaround has been applied for now\nbut when QI Core STU 5 gets in the tool, it may be reverted back to a DRC */\n\n\ndefine \"Medical or Patient Reason for Not Communicating Absence of Macular Edema\":\n  [CommunicationNotDone: \"Macular edema absent (situation)\"] MacularEdemaAbsentNotCommunicated\n    with \"Diabetic Retinopathy Encounter\" EncounterDiabeticRetinopathy\n      such that MacularEdemaAbsentNotCommunicated.sent during EncounterDiabeticRetinopathy.period\n    where ( MacularEdemaAbsentNotCommunicated.statusReason in \"Medical Reason\"\n        or MacularEdemaAbsentNotCommunicated.statusReason in \"Patient Reason\"\n    )"
       }, {
         "url": "displaySequence",
-        "valueString": "18"
+        "valueInteger": 18
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -365,10 +365,10 @@
         "valueString": "Medical or Patient Reason for Not Communicating Presence of Macular Edema"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Medical or Patient Reason for Not Communicating Presence of Macular Edema&quot;:\n  [CommunicationNotDone: &quot;Macular Edema Findings Present&quot;] MacularEdemaPresentNotCommunicated\n    with &quot;Diabetic Retinopathy Encounter&quot; EncounterDiabeticRetinopathy\n      such that MacularEdemaPresentNotCommunicated.sent during EncounterDiabeticRetinopathy.period\n    where ( MacularEdemaPresentNotCommunicated.statusReason in &quot;Medical Reason&quot;\n        or MacularEdemaPresentNotCommunicated.statusReason in &quot;Patient Reason&quot;\n    )"
+        "valueString": "define \"Medical or Patient Reason for Not Communicating Presence of Macular Edema\":\n  [CommunicationNotDone: \"Macular Edema Findings Present\"] MacularEdemaPresentNotCommunicated\n    with \"Diabetic Retinopathy Encounter\" EncounterDiabeticRetinopathy\n      such that MacularEdemaPresentNotCommunicated.sent during EncounterDiabeticRetinopathy.period\n    where ( MacularEdemaPresentNotCommunicated.statusReason in \"Medical Reason\"\n        or MacularEdemaPresentNotCommunicated.statusReason in \"Patient Reason\"\n    )"
       }, {
         "url": "displaySequence",
-        "valueString": "19"
+        "valueInteger": 19
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -380,10 +380,10 @@
         "valueString": "Denominator Exceptions"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Denominator Exceptions&quot;:\n  exists &quot;Medical or Patient Reason for Not Communicating Level of Severity of Retinopathy&quot;\n    or exists &quot;Medical or Patient Reason for Not Communicating Absence of Macular Edema&quot;\n    or exists &quot;Medical or Patient Reason for Not Communicating Presence of Macular Edema&quot;"
+        "valueString": "define \"Denominator Exceptions\":\n  exists \"Medical or Patient Reason for Not Communicating Level of Severity of Retinopathy\"\n    or exists \"Medical or Patient Reason for Not Communicating Absence of Macular Edema\"\n    or exists \"Medical or Patient Reason for Not Communicating Presence of Macular Edema\""
       }, {
         "url": "displaySequence",
-        "valueString": "20"
+        "valueInteger": 20
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -395,10 +395,10 @@
         "valueString": "prevalenceInterval"
       }, {
         "url": "statement",
-        "valueString": "/*\n@description: Returns an interval representing the normalized prevalence period of a given Condition.\n@comment: Uses the ToInterval and ToAbatementInterval functions to determine the widest potential interval from\nonset to abatement as specified in the given Condition. If the condition is active, or has an abatement date the resulting \ninterval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary.\n*/\ndefine fluent function prevalenceInterval(condition Condition):\nif condition.clinicalStatus ~ &quot;active&quot;\n  or condition.clinicalStatus ~ &quot;recurrence&quot;\n  or condition.clinicalStatus ~ &quot;relapse&quot; then\n  Interval[start of condition.onset.toInterval(), end of condition.abatementInterval()]\nelse\n    (end of condition.abatementInterval()) abatementDate\n    return if abatementDate is null then\n      Interval[start of condition.onset.toInterval(), abatementDate)\n    else\n      Interval[start of condition.onset.toInterval(), abatementDate]"
+        "valueString": "/*\n@description: Returns an interval representing the normalized prevalence period of a given Condition.\n@comment: Uses the ToInterval and ToAbatementInterval functions to determine the widest potential interval from\nonset to abatement as specified in the given Condition. If the condition is active, or has an abatement date the resulting \ninterval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary.\n*/\ndefine fluent function prevalenceInterval(condition Condition):\nif condition.clinicalStatus ~ \"active\"\n  or condition.clinicalStatus ~ \"recurrence\"\n  or condition.clinicalStatus ~ \"relapse\" then\n  Interval[start of condition.onset.toInterval(), end of condition.abatementInterval()]\nelse\n    (end of condition.abatementInterval()) abatementDate\n    return if abatementDate is null then\n      Interval[start of condition.onset.toInterval(), abatementDate)\n    else\n      Interval[start of condition.onset.toInterval(), abatementDate]"
       }, {
         "url": "displaySequence",
-        "valueString": "21"
+        "valueInteger": 21
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -410,42 +410,28 @@
         "valueString": "isActive"
       }, {
         "url": "statement",
-        "valueString": "/* Candidates for FHIRCommon */\n\n/*\n@description: Returns true if the given condition has a clinical status of active, recurrence, or relapse\n*/\ndefine fluent function isActive(condition Condition):\n  condition.clinicalStatus ~ &quot;active&quot;\n    or condition.clinicalStatus ~ &quot;recurrence&quot;\n    or condition.clinicalStatus ~ &quot;relapse&quot;"
+        "valueString": "/* Candidates for FHIRCommon */\n\n/*\n@description: Returns true if the given condition has a clinical status of active, recurrence, or relapse\n*/\ndefine fluent function isActive(condition Condition):\n  condition.clinicalStatus ~ \"active\"\n    or condition.clinicalStatus ~ \"recurrence\"\n    or condition.clinicalStatus ~ \"relapse\""
       }, {
         "url": "displaySequence",
-        "valueString": "22"
+        "valueInteger": 22
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "FHIRHelpers"
+        "valueString": "QICoreCommon"
       }, {
         "url": "name",
-        "valueString": "ToString"
+        "valueString": "toInterval"
       }, {
         "url": "statement",
-        "valueString": "define function ToString(value uri): value.value"
+        "valueString": "/*\n@description: Normalizes a value that is a choice of timing-valued types to an equivalent interval\n@comment: Normalizes a choice type of DateTime, Quanitty, Interval<DateTime>, or Interval<Quantity> types\nto an equivalent interval. This selection of choice types is a superset of the majority of choice types that are used as possible\nrepresentations for timing-valued elements in QICore, allowing this function to be used across any resource.\nThe input can be provided as a DateTime, Quantity, Interval<DateTime> or Interval<Quantity>.\nThe intent of this function is to provide a clear and concise mechanism to treat single\nelements that have multiple possible representations as intervals so that logic doesn't have to account\nfor the variability. More complex calculations (such as medication request period or dispense period\ncalculation) need specific guidance and consideration. That guidance may make use of this function, but\nthe focus of this function is on single element calculations where the semantics are unambiguous.\nIf the input is a DateTime, the result a DateTime Interval beginning and ending on that DateTime.\nIf the input is a Quantity, the quantity is expected to be a calendar-duration interpreted as an Age,\nand the result is a DateTime Interval beginning on the Date the patient turned that age and ending immediately before one year later.\nIf the input is a DateTime Interval, the result is the input.\nIf the input is a Quantity Interval, the quantities are expected to be calendar-durations interpreted as an Age, and the result\nis a DateTime Interval beginning on the date the patient turned the age given as the start of the quantity interval, and ending\nimmediately before one year later than the date the patient turned the age given as the end of the quantity interval.\nIf the input is a Timing, an error will be thrown indicating that Timing calculations are not implemented. Any other input will reslt in a null DateTime Interval\n*/\ndefine fluent function toInterval(choice Choice<DateTime, Quantity, Interval<DateTime>, Interval<Quantity>, Timing>):\n  case\n\t  when choice is DateTime then\n    \tInterval[choice as DateTime, choice as DateTime]\n\t\twhen choice is Interval<DateTime> then\n  \t\tchoice as Interval<DateTime>\n\t\twhen choice is Quantity then\n\t\t  Interval[Patient.birthDate + (choice as Quantity),\n\t\t\t  Patient.birthDate + (choice as Quantity) + 1 year)\n\t\twhen choice is Interval<Quantity> then\n\t\t  Interval[Patient.birthDate + (choice.low as Quantity),\n\t\t\t  Patient.birthDate + (choice.high as Quantity) + 1 year)\n\t\twhen choice is Timing then\n      Message(null, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a Timing value is not supported') as Interval<DateTime>\n\t\telse\n\t\t\tnull as Interval<DateTime>\n\tend"
       }, {
         "url": "displaySequence",
-        "valueString": "23"
-      } ]
-    }, {
-      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
-      "extension": [ {
-        "url": "libraryName",
-        "valueString": "FHIRHelpers"
-      }, {
-        "url": "name",
-        "valueString": "ToCode"
-      }, {
-        "url": "statement",
-        "valueString": "/*\n@description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code.\n*/\ndefine function ToCode(coding FHIR.Coding):\n    if coding is null then\n        null\n    else\n        System.Code {\n          code: coding.code.value,\n          system: coding.system.value,\n          version: coding.version.value,\n          display: coding.display.value\n        }"
-      }, {
-        "url": "displaySequence",
-        "valueString": "24"
+        "valueInteger": 23
       } ]
     } ],
+    "name": "EffectiveDataRequirements",
     "status": "active",
     "type": {
       "coding": [ {
@@ -541,6 +527,12 @@
       "max": "1",
       "type": "Period"
     }, {
+      "name": "SDE Sex",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "Coding"
+    }, {
       "name": "Numerator",
       "use": "out",
       "min": 0,
@@ -553,46 +545,59 @@
       "max": "1",
       "type": "boolean"
     }, {
-      "name": "Initial Population",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "boolean"
-    }, {
-      "name": "Denominator Exceptions",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "boolean"
-    }, {
-      "name": "SDE Sex",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "Coding"
-    }, {
       "name": "SDE Payer",
       "use": "out",
       "min": 0,
       "max": "*",
       "type": "Resource"
     }, {
-      "name": "SDE Ethnicity",
+      "name": "Initial Population",
       "use": "out",
       "min": 0,
       "max": "1",
+      "type": "boolean"
+    }, {
+      "name": "SDE Ethnicity",
+      "use": "out",
+      "min": 0,
+      "max": "*",
       "type": "Resource"
     }, {
       "name": "SDE Race",
       "use": "out",
       "min": 0,
-      "max": "1",
+      "max": "*",
       "type": "Resource"
+    }, {
+      "name": "Denominator Exceptions",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
     } ],
     "dataRequirement": [ {
       "type": "Patient",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ]
+    }, {
+      "type": "Patient",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ],
-      "mustSupport": [ "gender", "gender.value", "url", "extension" ]
+      "mustSupport": [ "url", "url.value", "extension", "value" ],
+      "codeFilter": [ {
+        "path": "url.value",
+        "code": [ {
+          "code": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+        } ]
+      } ]
+    }, {
+      "type": "Patient",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ],
+      "mustSupport": [ "url", "url.value", "extension", "value" ],
+      "codeFilter": [ {
+        "path": "url.value",
+        "code": [ {
+          "code": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+        } ]
+      } ]
     }, {
       "type": "Encounter",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
@@ -636,10 +641,6 @@
     }, {
       "type": "Condition",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
-      "mustSupport": [ "clinicalStatus" ]
-    }, {
-      "type": "Condition",
-      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
       "mustSupport": [ "code", "verificationStatus" ],
       "codeFilter": [ {
         "path": "code",
@@ -652,6 +653,23 @@
       "codeFilter": [ {
         "path": "reasonCode",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1283"
+      }, {
+        "path": "status.value",
+        "code": [ {
+          "code": "completed"
+        } ]
+      } ],
+      "dateFilter": [ {
+        "path": "sent.value",
+        "valuePeriod": {
+          "extension": [ {
+            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+            "valueExpression": {
+              "language": "text/cql-identifier",
+              "expression": "Measurement Period"
+            }
+          } ]
+        }
       } ]
     }, {
       "type": "Communication",
@@ -660,6 +678,23 @@
       "codeFilter": [ {
         "path": "reasonCode",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.2.1391"
+      }, {
+        "path": "status.value",
+        "code": [ {
+          "code": "completed"
+        } ]
+      } ],
+      "dateFilter": [ {
+        "path": "sent.value",
+        "valuePeriod": {
+          "extension": [ {
+            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+            "valueExpression": {
+              "language": "text/cql-identifier",
+              "expression": "Measurement Period"
+            }
+          } ]
+        }
       } ]
     }, {
       "type": "Communication",
@@ -668,6 +703,23 @@
       "codeFilter": [ {
         "path": "reasonCode",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1320"
+      }, {
+        "path": "status.value",
+        "code": [ {
+          "code": "completed"
+        } ]
+      } ],
+      "dateFilter": [ {
+        "path": "sent.value",
+        "valuePeriod": {
+          "extension": [ {
+            "url": "http://hl7.org/fhir/StructureDefinition/cqf-expression",
+            "valueExpression": {
+              "language": "text/cql-identifier",
+              "expression": "Measurement Period"
+            }
+          } ]
+        }
       } ]
     }, {
       "type": "Observation",
@@ -753,9 +805,15 @@
       }
     } ]
   }, {
+    "id": "effective-data-requirements",
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements",
     "valueReference": {
       "reference": "#effective-data-requirements"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
+    "valueReference": {
+      "reference": "Device/cqf-tooling"
     }
   } ],
   "url": "https://madie.cms.gov/Measure/DRCommunicationWithPhysicianManagingDiabetesFHIR",
@@ -812,7 +870,7 @@
   "title": "Diabetic Retinopathy: Communication with the Physician Managing Ongoing Diabetes CareFHIR",
   "status": "draft",
   "experimental": false,
-  "date": "2024-05-06T13:00:13+00:00",
+  "date": "2024-11-18T21:30:38+00:00",
   "publisher": "American Academy of Ophthalmology",
   "contact": [ {
     "telecom": [ {

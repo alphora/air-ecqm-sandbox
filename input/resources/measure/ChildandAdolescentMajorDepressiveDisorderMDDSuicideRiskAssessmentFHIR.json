@@ -38,10 +38,10 @@
         "valueString": "SDE Sex"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Sex&quot;:\n  case\n    when Patient.gender = &#39;male&#39; then &quot;M&quot;\n    when Patient.gender = &#39;female&#39; then &quot;F&quot;\n    else null\n  end"
+        "valueString": "define \"SDE Sex\":\n  case\n    when Patient.gender = 'male' then \"M\"\n    when Patient.gender = 'female' then \"F\"\n    else null\n  end"
       }, {
         "url": "displaySequence",
-        "valueString": "0"
+        "valueInteger": 0
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -53,10 +53,10 @@
         "valueString": "SDE Sex"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Sex&quot;:\n  SDE.&quot;SDE Sex&quot;"
+        "valueString": "define \"SDE Sex\":\n  SDE.\"SDE Sex\""
       }, {
         "url": "displaySequence",
-        "valueString": "1"
+        "valueInteger": 1
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -68,10 +68,10 @@
         "valueString": "Major Depressive Disorder Encounter"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Major Depressive Disorder Encounter&quot;:\n  ( [&quot;Encounter&quot;: &quot;Office Visit&quot;]\n    union [&quot;Encounter&quot;: &quot;Outpatient Consultation&quot;]\n    union [&quot;Encounter&quot;: &quot;Psych Visit Diagnostic Evaluation&quot;]\n    union [&quot;Encounter&quot;: &quot;Psych Visit for Family Psychotherapy&quot;]\n    union [&quot;Encounter&quot;: &quot;Psych Visit Psychotherapy&quot;]\n    union [&quot;Encounter&quot;: &quot;Psychoanalysis&quot;]\n    union [&quot;Encounter&quot;: &quot;Group Psychotherapy&quot;]\n    union [&quot;Encounter&quot;: &quot;Telephone Visits&quot;] ) ValidEncounter\n    where ValidEncounter.status = &#39;finished&#39;\n      and ( ValidEncounter.reasonCode in &quot;Major Depressive Disorder Active&quot;\n          or exists ( ( ValidEncounter.encounterDiagnosis ( ) ) EncounterDiagnosis\n              where EncounterDiagnosis.code in &quot;Major Depressive Disorder Active&quot;\n          )\n      )\n      and ValidEncounter.period during day of &quot;Measurement Period&quot;"
+        "valueString": "define \"Major Depressive Disorder Encounter\":\n  ( [\"Encounter\": \"Office Visit\"]\n    union [\"Encounter\": \"Outpatient Consultation\"]\n    union [\"Encounter\": \"Psych Visit Diagnostic Evaluation\"]\n    union [\"Encounter\": \"Psych Visit for Family Psychotherapy\"]\n    union [\"Encounter\": \"Psych Visit Psychotherapy\"]\n    union [\"Encounter\": \"Psychoanalysis\"]\n    union [\"Encounter\": \"Group Psychotherapy\"]\n    union [\"Encounter\": \"Telephone Visits\"] ) ValidEncounter\n    where ValidEncounter.status = 'finished'\n      and ( ValidEncounter.reasonCode in \"Major Depressive Disorder Active\"\n          or exists ( ( ValidEncounter.encounterDiagnosis ( ) ) EncounterDiagnosis\n              where EncounterDiagnosis.code in \"Major Depressive Disorder Active\"\n          )\n      )\n      and ValidEncounter.period during day of \"Measurement Period\""
       }, {
         "url": "displaySequence",
-        "valueString": "2"
+        "valueInteger": 2
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -83,10 +83,10 @@
         "valueString": "Numerator"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Numerator&quot;:\n  &quot;Major Depressive Disorder Encounter&quot; MDDEncounter\n    with [&quot;Procedure&quot;: &quot;Suicide risk assessment (procedure)&quot;] SuicideRiskAssessment\n      such that SuicideRiskAssessment.status = &#39;completed&#39;\n        and SuicideRiskAssessment.performed.toInterval ( ) during MDDEncounter.period"
+        "valueString": "define \"Numerator\":\n  \"Major Depressive Disorder Encounter\" MDDEncounter\n    with [\"Procedure\": \"Suicide risk assessment (procedure)\"] SuicideRiskAssessment\n      such that SuicideRiskAssessment.status = 'completed'\n        and SuicideRiskAssessment.performed.toInterval ( ) during MDDEncounter.period"
       }, {
         "url": "displaySequence",
-        "valueString": "3"
+        "valueInteger": 3
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -98,10 +98,10 @@
         "valueString": "Initial Population"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Initial Population&quot;:\n  &quot;Major Depressive Disorder Encounter&quot; MDDEncounter\n    where ( &quot;AgeInYearsAt&quot;(date from start of &quot;Measurement Period&quot;) &gt;= 6\n        and &quot;AgeInYearsAt&quot;(date from start of &quot;Measurement Period&quot;) &lt;= 16\n    )"
+        "valueString": "define \"Initial Population\":\n  \"Major Depressive Disorder Encounter\" MDDEncounter\n    where ( \"AgeInYearsAt\"(date from start of \"Measurement Period\") >= 6\n        and \"AgeInYearsAt\"(date from start of \"Measurement Period\") <= 16\n    )"
       }, {
         "url": "displaySequence",
-        "valueString": "4"
+        "valueInteger": 4
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -113,10 +113,10 @@
         "valueString": "Denominator"
       }, {
         "url": "statement",
-        "valueString": "define &quot;Denominator&quot;:\n  &quot;Initial Population&quot;"
+        "valueString": "define \"Denominator\":\n  \"Initial Population\""
       }, {
         "url": "displaySequence",
-        "valueString": "5"
+        "valueInteger": 5
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -128,10 +128,10 @@
         "valueString": "SDE Payer"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Payer&quot;:\n  [Coverage: type in &quot;Payer Type&quot;] Payer\n    return {\n      code: Payer.type,\n      period: Payer.period\n    }"
+        "valueString": "define \"SDE Payer\":\n  [Coverage: type in \"Payer Type\"] Payer\n    return {\n      code: Payer.type,\n      period: Payer.period\n    }"
       }, {
         "url": "displaySequence",
-        "valueString": "6"
+        "valueInteger": 6
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -143,10 +143,10 @@
         "valueString": "SDE Payer"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Payer&quot;:\n  SDE.&quot;SDE Payer&quot;"
+        "valueString": "define \"SDE Payer\":\n  SDE.\"SDE Payer\""
       }, {
         "url": "displaySequence",
-        "valueString": "7"
+        "valueInteger": 7
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -158,10 +158,10 @@
         "valueString": "SDE Ethnicity"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Ethnicity&quot;:\n  Patient.ethnicity E\n    return Tuple {\n      codes: { E.ombCategory } union E.detailed,\n      display: E.text\n    }"
+        "valueString": "define \"SDE Ethnicity\":\n  Patient.extension E\n    where E.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity' \n    return Tuple {\n      codes: { \n        E.extension e\n          where e.url = 'ombCategory'\n          return e.value as Code\n      } \n      union {\n        E.extension e\n          where e.url = 'detailed'\n          return e.value as Code\n      },\n      display: E.value\n    }"
       }, {
         "url": "displaySequence",
-        "valueString": "8"
+        "valueInteger": 8
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -173,10 +173,10 @@
         "valueString": "SDE Ethnicity"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Ethnicity&quot;:\n  SDE.&quot;SDE Ethnicity&quot;"
+        "valueString": "define \"SDE Ethnicity\":\n  SDE.\"SDE Ethnicity\""
       }, {
         "url": "displaySequence",
-        "valueString": "9"
+        "valueInteger": 9
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -188,10 +188,10 @@
         "valueString": "SDE Race"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Race&quot;:\n  Patient.race R\n    return Tuple {\n      codes: R.ombCategory union R.detailed,\n      display: R.text\n    }"
+        "valueString": "define \"SDE Race\":\n  Patient.extension E\n    where E.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race' \n    return Tuple {\n      codes: { \n        E.extension e\n          where e.url = 'ombCategory'\n          return e.value as Code\n      } \n      union {\n        E.extension e\n          where e.url = 'detailed'\n          return e.value as Code\n      },\n      display: E.value\n    }"
       }, {
         "url": "displaySequence",
-        "valueString": "10"
+        "valueInteger": 10
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -203,10 +203,10 @@
         "valueString": "SDE Race"
       }, {
         "url": "statement",
-        "valueString": "define &quot;SDE Race&quot;:\n  SDE.&quot;SDE Race&quot;"
+        "valueString": "define \"SDE Race\":\n  SDE.\"SDE Race\""
       }, {
         "url": "displaySequence",
-        "valueString": "11"
+        "valueInteger": 11
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -221,7 +221,7 @@
         "valueString": "/*\n@description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept.\n*/\ndefine function ToConcept(concept FHIR.CodeableConcept):\n    if concept is null then\n        null\n    else\n        System.Concept {\n            codes: concept.coding C return ToCode(C),\n            display: concept.text.value\n        }"
       }, {
         "url": "displaySequence",
-        "valueString": "12"
+        "valueInteger": 12
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -236,7 +236,7 @@
         "valueString": "/*\n@description: Returns the Condition resources referenced by the diagnosis element of the Encounter\n*/\ndefine fluent function encounterDiagnosis(Encounter Encounter ):\n  Encounter.diagnosis D\n    return singleton from ([Condition] C where C.id = D.condition.reference.getId())"
       }, {
         "url": "displaySequence",
-        "valueString": "13"
+        "valueInteger": 13
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
@@ -248,42 +248,28 @@
         "valueString": "getId"
       }, {
         "url": "statement",
-        "valueString": "/*\n@description: Returns the tail of the given uri (i.e. everything after the last slash in the URI).\n@comment: This function can be used to determine the logical id of a given resource. It can be used in\na single-server environment to trace references. However, this function does not attempt to resolve\nor distinguish the base of the given url, and so cannot be used safely in multi-server environments.\n*/\ndefine fluent function getId(uri String):\n  Last(Split(uri, &#39;/&#39;))"
+        "valueString": "/*\n@description: Returns the tail of the given uri (i.e. everything after the last slash in the URI).\n@comment: This function can be used to determine the logical id of a given resource. It can be used in\na single-server environment to trace references. However, this function does not attempt to resolve\nor distinguish the base of the given url, and so cannot be used safely in multi-server environments.\n*/\ndefine fluent function getId(uri String):\n  Last(Split(uri, '/'))"
       }, {
         "url": "displaySequence",
-        "valueString": "14"
+        "valueInteger": 14
       } ]
     }, {
       "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "FHIRHelpers"
+        "valueString": "QICoreCommon"
       }, {
         "url": "name",
-        "valueString": "ToString"
+        "valueString": "toInterval"
       }, {
         "url": "statement",
-        "valueString": "define function ToString(value uri): value.value"
+        "valueString": "/*\n@description: Normalizes a value that is a choice of timing-valued types to an equivalent interval\n@comment: Normalizes a choice type of DateTime, Quanitty, Interval<DateTime>, or Interval<Quantity> types\nto an equivalent interval. This selection of choice types is a superset of the majority of choice types that are used as possible\nrepresentations for timing-valued elements in QICore, allowing this function to be used across any resource.\nThe input can be provided as a DateTime, Quantity, Interval<DateTime> or Interval<Quantity>.\nThe intent of this function is to provide a clear and concise mechanism to treat single\nelements that have multiple possible representations as intervals so that logic doesn't have to account\nfor the variability. More complex calculations (such as medication request period or dispense period\ncalculation) need specific guidance and consideration. That guidance may make use of this function, but\nthe focus of this function is on single element calculations where the semantics are unambiguous.\nIf the input is a DateTime, the result a DateTime Interval beginning and ending on that DateTime.\nIf the input is a Quantity, the quantity is expected to be a calendar-duration interpreted as an Age,\nand the result is a DateTime Interval beginning on the Date the patient turned that age and ending immediately before one year later.\nIf the input is a DateTime Interval, the result is the input.\nIf the input is a Quantity Interval, the quantities are expected to be calendar-durations interpreted as an Age, and the result\nis a DateTime Interval beginning on the date the patient turned the age given as the start of the quantity interval, and ending\nimmediately before one year later than the date the patient turned the age given as the end of the quantity interval.\nIf the input is a Timing, an error will be thrown indicating that Timing calculations are not implemented. Any other input will reslt in a null DateTime Interval\n*/\ndefine fluent function toInterval(choice Choice<DateTime, Quantity, Interval<DateTime>, Interval<Quantity>, Timing>):\n  case\n\t  when choice is DateTime then\n    \tInterval[choice as DateTime, choice as DateTime]\n\t\twhen choice is Interval<DateTime> then\n  \t\tchoice as Interval<DateTime>\n\t\twhen choice is Quantity then\n\t\t  Interval[Patient.birthDate + (choice as Quantity),\n\t\t\t  Patient.birthDate + (choice as Quantity) + 1 year)\n\t\twhen choice is Interval<Quantity> then\n\t\t  Interval[Patient.birthDate + (choice.low as Quantity),\n\t\t\t  Patient.birthDate + (choice.high as Quantity) + 1 year)\n\t\twhen choice is Timing then\n      Message(null, true, 'NOT_IMPLEMENTED', 'Error', 'Calculation of an interval from a Timing value is not supported') as Interval<DateTime>\n\t\telse\n\t\t\tnull as Interval<DateTime>\n\tend"
       }, {
         "url": "displaySequence",
-        "valueString": "15"
-      } ]
-    }, {
-      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
-      "extension": [ {
-        "url": "libraryName",
-        "valueString": "FHIRHelpers"
-      }, {
-        "url": "name",
-        "valueString": "ToCode"
-      }, {
-        "url": "statement",
-        "valueString": "/*\n@description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code.\n*/\ndefine function ToCode(coding FHIR.Coding):\n    if coding is null then\n        null\n    else\n        System.Code {\n          code: coding.code.value,\n          system: coding.system.value,\n          version: coding.version.value,\n          display: coding.display.value\n        }"
-      }, {
-        "url": "displaySequence",
-        "valueString": "16"
+        "valueInteger": 15
       } ]
     } ],
+    "name": "EffectiveDataRequirements",
     "status": "active",
     "type": {
       "coding": [ {
@@ -363,6 +349,12 @@
       "max": "1",
       "type": "Period"
     }, {
+      "name": "SDE Sex",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "Coding"
+    }, {
       "name": "Numerator",
       "use": "out",
       "min": 0,
@@ -375,19 +367,13 @@
       "max": "*",
       "type": "Resource"
     }, {
-      "name": "Initial Population",
+      "name": "SDE Payer",
       "use": "out",
       "min": 0,
       "max": "*",
       "type": "Resource"
     }, {
-      "name": "SDE Sex",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "Coding"
-    }, {
-      "name": "SDE Payer",
+      "name": "Initial Population",
       "use": "out",
       "min": 0,
       "max": "*",
@@ -396,19 +382,38 @@
       "name": "SDE Ethnicity",
       "use": "out",
       "min": 0,
-      "max": "1",
+      "max": "*",
       "type": "Resource"
     }, {
       "name": "SDE Race",
       "use": "out",
       "min": 0,
-      "max": "1",
+      "max": "*",
       "type": "Resource"
     } ],
     "dataRequirement": [ {
       "type": "Patient",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ]
+    }, {
+      "type": "Patient",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ],
-      "mustSupport": [ "gender", "gender.value", "url", "extension" ]
+      "mustSupport": [ "url", "url.value", "extension", "value" ],
+      "codeFilter": [ {
+        "path": "url.value",
+        "code": [ {
+          "code": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+        } ]
+      } ]
+    }, {
+      "type": "Patient",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ],
+      "mustSupport": [ "url", "url.value", "extension", "value" ],
+      "codeFilter": [ {
+        "path": "url.value",
+        "code": [ {
+          "code": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+        } ]
+      } ]
     }, {
       "type": "Condition",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
@@ -488,6 +493,11 @@
           "code": "225337009",
           "display": "Suicide risk assessment (procedure)"
         } ]
+      }, {
+        "path": "status.value",
+        "code": [ {
+          "code": "completed"
+        } ]
       } ]
     }, {
       "type": "Coverage",
@@ -517,9 +527,15 @@
       }
     } ]
   }, {
+    "id": "effective-data-requirements",
     "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements",
     "valueReference": {
       "reference": "#effective-data-requirements"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-softwaresystem",
+    "valueReference": {
+      "reference": "Device/cqf-tooling"
     }
   } ],
   "url": "https://madie.cms.gov/Measure/ChildandAdolescentMajorDepressiveDisorderMDDSuicideRiskAssessmentFHIR",
@@ -585,7 +601,7 @@
   "title": "Child and Adolescent Major Depressive Disorder (MDD): Suicide Risk AssessmentFHIR",
   "status": "draft",
   "experimental": false,
-  "date": "2024-05-06T14:05:22+00:00",
+  "date": "2024-11-18T21:30:37+00:00",
   "publisher": "Mathematica",
   "contact": [ {
     "telecom": [ {
