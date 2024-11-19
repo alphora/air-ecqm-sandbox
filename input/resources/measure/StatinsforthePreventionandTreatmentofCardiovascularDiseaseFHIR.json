@@ -280,7 +280,7 @@
         "valueString": "Has Diabetes Diagnosis"
       }, {
         "url": "statement",
-        "valueString": "define \"Has Diabetes Diagnosis\":\n  exists ( [Condition: \"Diabetes\"] DiabetesCondition\n      where ( DiabetesCondition.isProblemListItem ( )\n          or DiabetesCondition.isHealthConcern ( )\n      )\n        and DiabetesCondition.prevalenceInterval ( ) overlaps day of \"Measurement Period\"\n  )"
+        "valueString": "define \"Has Diabetes Diagnosis\":\n  exists ( [Condition: \"Diabetes\"] Diabetes\n      where ( Diabetes.isProblemListItem ( )\n          or Diabetes.isHealthConcern ( )\n      )\n        and Diabetes.prevalenceInterval ( ) overlaps day of \"Measurement Period\"\n  )"
       }, {
         "url": "displaySequence",
         "valueInteger": 11
@@ -1727,7 +1727,7 @@
   "title": "Statin Therapy for the Prevention and Treatment of Cardiovascular DiseaseFHIR",
   "status": "draft",
   "experimental": false,
-  "date": "2024-11-18T23:28:10+00:00",
+  "date": "2024-11-19T16:12:05+00:00",
   "publisher": "Centers for Medicare & Medicaid Services (CMS)",
   "contact": [ {
     "telecom": [ {
