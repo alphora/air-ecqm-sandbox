@@ -128,10 +128,10 @@ define "Low BMI Interventions Ordered":
       union [ServiceRequest: "Referrals Where Weight Assessment May Occur"]
       union [MedicationRequest: "Medications for Below Normal BMI"] ) LowInterventionsOrdered
       where LowInterventionsOrdered.reasonCode in "Underweight"
-        or ( exists [Condition: "Underweight"] UnderweightCondition
-            where ( UnderweightCondition.isHealthConcern ( ) )
-              and UnderweightCondition.isActive ( )
-              and UnderweightCondition.prevalenceInterval ( ) starts before or on day of LowInterventionsOrdered.authoredOn
+        or ( exists [Condition: "Underweight"] Underweight
+            where ( Underweight.isHealthConcern ( ) )
+              and Underweight.isActive ( )
+              and Underweight.prevalenceInterval ( ) starts before or on day of LowInterventionsOrdered.authoredOn
               and LowInterventionsOrdered.authoredOn during day of "Measurement Period"
         )
   )
@@ -140,12 +140,12 @@ define "Low BMI Interventions Performed":
   ( [Procedure: "Follow Up for Below Normal BMI"] LowInterventionsPerformed
       where LowInterventionsPerformed.reasonCode in "Underweight"
         and LowInterventionsPerformed.status = 'completed'
-        or ( exists [Condition: "Underweight"] UnderweightCondition
-            where ( UnderweightCondition.isHealthConcern ( ) )
-              and UnderweightCondition.isActive ( )
-              and UnderweightCondition.prevalenceInterval ( ) starts before or on day of LowInterventionsPerformed.performed.toInterval ( )
+        or ( exists [Condition: "Underweight"] Underweight
+            where ( Underweight.isHealthConcern ( ) )
+              and Underweight.isActive ( )
+              and Underweight.prevalenceInterval ( ) starts before or on day of LowInterventionsPerformed.performed.toInterval ( )
               and LowInterventionsPerformed.performed.toInterval ( ) during day of "Measurement Period"
-              and not ( UnderweightCondition.prevalenceInterval ( ) ends before day of LowInterventionsPerformed.performed.toInterval ( ) )
+              and not ( Underweight.prevalenceInterval ( ) ends before day of LowInterventionsPerformed.performed.toInterval ( ) )
         )
   )
 
