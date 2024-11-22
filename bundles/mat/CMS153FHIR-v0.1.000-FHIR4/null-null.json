@@ -1,0 +1,1162 @@
+{
+  "resourceType": "Measure",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm", "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-measure-cqfm", "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-measure-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Library",
+    "id": "effective-data-requirements",
+    "extension": [ {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+      "valueCoding": {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "code": "laboratory",
+        "display": "laboratory"
+      }
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+      "valueCoding": {
+        "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+        "code": "survey",
+        "display": "survey"
+      }
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+      "valueCoding": {
+        "system": "http://loinc.org",
+        "code": "64728-9",
+        "display": "Have you ever had vaginal intercourse [PhenX]"
+      }
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+      "valueCoding": {
+        "system": "http://snomed.info/sct",
+        "code": "373066001",
+        "display": "Yes (qualifier value)"
+      }
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+      "valueCoding": {
+        "system": "http://snomed.info/sct",
+        "code": "428361000124107",
+        "display": "Discharge to home for hospice care (procedure)"
+      }
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+      "valueCoding": {
+        "system": "http://snomed.info/sct",
+        "code": "428371000124100",
+        "display": "Discharge to healthcare facility for hospice care (procedure)"
+      }
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+      "valueCoding": {
+        "system": "http://loinc.org",
+        "code": "45755-6",
+        "display": "Hospice care [Minimum Data Set]"
+      }
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode",
+      "valueCoding": {
+        "system": "http://snomed.info/sct",
+        "code": "373066001",
+        "display": "Yes (qualifier value)"
+      }
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Numerator"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Numerator&quot;:\n  exists ( ( Status.&quot;Final Lab Observation&quot; ( [Observation: &quot;Chlamydia Screening&quot;] ) ) ChlamydiaTest\n      where QICoreCommon.&quot;Latest&quot; ( ChlamydiaTest.effective ) during day of &quot;Measurement Period&quot;\n        and ChlamydiaTest.value is not null\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "0"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Stratification 2"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Stratification 2&quot;:\n  AgeInYearsAt(date from \n    end of &quot;Measurement Period&quot;\n  ) in Interval[21, 24]"
+      }, {
+        "url": "displaySequence",
+        "valueString": "1"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Stratification 1"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Stratification 1&quot;:\n  AgeInYearsAt(date from \n    end of &quot;Measurement Period&quot;\n  ) in Interval[16, 20]"
+      }, {
+        "url": "displaySequence",
+        "valueString": "2"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Qualifying Encounters"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Qualifying Encounters&quot;:\n  ( ( Status.&quot;Finished Encounter&quot; ( [Encounter: &quot;Office Visit&quot;]\n      union [Encounter: &quot;Preventive Care Services Established Office Visit, 18 and Up&quot;]\n      union [Encounter: &quot;Preventive Care Services Initial Office Visit, 18 and Up&quot;]\n      union [Encounter: &quot;Preventive Care Services, Initial Office Visit, 0 to 17&quot;]\n      union [Encounter: &quot;Preventive Care, Established Office Visit, 0 to 17&quot;]\n      union [Encounter: &quot;Home Healthcare Services&quot;]\n      union [Encounter: &quot;Telephone Visits&quot;]\n      union [Encounter: &quot;Online Assessments&quot;] ) ) ValidEncounters\n      where QICoreCommon.&quot;ToInterval&quot; ( ValidEncounters.period ) during day of &quot;Measurement Period&quot;\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "3"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Has Assessments Identifying Sexual Activity"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Has Assessments Identifying Sexual Activity&quot;:\n  exists ( ( Status.&quot;Final Survey Observation&quot; ( [Observation: &quot;Have you ever had vaginal intercourse [PhenX]&quot;] ) ) SexualActivityAssessment\n      where SexualActivityAssessment.value ~ &quot;Yes (qualifier value)&quot;\n        and QICoreCommon.&quot;ToInterval&quot; ( SexualActivityAssessment.effective ) on or before end of &quot;Measurement Period&quot;\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "4"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Has Diagnoses Identifying Sexual Activity"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Has Diagnoses Identifying Sexual Activity&quot;:\n  exists ( ( [Condition: &quot;Diagnoses Used to Indicate Sexual Activity&quot;]\n      union [Condition: &quot;HIV&quot;]\n      union [Condition: &quot;Complications of Pregnancy, Childbirth and the Puerperium&quot;] ) SexualActivityDiagnosis\n      where QICoreCommon.&quot;ToPrevalenceInterval&quot; ( SexualActivityDiagnosis ) overlaps &quot;Measurement Period&quot;\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "5"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Has Active Contraceptive Medications"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Has Active Contraceptive Medications&quot;:\n  exists ( ( Status.&quot;Active Medication&quot; ( [&quot;MedicationRequest&quot;: &quot;Contraceptive Medications&quot;] ) ) ActiveContraceptives\n      where CMD.&quot;MedicationRequestPeriod&quot; ( ActiveContraceptives ) overlaps &quot;Measurement Period&quot;\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "6"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Has Ordered Contraceptive Medications"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Has Ordered Contraceptive Medications&quot;:\n  exists ( ( Status.&quot;Active or Completed Medication Request&quot; ( [MedicationRequest: &quot;Contraceptive Medications&quot;] ) ) OrderedContraceptives\n      where QICoreCommon.&quot;ToInterval&quot; ( OrderedContraceptives.authoredOn ) during day of &quot;Measurement Period&quot;\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "7"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Has Laboratory Tests Identifying Sexual Activity But Not Pregnancy"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Has Laboratory Tests Identifying Sexual Activity But Not Pregnancy&quot;:\n  exists ( ( Status.&quot;Completed or Ongoing Service Request&quot; ( [ServiceRequest: &quot;Pap Test&quot;]\n      union [ServiceRequest: &quot;Lab Tests During Pregnancy&quot;]\n      union [ServiceRequest: &quot;Lab Tests for Sexually Transmitted Infections&quot;] ) ) LabOrders\n      where QICoreCommon.&quot;ToInterval&quot; ( LabOrders.authoredOn ) during day of &quot;Measurement Period&quot;\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "8"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Has Laboratory Tests Identifying Sexual Activity"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Has Laboratory Tests Identifying Sexual Activity&quot;:\n  exists ( ( Status.&quot;Completed or Ongoing Service Request&quot; ( [ServiceRequest: &quot;Pregnancy Test&quot;] ) ) PregnancyTest\n      where QICoreCommon.&quot;ToInterval&quot; ( PregnancyTest.authoredOn ) during day of &quot;Measurement Period&quot;\n  )\n    or &quot;Has Laboratory Tests Identifying Sexual Activity But Not Pregnancy&quot;"
+      }, {
+        "url": "displaySequence",
+        "valueString": "9"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Has Diagnostic Studies Identifying Sexual Activity"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Has Diagnostic Studies Identifying Sexual Activity&quot;:\n  exists ( ( Status.&quot;Completed or Ongoing Service Request&quot; ( [ServiceRequest: &quot;Diagnostic Studies During Pregnancy&quot;] ) ) SexualActivityDiagnostics\n      where QICoreCommon.&quot;ToInterval&quot; ( SexualActivityDiagnostics.authoredOn ) during day of &quot;Measurement Period&quot;\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "10"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Has Procedures Identifying Sexual Activity"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Has Procedures Identifying Sexual Activity&quot;:\n  exists ( ( Status.&quot;Completed Procedure&quot; ( [Procedure: &quot;Procedures Used to Indicate Sexual Activity&quot;] ) ) ProceduresForSexualActivity\n      where QICoreCommon.&quot;ToInterval&quot; ( ProceduresForSexualActivity.performed ) during day of &quot;Measurement Period&quot;\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "11"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Initial Population"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Initial Population&quot;:\n  AgeInYearsAt(date from \n    end of &quot;Measurement Period&quot;\n  ) in Interval[16, 24]\n    and Patient.gender = &#39;female&#39;\n    and exists ( &quot;Qualifying Encounters&quot; )\n    and ( ( &quot;Has Assessments Identifying Sexual Activity&quot; )\n        or ( &quot;Has Diagnoses Identifying Sexual Activity&quot; )\n        or ( &quot;Has Active Contraceptive Medications&quot; )\n        or ( &quot;Has Ordered Contraceptive Medications&quot; )\n        or ( &quot;Has Laboratory Tests Identifying Sexual Activity&quot; )\n        or ( &quot;Has Diagnostic Studies Identifying Sexual Activity&quot; )\n        or ( &quot;Has Procedures Identifying Sexual Activity&quot; )\n    )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "12"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Denominator"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Denominator&quot;:\n  &quot;Initial Population&quot;"
+      }, {
+        "url": "displaySequence",
+        "valueString": "13"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "Hospice"
+      }, {
+        "url": "name",
+        "valueString": "Has Hospice Services"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Has Hospice Services&quot;:\n  exists ((([Encounter: &quot;Encounter Inpatient&quot;]).isEncounterPerformed()) InpatientEncounter\n      where (InpatientEncounter.hospitalization.dischargeDisposition ~ &quot;Discharge to home for hospice care (procedure)&quot;\n          or InpatientEncounter.hospitalization.dischargeDisposition ~ &quot;Discharge to healthcare facility for hospice care (procedure)&quot;\n      )\n        and InpatientEncounter.period.toInterval() ends during day of &quot;Measurement Period&quot;\n  )\n    or exists ((([Encounter: &quot;Hospice Encounter&quot;]).isEncounterPerformed()) HospiceEncounter\n        where HospiceEncounter.period.toInterval() overlaps day of &quot;Measurement Period&quot;\n    )\n    or exists ((([Observation: &quot;Hospice care [Minimum Data Set]&quot;]).isAssessmentPerformed()) HospiceAssessment\n        where HospiceAssessment.value ~ &quot;Yes (qualifier value)&quot;\n          and HospiceAssessment.effective.toInterval() overlaps day of &quot;Measurement Period&quot;\n    )\n    or exists ((([ServiceRequest: &quot;Hospice Care Ambulatory&quot;]).isInterventionOrder()) HospiceOrder\n        where HospiceOrder.authoredOn.toInterval() during day of &quot;Measurement Period&quot;\n    )\n    or exists ((([Procedure: &quot;Hospice Care Ambulatory&quot;]).isInterventionPerformed()) HospicePerformed\n        where HospicePerformed.performed.toInterval() overlaps day of &quot;Measurement Period&quot;\n    )\n    or exists (([Condition: &quot;Hospice Diagnosis&quot;]) HospiceCareDiagnosis\n        where HospiceCareDiagnosis.prevalenceInterval() overlaps day of &quot;Measurement Period&quot;\n    )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "14"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Has Pregnancy Test Exclusion"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Has Pregnancy Test Exclusion&quot;:\n  exists ( ( ( Status.&quot;Completed or Ongoing Service Request&quot; ( [ServiceRequest: &quot;Pregnancy Test&quot;] ) ) PregnancyTest\n        with ( Status.&quot;Completed or Ongoing Service Request&quot; ( [ServiceRequest: &quot;XRay Study&quot;] ) ) XrayOrder\n          such that QICoreCommon.&quot;ToInterval&quot; ( XrayOrder.authoredOn ) occurs 6 days or less on or after day of QICoreCommon.&quot;ToInterval&quot; ( PregnancyTest.authoredOn )\n            and QICoreCommon.&quot;ToInterval&quot; ( PregnancyTest.authoredOn ) during &quot;Measurement Period&quot;\n    )\n      union ( ( Status.&quot;Completed or Ongoing Service Request&quot; ( [ServiceRequest: &quot;Pregnancy Test&quot;] ) ) PregnancyTestOrder\n          with ( Status.&quot;Active or Completed Medication Request&quot; ( [MedicationRequest: &quot;Isotretinoin&quot;] ) ) AccutaneOrder\n            such that QICoreCommon.&quot;ToInterval&quot; ( AccutaneOrder.authoredOn ) occurs 6 days or less on or after day of QICoreCommon.&quot;ToInterval&quot; ( PregnancyTestOrder.authoredOn )\n              and QICoreCommon.&quot;ToInterval&quot; ( PregnancyTestOrder.authoredOn ) during &quot;Measurement Period&quot;\n      )\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "15"
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "ChlamydiaScreeninginWomenFHIR"
+      }, {
+        "url": "name",
+        "valueString": "Denominator Exclusions"
+      }, {
+        "url": "statement",
+        "valueString": "define &quot;Denominator Exclusions&quot;:\n  Hospice.&quot;Has Hospice Services&quot;\n    or ( ( &quot;Has Pregnancy Test Exclusion&quot; )\n        and not ( &quot;Has Assessments Identifying Sexual Activity&quot; )\n        and not ( &quot;Has Diagnoses Identifying Sexual Activity&quot; )\n        and not ( &quot;Has Active Contraceptive Medications&quot; )\n        and not ( &quot;Has Ordered Contraceptive Medications&quot; )\n        and not ( &quot;Has Laboratory Tests Identifying Sexual Activity But Not Pregnancy&quot; )\n        and not ( &quot;Has Diagnostic Studies Identifying Sexual Activity&quot; )\n        and not ( &quot;Has Procedures Identifying Sexual Activity&quot; )\n    )"
+      }, {
+        "url": "displaySequence",
+        "valueString": "16"
+      } ]
+    } ],
+    "status": "active",
+    "type": {
+      "coding": [ {
+        "system": "http://terminology.hl7.org/CodeSystem/library-type",
+        "code": "module-definition"
+      } ]
+    },
+    "relatedArtifact": [ {
+      "type": "depends-on",
+      "display": "Library Status",
+      "resource": "Library/Status|1.6.000"
+    }, {
+      "type": "depends-on",
+      "display": "Library FHIRHelpers",
+      "resource": "Library/FHIRHelpers|4.3.000"
+    }, {
+      "type": "depends-on",
+      "display": "Library QICoreCommon",
+      "resource": "Library/QICoreCommon|1.5.000"
+    }, {
+      "type": "depends-on",
+      "display": "Library FHIRHelpers",
+      "resource": "Library/FHIRHelpers|4.3.000"
+    }, {
+      "type": "depends-on",
+      "display": "Library CMD",
+      "resource": "Library/CumulativeMedicationDuration|3.3.000"
+    }, {
+      "type": "depends-on",
+      "display": "Library FHIRHelpers",
+      "resource": "Library/FHIRHelpers|4.3.000"
+    }, {
+      "type": "depends-on",
+      "display": "Library Hospice",
+      "resource": "Library/Hospice|6.7.000"
+    }, {
+      "type": "depends-on",
+      "display": "Library Status",
+      "resource": "Library/Status|1.6.000"
+    }, {
+      "type": "depends-on",
+      "display": "Code system ObservationCategoryCodes",
+      "resource": "http://terminology.hl7.org/CodeSystem/observation-category"
+    }, {
+      "type": "depends-on",
+      "display": "Code system LOINC",
+      "resource": "http://loinc.org"
+    }, {
+      "type": "depends-on",
+      "display": "Code system SNOMEDCT",
+      "resource": "http://snomed.info/sct"
+    }, {
+      "type": "depends-on",
+      "display": "Code system SNOMEDCT",
+      "resource": "http://snomed.info/sct"
+    }, {
+      "type": "depends-on",
+      "display": "Code system LOINC",
+      "resource": "http://loinc.org"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Chlamydia Screening",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1052"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Office Visit",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Preventive Care Services Established Office Visit, 18 and Up",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Preventive Care Services Initial Office Visit, 18 and Up",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Preventive Care Services, Initial Office Visit, 0 to 17",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1022"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Preventive Care, Established Office Visit, 0 to 17",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1024"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Home Healthcare Services",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Telephone Visits",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Online Assessments",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Diagnoses Used to Indicate Sexual Activity",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1018"
+    }, {
+      "type": "depends-on",
+      "display": "Value set HIV",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1003"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Complications of Pregnancy, Childbirth and the Puerperium",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1012"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Contraceptive Medications",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1080"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Pregnancy Test",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1011"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Pap Test",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1017"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Lab Tests During Pregnancy",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1007"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Lab Tests for Sexually Transmitted Infections",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1051"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Diagnostic Studies During Pregnancy",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1008"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Procedures Used to Indicate Sexual Activity",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1017"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Encounter Inpatient",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Hospice Encounter",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Hospice Care Ambulatory",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Hospice Diagnosis",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"
+    }, {
+      "type": "depends-on",
+      "display": "Value set XRay Study",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1034"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Isotretinoin",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1143"
+    } ],
+    "parameter": [ {
+      "name": "Measurement Period",
+      "use": "in",
+      "min": 0,
+      "max": "1",
+      "type": "Period"
+    }, {
+      "name": "ErrorLevel",
+      "use": "in",
+      "min": 0,
+      "max": "1",
+      "type": "string"
+    }, {
+      "name": "Numerator",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }, {
+      "name": "Stratification 2",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }, {
+      "name": "Stratification 1",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }, {
+      "name": "Denominator",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }, {
+      "name": "Initial Population",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    }, {
+      "name": "Denominator Exclusions",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "boolean"
+    } ],
+    "dataRequirement": [ {
+      "type": "Patient",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ]
+    }, {
+      "type": "Patient",
+      "profile": [ "http://hl7.org/fhir/Patient" ],
+      "mustSupport": [ "birthDate", "birthDate.value", "gender", "gender.value" ]
+    }, {
+      "type": "Observation",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1052"
+      } ]
+    }, {
+      "type": "Observation",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ],
+      "mustSupport": [ "code", "effective", "value" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1052"
+      } ]
+    }, {
+      "type": "Patient",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient" ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
+      "mustSupport": [ "type" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
+      "mustSupport": [ "type" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
+      "mustSupport": [ "type" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
+      "mustSupport": [ "type" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1022"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
+      "mustSupport": [ "type" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1024"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
+      "mustSupport": [ "type" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
+      "mustSupport": [ "type" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
+      "mustSupport": [ "type" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089"
+      } ]
+    }, {
+      "type": "Observation",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "code": [ {
+          "system": "http://loinc.org",
+          "code": "64728-9",
+          "display": "Have you ever had vaginal intercourse [PhenX]"
+        } ]
+      } ]
+    }, {
+      "type": "Observation",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ],
+      "mustSupport": [ "code", "value", "effective" ],
+      "codeFilter": [ {
+        "path": "code",
+        "code": [ {
+          "system": "http://loinc.org",
+          "code": "64728-9",
+          "display": "Have you ever had vaginal intercourse [PhenX]"
+        } ]
+      } ]
+    }, {
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1018"
+      } ]
+    }, {
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.120.12.1003"
+      } ]
+    }, {
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1012"
+      } ]
+    }, {
+      "type": "Quantity",
+      "profile": [ "urn:hl7-org:elm-types:r1/Quantity" ],
+      "mustSupport": [ "unit", "value" ]
+    }, {
+      "type": "MedicationRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
+      "mustSupport": [ "medication" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1080"
+      } ]
+    }, {
+      "type": "MedicationRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
+      "mustSupport": [ "medication" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1080"
+      } ]
+    }, {
+      "type": "MedicationRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
+      "mustSupport": [ "medication" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1080"
+      } ]
+    }, {
+      "type": "MedicationRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
+      "mustSupport": [ "medication" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1080"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1017"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1007"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1051"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1011"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code", "authoredOn", "authoredOn.value" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1011"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1008"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code", "authoredOn", "authoredOn.value" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1008"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1017"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure" ],
+      "mustSupport": [ "code", "performed" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1017"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
+      "mustSupport": [ "type" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
+      "mustSupport": [ "type", "hospitalization", "hospitalization.dischargeDisposition", "period" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
+      "mustSupport": [ "type" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter" ],
+      "mustSupport": [ "type", "period" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"
+      } ]
+    }, {
+      "type": "Observation",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "code": [ {
+          "system": "http://loinc.org",
+          "code": "45755-6",
+          "display": "Hospice care [Minimum Data Set]"
+        } ]
+      } ]
+    }, {
+      "type": "Observation",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation" ],
+      "mustSupport": [ "code", "value", "effective" ],
+      "codeFilter": [ {
+        "path": "code",
+        "code": [ {
+          "system": "http://loinc.org",
+          "code": "45755-6",
+          "display": "Hospice care [Minimum Data Set]"
+        } ]
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code", "authoredOn", "authoredOn.value" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure" ],
+      "mustSupport": [ "code", "performed" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"
+      } ]
+    }, {
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1011"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1034"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code", "authoredOn", "authoredOn.value" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1034"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code", "authoredOn", "authoredOn.value" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1011"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1011"
+      } ]
+    }, {
+      "type": "MedicationRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
+      "mustSupport": [ "medication" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1143"
+      } ]
+    }, {
+      "type": "MedicationRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest" ],
+      "mustSupport": [ "medication" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1143"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest" ],
+      "mustSupport": [ "code", "authoredOn", "authoredOn.value" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.111.12.1011"
+      } ]
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements",
+    "valueReference": {
+      "reference": "#effective-data-requirements"
+    }
+  } ],
+  "url": "http://ecqi.healthit.gov/ecqms/Measure/ChlamydiaScreeninginWomenFHIR",
+  "identifier": [ {
+    "use": "usual",
+    "type": {
+      "coding": [ {
+        "system": "http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type",
+        "code": "short-name"
+      } ]
+    },
+    "system": "https://madie.cms.gov/measure/shortName",
+    "value": "CMS153FHIR"
+  }, {
+    "use": "official",
+    "type": {
+      "coding": [ {
+        "system": "http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type",
+        "code": "version-independent"
+      } ]
+    },
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:3443b43b-a2a3-4b91-84aa-6080479d4d9a"
+  }, {
+    "use": "official",
+    "type": {
+      "coding": [ {
+        "system": "http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type",
+        "code": "version-specific"
+      } ]
+    },
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:2c928084808a95890180bd86f737115d"
+  }, {
+    "use": "official",
+    "type": {
+      "coding": [ {
+        "system": "http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type",
+        "code": "publisher"
+      } ]
+    },
+    "system": "https://madie.cms.gov/measure/cmsId",
+    "value": "153FHIR",
+    "assigner": {
+      "display": "CMS"
+    }
+  } ],
+  "version": "0.1.000",
+  "name": "ChlamydiaScreeninginWomenFHIR",
+  "title": "Chlamydia Screening in WomenFHIR",
+  "status": "active",
+  "experimental": false,
+  "date": "2023-09-08T13:59:34+00:00",
+  "publisher": "National Committee for Quality Assurance",
+  "contact": [ {
+    "telecom": [ {
+      "system": "url",
+      "value": "https://www.ncqa.org/"
+    } ]
+  } ],
+  "description": "Percentage of women 16-24 years of age who were identified as sexually active at any time during the measurement period and who had at least one test for chlamydia during the measurement period",
+  "purpose": "UNKNOWN",
+  "usage": "Codes to identify sexually active women include codes for: pregnancy, sexually transmitted infections, contraceptives or contraceptive devices, and infertility treatments.\n\nThe denominator exclusion does not apply to patients who qualify for the initial population (IP) based on services other than the pregnancy test alone. These other services include services for sexually transmitted infections, contraceptives or contraceptive devices and infertility treatments. For example, a patient who has both a pregnancy test and a chlamydia diagnosis, either of which would qualify them for the IP, would not be eligible for this denominator exclusion.\n\nThis eCQM is a patient-based measure.\n\nThis FHIR-based measure has been derived from the QDM-based measure:  CMS153v12.\n\nPlease refer to the HL7 QI-Core Implementation Guide (http://hl7.org/fhir/us/qicore/index.html) for more information on QI-Core and mapping recommendations from QDM to QI-Core 4.1.1 (http://hl7.org/fhir/us/qicore/qdm-to-qicore.html).",
+  "copyright": "This Physician Performance Measure (Measure) and related data specifications are owned and were developed by the National Committee for Quality Assurance (NCQA). NCQA is not responsible for any use of the Measure. NCQA makes no representations, warranties, or endorsement about the quality of any organization or physician that uses or reports performance measures and NCQA has no liability to anyone who relies on such measures or specifications. NCQA holds a copyright in the Measure. The Measure can be reproduced and distributed, without modification, for noncommercial purposes (e.g., use by healthcare providers in connection with their practices) without obtaining approval from NCQA. Commercial use is defined as the sale, licensing, or distribution of the Measure for commercial gain, or incorporation of the Measure into a product or service that is sold, licensed or distributed for commercial gain. All commercial uses or requests for modification must be approved by NCQA and are subject to a license at the discretion of NCQA. (C) 2012-2022 National Committee for Quality Assurance. All Rights Reserved. \n\nLimited proprietary coding is contained in the Measure specifications for user convenience. Users of proprietary code sets should obtain all necessary licenses from the owners of the code sets. NCQA disclaims all liability for use or accuracy of any third-party codes contained in the specifications. \n\nCPT(R) codes, descriptions and other data are copyright 2022. American Medical Association. All rights reserved. CPT is a trademark of the American Medical Association. No fee schedules, basic units, relative values or related listings are included in CPT. The AMA assumes no liability for the data contained herein. Applicable FARS/DFARS restrictions apply to government use. \n\nLOINC(R) copyright 2004-2022 Regenstrief Institute, Inc. \n\nThis material contains SNOMED Clinical Terms(R) (SNOMED CT[R]) copyright 2004-2022 International Health Terminology Standards Development Organisation. \n\nICD-10 copyright 2022 World Health Organization. All Rights Reserved.",
+  "approvalDate": "2023-09-08",
+  "lastReviewDate": "2023-09-08",
+  "effectivePeriod": {
+    "start": "2024-01-01",
+    "end": "2024-12-31"
+  },
+  "author": [ {
+    "name": "National Committee for Quality Assurance",
+    "telecom": [ {
+      "system": "url",
+      "value": "https://www.ncqa.org/"
+    } ]
+  } ],
+  "library": [ "http://ecqi.healthit.gov/ecqms/Library/ChlamydiaScreeninginWomenFHIR" ],
+  "disclaimer": "The performance Measure is not a clinical guideline and does not establish a standard of medical care, and has not been tested for all potential applications. THE MEASURE AND SPECIFICATIONS ARE PROVIDED \"AS IS\" WITHOUT WARRANTY OF ANY KIND.\n \nDue to technical limitations, registered trademarks are indicated by (R) or [R] and unregistered trademarks are indicated by (TM) or [TM].",
+  "rationale": "Chlamydia trachomatis is the most common sexually transmitted bacterial infection in the U.S., resulting in roughly 1.7 million cases (Centers for Disease Control and Prevention, 2019). Chlamydia infections are often asymptomatic, but, if left untreated, can lead to serious and irreversible complications (U.S. Preventive Services Task Force, 2014; Centers for Disease Control and Prevention, 2019). \n\nWomen are particularly vulnerable when infected with chlamydia. Left untreated, chlamydia can cause pelvic inflammatory disease (PID), which can lead to chronic pelvic pain or infertility. Pregnant women may also transmit the infection to their infant, potentially resulting in neonatal pneumonia (Centers for Disease Control and Prevention, 2019).",
+  "clinicalRecommendationStatement": "U.S. Preventive Services Task Force (2021) recommends screening for chlamydia in all sexually active women aged 24 years or younger and in women 25 years or older who are at increased risk for infection (B recommendation)",
+  "group": [ {
+    "id": "64593e27beb771640fc4cc34",
+    "extension": [ {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-scoring",
+      "valueCodeableConcept": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
+          "code": "proportion",
+          "display": "Proportion"
+        } ]
+      }
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis",
+      "valueCode": "boolean"
+    }, {
+      "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-type",
+      "valueCodeableConcept": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-type",
+          "code": "process",
+          "display": "Process"
+        } ]
+      }
+    } ],
+    "population": [ {
+      "id": "10136A25-C04A-4802-A435-CB3A3182ACFA",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "description": "Women 16 to 24 years of age by the end of the measurement period who are sexually active and who had a visit in the measurement period",
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Initial Population"
+      }
+    }, {
+      "id": "F0DF1754-6096-41C0-9C42-F01D9427E0DD",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "description": "Equals Initial Population",
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Denominator"
+      }
+    }, {
+      "id": "762B2E31-9A3E-4F06-9952-1AC8961A9AD6",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "description": "Women who are only eligible for the initial population due to a pregnancy test during the measurement period, and who had an order for an x-ray or for a specified medication on the date of the pregnancy test or the six days after the pregnancy test.\n\nExclude patients who are in hospice care for any part of the measurement period.",
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Denominator Exclusions"
+      }
+    }, {
+      "id": "01195E79-8C6F-4ED5-B5D0-AA77777870CD",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "description": "Women with at least one chlamydia test during the measurement period",
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Numerator"
+      }
+    }, {
+      "id": "4fd2fca7-aa3f-44f3-9b41-0be639385fbb",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator-exclusion",
+          "display": "Numerator Exclusion"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier"
+      }
+    }, {
+      "id": "752e5d14-0b22-42f8-891c-859a4377877c",
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exception",
+          "display": "Denominator Exception"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier"
+      }
+    } ],
+    "stratifier": [ {
+      "id": "fd1b6c30-f3d6-422e-9063-5db3590db24c",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-appliesTo",
+        "valueCodeableConcept": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+            "code": "initial-population",
+            "display": "Initial Population"
+          } ]
+        }
+      } ],
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Stratification 1"
+      }
+    }, {
+      "id": "90321b13-ef34-437a-a79e-0bf9e24e87f8",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-appliesTo",
+        "valueCodeableConcept": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+            "code": "initial-population",
+            "display": "Initial Population"
+          } ]
+        }
+      } ],
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Stratification 2"
+      }
+    } ]
+  } ]
+}
