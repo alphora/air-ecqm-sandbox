@@ -319,7 +319,7 @@
       "resourceType": "Observation",
       "id": "blood-pressure-1",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/StructureDefinition/bp" ]
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-blood-pressure" ]
       },
       "status": "final",
       "category": [ {
@@ -381,7 +381,7 @@
       "resourceType": "Observation",
       "id": "blood-pressure-2",
       "meta": {
-        "profile": [ "http://hl7.org/fhir/StructureDefinition/bp" ]
+        "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-blood-pressure" ]
       },
       "status": "final",
       "category": [ {

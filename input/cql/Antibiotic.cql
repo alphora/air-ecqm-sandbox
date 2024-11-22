@@ -1,4 +1,4 @@
-//@QICore6: Update Library and Measure resources - Condition to ConditionProblemsHealthConcerns
+//@QICore6: Update Library and Measure resources - Condition to ConditionProblemsHealthConcerns and/or ConditionEncounterDiagnosis
 
 library Antibiotic version '1.6.000'
 

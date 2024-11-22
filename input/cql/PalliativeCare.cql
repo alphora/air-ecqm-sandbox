@@ -22,8 +22,7 @@ define "Has Palliative Care in the Measurement Period":
     exists ((([ObservationScreeningAssessment: "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)"]).isAssessmentPerformed()) PalliativeAssessment
       where PalliativeAssessment.effective.toInterval() overlaps day of "Measurement Period"
     )
-    or exists (([ConditionProblemsHealthConcerns: "Palliative Care Diagnosis"] 
-        union [ConditionEncounterDiagnosis: "Palliative Care Diagnosis"]) PalliativeDiagnosis
+    or exists (([ConditionProblemsHealthConcerns: "Palliative Care Diagnosis"]) PalliativeDiagnosis
             where PalliativeDiagnosis.prevalenceInterval() overlaps day of "Measurement Period"
     )
     or exists ((([Encounter: type in "Palliative Care Encounter"]).isEncounterPerformed()) PalliativeEncounter
