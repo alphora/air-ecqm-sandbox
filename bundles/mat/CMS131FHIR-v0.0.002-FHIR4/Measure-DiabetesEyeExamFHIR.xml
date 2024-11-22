@@ -1,0 +1,1461 @@
+<Measure xmlns="http://hl7.org/fhir">
+   <id value="DiabetesEyeExamFHIR"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-measure-cqfm"/>
+   </meta>
+   <contained>
+      <Library xmlns="http://hl7.org/fhir">
+         <id value="effective-data-requirements"/>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+               <code value="survey"/>
+               <display value="survey"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="428361000124107"/>
+               <display value="Discharge to home for hospice care (procedure)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="428371000124100"/>
+               <display value="Discharge to healthcare facility for hospice care (procedure)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://loinc.org"/>
+               <code value="45755-6"/>
+               <display value="Hospice care [Minimum Data Set]"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="373066001"/>
+               <display value="Yes (qualifier value)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://loinc.org"/>
+               <code value="98181-1"/>
+               <display value="Medical equipment used"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://loinc.org"/>
+               <code value="71802-3"/>
+               <display value="Housing status"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="160734000"/>
+               <display value="Lives in a nursing home (finding)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://loinc.org"/>
+               <code value="71007-9"/>
+               <display value="Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="DiabetesEyeExamFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Diabetic Retinopathy Overlapping Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Diabetic Retinopathy Overlapping Measurement Period&amp;quot;:   exists ( [Condition: &amp;quot;Diabetic Retinopathy&amp;quot;] Retinopathy       where Retinopathy.prevalenceInterval ( ) overlaps day of &amp;quot;Measurement Period&amp;quot;   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="0"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="DiabetesEyeExamFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Retinal Exam in Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Retinal Exam in Measurement Period&amp;quot;:   ( ( [Observation: &amp;quot;Retinal or Dilated Eye Exam&amp;quot;] ).isAssessmentPerformed ( ) ) RetinalExam     where RetinalExam.effective.toInterval ( ) during day of &amp;quot;Measurement Period&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="1"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="DiabetesEyeExamFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Retinal Exam in Measurement Period or Year Prior"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Retinal Exam in Measurement Period or Year Prior&amp;quot;:   ( ( [Observation: &amp;quot;Retinal or Dilated Eye Exam&amp;quot;] ).isAssessmentPerformed ( ) ) RetinalExam     where RetinalExam.effective.toInterval ( ) during day of Interval[start of &amp;quot;Measurement Period&amp;quot; - 1 year, end of &amp;quot;Measurement Period&amp;quot;]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="2"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="DiabetesEyeExamFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Numerator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Numerator&amp;quot;:   ( &amp;quot;Diabetic Retinopathy Overlapping Measurement Period&amp;quot;       and exists ( &amp;quot;Retinal Exam in Measurement Period&amp;quot; )   )     or ( not ( &amp;quot;Diabetic Retinopathy Overlapping Measurement Period&amp;quot; )         and exists ( &amp;quot;Retinal Exam in Measurement Period or Year Prior&amp;quot; )     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="3"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="DiabetesEyeExamFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Qualifying Encounters"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Qualifying Encounters&amp;quot;:   ( ( [&amp;quot;Encounter&amp;quot;: &amp;quot;Office Visit&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Annual Wellness Visit&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Preventive Care Services Established Office Visit, 18 and Up&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Preventive Care Services Initial Office Visit, 18 and Up&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Home Healthcare Services&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Ophthalmological Services&amp;quot;]       union [&amp;quot;Encounter&amp;quot;: &amp;quot;Telephone Visits&amp;quot;]   ).isEncounterPerformed ( ) ) ValidEncounters     where ValidEncounters.period during day of &amp;quot;Measurement Period&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="4"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="DiabetesEyeExamFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Initial Population"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Initial Population&amp;quot;:   AgeInYearsAt(date from      end of &amp;quot;Measurement Period&amp;quot;   ) in Interval[18, 75]     and exists ( &amp;quot;Qualifying Encounters&amp;quot; )     and exists ( [Condition: &amp;quot;Diabetes&amp;quot;] Diabetes         where Diabetes.prevalenceInterval ( ) overlaps day of &amp;quot;Measurement Period&amp;quot;     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="5"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="DiabetesEyeExamFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator&amp;quot;:   &amp;quot;Initial Population&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="6"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Hospice"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Hospice Services"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Hospice Services&amp;quot;:   exists ((([Encounter: &amp;quot;Encounter Inpatient&amp;quot;]).isEncounterPerformed()) InpatientEncounter       where (InpatientEncounter.hospitalization.dischargeDisposition ~ &amp;quot;Discharge to home for hospice care (procedure)&amp;quot;           or InpatientEncounter.hospitalization.dischargeDisposition ~ &amp;quot;Discharge to healthcare facility for hospice care (procedure)&amp;quot;       )         and InpatientEncounter.period.toInterval() ends during day of &amp;quot;Measurement Period&amp;quot;   )     or exists ((([Encounter: &amp;quot;Hospice Encounter&amp;quot;]).isEncounterPerformed()) HospiceEncounter         where HospiceEncounter.period.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([Observation: &amp;quot;Hospice care [Minimum Data Set]&amp;quot;]).isAssessmentPerformed()) HospiceAssessment         where HospiceAssessment.value ~ &amp;quot;Yes (qualifier value)&amp;quot;           and HospiceAssessment.effective.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([ServiceRequest: &amp;quot;Hospice Care Ambulatory&amp;quot;]).isInterventionOrder()) HospiceOrder         where HospiceOrder.authoredOn.toInterval() during day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([Procedure: &amp;quot;Hospice Care Ambulatory&amp;quot;]).isInterventionPerformed()) HospicePerformed         where HospicePerformed.performed.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists (([Condition: &amp;quot;Hospice Diagnosis&amp;quot;]) HospiceCareDiagnosis         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="7"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AdvancedIllnessandFrailty"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Criteria Indicating Frailty"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Criteria Indicating Frailty&amp;quot;:   exists ( (([DeviceRequest: &amp;quot;Frailty Device&amp;quot;]).isDeviceOrder()) FrailtyDeviceOrder       where FrailtyDeviceOrder.doNotPerform() is not true       and FrailtyDeviceOrder.authoredOn.toInterval() during day of &amp;quot;Measurement Period&amp;quot;   )     or exists ( (([Observation: &amp;quot;Medical equipment used&amp;quot;]).isAssessmentPerformed()) EquipmentUsed         where EquipmentUsed.value as Concept in &amp;quot;Frailty Device&amp;quot;          and EquipmentUsed.effective.toInterval() ends during day of &amp;quot;Measurement Period&amp;quot;     )     or exists ( ([Condition: &amp;quot;Frailty Diagnosis&amp;quot;]) FrailtyDiagnosis         where FrailtyDiagnosis.prevalenceInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ( (([Encounter: &amp;quot;Frailty Encounter&amp;quot;]).isEncounterPerformed()) FrailtyEncounter         where FrailtyEncounter.period.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ( (([Observation: &amp;quot;Frailty Symptom&amp;quot;]).isSymptom()) FrailtySymptom         where FrailtySymptom.effective.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="8"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AdvancedIllnessandFrailty"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Outpatient Encounters with Advanced Illness"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Outpatient Encounters with Advanced Illness&amp;quot;:    (( [Encounter: &amp;quot;Outpatient&amp;quot;]     union [Encounter: &amp;quot;Observation&amp;quot;]     union [Encounter: &amp;quot;Emergency Department Evaluation and Management Visit&amp;quot;]     union [Encounter: &amp;quot;Nonacute Inpatient&amp;quot;] ).isEncounterPerformed()) OutpatientEncounter       where exists ((OutpatientEncounter.encounterDiagnosis()) Diagnosis where Diagnosis.code in &amp;quot;Advanced Illness&amp;quot;)         and OutpatientEncounter.period.toInterval() starts during day of Interval[start of &amp;quot;Measurement Period&amp;quot; - 1 year,          end of &amp;quot;Measurement Period&amp;quot;]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="9"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AdvancedIllnessandFrailty"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Two Outpatient Encounters with Advanced Illness on Different Dates of Service"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Two Outpatient Encounters with Advanced Illness on Different Dates of Service&amp;quot;:   exists ( from       &amp;quot;Outpatient Encounters with Advanced Illness&amp;quot; OutpatientEncounter1,       &amp;quot;Outpatient Encounters with Advanced Illness&amp;quot; OutpatientEncounter2       where OutpatientEncounter2.period ends 1 day or more after day of        end of OutpatientEncounter1.period       return OutpatientEncounter1   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="10"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AdvancedIllnessandFrailty"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Inpatient Encounter with Advanced Illness"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Inpatient Encounter with Advanced Illness&amp;quot;:   exists ( ( ([Encounter: &amp;quot;Acute Inpatient&amp;quot;]).isEncounterPerformed()) InpatientEncounter       where exists ((InpatientEncounter.encounterDiagnosis()) Diagnosis where Diagnosis.code in &amp;quot;Advanced Illness&amp;quot;)         and InpatientEncounter.period.toInterval() starts during day of Interval[start of &amp;quot;Measurement Period&amp;quot; - 1 year,            end of &amp;quot;Measurement Period&amp;quot;]   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="11"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AdvancedIllnessandFrailty"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Dementia Medications in Year Before or During Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Dementia Medications in Year Before or During Measurement Period&amp;quot;:   exists (( ([MedicationRequest: &amp;quot;Dementia Medications&amp;quot;]).isMedicationActive()) DementiaMedication       where DementiaMedication.doNotPerform is not true and       CMD.&amp;quot;MedicationRequestPeriod&amp;quot; ( DementiaMedication ) overlaps day of Interval[start of &amp;quot;Measurement Period&amp;quot; - 1 year,          end of &amp;quot;Measurement Period&amp;quot;]   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="12"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AdvancedIllnessandFrailty"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Is Age 66 or Older with Advanced Illness and Frailty"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Is Age 66 or Older with Advanced Illness and Frailty&amp;quot;:    AgeInYearsAt(date from end of &amp;quot;Measurement Period&amp;quot;)&amp;gt;= 66     and &amp;quot;Has Criteria Indicating Frailty&amp;quot;     and ( &amp;quot;Has Two Outpatient Encounters with Advanced Illness on Different Dates of Service&amp;quot;         or &amp;quot;Has Inpatient Encounter with Advanced Illness&amp;quot;         or &amp;quot;Has Dementia Medications in Year Before or During Measurement Period&amp;quot;     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="13"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AdvancedIllnessandFrailty"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Is Age 66 or Older Living Long Term in a Nursing Home"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Is Age 66 or Older Living Long Term in a Nursing Home&amp;quot;:   AgeInYearsAt(date from       end of &amp;quot;Measurement Period&amp;quot;   )&amp;gt;= 66     and ( ( Last( (([Observation: &amp;quot;Housing status&amp;quot;]).isAssessmentPerformed()) HousingStatus               where HousingStatus.effective.toInterval() ends on or before            day of end of &amp;quot;Measurement Period&amp;quot;           sort by            end of effective.toInterval() asc       )) LastHousingStatus         where LastHousingStatus.value ~ &amp;quot;Lives in a nursing home (finding)&amp;quot;     ) is not null"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="14"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="PalliativeCare"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Palliative Care in the Measurement Period"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Palliative Care in the Measurement Period&amp;quot;:   exists ((([Observation: &amp;quot;Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)&amp;quot;]).isAssessmentPerformed()) PalliativeAssessment       where PalliativeAssessment.effective.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;   )     or exists ([Condition: &amp;quot;Palliative Care Diagnosis&amp;quot;] PalliativeDiagnosis         where PalliativeDiagnosis.prevalenceInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([Encounter: &amp;quot;Palliative Care Encounter&amp;quot;]).isEncounterPerformed()) PalliativeEncounter         where PalliativeEncounter.period.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([Procedure: &amp;quot;Palliative Care Intervention&amp;quot;]).isInterventionPerformed()) PalliativeIntervention         where PalliativeIntervention.performed.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="15"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="DiabetesEyeExamFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator Exclusions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator Exclusions&amp;quot;:   Hospice.&amp;quot;Has Hospice Services&amp;quot;     or AIFrailLTCF.&amp;quot;Is Age 66 or Older with Advanced Illness and Frailty&amp;quot;     or AIFrailLTCF.&amp;quot;Is Age 66 or Older Living Long Term in a Nursing Home&amp;quot;     or PalliativeCare.&amp;quot;Has Palliative Care in the Measurement Period&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="16"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="prevalenceInterval"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns an interval representing the normalized prevalence period of a given Condition. @comment: Uses the ToInterval and ToAbatementInterval functions to determine the widest potential interval from onset to abatement as specified in the given Condition. If the condition is active, or has an abatement date the resulting  interval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary. */ define fluent function prevalenceInterval(condition Condition): if condition.clinicalStatus ~ &amp;quot;active&amp;quot;   or condition.clinicalStatus ~ &amp;quot;recurrence&amp;quot;   or condition.clinicalStatus ~ &amp;quot;relapse&amp;quot; then   Interval[start of condition.onset.toInterval(), end of condition.abatementInterval()] else     (end of ToAbatementInterval(condition)) abatementDate     return if abatementDate is null then       Interval[start of ToInterval(condition.onset), abatementDate)     else       Interval[start of ToInterval(condition.onset), abatementDate]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="17"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isAssessmentPerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="//Similar but different from QICoreCommon.isSurvey, which does not have status constraints define fluent function isAssessmentPerformed(Obs List&amp;lt;Observation&amp;gt;):   Obs O     where O.status in { &amp;#39;final&amp;#39;, &amp;#39;amended&amp;#39;, &amp;#39;corrected&amp;#39; }           and exists ( O.category ObservationCategory           where ( ObservationCategory ) ~ &amp;quot;survey&amp;quot;       )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="18"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FHIRHelpers"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToConcept"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept. */ define function ToConcept(concept FHIR.CodeableConcept):     if concept is null then         null     else         System.Concept {             codes: concept.coding C return ToCode(C),             display: concept.text.value         }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="19"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isEncounterPerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isEncounterPerformed(Enc List&amp;lt;Encounter&amp;gt;):   Enc E     where E.status in {&amp;#39;finished&amp;#39;, &amp;#39;arrived&amp;#39;, &amp;#39;triaged&amp;#39;, &amp;#39;in-progress&amp;#39;, &amp;#39;onleave&amp;#39;}"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="20"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="toInterval"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Normalizes a value that is a choice of timing-valued types to an equivalent interval @comment: Normalizes a choice type of DateTime, Quanitty, Interval&amp;lt;DateTime&amp;gt;, or Interval&amp;lt;Quantity&amp;gt; types to an equivalent interval. This selection of choice types is a superset of the majority of choice types that are used as possible representations for timing-valued elements in QICore, allowing this function to be used across any resource. The input can be provided as a DateTime, Quantity, Interval&amp;lt;DateTime&amp;gt; or Interval&amp;lt;Quantity&amp;gt;. The intent of this function is to provide a clear and concise mechanism to treat single elements that have multiple possible representations as intervals so that logic doesn&amp;#39;t have to account for the variability. More complex calculations (such as medication request period or dispense period calculation) need specific guidance and consideration. That guidance may make use of this function, but the focus of this function is on single element calculations where the semantics are unambiguous. If the input is a DateTime, the result a DateTime Interval beginning and ending on that DateTime. If the input is a Quantity, the quantity is expected to be a calendar-duration interpreted as an Age, and the result is a DateTime Interval beginning on the Date the patient turned that age and ending immediately before one year later. If the input is a DateTime Interval, the result is the input. If the input is a Quantity Interval, the quantities are expected to be calendar-durations interpreted as an Age, and the result is a DateTime Interval beginning on the date the patient turned the age given as the start of the quantity interval, and ending immediately before one year later than the date the patient turned the age given as the end of the quantity interval. If the input is a Timing, an error will be thrown indicating that Timing calculations are not implemented. Any other input will reslt in a null DateTime Interval */ define fluent function toInterval(choice Choice&amp;lt;DateTime, Quantity, Interval&amp;lt;DateTime&amp;gt;, Interval&amp;lt;Quantity&amp;gt;, Timing&amp;gt;):   case    when choice is DateTime then      Interval[choice as DateTime, choice as DateTime]   when choice is Interval&amp;lt;DateTime&amp;gt; then     choice as Interval&amp;lt;DateTime&amp;gt;   when choice is Quantity then     Interval[Patient.birthDate + (choice as Quantity),      Patient.birthDate + (choice as Quantity) + 1 year)   when choice is Interval&amp;lt;Quantity&amp;gt; then     Interval[Patient.birthDate + (choice.low as Quantity),      Patient.birthDate + (choice.high as Quantity) + 1 year)   when choice is Timing then       Message(null, true, &amp;#39;NOT_IMPLEMENTED&amp;#39;, &amp;#39;Error&amp;#39;, &amp;#39;Calculation of an interval from a Timing value is not supported&amp;#39;) as Interval&amp;lt;DateTime&amp;gt;   else    null as Interval&amp;lt;DateTime&amp;gt;  end"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="21"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isInterventionOrder"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isInterventionOrder(ServiceRequest List&amp;lt;ServiceRequest&amp;gt;):   ServiceRequest S     where S.status in { &amp;#39;active&amp;#39;, &amp;#39;completed&amp;#39; }       and S.intent = &amp;#39;order&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="22"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isInterventionPerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isInterventionPerformed(Proc List&amp;lt;Procedure&amp;gt;):   Proc P     where P.status ~ &amp;#39;completed&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="23"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isDeviceOrder"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isDeviceOrder(DeviceRequest List&amp;lt;DeviceRequest&amp;gt;):   DeviceRequest D     where D.status in { &amp;#39;active&amp;#39;, &amp;#39;completed&amp;#39; }       and D.intent = &amp;#39;order&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="24"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="doNotPerform"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns true if the given DeviceRequest is a negation (i.e. do not perform this order) */ define fluent function doNotPerform(deviceRequest DeviceRequest):   singleton from (     deviceRequest.modifierExtension E       where E.url = &amp;#39;http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-doNotPerform&amp;#39;       return E.value as Boolean   )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="25"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isSymptom"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isSymptom(Obs List&amp;lt;Observation&amp;gt;):   Obs O     where O.status in { &amp;#39;preliminary&amp;#39;, &amp;#39;final&amp;#39;, &amp;#39;amended&amp;#39;, &amp;#39;corrected&amp;#39; }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="26"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CQMCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="encounterDiagnosis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns the Condition resources referenced by the diagnosis element of the Encounter */ define fluent function encounterDiagnosis(Encounter Encounter ):   Encounter.diagnosis D     return singleton from ([Condition] C where C.id = D.condition.reference.getId())"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="27"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="getId"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns the tail of the given uri (i.e. everything after the last slash in the URI). @comment: This function can be used to determine the logical id of a given resource. It can be used in a single-server environment to trace references. However, this function does not attempt to resolve or distinguish the base of the given url, and so cannot be used safely in multi-server environments. */ define fluent function getId(uri String):   Last(Split(uri, &amp;#39;/&amp;#39;))"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="28"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isMedicationActive"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isMedicationActive(MedicationRequest List&amp;lt;MedicationRequest&amp;gt;):   MedicationRequest M     where M.status = &amp;#39;active&amp;#39;       and M.intent = &amp;#39;order&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="29"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CumulativeMedicationDuration"/>
+            </extension>
+            <extension url="name">
+               <valueString value="MedicationRequestPeriod"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* Now that we have a ToDaily function, we can approach calculation of the duration of medication for an order. First, consider the definitions for each element: * 1 and only 1 dosageInstruction * 1 and only 1 doseAndRate * 1 timing with 1 repeat * frequency, frequencyMax, defaulting to 1 * period, periodUnit, defaulting to 1 &amp;#39;d&amp;#39; * doseQuantity or doseRange * timeOfDay * authoredOn: The date the prescription was written * dispenseRequest.validityPeriod: Time period supply is authorized for * dispenseRequest.quantity: amount of medication supplied per dispense * dispenseRequest.numberOfRepeatsAllowed: number of refills authorized * dispenseRequest.expectedSupplyDuration: number of days supply per dispense * dosageInstruction.timing.repeat.boundsDuration: total duration of the repeat * dosageInstruction.timing.repeat.boundsRange: range of durations of the repeat * dosageInstruction.timing.repeat.boundsPeriod: period bounds of the repeat * dosageInstruction.timing.repeat.count: number of times to repeat * dosageInstruction.timing.repeat.countMax: maximum number of times to repeat * dosageInstruction.timing.repeat.frequency: event occurs frequency times per period * dosageInstruction.timing.repeat.frequencyMax: event occurs up to frequencyMax times per period * dosageInstruction.timing.repeat.period: event occurs frequency times per period * dosageInstruction.timing.repeat.periodMax: upper limit of period * dosageInstruction.timing.repeat.periodUnit: period duration (s | min | h | d | wk | mo | a) * dosageInstruction.timing.repeat.timeOfDay: time of day for the event (0..*) * dosageInstruction.timing.repeat.when: event timing (HS | WAKE | C | CM | CD | CV | AC | ACM...) * dosageInstruction.timing.code: BID | TID | QID | AM | PM | QD | QOD... * dosageInstruction.asNeeded * dosageInstruction.doseAndRate.doseQuantity * dosageInstruction.doseAndRate.doseRange If expectedSupplyDuration is present, then the duration is     expectedSupplyDuration * (1 + numberOfRepeatsAllowed) If expectedSupplyDuration is not present, then it must be calculated based on the quantity, dosage, and frequency:     (quantity / (dosage * frequency)) * (1 + numberOfRepeatsAllowed)     dosage: Coalesce(end of doseAndRate.doseRange, doseAndRate.doseQuantity)     frequency: Coalesce(frequencyMax, frequency)     period: Quantity(period, periodUnit) If expectedSupplyDuration is not present and cannot be calculated, and the boundsPeriod is present (and completely specified), we can use that directly     dosage.timing.repeat.boundsPeriod This calculation results in a number of days, which can then be turned into a period by anchoring that to the start of the validityPeriod or the authoredOn:     Interval[earliestDispensable, earliestDispensable + expectedSupplyDuration - 1]     earliestDispensable: Coalesce(start of validityPeriod, authoredOn) The following function illustrates this completely: */  /* Calculates the Medication Period for a single MedicationRequest. MedicationRequest instances provided to this function are expected to conform to the [MMEMedicationRequest](http://build.fhir.org/ig/cqframework/opioid-mme-r4/StructureDefinition-mmemedicationrequest.html) profile, which expects: * 1 and only 1 dosageInstruction, multiple dosageInstruction elements will result in an error * 1 and only 1 doseAndRate, multiple doseAndRate elements will result in an error * 1 timing with 1 repeat, missing timing or repeat elements will result in a null * frequency, frequencyMax, defaulting to 1 * period, periodUnit, defaulting to 1 &amp;#39;d&amp;#39; * timeOfDay * doseQuantity or doseRange, missing doseQuantity and doseRange will result in a null Note that MedicationRequest status is not considered by this calculation, as the list of MedicationRequest instances provided to this function should already have considered appropriate statuses, depending on the use case, typically `completed`. */ define function MedicationRequestPeriod(Request &amp;quot;MedicationRequest&amp;quot;):   Request R     let       dosage: singleton from R.dosageInstruction,       doseAndRate: singleton from dosage.doseAndRate,       timing: dosage.timing,       frequency: Coalesce(timing.repeat.frequencyMax, timing.repeat.frequency),       period: Quantity(timing.repeat.period, timing.repeat.periodUnit),       doseRange: doseAndRate.dose,       doseQuantity: doseAndRate.dose,       dose: Coalesce(end of doseRange, doseQuantity),       dosesPerDay: Coalesce(ToDaily(frequency, period), Count(timing.repeat.timeOfDay), 1.0),       boundsPeriod: timing.repeat.bounds as Interval&amp;lt;DateTime&amp;gt;,       daysSupply: (convert R.dispenseRequest.expectedSupplyDuration to days).value,       quantity: R.dispenseRequest.quantity,       refills: Coalesce(R.dispenseRequest.numberOfRepeatsAllowed, 0),       startDate:         Coalesce(           date from start of boundsPeriod,           date from R.authoredOn,           date from start of R.dispenseRequest.validityPeriod         ),       totalDaysSupplied: Coalesce(daysSupply, quantity.value / (dose.value * dosesPerDay)) * (1 + refills)     return       if startDate is not null and totalDaysSupplied is not null then         Interval[startDate, startDate + Quantity(totalDaysSupplied - 1, &amp;#39;day&amp;#39;) ]       else if startDate is not null and boundsPeriod.&amp;quot;high&amp;quot; is not null then         Interval[startDate, date from end of boundsPeriod]       else         null"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="30"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CumulativeMedicationDuration"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Quantity"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/**********************************************************************/ /* Functions in this region are copied from opioid-mme-r4             */ /**********************************************************************/  define function Quantity(value Decimal, unit String):   if value is not null then     System.Quantity { value: value, unit: unit }   else     null"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="31"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="CumulativeMedicationDuration"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToDaily"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/*  Goal is to get to number of days  Two broad approaches to the calculation:   1) Based on supply and frequency, calculate the number of expected days the medication will cover/has covered   2) Based on relevant period, determine a covered interval and calculate the length of that interval in days This topic covers several use cases and illustrates how to calculate Cumulative Medication Duration for each type of medication resource using the supply and frequency approach. */  /*   For the first approach, we need to get from frequency to a frequency/day   So we define ToDaily */  /*   Calculates daily frequency given frequency within a period */ define function ToDaily(frequency System.Integer, period System.Quantity):   case period.unit     when &amp;#39;h&amp;#39; then frequency * (24.0 / period.value)     when &amp;#39;min&amp;#39; then frequency * (24.0 / period.value) * 60     when &amp;#39;s&amp;#39; then frequency * (24.0 / period.value) * 60 * 60     when &amp;#39;d&amp;#39; then frequency * (24.0 / period.value) / 24     when &amp;#39;wk&amp;#39; then frequency * (24.0 / period.value) / (24 * 7)     when &amp;#39;mo&amp;#39; then frequency * (24.0 / period.value) / (24 * 30) /* assuming 30 days in month */     when &amp;#39;a&amp;#39; then frequency * (24.0 / period.value) / (24 * 365) /* assuming 365 days in year */     when &amp;#39;hour&amp;#39; then frequency * (24.0 / period.value)     when &amp;#39;minute&amp;#39; then frequency * (24.0 / period.value) * 60     when &amp;#39;second&amp;#39; then frequency * (24.0 / period.value) * 60 * 60     when &amp;#39;day&amp;#39; then frequency * (24.0 / period.value) / 24     when &amp;#39;week&amp;#39; then frequency * (24.0 / period.value) / (24 * 7)     when &amp;#39;month&amp;#39; then frequency * (24.0 / period.value) / (24 * 30) /* assuming 30 days in month */     when &amp;#39;year&amp;#39; then frequency * (24.0 / period.value) / (24 * 365) /* assuming 365 days in year */     when &amp;#39;hours&amp;#39; then frequency * (24.0 / period.value)     when &amp;#39;minutes&amp;#39; then frequency * (24.0 / period.value) * 60     when &amp;#39;seconds&amp;#39; then frequency * (24.0 / period.value) * 60 * 60     when &amp;#39;days&amp;#39; then frequency * (24.0 / period.value) / 24     when &amp;#39;weeks&amp;#39; then frequency * (24.0 / period.value) / (24 * 7)     when &amp;#39;months&amp;#39; then frequency * (24.0 / period.value) / (24 * 30) /* assuming 30 days in month */     when &amp;#39;years&amp;#39; then frequency * (24.0 / period.value) / (24 * 365) /* assuming 365 days in year */     else Message(null, true, &amp;#39;CMDLogic.ToDaily.UnknownUnit&amp;#39;, ErrorLevel, &amp;#39;Unknown unit &amp;#39; &amp;amp; period.unit)   end"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="32"/>
+            </extension>
+         </extension>
+         <status value="active"/>
+         <type>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/library-type"/>
+               <code value="module-definition"/>
+            </coding>
+         </type>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library QICoreCommon"/>
+            <resource value="Library/QICoreCommon|2.0.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library Status"/>
+            <resource value="Library/Status|1.6.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library FHIRHelpers"/>
+            <resource value="Library/FHIRHelpers|4.3.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library Hospice"/>
+            <resource value="Library/Hospice|6.9.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library AIFrailLTCF"/>
+            <resource value="Library/AdvancedIllnessandFrailty|1.8.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library CQMCommon"/>
+            <resource value="Library/CQMCommon|2.0.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library CMD"/>
+            <resource value="Library/CumulativeMedicationDuration|4.0.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library PalliativeCare"/>
+            <resource value="Library/PalliativeCare|1.9.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ObservationCategoryCodes"/>
+            <resource value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system SNOMEDCT"/>
+            <resource value="http://snomed.info/sct"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system LOINC"/>
+            <resource value="http://loinc.org"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Diabetic Retinopathy"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.327"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Retinal or Dilated Eye Exam"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.115.12.1088"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Office Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Annual Wellness Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services Established Office Visit, 18 and Up"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services Initial Office Visit, 18 and Up"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Home Healthcare Services"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Ophthalmological Services"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1285"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Telephone Visits"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Diabetes"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.103.12.1001"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Encounter Inpatient"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Encounter"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Care Ambulatory"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Diagnosis"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Frailty Device"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Frailty Diagnosis"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Frailty Encounter"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Frailty Symptom"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Outpatient"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1087"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Observation"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1086"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Emergency Department Evaluation and Management Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1010"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Nonacute Inpatient"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1084"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Advanced Illness"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.110.12.1082"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Acute Inpatient"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1083"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Dementia Medications"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Palliative Care Diagnosis"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Palliative Care Encounter"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Palliative Care Intervention"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135"/>
+         </relatedArtifact>
+         <parameter>
+            <name value="Measurement Period"/>
+            <use value="in"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Period"/>
+         </parameter>
+         <parameter>
+            <name value="ErrorLevel"/>
+            <use value="in"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="string"/>
+         </parameter>
+         <parameter>
+            <name value="Numerator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Initial Population"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator Exclusions"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="boolean"/>
+         </parameter>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.327"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.103.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1074"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="id"/>
+            <mustSupport value="id.value"/>
+            <mustSupport value="code"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="effective"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="category"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.115.12.1088"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="value"/>
+            <mustSupport value="effective"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="category"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://loinc.org"/>
+                  <code value="45755-6"/>
+                  <display value="Hospice care [Minimum Data Set]"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="value"/>
+            <mustSupport value="effective"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="category"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://loinc.org"/>
+                  <code value="98181-1"/>
+                  <display value="Medical equipment used"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="effective"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="category"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.113.12.1075"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="effective"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="category"/>
+            <mustSupport value="value"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://loinc.org"/>
+                  <code value="71802-3"/>
+                  <display value="Housing status"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="effective"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="category"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://loinc.org"/>
+                  <code value="71007-9"/>
+                  <display value="Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Patient"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient"/>
+            <mustSupport value="birthDate"/>
+            <mustSupport value="birthDate.value"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1285"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="hospitalization"/>
+            <mustSupport value="hospitalization.dischargeDisposition"/>
+            <mustSupport value="period"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1088"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1087"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1086"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1010"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1084"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1083"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="condition"/>
+            <mustSupport value="condition.reference"/>
+            <mustSupport value="condition.reference.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="ServiceRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest"/>
+            <mustSupport value="code"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="DeviceRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-devicerequest"/>
+            <mustSupport value="code"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <mustSupport value="url"/>
+            <mustSupport value="url.value"/>
+            <mustSupport value="value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.118.12.1300"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="dispenseRequest"/>
+            <mustSupport value="dispenseRequest.expectedSupplyDuration"/>
+            <mustSupport value="dispenseRequest.quantity"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dispenseRequest.validityPeriod"/>
+            <mustSupport value="doNotPerform"/>
+            <mustSupport value="doNotPerform.value"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1510"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication.reference"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <mustSupport value="dosageInstruction"/>
+            <mustSupport value="dispenseRequest"/>
+            <mustSupport value="dispenseRequest.expectedSupplyDuration"/>
+            <mustSupport value="dispenseRequest.quantity"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed"/>
+            <mustSupport value="dispenseRequest.numberOfRepeatsAllowed.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dispenseRequest.validityPeriod"/>
+            <mustSupport value="doNotPerform"/>
+            <mustSupport value="doNotPerform.value"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Medication"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication"/>
+            <mustSupport value="id"/>
+         </dataRequirement>
+      </Library>
+   </contained>
+   <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements">
+      <valueReference>
+         <reference value="#effective-data-requirements"/>
+      </valueReference>
+   </extension>
+   <url value="https://madie.cms.gov/Measure/DiabetesEyeExamFHIR"/>
+   <identifier>
+      <use value="usual"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="short-name"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/shortName"/>
+      <value value="CMS131FHIR"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-independent"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:459c51f4-3477-4d0f-a99f-f56756c16504"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-specific"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:eed9b848-5d36-47b4-8bec-909fd94a4697"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="publisher"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/cmsId"/>
+      <value value="131FHIR"/>
+      <assigner>
+         <display value="CMS"/>
+      </assigner>
+   </identifier>
+   <version value="0.0.002"/>
+   <name value="DiabetesEyeExamFHIR"/>
+   <title value="Diabetes: Eye ExamFHIR"/>
+   <status value="active"/>
+   <experimental value="false"/>
+   <date value="2024-04-15T19:41:02+00:00"/>
+   <publisher value="National Committee for Quality Assurance"/>
+   <contact>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.ncqa.org/"/>
+      </telecom>
+   </contact>
+   <description value="Percentage of patients 18-75 years of age with diabetes and an active diagnosis of retinopathy in any part of the measurement period who had a retinal or dilated eye exam by an eye care professional during the measurement period or diabetics with no diagnosis of retinopathy in any part of the measurement period who had a retinal or dilated eye exam by an eye care professional during the measurement period or in the 12 months prior to the measurement period"/>
+   <purpose value="UNKNOWN"/>
+   <usage value="The eye exam must be performed by an ophthalmologist or optometrist, or there must be evidence that fundus photography results were read by a system that provides an artificial intelligence (AI) interpretation.      This eCQM is a patient-based measure.  This FHIR-based measure has been derived from the QDM-based measure: CMS131v12.   Please refer to the HL7 QI-Core Implementation Guide (http://hl7.org/fhir/us/qicore/index.html) for more information on QI-Core and mapping recommendations from QDM to QI-Core 4.1.1 (http://hl7.org/fhir/us/qicore/qdm-to-qicore.html)."/>
+   <copyright value="This Physician Performance Measure (Measure) and related data specifications are owned and were developed by the National Committee for Quality Assurance (NCQA). NCQA is not responsible for any use of the Measure. NCQA makes no representations, warranties, or endorsement about the quality of any organization or physician that uses or reports performance measures and NCQA has no liability to anyone who relies on such measures or specifications. NCQA holds a copyright in the Measure. The Measure can be reproduced and distributed, without modification, for noncommercial purposes (e.g., use by healthcare providers in connection with their practices) without obtaining approval from NCQA. Commercial use is defined as the sale, licensing, or distribution of the Measure for commercial gain, or incorporation of the Measure into a product or service that is sold, licensed or distributed for commercial gain. All commercial uses or requests for modification must be approved by NCQA and are subject to a license at the discretion of NCQA. (C) 2012-2022 National Committee for Quality Assurance. All Rights Reserved.  Limited proprietary coding is contained in the Measure specifications for user convenience. Users of proprietary code sets should obtain all necessary licenses from the owners of the code sets. NCQA disclaims all liability for use or accuracy of any third-party codes contained in the specifications.  CPT(R) codes, descriptions and other data are copyright 2022. American Medical Association. All rights reserved. CPT is a trademark of the American Medical Association. No fee schedules, basic units, relative values or related listings are included in CPT. The AMA assumes no liability for the data contained herein. Applicable FARS/DFARS restrictions apply to government use.  LOINC(R) copyright 2004-2022 Regenstrief Institute, Inc.   This material contains SNOMED Clinical Terms(R) (SNOMED CT[R]) copyright 2004-2022 International Health Terminology Standards Development Organisation.   ICD-10 copyright 2022 World Health Organization. All Rights Reserved."/>
+   <effectivePeriod>
+      <start value="2025-01-01"/>
+      <end value="2025-12-31"/>
+   </effectivePeriod>
+   <author>
+      <name value="National Committee for Quality Assurance"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.ncqa.org/"/>
+      </telecom>
+   </author>
+   <library value="https://madie.cms.gov/Library/DiabetesEyeExamFHIR"/>
+   <disclaimer value="The performance Measure is not a clinical guideline and does not establish a standard of medical care, and has not been tested for all potential applications. THE MEASURE AND SPECIFICATIONS ARE PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND.   Due to technical limitations, registered trademarks are indicated by (R) or [R] and unregistered trademarks are indicated by (TM) or [TM]."/>
+   <rationale value="Diabetes is the seventh leading cause of death in the United States (Centers for Disease Control and Prevention [CDC], 2022a). In 2019, diabetes affected more than 37 million Americans (11.3 percent of the U.S. population) and killed more than 87,000 people (American Diabetes Association [ADA], 2022a). Diabetes is a long-lasting disease marked by high blood glucose levels, resulting from the body's inability to produce or use insulin properly (CDC, 2022a). People with diabetes are at increased risk of serious health complications including vision loss, heart disease, stroke, kidney damage, amputation of feet or legs, and premature death (CDC, 2022b).  In 2017, diabetes cost the U.S. an estimated $327 billion: $237 billion in direct medical costs and $90 billion in reduced productivity. This is a 34 percent increase from the estimated $245 billion spent on diabetes in 2012 (ADA, 2018).  Diabetic retinopathy is progressive damage to the small blood vessels in the retina that may result in loss of vision. It is the leading cause of blindness in adults between 20-74 years of age. Approximately 4.1 million adults are affected by diabetic retinopathy (CDC, 2020)."/>
+   <clinicalRecommendationStatement value="American Diabetes Association (2022b):  - Adults with type 1 diabetes should have an initial dilated and comprehensive eye examination by an ophthalmologist or optometrist within 5 years after the onset of diabetes. (Level of evidence: B)  - Patients with type 2 diabetes should have an initial dilated and comprehensive eye examination by an ophthalmologist or optometrist at the time of the diabetes diagnosis. (Level of evidence: B)  - If there is no evidence of retinopathy for one or more annual eye exam and glycemia is well controlled, then screening every 1–2 years may be considered. If any level of diabetic retinopathy is present, subsequent dilated retinal examinations should be repeated at least annually by an ophthalmologist or optometrist. If retinopathy is progressing or sight threatening, then examinations will be required more frequently. (Level of evidence: B)"/>
+   <group id="64e638592ad653247b573ad7">
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-scoring">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-scoring"/>
+               <code value="proportion"/>
+               <display value="Proportion"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis">
+         <valueCode value="boolean"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-type">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-type"/>
+               <code value="process"/>
+               <display value="Process"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-rateAggregation">
+         <valueCode value="None"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-improvementNotation">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-improvement-notation"/>
+               <code value="decrease"/>
+               <display value="increase"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <population id="09B959A8-5007-435B-A107-AC0D91F8AC19">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="initial-population"/>
+               <display value="Initial Population"/>
+            </coding>
+         </code>
+         <description value="Patients 18-75 years of age by the end of the measurement period, with diabetes with a visit during the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Initial Population"/>
+         </criteria>
+      </population>
+      <population id="077EECBD-AA7A-4B03-A3C8-BDCD664F93C8">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator"/>
+               <display value="Denominator"/>
+            </coding>
+         </code>
+         <description value="Equals Initial Population"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator"/>
+         </criteria>
+      </population>
+      <population id="81932DE1-4819-46D7-B907-E60460A3AD94">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator-exclusion"/>
+               <display value="Denominator Exclusion"/>
+            </coding>
+         </code>
+         <description value="Exclude patients who are in hospice care for any part of the measurement period.  Exclude patients 66 and older by the end of the measurement period who are living long term in a nursing home any time on or before the end of  the measurement period.   Exclude patients 66 and older by the end of the measurement period with an indication of frailty for any part of the measurement period who also meet any of the following advanced illness criteria:   - Advanced illness with two outpatient encounters during the measurement period or the year prior - OR advanced illness with one inpatient encounter during the measurement period or the year prior - OR taking dementia medications during the measurement period or the year prior  Exclude patients receiving palliative care for any part of the measurement period."/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator Exclusions"/>
+         </criteria>
+      </population>
+      <population id="2C9431F7-C001-4CF4-B73D-7EE0634FE9CB">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="numerator"/>
+               <display value="Numerator"/>
+            </coding>
+         </code>
+         <description value="Patients with an eye screening for diabetic retinal disease. This includes diabetics who had one of the following: - Diabetic with a diagnosis of retinopathy in any part of the measurement period and a retinal or dilated eye exam by an eye care professional in the measurement period - Diabetic with no diagnosis of retinopathy in any part of the measurement period and a retinal or dilated eye exam by an eye care professional in the measurement period or the year prior to the measurement period"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Numerator"/>
+         </criteria>
+      </population>
+   </group>
+</Measure>
