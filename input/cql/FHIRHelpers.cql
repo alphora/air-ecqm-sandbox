@@ -113,6 +113,7 @@ define function ToInterval(quantity FHIR.Quantity):
             else
                 Interval[ToQuantity(quantity), ToQuantity(quantity)]
         end
+       
 
 /*
 @description: Converts the given FHIR [Ratio](https://hl7.org/fhir/datatypes.html#Ratio) value to a CQL Ratio.

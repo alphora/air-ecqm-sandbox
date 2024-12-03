@@ -1,6 +1,6 @@
 library DocumentationofCurrentMedicationsFHIR version '0.2.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
@@ -33,7 +33,7 @@ define "Denominator":
   "Initial Population"
 
 define "Qualifying Encounter during day of Measurement Period":
-  ["Encounter": "Encounter to Document Medications"] ValidEncounter
+  ["Encounter": type in "Encounter to Document Medications"] ValidEncounter
     where ValidEncounter.status = 'finished'
       and ValidEncounter.period during day of "Measurement Period"
 

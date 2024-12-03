@@ -1,6 +1,15 @@
+/*
+@QICore6: Update test cases and Library and Measure resources
+- Condition to ConditionProblemsHealthConcerns 
+- observation-bp to USCoreBloodPressureProfile
+*/
+
 library ControllingHighBloodPressureFHIR version '0.1.000'
 
-using QICore version '4.1.1'
+/*
+@QICore6: add 'using USCore version '6.1.0''
+*/
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include QICoreCommon version '2.1.000' called QICoreCommon
@@ -38,6 +47,9 @@ define "Initial Population":
     and exists "Essential Hypertension Diagnosis"
     and exists AdultOutpatientEncounters."Qualifying Encounters"
 
+/*
+@QICore6: Update Condition to ConditionProblemsHealthConcerns
+*/
 define "Essential Hypertension Diagnosis":
   ( [Condition: "Essential Hypertension"] ) Hypertension
     where Hypertension.prevalenceInterval ( ) overlaps Interval[start of "Measurement Period", start of "Measurement Period" + 6 months )
@@ -54,6 +66,9 @@ define "Denominator Exclusions":
     or AIFrailLTCF."Is Age 66 or Older Living Long Term in a Nursing Home"
     or PalliativeCare."Has Palliative Care in the Measurement Period"
 
+/*
+@QICore6: Update Condition to ConditionProblemsHealthConcerns
+*/
 define "Pregnancy or Renal Diagnosis":
   ( [Condition: "Pregnancy"]
     union [Condition: "End Stage Renal Disease"]
@@ -101,11 +116,17 @@ define "Lowest Diastolic Reading on Most Recent Blood Pressure Day":
       sort asc
   )
 
+/*
+@QICore6: Update observation-bp to USCoreBloodPressureProfile
+*/
 define "Qualifying Systolic Blood Pressure Reading":
   ( ( ["observation-bp"] ).isObservationBP ( ) ) BloodPressure
     where ( not ( ( BloodPressure.encounter.getEncounter ( ) ).class.code in { 'EMER', 'IMP', 'ACUTE', 'NONAC', 'PRENC', 'SS' } ) )
       and BloodPressure.effective.latest ( ) during day of "Measurement Period"
 
+/*
+@QICore6: Update observation-bp to USCoreBloodPressureProfile
+*/
 define "Qualifying Diastolic Blood Pressure Reading":
   ( ( ["observation-bp"] ).isObservationBP ( ) ) BloodPressure
     where ( not ( ( BloodPressure.encounter.getEncounter ( ) ).class.code in { 'EMER', 'IMP', 'ACUTE', 'NONAC', 'PRENC', 'SS' } ) )
