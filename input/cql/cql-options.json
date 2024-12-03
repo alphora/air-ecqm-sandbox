@@ -14,7 +14,7 @@
     "validateUnits":true,
     "verifyOnly":false,
     "errorLevel":"Info",
-    "signatureLevel":"Overloads",
+    "signatureLevel":"All",
     "analyzeDataRequirements":true,
     "collapseDataRequirements":true
  } 
