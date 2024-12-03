@@ -28,7 +28,7 @@ code "Depression screening declined (situation)": '720834000' from "SNOMEDCT" di
 code "Depression screening negative (finding)": '428171000124102' from "SNOMEDCT" display 'Depression screening negative (finding)'
 code "Depression screening positive (finding)": '428181000124104' from "SNOMEDCT" display 'Depression screening positive (finding)'
 
-parameter "Measurement Period" Interval<DateTime> //default Interval[@2025-01-01T00:00:00Z, @2026-01-01T00:00:00Z)
+parameter "Measurement Period" Interval<DateTime> default Interval[@2025-01-01T00:00:00Z, @2026-01-01T00:00:00Z)
 
 context Patient
 
@@ -77,10 +77,11 @@ define "Follow Up Intervention for Positive Adolescent Depression Screening":
       union ( [ServiceRequest: "Referral for Adolescent Depression"] AdolescentReferral
           where AdolescentReferral.status in { 'active', 'completed' }
       )
-      union ( [Procedure: "Follow Up for Adolescent Depression"] AdolescentFollowUp
-          where AdolescentFollowUp.status = 'completed'
-      )
   )
+
+define "Follow Up Procedure Intervention for Positive Adolescent Depression Screening":
+  [Procedure: "Follow Up for Adolescent Depression"] AdolescentFollowUp
+    where AdolescentFollowUp.status = 'completed'
 
 define "Follow Up Intervention for Positive Adult Depression Screening":
   ( ( [MedicationRequest: "Adult Depression Medications"] AdultMed
@@ -90,10 +91,12 @@ define "Follow Up Intervention for Positive Adult Depression Screening":
       union ( [ServiceRequest: "Referral for Adult Depression"] AdultReferral
           where AdultReferral.status in { 'active', 'completed' }
       )
-      union ( [Procedure: "Follow Up for Adult Depression"] AdultFollowUp
-          where AdultFollowUp.status = 'completed'
-      )
   )
+
+define "Follow Up Procedure Intervention for Positive Adult Depression Screening":
+  [Procedure: "Follow Up for Adult Depression"] AdultFollowUp
+    where AdultFollowUp.status = 'completed'
+      
 
 define "Has Adolescent Depression Screening":
   exists ( [ObservationScreeningAssessment: "Adolescent depression screening assessment"] AdolescentScreening
@@ -166,25 +169,27 @@ define "Most Recent Adolescent Depression Screening Positive and Follow Up Provi
   from
     "Most Recent Adolescent Depression Screening" LastAdolescentScreen,
     "Follow Up Intervention for Positive Adolescent Depression Screening" FollowUpPositiveAdolescentScreen,
+    "Follow Up Procedure Intervention for Positive Adolescent Depression Screening" FollowUpProcedurePositiveAdolescentScreen,
     "Qualifying Encounter During Measurement Period" QualifyingEncounter
     where LastAdolescentScreen.effective.toInterval ( ) starts 14 days or less on or before day of start of QualifyingEncounter.period
       and LastAdolescentScreen.value ~ "Depression screening positive (finding)"
-      and ( start of FollowUpPositiveAdolescentScreen.performed.toInterval ( ) during QualifyingEncounter.period
+      and ( start of FollowUpProcedurePositiveAdolescentScreen.performed.toInterval() during QualifyingEncounter.period
           or FollowUpPositiveAdolescentScreen.authoredOn 2 days or less on or after day of end of QualifyingEncounter.period
       )
-      and ( Coalesce(start of FollowUpPositiveAdolescentScreen.performed.toInterval(), FollowUpPositiveAdolescentScreen.authoredOn) during day of "Measurement Period" )
+      and ( Coalesce(start of FollowUpProcedurePositiveAdolescentScreen.performed.toInterval(), FollowUpPositiveAdolescentScreen.authoredOn) during day of "Measurement Period" )
 
 define "Most Recent Adult Depression Screening Positive and Follow Up Provided":
   from
     "Most Recent Adult Depression Screening" LastAdultScreen,
     "Follow Up Intervention for Positive Adult Depression Screening" FollowUpPositiveAdultScreen,
+    "Follow Up Procedure Intervention for Positive Adult Depression Screening" FollowUpProcedurePositiveAdultScreen,
     "Qualifying Encounter During Measurement Period" QualifyingEncounter
     where LastAdultScreen.effective.toInterval ( ) starts 14 days or less on or before day of start of QualifyingEncounter.period
       and LastAdultScreen.value ~ "Depression screening positive (finding)"
-      and ( start of FollowUpPositiveAdultScreen.performed.toInterval ( ) during QualifyingEncounter.period
+      and (start of (FollowUpProcedurePositiveAdultScreen.performed.toInterval()) during QualifyingEncounter.period
           or FollowUpPositiveAdultScreen.authoredOn 2 days or less on or after day of end of QualifyingEncounter.period
       )
-      and ( Coalesce(start of FollowUpPositiveAdultScreen.performed.toInterval(), FollowUpPositiveAdultScreen.authoredOn) during day of "Measurement Period" )
+      and ( Coalesce(start of (FollowUpProcedurePositiveAdultScreen.performed.toInterval()), FollowUpPositiveAdultScreen.authoredOn) during day of "Measurement Period" )
 
 define "Patient Age 12 to 16 Years at Start of Measurement Period":
   AgeInYearsAt(date from start of "Measurement Period") in Interval[12, 16]
