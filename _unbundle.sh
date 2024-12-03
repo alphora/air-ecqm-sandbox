@@ -16,7 +16,7 @@ HELP_USAGE
 	exit 0
 }
 
-tooling_jar=tooling-cli-3.1.0.jar
+tooling_jar=tooling-cli-3.6.0.jar
 input_cache_path=./input-cache
 measures_dir=./input/tests/measure
 output_base_dir=./input/tests/measure
