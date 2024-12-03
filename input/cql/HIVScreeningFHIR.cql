@@ -1,6 +1,6 @@
 library HIVScreeningFHIR version '0.2.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -43,19 +43,20 @@ define "Numerator":
   ( "Has HIV Test Performed" )
 
 define "Denominator Exclusions":
-  exists ( ["Condition": "HIV"] ) HIV
-    where HIV.prevalenceInterval ( ) starts before day of start of "Measurement Period"
-      and HIV.verificationStatus !~ "refuted"
+  exists ( [ConditionProblemsHealthConcerns: "HIV"] 
+    union [ConditionEncounterDiagnosis: "HIV"] ) HIVirus
+    where HIVirus.prevalenceInterval ( ) starts before day of start of "Measurement Period"
+      and HIVirus.verificationStatus !~ "refuted"
 
 define "Denominator Exceptions":
   "Patient Expired"
 
 define "Qualifying Encounters":
-  ( ["Encounter": "Preventive Care Services, Initial Office Visit, 0 to 17"]
-    union ["Encounter": "Preventive Care Services-Initial Office Visit, 18 and Up"]
-    union ["Encounter": "Preventive Care, Established Office Visit, 0 to 17"]
-    union ["Encounter": "Preventive Care Services - Established Office Visit, 18 and Up"]
-    union ["Encounter": "Office Visit"] ) Encounter
+  ( ["Encounter": type in "Preventive Care Services, Initial Office Visit, 0 to 17"]
+    union ["Encounter": type in "Preventive Care Services-Initial Office Visit, 18 and Up"]
+    union ["Encounter": type in "Preventive Care, Established Office Visit, 0 to 17"]
+    union ["Encounter": type in "Preventive Care Services - Established Office Visit, 18 and Up"]
+    union ["Encounter": type in "Office Visit"] ) Encounter
     where Encounter.period during day of "Measurement Period"
       and Encounter.status = 'finished'
 
@@ -63,8 +64,8 @@ define "Patient Expired":
   Patient.deceased on or before end of "Measurement Period"
 
 define "Has HIV Test Performed":
-  exists ( ["Observation": "Human Immunodeficiency Virus (HIV) Laboratory Test Codes (Ab and Ag)"]
-    union ["Observation": "HIV 1 and 2 tests - Meaningful Use set"] ) HIVTest
+  exists ( ["LaboratoryResultObservation": "Human Immunodeficiency Virus (HIV) Laboratory Test Codes (Ab and Ag)"]
+    union ["LaboratoryResultObservation": "HIV 1 and 2 tests - Meaningful Use set"] ) HIVTest
     where HIVTest.value is not null
       and AgeInYearsAt(date from start of HIVTest.effective.toInterval()) in Interval[15, 65]
       and HIVTest.effective.toInterval ( ) starts before end of "Measurement Period"
