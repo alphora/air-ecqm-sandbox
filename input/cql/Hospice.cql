@@ -34,7 +34,7 @@ define "Has Hospice Services":
         where HospiceEncounter.period.toInterval() overlaps day of "Measurement Period"
     )
     or exists ((([ObservationScreeningAssessment: "Hospice care [Minimum Data Set]"]).isAssessmentPerformed()) HospiceAssessment
-        where HospiceAssessment.value ~ "Yes (qualifier value)"
+        where (HospiceAssessment as ObservationScreeningAssessment).value ~ "Yes (qualifier value)"
           and HospiceAssessment.effective.toInterval() overlaps day of "Measurement Period"
     )
     or exists ((([ServiceRequest: "Hospice Care Ambulatory"]).isInterventionOrder()) HospiceOrder

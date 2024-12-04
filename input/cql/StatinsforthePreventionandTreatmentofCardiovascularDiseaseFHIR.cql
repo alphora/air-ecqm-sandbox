@@ -1,6 +1,6 @@
 library StatinsforthePreventionandTreatmentofCardiovascularDiseaseFHIR version '0.2.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include Hospice version '6.12.000' called Hospice
@@ -87,8 +87,8 @@ define "Denominator 4":
   "Initial Population 4"
 
 define "Denominator Exclusions":
-  exists ( ( [Condition: "Breastfeeding"]
-      union [Condition: "Rhabdomyolysis"] ) ExclusionDiagnosis
+  exists ( ( [ConditionProblemsHealthConcerns: "Breastfeeding"]
+      union [ConditionProblemsHealthConcerns: "Rhabdomyolysis"] ) ExclusionDiagnosis
       where ( ExclusionDiagnosis.isProblemListItem ( )
           or ExclusionDiagnosis.isHealthConcern ( )
       )
@@ -109,11 +109,11 @@ define "Numerator":
   exists "Statin Therapy Prescribed Anytime during day of Measurement Period"
 
 define "ASVCD Diagnosis or Procedure before End of Measurement Period":
-  ( ( [Condition: "Myocardial Infarction"]
-      union [Condition: "Cerebrovascular Disease Stroke or TIA"]
-      union [Condition: "Atherosclerosis and Peripheral Arterial Disease"]
-      union [Condition: "Ischemic Heart Disease or Other Related Diagnoses"]
-      union [Condition: "Stable and Unstable Angina"] ) ASCVDDiagnosis
+  ( ( [ConditionProblemsHealthConcerns: "Myocardial Infarction"]
+      union [ConditionProblemsHealthConcerns: "Cerebrovascular Disease Stroke or TIA"]
+      union [ConditionProblemsHealthConcerns: "Atherosclerosis and Peripheral Arterial Disease"]
+      union [ConditionProblemsHealthConcerns: "Ischemic Heart Disease or Other Related Diagnoses"]
+      union [ConditionProblemsHealthConcerns: "Stable and Unstable Angina"] ) ASCVDDiagnosis
       where ( ASCVDDiagnosis.isProblemListItem ( )
           or ASCVDDiagnosis.isHealthConcern ( )
       )
@@ -123,12 +123,12 @@ define "ASVCD Diagnosis or Procedure before End of Measurement Period":
         union [Procedure: "CABG Surgeries"]
         union [Procedure: "Carotid Intervention"]
         union [Procedure: "CABG or PCI Procedure"] ) ASCVDProcedure
-        where ASCVDProcedure.performed.toInterval ( ) starts on or before day of end of "Measurement Period"
+        where QICoreCommon.ToInterval(ASCVDProcedure.performed) starts on or before day of end of "Measurement Period"
           and ASCVDProcedure.status = 'completed'
     )
 
 define "Myocardial Infarction before End of Measurement Period":
-  [Condition: "Subsequent non-ST elevation (NSTEMI) myocardial infarction"] SubsequentMI
+  [ConditionProblemsHealthConcerns: "Subsequent non-ST elevation (NSTEMI) myocardial infarction"] SubsequentMI
     where ( SubsequentMI.isProblemListItem ( )
         or SubsequentMI.isHealthConcern ( )
     )
@@ -141,20 +141,20 @@ define "Has Adverse Reaction to Statin":
 
 define "Has Allergy to Statin":
   exists ( [AllergyIntolerance: "Statin Allergen"] StatinAllergy
-      where StatinAllergy.onset.toInterval ( ) overlaps day of "Measurement Period"
+      where QICoreCommon.ToInterval(StatinAllergy.onset) overlaps day of "Measurement Period"
         and StatinAllergy.clinicalStatus ~ QICoreCommon."allergy-active"
   )
 
 define "Has Diabetes Diagnosis":
-  exists ( [Condition: "Diabetes"] Diabetes
-      where ( Diabetes.isProblemListItem ( )
-          or Diabetes.isHealthConcern ( )
+  exists ( [ConditionProblemsHealthConcerns: "Diabetes"] D
+      where ( D.isProblemListItem ( )
+          or D.isHealthConcern ( )
       )
-        and Diabetes.prevalenceInterval ( ) overlaps day of "Measurement Period"
+        and D.prevalenceInterval ( ) overlaps day of "Measurement Period"
   )
 
 define "Has ESRD Diagnosis":
-  exists ( [Condition: "End Stage Renal Disease"] ESRD
+  exists ( [ConditionProblemsHealthConcerns: "End Stage Renal Disease"] ESRD
       where ( ESRD.isProblemListItem ( )
           or ESRD.isHealthConcern ( )
       )
@@ -162,9 +162,9 @@ define "Has ESRD Diagnosis":
   )
 
 define "Has Hepatitis or Liver Disease Diagnosis":
-  exists ( ( [Condition: "Hepatitis A"]
-      union [Condition: "Hepatitis B"]
-      union [Condition: "Liver Disease"] ) HepatitisLiverDisease
+  exists ( ( [ConditionProblemsHealthConcerns: "Hepatitis A"]
+      union [ConditionProblemsHealthConcerns: "Hepatitis B"]
+      union [ConditionProblemsHealthConcerns: "Liver Disease"] ) HepatitisLiverDisease
       where ( HepatitisLiverDisease.isProblemListItem ( )
           or HepatitisLiverDisease.isHealthConcern ( )
       )
@@ -182,7 +182,7 @@ define "Has Medical Reason for Not Ordering Statin Therapy":
   )
 
 define "Has Statin Associated Muscle Symptoms":
-  exists ( [Condition: "Statin Associated Muscle Symptoms"] StatinMuscleSymptom
+  exists ( [ConditionProblemsHealthConcerns: "Statin Associated Muscle Symptoms"] StatinMuscleSymptom
       where ( StatinMuscleSymptom.isProblemListItem ( )
           or StatinMuscleSymptom.isHealthConcern ( )
       )
@@ -190,7 +190,7 @@ define "Has Statin Associated Muscle Symptoms":
   )
 
 define "Hypercholesterolemia Diagnosis":
-  ( [Condition: "Familial Hypercholesterolemia"] Hypercholesterolemia
+  ( [ConditionProblemsHealthConcerns: "Familial Hypercholesterolemia"] Hypercholesterolemia
       where ( Hypercholesterolemia.isProblemListItem ( )
           or Hypercholesterolemia.isHealthConcern ( )
       )
@@ -198,9 +198,9 @@ define "Hypercholesterolemia Diagnosis":
   )
 
 define "LDL Result Greater Than or Equal To 190":
-  [Observation: "LDL Cholesterol"] LDL190
+  [LaboratoryResultObservation: "LDL Cholesterol"] LDL190
     where LDL190.value as Quantity >= 190 'mg/dL'
-      and LDL190.effective.toInterval ( ) starts on or before day of end of "Measurement Period"
+      and QICoreCommon.ToInterval(LDL190.effective) starts on or before day of end of "Measurement Period"
       and LDL190.status in { 'final', 'amended', 'corrected', 'appended' }
 
 define "Patients Aged 20 to 75 with LDL Cholesterol Result Greater than or Equal to 190 or Hypercholesterolemia without ASCVD":
@@ -239,7 +239,7 @@ define "Statin Therapy Prescribed Anytime during day of Measurement Period":
       and StatinPrescribed.intent ~ 'order'
       and ( StatinPrescribed.authoredOn during day of "Measurement Period"
           or exists ( StatinPrescribed.dosageInstruction.timing T
-              where T.repeat.bounds.toInterval ( ) overlaps day of "Measurement Period"
+              where QICoreCommon.ToInterval(T.repeat.bounds) overlaps day of "Measurement Period"
           )
       )
 
@@ -256,10 +256,10 @@ define "Qualifying Encounter during day of Measurement Period":
       and QualifyingEncounter.status = 'finished'
 
 define "Ten Year CVD Risk is High":
-  ( exists ( [Observation: "Cardiovascular disease 10Y risk [Likelihood]"]
-      union [Observation: "Cardiovascular disease 10Y risk [Likelihood] ACC-AHA Pooled Cohort by Goff 2013"] ) AtRiskCVD
+  exists ( ([ObservationClinicalResult: "Cardiovascular disease 10Y risk [Likelihood]"]
+      union [ObservationClinicalResult: "Cardiovascular disease 10Y risk [Likelihood] ACC-AHA Pooled Cohort by Goff 2013"]) AtRiskCVD
       where AtRiskCVD.value as Quantity >= 20 '%'
-        and AtRiskCVD.effective.toInterval ( ) during day of "Measurement Period"
+        and QICoreCommon.ToInterval(AtRiskCVD.effective) during day of "Measurement Period"
   )
 
 define "SDE Ethnicity":

@@ -1,7 +1,7 @@
 library Status version '1.8.000'
 
 using QICore version '6.0.0'
-using USCore version '6.1.0'
+//using USCore version '6.1.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 
@@ -12,10 +12,9 @@ code "laboratory": 'laboratory' from "ObservationCategoryCodes" display 'laborat
 code "exam": 'exam' from "ObservationCategoryCodes" display 'exam'
 code "survey": 'survey' from "ObservationCategoryCodes" display 'survey'
 code "vital-signs": 'vital-signs' from "ObservationCategoryCodes" display 'vital-signs'
-code "active": 'active' from "ConditionClinicalStatusCodes"
+code "clinicalStatusActive": 'active' from "ConditionClinicalStatusCodes"
   
 context Patient
-
 //Outdated: "This library contains functions that are based on QDM 5.6 to QICore 4.1.1 March 2023 (https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/wiki/Authoring-Patterns---QICore-v4.1.1). The functions may appear similar to some QICoreCommon functions but different in that they have constraints that are relevant for measures authored by NCQA."
 
 //Assessment, Performed
@@ -26,19 +25,36 @@ define fluent function isAssessmentPerformed(Obs List<Choice<"SimpleObservation"
           where ( ObservationCategory ) ~ "survey"
       )
 
+//Encounter, Performed
+define fluent function isEncounterPerformed(Enc List<Encounter>):
+  Enc E
+    where E.status in {'finished', 'arrived', 'triaged', 'in-progress', 'onleave'}
+
+//Intervention, Performed
+define fluent function isInterventionPerformed(Proc List<Procedure>):
+  Proc P
+    where P.status ~ 'completed'
+
+//Intervention, Order: active and completed only    
+define fluent function isInterventionOrder(ServiceRequest List<ServiceRequest>):
+  ServiceRequest S
+    where S.status in { 'active', 'completed' }
+      and S.intent = 'order'  
+
+/*
 //Diagnosis
 define function "Active Condition"(Condition List<Choice<"ConditionProblemsHealthConcerns", "ConditionEncounterDiagnosis">>):
   Condition C
-    where C.clinicalStatus ~ "active"
+    where C.clinicalStatus ~ "clinicalStatusActive"
 
 //Similar but different from QICoreCommon.isActive, which has recurrence and relapse as additional constraints
 define fluent function isActiveOnly(Condition List<Choice<"ConditionProblemsHealthConcerns", "ConditionEncounterDiagnosis">>):
   Condition C 
-    where C.clinicalStatus ~ "active"
+    where C.clinicalStatus ~ "clinicalStatusActive"
 
 //Device, Order - Personal Use Devices: active and completed only
 define function "Completed or Ongoing Device Request"(DeviceRequest List<DeviceRequest>):
-  isDeviceOrder()
+  DeviceRequest.isDeviceOrder()
 
 define fluent function isDeviceOrder(DeviceRequest List<DeviceRequest>):
   DeviceRequest D
@@ -47,18 +63,12 @@ define fluent function isDeviceOrder(DeviceRequest List<DeviceRequest>):
 
 //Diagnostic Study, Order: active and completed only
 define function "Completed or Ongoing Service Request"(ServiceRequest List<ServiceRequest>):
-  isDiagnosticStudyOrder()
+  ServiceRequest.isDiagnosticStudyOrder()
 
 define fluent function isDiagnosticStudyOrder(ServiceRequest List<ServiceRequest>):
   ServiceRequest S
     where S.status in { 'active', 'completed' }
-      and S.intent = 'order'
-      
-//Intervention, Order: active and completed only    
-define fluent function isInterventionOrder(ServiceRequest List<ServiceRequest>):
-  ServiceRequest S
-    where S.status in { 'active', 'completed' }
-      and S.intent = 'order'    
+      and S.intent = 'order'  
 
 //Laboratory Test, Order: active and completed only
 define fluent function isLaboratoryTestOrder(ServiceRequest List<ServiceRequest>):
@@ -72,7 +82,7 @@ define function "Final Observation"(Obs List<Choice<"SimpleObservation",
 "LaboratoryResultObservation",
 "ObservationClinicalResult", 
 "ObservationScreeningAssessment">>):
-  isDiagnosticStudyPerformed()
+  Obs.isDiagnosticStudyPerformed()
 
 define fluent function isDiagnosticStudyPerformed(Obs List<Choice<"SimpleObservation", 
 "LaboratoryResultObservation", 
@@ -86,10 +96,6 @@ define fluent function isDiagnosticStudyPerformed(Obs List<Choice<"SimpleObserva
 define function "Finished Encounter"(Enc List<Encounter>):
   isEncounterPerformed()
 
-define fluent function isEncounterPerformed(Enc List<Encounter>):
-  Enc E
-    where E.status in {'finished', 'arrived', 'triaged', 'in-progress', 'onleave'}
-
 //Immunization, Administered: completed only
 define function "Completed Immunization"(Immunization List<Immunization>):
   isImmunizationAdministered()
@@ -98,10 +104,6 @@ define fluent function isImmunizationAdministered(Immunization List<Immunization
   Immunization I
     where I.status ~ 'completed'
 
-//Intervention, Performed
-define fluent function isInterventionPerformed(Proc List<Procedure>):
-  Proc P
-    where P.status ~ 'completed'
 
 //Procedure, Performed
 define function "Completed Procedure"(Proc List<Procedure>):
@@ -184,3 +186,4 @@ define fluent function isSymptom(Obs List<Choice<"SimpleObservation",
 "ObservationScreeningAssessment">>):
   Obs O
     where O.status in { 'preliminary', 'final', 'amended', 'corrected' }
+*/
