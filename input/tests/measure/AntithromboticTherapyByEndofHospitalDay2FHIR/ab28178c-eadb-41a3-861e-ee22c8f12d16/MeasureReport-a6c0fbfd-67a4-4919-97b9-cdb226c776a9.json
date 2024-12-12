@@ -1,0 +1,100 @@
+{
+  "resourceType": "MeasureReport",
+  "id": "a6c0fbfd-67a4-4919-97b9-cdb226c776a9",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/test-case-cqfm" ]
+  },
+  "contained": [ {
+    "resourceType": "Parameters",
+    "id": "d90862dd-11a8-48cc-a58c-559e28a25fa4-parameters",
+    "parameter": [ {
+      "name": "subject",
+      "valueString": "ab28178c-eadb-41a3-861e-ee22c8f12d16"
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-inputParameters",
+    "valueReference": {
+      "reference": "#d90862dd-11a8-48cc-a58c-559e28a25fa4-parameters"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-testCaseDescription",
+    "valueMarkdown": "Patient receives Ticagrelor day of Obs. ED ends 1 min before Obs.Obs ends 61 min before IP start at midnight. Testing Day of operator with HospitalizationWithObservation function.\n"
+  } ],
+  "modifierExtension": [ {
+    "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-isTestCase",
+    "valueBoolean": true
+  } ],
+  "status": "complete",
+  "type": "individual",
+  "measure": "https://madie.cms.gov/Measure/AntithromboticTherapyByEndofHospitalDay2FHIR",
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "group": [ {
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "count": 1
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exclusion",
+          "display": "Denominator Exclusion"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "count": 0
+    }, {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator-exception",
+          "display": "Denominator Exception"
+        } ]
+      },
+      "count": 0
+    } ]
+  } ],
+  "evaluatedResource": [ {
+    "reference": "https://madie.cms.gov/Patient/ab28178c-eadb-41a3-861e-ee22c8f12d16"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c954894b848462de0ae6327"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c954894b848462de0ae6328"
+  }, {
+    "reference": "https://madie.cms.gov/Encounter/5c954894b848462de0ae6329"
+  }, {
+    "reference": "https://madie.cms.gov/MedicationAdministration/5de6c35a5b87f90000eaf228"
+  }, {
+    "reference": "https://madie.cms.gov/Coverage/5e20a3721c76ba6c5896ec1b"
+  }, {
+    "reference": "https://madie.cms.gov/Condition/ischemic-stroke-2cfb"
+  }, {
+    "reference": "https://madie.cms.gov/Organization/123456"
+  } ]
+}

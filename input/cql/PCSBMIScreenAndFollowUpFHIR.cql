@@ -1,6 +1,7 @@
 library PCSBMIScreenAndFollowUpFHIR version '0.2.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
+using USCore version '6.1.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include Hospice version '6.12.000' called Hospice
@@ -56,7 +57,7 @@ define "Denominator Exceptions":
     or exists "Medical Reason or Patient Reason for Not Performing BMI Exam"
 
 define "BMI during Measurement Period":
-  ["observation-bmi"] BMI
+  [USCoreBMIProfile] BMI
     where BMI.value > 0 'kg/m2'
       and BMI.status in { 'final', 'amended', 'corrected' }
       and BMI.effective.toInterval ( ) during day of "Measurement Period"
@@ -91,7 +92,7 @@ define "High BMI Interventions Ordered":
       union [ServiceRequest: "Referrals Where Weight Assessment May Occur"]
       union [MedicationRequest: "Medications for Above Normal BMI"] ) HighInterventionsOrdered
       where HighInterventionsOrdered.reasonCode in "Overweight or Obese"
-        or ( exists [Condition: "Overweight or Obese"] OverweightObese
+        or ( exists [ConditionProblemsHealthConcerns: "Overweight or Obese"] OverweightObese
             where ( OverweightObese.isProblemListItem ( )
                 or OverweightObese.isHealthConcern ( )
             )
@@ -103,19 +104,22 @@ define "High BMI Interventions Ordered":
 define "High BMI Interventions Performed":
   ( [Procedure: "Follow Up for Above Normal BMI"] HighInterventionsPerformed
       where HighInterventionsPerformed.reasonCode in "Overweight or Obese"
-        or ( exists ["Condition": "Overweight or Obese"] OverweightObese
+        or ( exists [ConditionProblemsHealthConcerns: "Overweight or Obese"] OverweightObese
             where OverweightObese.prevalenceInterval ( ) starts before or on day of HighInterventionsPerformed.performed
               and not ( OverweightObese.prevalenceInterval ( ) ends before day of HighInterventionsPerformed.performed )
         )
   )
 
 define "Medical Reason or Patient Reason for Not Performing BMI Exam":
-  [ObservationNotDone: code = "Body mass index (BMI) [Ratio]"] NoBMI
+  [ObservationCancelled: code = "Body mass index (BMI) [Ratio]"] NoBMI
     with "Qualifying Encounter during Day of Measurement Period" QualifyingEncounter
       such that NoBMI.effective.toInterval ( ) ends same day as start of QualifyingEncounter.period
     where NoBMI.status = 'cancelled'
-      and ( NoBMI.notDoneReason in "Patient Declined"
-          or NoBMI.notDoneReason in "Medical Reason"
+      and exists(NoBMI.extension E
+        where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-notDoneReason'
+          and (E.value as Code in "Patient Declined"
+          or E.value as Code in "Medical Reason"
+          )
       )
 
 define "Low BMI Interventions Ordered":
@@ -123,10 +127,10 @@ define "Low BMI Interventions Ordered":
       union [ServiceRequest: "Referrals Where Weight Assessment May Occur"]
       union [MedicationRequest: "Medications for Below Normal BMI"] ) LowInterventionsOrdered
       where LowInterventionsOrdered.reasonCode in "Underweight"
-        or ( exists [Condition: "Underweight"] Underweight
-            where ( Underweight.isHealthConcern ( ) )
-              and Underweight.isActive ( )
-              and Underweight.prevalenceInterval ( ) starts before or on day of LowInterventionsOrdered.authoredOn
+        or ( exists [ConditionProblemsHealthConcerns: "Underweight"] Under
+            where ( Under.isHealthConcern ( ) )
+              and Under.isActive ( )
+              and Under.prevalenceInterval ( ) starts before or on day of LowInterventionsOrdered.authoredOn
               and LowInterventionsOrdered.authoredOn during day of "Measurement Period"
         )
   )
@@ -135,12 +139,12 @@ define "Low BMI Interventions Performed":
   ( [Procedure: "Follow Up for Below Normal BMI"] LowInterventionsPerformed
       where LowInterventionsPerformed.reasonCode in "Underweight"
         and LowInterventionsPerformed.status = 'completed'
-        or ( exists [Condition: "Underweight"] Underweight
-            where ( Underweight.isHealthConcern ( ) )
-              and Underweight.isActive ( )
-              and Underweight.prevalenceInterval ( ) starts before or on day of LowInterventionsPerformed.performed.toInterval ( )
+        or ( exists [ConditionProblemsHealthConcerns: "Underweight"] Under
+            where ( Under.isHealthConcern ( ) )
+              and Under.isActive ( )
+              and Under.prevalenceInterval ( ) starts before or on day of LowInterventionsPerformed.performed.toInterval ( )
               and LowInterventionsPerformed.performed.toInterval ( ) during day of "Measurement Period"
-              and not ( Underweight.prevalenceInterval ( ) ends before day of LowInterventionsPerformed.performed.toInterval ( ) )
+              and not ( Under.prevalenceInterval ( ) ends before day of LowInterventionsPerformed.performed.toInterval ( ) )
         )
   )
 
@@ -158,7 +162,10 @@ define "Medical Reason for Not Documenting a Follow up Plan for Low or High BMI"
       with "Qualifying Encounter during Day of Measurement Period" QualifyingEncounter
         such that NoBMIFollowUp.authoredOn same day as start of QualifyingEncounter.period
       where NoBMIFollowUp.status ~ 'completed'
-        and NoBMIFollowUp.reasonRefused in "Medical Reason"
+        and exists(NoBMIFollowUp.extension E
+        where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-doNotPerformReason'
+          and E.value as Code in "Medical Reason"
+      )
   )
     union ( ( [MedicationNotRequested: "Medications for Above Normal BMI"]
         union [MedicationNotRequested: "Medications for Below Normal BMI"] ) NoBMIFollowUp
@@ -169,13 +176,14 @@ define "Medical Reason for Not Documenting a Follow up Plan for Low or High BMI"
     )
 
 define "Is Pregnant during Day of Measurement Period":
-  [Condition: "Pregnancy or Other Related Diagnoses"] PregnancyDiagnosis
+  ([ConditionProblemsHealthConcerns: "Pregnancy or Other Related Diagnoses"]
+    union [ConditionEncounterDiagnosis: "Pregnancy or Other Related Diagnoses"]) PregnancyDiagnosis
     with "Qualifying Encounter during Day of Measurement Period" QualifyingEncounter
       such that PregnancyDiagnosis.clinicalStatus ~ QICoreCommon."active"
         and PregnancyDiagnosis.prevalenceInterval ( ) overlaps day of "Measurement Period"
 
 define "Qualifying Encounter during Day of Measurement Period":
-  [Encounter: "Encounter to Evaluate BMI"] BMIEncounter
+  [Encounter: type in "Encounter to Evaluate BMI"] BMIEncounter
     where BMIEncounter.period during day of "Measurement Period"
       and BMIEncounter.class !~ "virtual"
       and BMIEncounter.status = 'finished'

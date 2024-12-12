@@ -1,0 +1,30 @@
+{
+  "resourceType": "Procedure",
+  "id": "LOS23Hours-12",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure" ]
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-recorded",
+    "valueDateTime": "2025-02-01T08:30:00.000Z"
+  } ],
+  "status": "completed",
+  "code": {
+    "coding": [ {
+      "system": "http://snomed.info/sct",
+      "code": "306165000",
+      "display": "Referral to hospital-based dietetics service (procedure)"
+    } ],
+    "text": "Referral to hospital-based dietetics service (procedure)"
+  },
+  "subject": {
+    "reference": "Patient/49413716-ad9f-4340-b6f8-8186c602f515"
+  },
+  "encounter": {
+    "reference": "Encounter/LOS23HoursIPPFAIL"
+  },
+  "performedPeriod": {
+    "start": "2025-02-01T07:30:00.000Z",
+    "end": "2025-02-01T08:15:00.000Z"
+  }
+}

@@ -1,0 +1,1149 @@
+<Measure xmlns="http://hl7.org/fhir">
+   <id value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+   <meta>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-measure-cqfm"/>
+      <profile value="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-measure-cqfm"/>
+   </meta>
+   <contained>
+      <Library xmlns="http://hl7.org/fhir">
+         <id value="effective-data-requirements"/>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://www.ama-assn.org/go/cpt"/>
+               <code value="99429"/>
+               <display value="Unlisted preventive medicine service"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="428361000124107"/>
+               <display value="Discharge to home for hospice care (procedure)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="428371000124100"/>
+               <display value="Discharge to healthcare facility for hospice care (procedure)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+               <code value="survey"/>
+               <display value="survey"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://loinc.org"/>
+               <code value="45755-6"/>
+               <display value="Hospice care [Minimum Data Set]"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-directReferenceCode">
+            <valueCoding>
+               <system value="http://snomed.info/sct"/>
+               <code value="373066001"/>
+               <display value="Yes (qualifier value)"/>
+            </valueCoding>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Qualifying Encounters"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Qualifying Encounters&amp;quot;:   ( ( [Encounter: &amp;quot;Emergency Department Evaluation and Management Visit&amp;quot;]       union [Encounter: &amp;quot;Home Healthcare Services&amp;quot;]       union [Encounter: &amp;quot;Medical Disability Exam&amp;quot;]       union [Encounter: &amp;quot;Office Visit&amp;quot;]       union [Encounter: &amp;quot;Outpatient Consultation&amp;quot;]       union [Encounter: &amp;quot;Preventive Care Services Group Counseling&amp;quot;]       union [Encounter: &amp;quot;Preventive Care Services Individual Counseling&amp;quot;]       union [Encounter: &amp;quot;Preventive Care Services, Initial Office Visit, 0 to 17&amp;quot;]       union [Encounter: &amp;quot;Preventive Care, Established Office Visit, 0 to 17&amp;quot;]       union [Encounter: &amp;quot;Preventive Care Services Established Office Visit, 18 and Up&amp;quot;]       union [Encounter: &amp;quot;Preventive Care Services Initial Office Visit, 18 and Up&amp;quot;]       union [Encounter: &amp;quot;Telephone Visits&amp;quot;]       union [Encounter: &amp;quot;Virtual Encounter&amp;quot;]       union ( [Encounter] E           where exists ( ( E.type ) T               where T ~ &amp;quot;Unlisted preventive medicine service&amp;quot;           )       )   ).isEncounterPerformed ( ) ) ValidEncounter     where ValidEncounter.period.toInterval ( ) ends during day of Interval[( start of &amp;quot;Measurement Period&amp;quot; ), ( end of &amp;quot;Measurement Period&amp;quot; ) - 3 days]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="0"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Encounter with Upper Respiratory Infection"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Encounter with Upper Respiratory Infection&amp;quot;:   from     &amp;quot;Qualifying Encounters&amp;quot; QualifyingEncounters,     [Condition: &amp;quot;Upper Respiratory Infection&amp;quot;] URI              //where QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; (URI) starts during day of (QICoreCommon.&amp;quot;ToInterval&amp;quot; (QualifyingEncounters.period))           where URI.prevalenceInterval ( ) starts during day of QualifyingEncounters.period.toInterval ( )                //or QICoreCommon.&amp;quot;ToPrevalenceInterval&amp;quot; (URI) overlaps before (QICoreCommon.&amp;quot;ToInterval&amp;quot; (QualifyingEncounters.period))               or URI.prevalenceInterval ( ) overlaps before QualifyingEncounters.period.toInterval ( )     return QualifyingEncounters"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="1"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Numerator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="//where QICoreCommon.&amp;quot;ToInterval&amp;quot; ( ValidEncounter.period ) ends during day of Interval[(start of &amp;quot;Measurement Period&amp;quot;), (end of &amp;quot;Measurement Period&amp;quot;) - 3 days]   define &amp;quot;Numerator&amp;quot;:   &amp;quot;Encounter with Upper Respiratory Infection&amp;quot; EncounterWithURI     without ( ( [MedicationRequest: &amp;quot;Antibiotic Medications for Upper Respiratory Infection&amp;quot;] ).isMedicationOrder ( ) ) OrderedAntibiotic       such that OrderedAntibiotic.authoredOn 3 days or less on or after start of EncounterWithURI.period.toInterval ( )     return EncounterWithURI"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="2"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Stratification 3"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Stratification 3&amp;quot;:   &amp;quot;Encounter with Upper Respiratory Infection&amp;quot; EncounterWithURI     where AgeInYearsAt(date from start of &amp;quot;Measurement Period&amp;quot;) &amp;gt;= 65     return EncounterWithURI"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="3"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Stratification 2"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Stratification 2&amp;quot;:   &amp;quot;Encounter with Upper Respiratory Infection&amp;quot; EncounterWithURI     where AgeInYearsAt(date from start of &amp;quot;Measurement Period&amp;quot;) in Interval[18, 64]     return EncounterWithURI"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="4"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Stratification 1"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Stratification 1&amp;quot;:   &amp;quot;Encounter with Upper Respiratory Infection&amp;quot; EncounterWithURI     where AgeInMonthsAt(date from start of &amp;quot;Measurement Period&amp;quot;) &amp;gt;= 3       and AgeInYearsAt(date from start of &amp;quot;Measurement Period&amp;quot;) &amp;lt;= 17     return EncounterWithURI"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="5"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Initial Population"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Initial Population&amp;quot;:   &amp;quot;Encounter with Upper Respiratory Infection&amp;quot; EncounterWithURI     where AgeInMonthsAt(date from start of &amp;quot;Measurement Period&amp;quot;) &amp;gt;= 3     return EncounterWithURI"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="6"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator&amp;quot;:   &amp;quot;Initial Population&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="7"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Hospice"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Hospice Services"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Has Hospice Services&amp;quot;:   exists ((([Encounter: &amp;quot;Encounter Inpatient&amp;quot;]).isEncounterPerformed()) InpatientEncounter       where (InpatientEncounter.hospitalization.dischargeDisposition ~ &amp;quot;Discharge to home for hospice care (procedure)&amp;quot;           or InpatientEncounter.hospitalization.dischargeDisposition ~ &amp;quot;Discharge to healthcare facility for hospice care (procedure)&amp;quot;       )         and InpatientEncounter.period.toInterval() ends during day of &amp;quot;Measurement Period&amp;quot;   )     or exists ((([Encounter: &amp;quot;Hospice Encounter&amp;quot;]).isEncounterPerformed()) HospiceEncounter         where HospiceEncounter.period.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([Observation: &amp;quot;Hospice care [Minimum Data Set]&amp;quot;]).isAssessmentPerformed()) HospiceAssessment         where HospiceAssessment.value ~ &amp;quot;Yes (qualifier value)&amp;quot;           and HospiceAssessment.effective.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([ServiceRequest: &amp;quot;Hospice Care Ambulatory&amp;quot;]).isInterventionOrder()) HospiceOrder         where HospiceOrder.authoredOn.toInterval() during day of &amp;quot;Measurement Period&amp;quot;     )     or exists ((([Procedure: &amp;quot;Hospice Care Ambulatory&amp;quot;]).isInterventionPerformed()) HospicePerformed         where HospicePerformed.performed.toInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )     or exists (([Condition: &amp;quot;Hospice Diagnosis&amp;quot;]) HospiceCareDiagnosis         where HospiceCareDiagnosis.prevalenceInterval() overlaps day of &amp;quot;Measurement Period&amp;quot;     )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="8"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Encounters and Assessments with Hospice Patient"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Encounters and Assessments with Hospice Patient&amp;quot;:   &amp;quot;Initial Population&amp;quot; EligibleEncounters     where Hospice.&amp;quot;Has Hospice Services&amp;quot;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="9"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Encounters with Acute Pharyngitis and Acute Tonsillitis"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Encounters with Acute Pharyngitis and Acute Tonsillitis&amp;quot;:   &amp;quot;Encounter with Upper Respiratory Infection&amp;quot; EncounterWithURI     with ( [Condition: &amp;quot;Acute Pharyngitis&amp;quot;]       union [Condition: &amp;quot;Acute Tonsillitis&amp;quot;] ) CompetingPharyngitisTonsillitisDiagnosis       such that CompetingPharyngitisTonsillitisDiagnosis.prevalenceInterval ( ) starts 3 days or less on or after start of EncounterWithURI.period.toInterval ( )     return EncounterWithURI"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="10"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Denominator Exclusions"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &amp;quot;Denominator Exclusions&amp;quot;:   &amp;quot;Encounters and Assessments with Hospice Patient&amp;quot;     union &amp;quot;Encounters with Acute Pharyngitis and Acute Tonsillitis&amp;quot;     union Antibiotic.&amp;quot;Has Comorbid Condition History&amp;quot; ( &amp;quot;Encounter with Upper Respiratory Infection&amp;quot;, ( [Condition: &amp;quot;Comorbid Conditions for Respiratory Conditions&amp;quot;] ) )     union Antibiotic.&amp;quot;Has Antibiotic Medication History&amp;quot; ( &amp;quot;Encounter with Upper Respiratory Infection&amp;quot;, ( [MedicationRequest: &amp;quot;Antibiotic Medications for Upper Respiratory Infection&amp;quot;] ) )     union Antibiotic.&amp;quot;Has Competing Diagnosis History&amp;quot; ( &amp;quot;Encounter with Upper Respiratory Infection&amp;quot;, ( [Condition: &amp;quot;Competing Conditions for Respiratory Conditions&amp;quot;] ) )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="11"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isEncounterPerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isEncounterPerformed(Enc List&amp;lt;Encounter&amp;gt;):   Enc E     where E.status in {&amp;#39;finished&amp;#39;, &amp;#39;arrived&amp;#39;, &amp;#39;triaged&amp;#39;, &amp;#39;in-progress&amp;#39;, &amp;#39;onleave&amp;#39;}"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="12"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FHIRHelpers"/>
+            </extension>
+            <extension url="name">
+               <valueString value="ToConcept"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept. */ define function ToConcept(concept FHIR.CodeableConcept):     if concept is null then         null     else         System.Concept {             codes: concept.coding C return ToCode(C),             display: concept.text.value         }"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="13"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="toInterval"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Normalizes a value that is a choice of timing-valued types to an equivalent interval @comment: Normalizes a choice type of DateTime, Quanitty, Interval&amp;lt;DateTime&amp;gt;, or Interval&amp;lt;Quantity&amp;gt; types to an equivalent interval. This selection of choice types is a superset of the majority of choice types that are used as possible representations for timing-valued elements in QICore, allowing this function to be used across any resource. The input can be provided as a DateTime, Quantity, Interval&amp;lt;DateTime&amp;gt; or Interval&amp;lt;Quantity&amp;gt;. The intent of this function is to provide a clear and concise mechanism to treat single elements that have multiple possible representations as intervals so that logic doesn&amp;#39;t have to account for the variability. More complex calculations (such as medication request period or dispense period calculation) need specific guidance and consideration. That guidance may make use of this function, but the focus of this function is on single element calculations where the semantics are unambiguous. If the input is a DateTime, the result a DateTime Interval beginning and ending on that DateTime. If the input is a Quantity, the quantity is expected to be a calendar-duration interpreted as an Age, and the result is a DateTime Interval beginning on the Date the patient turned that age and ending immediately before one year later. If the input is a DateTime Interval, the result is the input. If the input is a Quantity Interval, the quantities are expected to be calendar-durations interpreted as an Age, and the result is a DateTime Interval beginning on the date the patient turned the age given as the start of the quantity interval, and ending immediately before one year later than the date the patient turned the age given as the end of the quantity interval. If the input is a Timing, an error will be thrown indicating that Timing calculations are not implemented. Any other input will reslt in a null DateTime Interval */ define fluent function toInterval(choice Choice&amp;lt;DateTime, Quantity, Interval&amp;lt;DateTime&amp;gt;, Interval&amp;lt;Quantity&amp;gt;, Timing&amp;gt;):   case    when choice is DateTime then      Interval[choice as DateTime, choice as DateTime]   when choice is Interval&amp;lt;DateTime&amp;gt; then     choice as Interval&amp;lt;DateTime&amp;gt;   when choice is Quantity then     Interval[Patient.birthDate + (choice as Quantity),      Patient.birthDate + (choice as Quantity) + 1 year)   when choice is Interval&amp;lt;Quantity&amp;gt; then     Interval[Patient.birthDate + (choice.low as Quantity),      Patient.birthDate + (choice.high as Quantity) + 1 year)   when choice is Timing then       Message(null, true, &amp;#39;NOT_IMPLEMENTED&amp;#39;, &amp;#39;Error&amp;#39;, &amp;#39;Calculation of an interval from a Timing value is not supported&amp;#39;) as Interval&amp;lt;DateTime&amp;gt;   else    null as Interval&amp;lt;DateTime&amp;gt;  end"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="14"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="QICoreCommon"/>
+            </extension>
+            <extension url="name">
+               <valueString value="prevalenceInterval"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="/* @description: Returns an interval representing the normalized prevalence period of a given Condition. @comment: Uses the ToInterval and ToAbatementInterval functions to determine the widest potential interval from onset to abatement as specified in the given Condition. If the condition is active, or has an abatement date the resulting  interval will have a closed ending boundary. Otherwise, the resulting interval will have an open ending boundary. */ define fluent function prevalenceInterval(condition Condition): if condition.clinicalStatus ~ &amp;quot;active&amp;quot;   or condition.clinicalStatus ~ &amp;quot;recurrence&amp;quot;   or condition.clinicalStatus ~ &amp;quot;relapse&amp;quot; then   Interval[start of condition.onset.toInterval(), end of condition.abatementInterval()] else     (end of condition.abatementInterval()) abatementDate     return if abatementDate is null then       Interval[start of condition.onset.toInterval(), abatementDate)     else       Interval[start of condition.onset.toInterval(), abatementDate]"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="15"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isMedicationOrder"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isMedicationOrder(MedicationRequest List&amp;lt;MedicationRequest&amp;gt;):   MedicationRequest M     where M.status in { &amp;#39;active&amp;#39;, &amp;#39;completed&amp;#39; }       and M.intent = &amp;#39;order&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="16"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isAssessmentPerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="//Similar but different from QICoreCommon.isSurvey, which does not have status constraints define fluent function isAssessmentPerformed(Obs List&amp;lt;Observation&amp;gt;):   Obs O     where O.status in { &amp;#39;final&amp;#39;, &amp;#39;amended&amp;#39;, &amp;#39;corrected&amp;#39; }           and exists ( O.category ObservationCategory           where ( ObservationCategory ) ~ &amp;quot;survey&amp;quot;       )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="17"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isInterventionOrder"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isInterventionOrder(ServiceRequest List&amp;lt;ServiceRequest&amp;gt;):   ServiceRequest S     where S.status in { &amp;#39;active&amp;#39;, &amp;#39;completed&amp;#39; }       and S.intent = &amp;#39;order&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="18"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Status"/>
+            </extension>
+            <extension url="name">
+               <valueString value="isInterventionPerformed"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define fluent function isInterventionPerformed(Proc List&amp;lt;Procedure&amp;gt;):   Proc P     where P.status ~ &amp;#39;completed&amp;#39;"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="19"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Antibiotic"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Comorbid Condition History"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define function &amp;quot;Has Comorbid Condition History&amp;quot;(episodeDate List&amp;lt;Encounter&amp;gt;, comorbidConditions List&amp;lt;Condition&amp;gt;):   episodeDate eDate       with comorbidConditions comcondition         such that date from start of (  comcondition.prevalenceInterval() ) during Interval[date from start of eDate.period.toInterval() - 1 year, date from start of eDate.period.toInterval()]       return eDate"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="20"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Antibiotic"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Antibiotic Medication History"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define function &amp;quot;Has Antibiotic Medication History&amp;quot;(episodeDate List&amp;lt;Encounter&amp;gt;, antibioticMedications List&amp;lt;MedicationRequest&amp;gt;):    episodeDate DateOfEpisode     with antibioticMedications ActiveMedication       such that exists ( ActiveMedication.dosageInstruction.timing T           where (  T.repeat.bounds.toInterval() ) overlaps day of Interval[date from start of DateOfEpisode.period.toInterval()  - 30 days, date from start of DateOfEpisode.period.toInterval() - 1 day]       )"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="21"/>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="Antibiotic"/>
+            </extension>
+            <extension url="name">
+               <valueString value="Has Competing Diagnosis History"/>
+            </extension>
+            <extension url="statement">
+               <valueString value="define function &amp;quot;Has Competing Diagnosis History&amp;quot;(episodeDate List&amp;lt;Encounter&amp;gt;, competingConditions List&amp;lt;Condition&amp;gt;):   episodeDate eDate       with competingConditions competcondition         such that ( competcondition.prevalenceInterval() ) starts 3 days or less on or after day of start of eDate.period       return eDate"/>
+            </extension>
+            <extension url="displaySequence">
+               <valueString value="22"/>
+            </extension>
+         </extension>
+         <status value="active"/>
+         <type>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/library-type"/>
+               <code value="module-definition"/>
+            </coding>
+         </type>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library Status"/>
+            <resource value="Library/Status|1.7.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library FHIRHelpers"/>
+            <resource value="Library/FHIRHelpers|4.4.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library QICoreCommon"/>
+            <resource value="Library/QICoreCommon|2.1.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library Hospice"/>
+            <resource value="Library/Hospice|6.10.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Library Antibiotic"/>
+            <resource value="Library/Antibiotic|1.6.000"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system CPT"/>
+            <resource value="http://www.ama-assn.org/go/cpt"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system SNOMEDCT"/>
+            <resource value="http://snomed.info/sct"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system ObservationCategoryCodes"/>
+            <resource value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Code system LOINC"/>
+            <resource value="http://loinc.org"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Emergency Department Evaluation and Management Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1010"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Home Healthcare Services"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Medical Disability Exam"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1073"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Office Visit"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Outpatient Consultation"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1008"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services Group Counseling"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1027"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services Individual Counseling"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1026"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services, Initial Office Visit, 0 to 17"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1022"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care, Established Office Visit, 0 to 17"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1024"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services Established Office Visit, 18 and Up"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Preventive Care Services Initial Office Visit, 18 and Up"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Telephone Visits"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Virtual Encounter"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Upper Respiratory Infection"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1022"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Antibiotic Medications for Upper Respiratory Infection"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1001"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Encounter Inpatient"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Encounter"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Care Ambulatory"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Hospice Diagnosis"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Acute Pharyngitis"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1011"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Acute Tonsillitis"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1012"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Comorbid Conditions for Respiratory Conditions"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1025"/>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"/>
+            <display value="Value set Competing Conditions for Respiratory Conditions"/>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1017"/>
+         </relatedArtifact>
+         <parameter>
+            <name value="Measurement Period"/>
+            <use value="in"/>
+            <min value="0"/>
+            <max value="1"/>
+            <type value="Period"/>
+         </parameter>
+         <parameter>
+            <name value="Numerator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="*"/>
+            <type value="Resource"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="*"/>
+            <type value="Resource"/>
+         </parameter>
+         <parameter>
+            <name value="Initial Population"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="*"/>
+            <type value="Resource"/>
+         </parameter>
+         <parameter>
+            <name value="Denominator Exclusions"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="*"/>
+            <type value="Resource"/>
+         </parameter>
+         <parameter>
+            <name value="Stratification 3"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="*"/>
+            <type value="Resource"/>
+         </parameter>
+         <parameter>
+            <name value="Stratification 2"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="*"/>
+            <type value="Resource"/>
+         </parameter>
+         <parameter>
+            <name value="Stratification 1"/>
+            <use value="out"/>
+            <min value="0"/>
+            <max value="*"/>
+            <type value="Resource"/>
+         </parameter>
+         <dataRequirement>
+            <type value="Patient"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient"/>
+            <mustSupport value="birthDate"/>
+            <mustSupport value="birthDate.value"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1010"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1073"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1008"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1027"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1026"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1022"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1024"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="period"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="hospitalization"/>
+            <mustSupport value="hospitalization.dischargeDisposition"/>
+            <mustSupport value="period"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"/>
+            <mustSupport value="type"/>
+            <mustSupport value="period"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <codeFilter>
+               <path value="type"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1003"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1022"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1165"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1011"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1012"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1025"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Condition"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition"/>
+            <mustSupport value="code"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1017"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dosageInstruction"/>
+            <codeFilter>
+               <path value="medication"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1001"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="MedicationRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medicationrequest"/>
+            <mustSupport value="medication.reference"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="dosageInstruction"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Medication"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-medication"/>
+            <mustSupport value="id"/>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Observation"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation"/>
+            <mustSupport value="code"/>
+            <mustSupport value="value"/>
+            <mustSupport value="effective"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="category"/>
+            <codeFilter>
+               <path value="code"/>
+               <code>
+                  <system value="http://loinc.org"/>
+                  <code value="45755-6"/>
+                  <display value="Hospice care [Minimum Data Set]"/>
+               </code>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="ServiceRequest"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-servicerequest"/>
+            <mustSupport value="code"/>
+            <mustSupport value="authoredOn"/>
+            <mustSupport value="authoredOn.value"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <mustSupport value="intent"/>
+            <mustSupport value="intent.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Procedure"/>
+            <profile value="http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure"/>
+            <mustSupport value="code"/>
+            <mustSupport value="performed"/>
+            <mustSupport value="status"/>
+            <mustSupport value="status.value"/>
+            <codeFilter>
+               <path value="code"/>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"/>
+            </codeFilter>
+         </dataRequirement>
+      </Library>
+   </contained>
+   <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-effectiveDataRequirements">
+      <valueReference>
+         <reference value="#effective-data-requirements"/>
+      </valueReference>
+   </extension>
+   <url value="https://madie.cms.gov/Measure/AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+   <identifier>
+      <use value="usual"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="short-name"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/shortName"/>
+      <value value="CMS154FHIR"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-independent"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:25892635-c2b4-4c29-a351-ef60797c3bd5"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="version-specific"/>
+         </coding>
+      </type>
+      <system value="urn:ietf:rfc:3986"/>
+      <value value="urn:uuid:62976126-6ecf-4f8c-9b55-07c112222cc4"/>
+   </identifier>
+   <identifier>
+      <use value="official"/>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/us/cqfmeasures/CodeSystem/identifier-type"/>
+            <code value="publisher"/>
+         </coding>
+      </type>
+      <system value="https://madie.cms.gov/measure/cmsId"/>
+      <value value="154FHIR"/>
+      <assigner>
+         <display value="CMS"/>
+      </assigner>
+   </identifier>
+   <version value="0.1.001"/>
+   <name value="AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+   <title value="Appropriate Treatment for Upper Respiratory Infection (URI)FHIR"/>
+   <status value="active"/>
+   <experimental value="false"/>
+   <date value="2024-04-15T19:37:43+00:00"/>
+   <publisher value="National Committee for Quality Assurance"/>
+   <contact>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.ncqa.org/"/>
+      </telecom>
+   </contact>
+   <description value="Percentage of episodes for patients 3 months of age and older with a diagnosis of upper respiratory infection (URI) that did not result in an antibiotic order"/>
+   <purpose value="UNKNOWN"/>
+   <usage value="This is an episode of care measure that examines all eligible episodes for the patient.  This eCQM is an episode-based measure. An episode is defined as each eligible encounter for patients aged 3 months of age and older with a diagnosis of upper respiratory infection from January 1 to December 28 of the measurement period.  This FHIR-based measure has been derived from the QDM-based measure: CMS154v13.   Please refer to the HL7 QI-Core Implementation Guide (http://hl7.org/fhir/us/qicore/index.html) for more information on QI-Core and mapping recommendations from QDM to QI-Core 4.1.1 (http://hl7.org/fhir/us/qicore/qdm-to-qicore.html)."/>
+   <copyright value="This Physician Performance Measure (Measure) and related data specifications are owned and were developed by the National Committee for Quality Assurance (NCQA). NCQA is not responsible for any use of the Measure. NCQA makes no representations, warranties, or endorsement about the quality of any organization or physician that uses or reports performance measures and NCQA has no liability to anyone who relies on such measures or specifications. NCQA holds a copyright in the Measure. The Measure can be reproduced and distributed, without modification, for noncommercial purposes (e.g., use by healthcare providers in connection with their practices) without obtaining approval from NCQA. Commercial use is defined as the sale, licensing, or distribution of the Measure for commercial gain, or incorporation of the Measure into a product or service that is sold, licensed or distributed for commercial gain. All commercial uses or requests for modification must be approved by NCQA and are subject to a license at the discretion of NCQA. (C) 2012-2024 National Committee for Quality Assurance. All Rights Reserved.  Limited proprietary coding is contained in the Measure specifications for user convenience. Users of proprietary code sets should obtain all necessary licenses from the owners of the code sets. NCQA disclaims all liability for use or accuracy of any third-party codes contained in the specifications.  CPT(R) codes, descriptions and other data are copyright 2024. American Medical Association. All rights reserved. CPT is a trademark of the American Medical Association. Fee schedules, relative value units, conversion factors and/or related components are not assigned by the AMA, are not part of CPT, and the AMA is not recommending their use. The AMA does not directly or indirectly practice medicine or dispense medical services. The AMA assumes no liability for data contained or not contained herein. Applicable FARS/DFARS restrictions apply to government use.  Some measure specifications contain coding from LOINC(R) (http://loinc.org). The LOINC table, LOINC codes, LOINC panels and form file, LOINC linguistic variants file, LOINC/RSNA Radiology Playbook, and LOINC/IEEE Medical Device Code Mapping Table are copyright 2004-2024 Regenstrief Institute, Inc. and the Logical Observation Identifiers Names and Codes (LOINC) Committee, and are available at no cost under the license at http://loinc.org/terms-of-use.  This material contains SNOMED Clinical Terms(R) (SNOMED CT[R]) copyright 2004-2023 International Health Terminology Standards Development Organisation.   ICD-10 copyright 2024 World Health Organization. All Rights Reserved.  Some measures use RxNorm, a standardized nomenclature and coding for clinical drugs and drug delivery devices, which is made publicly available courtesy of the U.S. National Library of Medicine (NLM), National Institutes of Health, Department of Health and Human Services. NLM is not responsible for the measures and does not endorse or recommend this or any other product.  “HL7” is the registered trademark of Health Level Seven International."/>
+   <effectivePeriod>
+      <start value="2025-01-01"/>
+      <end value="2025-12-31"/>
+   </effectivePeriod>
+   <author>
+      <name value="National Committee for Quality Assurance"/>
+      <telecom>
+         <system value="url"/>
+         <value value="https://www.ncqa.org/"/>
+      </telecom>
+   </author>
+   <library value="https://madie.cms.gov/Library/AppropriateTreatmentforUpperRespiratoryInfectionURIFHIR"/>
+   <disclaimer value="The performance Measure is not a clinical guideline and does not establish a standard of medical care, and has not been tested for all potential applications. THE MEASURE AND SPECIFICATIONS ARE PROVIDED &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND.   Due to technical limitations, registered trademarks are indicated by (R) or [R] and unregistered trademarks are indicated by (TM) or [TM]."/>
+   <rationale value="Most URI, also known as the common cold, are caused by viruses that require no antibiotic treatment. Too often, antibiotics are prescribed inappropriately, which can lead to antibiotic resistance (when antibiotics can no longer cure bacterial infections). In the United States, at least 2.8 million antibiotic-resistant illnesses and 35,000 deaths occur each year (Centers for Disease Control and Prevention [CDC], 2020)."/>
+   <clinicalRecommendationStatement value="American Family Physician (Fashner, Ericson, &amp; Werner, 2012)   - Antibiotics should not be used for the treatment of cold symptoms in children or adults. (A)   - Nonsteroidal anti-inflammatory drugs reduce pain secondary to upper respiratory tract infection in adults. (A)   - Decongestants, antihistamine/decongestant combinations, and intranasal ipratropium (Atrovent) may improve cold symptoms in adults. (B)  Institute for Clinical Systems Improvement (ICSI) (Short et al., 2017) The ICSI work group does not recommend antibiotics for treatment of common cold symptoms in children and adults."/>
+   <group id="654a593478418140875e35aa">
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-scoring">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-scoring"/>
+               <code value="proportion"/>
+               <display value="Proportion"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-populationBasis">
+         <valueCode value="Encounter"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-type">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-type"/>
+               <code value="process"/>
+               <display value="Process"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-rateAggregation">
+         <valueCode value="None"/>
+      </extension>
+      <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-improvementNotation">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-improvement-notation"/>
+               <code value="decrease"/>
+               <display value="increase"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <population id="6DBE917A-E110-4517-82A0-29C307A751A0">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="initial-population"/>
+               <display value="Initial Population"/>
+            </coding>
+         </code>
+         <description value="Outpatient visits, telephone visits, virtual encounter (i.e., e-visit or virtual check-in), or emergency department visits with a diagnosis of URI from January 1 to December 28 of the measurement period for patients 3 months of age and older"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Initial Population"/>
+         </criteria>
+      </population>
+      <population id="AC6DDEB9-AD25-459F-B145-66B89BF57BE8">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator"/>
+               <display value="Denominator"/>
+            </coding>
+         </code>
+         <description value="Equals Initial Population"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator"/>
+         </criteria>
+      </population>
+      <population id="0B689432-9ECE-4091-B1F8-2D6E134D5110">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="denominator-exclusion"/>
+               <display value="Denominator Exclusion"/>
+            </coding>
+         </code>
+         <description value="Exclude URI episodes when the patient had hospice care for any part of the measurement period.  Exclude URI episodes when the patient had a comorbid condition during the 12 months prior to or on the episode date.   Exclude URI episodes where the patient is taking antibiotics in the 30 days prior to the episode date.  Exclude URI episodes where the patient had competing diagnosis on or three days after the episode date."/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Denominator Exclusions"/>
+         </criteria>
+      </population>
+      <population id="D321AC3A-81D1-43FE-8787-87AA0D0EB6B4">
+         <code>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+               <code value="numerator"/>
+               <display value="Numerator"/>
+            </coding>
+         </code>
+         <description value="URI episodes without a prescription for antibiotic medication on or three days after the outpatient visit, telephone visit, virtual encounter, or emergency department visit for an upper respiratory infection"/>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Numerator"/>
+         </criteria>
+      </population>
+      <stratifier id="6fddfab7-ee36-4e97-9859-09f0abfabfeb">
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-appliesTo">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+                  <code value="initial-population"/>
+                  <display value="Initial Population"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Stratification 1"/>
+         </criteria>
+      </stratifier>
+      <stratifier id="863976f9-0817-4734-bda3-19e3fadf951d">
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-appliesTo">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+                  <code value="initial-population"/>
+                  <display value="Initial Population"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Stratification 2"/>
+         </criteria>
+      </stratifier>
+      <stratifier id="7c5d99f3-6bb1-4528-a575-fa77e1113c0d">
+         <extension url="http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-appliesTo">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
+                  <code value="initial-population"/>
+                  <display value="Initial Population"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <criteria>
+            <language value="text/cql-identifier"/>
+            <expression value="Stratification 3"/>
+         </criteria>
+      </stratifier>
+   </group>
+</Measure>

@@ -1,6 +1,10 @@
+/*
+Test impact for QICore6 uplift: HL7 FHIR profile urls and resource types should be changed to ConditionProblemsHealthConcerns, ConditionEncounterDiagnosis, LaboratoryResultObservation, and ObservationCancelled
+*/
+
 library BoneDensityProstateCancerAndrogenDeprivationTherapyFHIR version '1.4.000'
 
-using QICore version '4.1.1'
+using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '3.5.000' called SDE
@@ -64,6 +68,10 @@ define "Has Baseline DEXA Scan Two Years Prior to the Start of or Less than Thre
           and DEXAOrdered.intent = 'order'
           and DEXAOrdered.doNotPerform is not true
     )
+
+      /*
+      @QICore6Uplift: Update Observation to LaboratoryResultObservation (ObservationClinicalResult includes non-imaging tests)
+      */    
       union ( [Observation: "DEXA Dual Energy Xray Absorptiometry, Bone Density for Urology Care"] DEXAPerformed
           with "Order for 12 Months of ADT in 3 Months Before to 9 Months After Start of Measurement Period" OrderTwelveMonthsADT
             such that DEXAPerformed.effective.toInterval ( ) 3 months or less on or after day of OrderTwelveMonthsADT.authoredOn
@@ -78,6 +86,9 @@ define "No Bone Density Scan Ordered Due to Patient Refusal":
       such that DEXANotOrdered.authoredOn 3 months or less on or after day of OrderTwelveMonthsADT.authoredOn
         and DEXANotOrdered.reasonRefused in "Patient Declined"
 
+/*
+@QICore6Uplift: Update ObservationNotDone to ObservationCancelled
+*/    
 define "No Bone Density Scan Performed Due to Patient Refusal":
   [ObservationNotDone: "DEXA Dual Energy Xray Absorptiometry, Bone Density for Urology Care"] DEXANotPerformed
     with "Order for 12 Months of ADT in 3 Months Before to 9 Months After Start of Measurement Period" OrderTwelveMonthsADT
@@ -142,6 +153,9 @@ define "Has Qualifying Encounter":
         and OfficeVisit.status = 'finished'
   )
 
+/*
+@QICore6Uplift: Update Condition to be a union of ConditionProblemsHealthConcerns and ConditionEncounterDiagnosis
+*/    
 define "Prostate Cancer Diagnosis":
   [Condition: "Prostate Cancer"] ProstateCancer
     where ProstateCancer.prevalenceInterval ( ) overlaps "Measurement Period"

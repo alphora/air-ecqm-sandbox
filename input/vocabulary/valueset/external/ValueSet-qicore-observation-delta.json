@@ -17,7 +17,7 @@
     }
   ],
   "url": "http://hl7.org/fhir/us/qicore/ValueSet/qicore-observation-delta",
-  "version": "4.1.1",
+  "version": "6.0.0",
   "name": "QICoreObservationDelta",
   "title": "QICore Observation Delta Value Set Definition",
   "status": "draft",

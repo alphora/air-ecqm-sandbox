@@ -1,7 +1,7 @@
 @ECHO OFF
 
-SET "dlurl=https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=org.opencds.cqf&a=tooling-cli&v=3.1.0"
-SET tooling_jar=tooling-cli-3.1.0.jar
+SET "dlurl=https://oss.sonatype.org/service/local/artifact/maven/redirect?r=snapshots&g=org.opencds.cqf&a=tooling-cli&v=3.6.0"
+SET tooling_jar=tooling-cli-3.6.0.jar
 SET input_cache_path=%~dp0input-cache\
 SET skipPrompts=false
 IF "%~1"=="/f" SET skipPrompts=true
