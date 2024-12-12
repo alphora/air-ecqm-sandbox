@@ -1,4 +1,4 @@
-library WeightAssessmentandCounselingforNutritionandPhysicalActivityforChildrenandAdolescentsFHIR version '0.1.000'
+library WeightAssessmentandCounselingforNutritionforChildrenFHIR version '0.1.000'
 
 using QICore version '4.1.1'
 

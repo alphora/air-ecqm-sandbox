@@ -1,4 +1,12 @@
-library WeightAssessmentandCounselingforNutritionFHIR version '0.1.001'
+/*
+@QICore6: Update Library and Measure resources and test cases
+- 'Condition' to 'USCoreObservationPregnancyStatusProfile'
+- 'observation-bodyheight' to 'USCoreBodyHeightProfile'
+- 'observation-bodyweight' to 'USCoreBodyWeightProfile'
+- 'observation-bmi' to 'USCoreBMIProfile'
+*/
+
+library WeightAssessmentandCounselingforNutritionFHIR version '0.1.000'
 
 using QICore version '6.0.0'
 
@@ -70,6 +78,9 @@ define "Denominator Exclusions":
   Hospice."Has Hospice Services"
     or exists ( "Pregnancy Diagnosis Which Overlaps Measurement Period" )
 
+/*
+@QICore6: Update 'Condition' to 'USCoreObservationPregnancyStatusProfile' where Pregnancy.status = 'final' and Pregnancy.value = 'Pregnant'
+*/
 define "Pregnancy Diagnosis Which Overlaps Measurement Period":
   ([Condition: "Pregnancy"]) Pregnancy
     where Pregnancy.prevalenceInterval() overlaps "Measurement Period"
@@ -103,16 +114,28 @@ define "Qualifying Encounter":
     union [Encounter: "Telephone Visits"] ).isEncounterPerformed()) ValidEncounters
         where ValidEncounters.period.toInterval() during "Measurement Period"
 
+/*
+@QICore6: Update 'observation-bodyheight' to 'USCoreBodyHeightProfile'
+    @Statusv1.8.000: Update to '.isObservationBodyHeight'
+*/
 define "Height in Measurement Period":
   (Status."BodyHeight"(["observation-bodyheight"])) Height    
       where Height.effective.toInterval() during day of "Measurement Period"
             and Height.value is not null
 
+/*
+@QICore6: Update 'observation-bodyweight' to 'USCoreBodyWeightProfile'
+    @Statusv1.8.000: Update to '.isObservationBodyWeight'
+*/
 define "Weight in Measurement Period":
   (Status."BodyWeight"(["observation-bodyweight"])) Weight
     where Weight.effective.toInterval() during day of "Measurement Period"
         and Weight.value is not null
 
+/*
+@QICore6: Update 'observation-bmi' to 'USCoreBMIProfile'
+    @Statusv1.8.000: Update to '.isObservationBMI'
+*/
 define "BMI Percentile in Measurement Period":
   (Status."BMI"(["observation-bmi"])) BMIPercentile
     where BMIPercentile.effective.toInterval() during day of "Measurement Period"
