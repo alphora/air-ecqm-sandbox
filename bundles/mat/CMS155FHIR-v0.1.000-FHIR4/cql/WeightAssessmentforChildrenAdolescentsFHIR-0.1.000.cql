@@ -72,8 +72,8 @@ define "Denominator Exclusions":
     or exists ( "Pregnancy Diagnosis Which Overlaps Measurement Period" )
 
 define "Pregnancy Diagnosis Which Overlaps Measurement Period":
-  (Status."Active Condition"([Condition: "Pregnancy"])) Pregnancy
-    where QICoreCommon."ToPrevalenceInterval"(Pregnancy) overlaps "Measurement Period"
+  ([Condition: "Pregnancy"]) Preg
+    where QICoreCommon."ToPrevalenceInterval"(Preg) overlaps "Measurement Period"
 
 define "Numerator 1":
   exists ( "BMI Percentile in Measurement Period" )
@@ -81,11 +81,11 @@ define "Numerator 1":
     and exists ( "Weight in Measurement Period" )
 
 define "Numerator 2":
-  exists (Status."Completed Procedure"([Procedure: "Counseling for Nutrition"])) NutritionCounseling
+  exists (([Procedure: "Counseling for Nutrition"])isProcedurePerformed) NutritionCounseling
     where QICoreCommon."ToInterval"(NutritionCounseling.performed) during day of "Measurement Period"
 
 define "Numerator 3":
-  exists (Status."Completed Procedure"([Procedure: "Counseling for Physical Activity"])) ActivityCounseling
+  exists (([Procedure: "Counseling for Physical Activity"])isProcedurePerformed) ActivityCounseling
     where QICoreCommon."ToInterval"(ActivityCounseling.performed) during day of "Measurement Period"
 
 define "Stratifaction 1":
@@ -95,26 +95,27 @@ define "Stratifaction 2":
   AgeInYearsAt(date from end of "Measurement Period") in Interval[12, 17]
 
 define "Qualifying Encounter":
-  (Status."Finished Encounter"(([Encounter: "Office Visit"]
+  ([Encounter: "Office Visit"]
     union [Encounter: "Preventive Care Services-Individual Counseling"]
     union [Encounter: "Preventive Care Services, Initial Office Visit, 0 to 17"]
     union [Encounter: "Preventive Care, Established Office Visit, 0 to 17"]
     union [Encounter: "Preventive Care Services - Group Counseling"]
     union [Encounter: "Home Healthcare Services"]
-    union [Encounter: "Telephone Visits"] ))) ValidEncounters
-        where QICoreCommon."ToInterval"(ValidEncounters.period) during "Measurement Period"
+    union [Encounter: "Telephone Visits"]) ValidEncounters
+        where ValidEncounters.status ~ 'finished'
+        and QICoreCommon."ToInterval"(ValidEncounters.period) during "Measurement Period"
 
 define "Height in Measurement Period":
-  (Status."BodyHeight"(["observation-bodyheight"])) Height    
-      where QICoreCommon."ToInterval"(Height.effective) during day of "Measurement Period"
-            and Height.value is not null
+  ((["observation-bodyheight"])isObservationBodyHeight) Hght    
+      where QICoreCommon."ToInterval"(Hght.effective) during day of "Measurement Period"
+            and Hght.value is not null
 
 define "Weight in Measurement Period":
-  (Status."BodyWeight"(["observation-bodyweight"])) Weight
-    where QICoreCommon."ToInterval"(Weight.effective) during day of "Measurement Period"
-        and Weight.value is not null
+  ((["observation-bodyweight"])isObservationBodyWeight) Wght
+    where QICoreCommon."ToInterval"(Wght.effective) during day of "Measurement Period"
+        and Wght.value is not null
 
 define "BMI Percentile in Measurement Period":
-  (Status."BMI"(["observation-bmi"])) BMIPercentile
+  ((["observation-bmi"])isObservationBMI) BMIPercentile
     where QICoreCommon."ToInterval"(BMIPercentile.effective) during day of "Measurement Period"
         and BMIPercentile.value is not null 
