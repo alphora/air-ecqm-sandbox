@@ -6,7 +6,7 @@
 - 'observation-bmi' to 'USCoreBMIProfile'
 */
 
-library WeightAssessmentandCounselingforNutritionFHIR version '0.1.000'
+library WeightAssessmentandCounselingforNutritionandPhysicalActivityforChildrenandAdolescentsFHIR version '0.1.000'
 
 using QICore version '6.0.0'
 
