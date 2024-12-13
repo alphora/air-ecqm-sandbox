@@ -1,6 +1,6 @@
 /*
 @QICore6: Update Library and Measure resources and test cases
-- Observation to ObservationScreeningAssessment
+- Observation to ObservationClinicalResult
 - Condition to ConditionProblemsHealthConcerns
 */
 
@@ -84,7 +84,7 @@ define "Retinal Exam in Measurement Period":
     where RetinalExam.effective.toInterval ( ) during day of "Measurement Period"
 
 /*
-@QICore6: Update Observation to ObservationScreeningAssessment
+@QICore6: Update Observation to bservationClinicalResult (based on Floyd's response), and '.isAssessmentPerformed' to '.isExam'
 */
 define "Retinal Exam in Measurement Period or Year Prior":
   ( ( [Observation: "Retinal or Dilated Eye Exam"] ).isAssessmentPerformed ( ) ) RetinalExam
