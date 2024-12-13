@@ -77,7 +77,7 @@ define "Numerator":
     )
 
 /*
-@QICore6: Update Observation to ObservationScreeningAssessment
+@QICore6: Update Observation to ObservationClinicalResult (based on Floyd's response), and '.isAssessmentPerformed' to '.isExam'
 */
 define "Retinal Exam in Measurement Period":
   ( ( [Observation: "Retinal or Dilated Eye Exam"] ).isAssessmentPerformed ( ) ) RetinalExam
