@@ -94,7 +94,7 @@ define "Has Diagnosis of Allergy or Intolerance to ACEI or ARB":
   )
 
 /*
-@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns
+@QICore6Uplift: Update Condition to USCoreObservationPregnancyStatusProfile
 */ 
 define "Has Diagnosis of Pregnancy":
   exists ( [Condition: "Pregnancy"] PregnancyDiagnosis
@@ -103,7 +103,7 @@ define "Has Diagnosis of Pregnancy":
   )
 
 /*
-@QICore6Uplift: Update Condition to ConditionEncounterDiagnosis
+@QICore6Uplift: Update Condition to ConditionProblemsHealthConcerns (due to prevalence in overlapsHeartFailureOutpatientEncounter())
 */ 
 define "Has Diagnosis of Renal Failure Due to ACEI":
   exists ( [Condition: "Acute renal failure caused by angiotensin-converting-enzyme inhibitor (disorder)"] RenalFailureDueToACEI
