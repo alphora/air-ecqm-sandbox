@@ -134,7 +134,7 @@ define "Heart Failure Outpatient Encounter with History of Moderate or Severe LV
                 * Moderate or Severe LVSD conditions where the diagnosis has been confirmed as active
 
 @QICore6Uplift: Update the following resources in this define statement: 
-      * Observation to ObservationClinicalResult
+      * Observation to SimpleObservation (since ejection fraction is a imaging test)
       * Condition to ConditionProblemsHealthConcerns
 */  
 define "Moderate or Severe LVSD Findings":
