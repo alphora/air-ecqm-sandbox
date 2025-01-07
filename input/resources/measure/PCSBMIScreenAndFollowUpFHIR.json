@@ -861,7 +861,7 @@
         "url": "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/cqfm-relatedRequirement",
         "extension": [ {
           "url": "targetId",
-          "valueString": "405"
+          "valueString": "406"
         }, {
           "url": "targetProperty",
           "valueString": "effective"
@@ -937,7 +937,7 @@
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1584"
       } ]
     }, {
-      "id": "405",
+      "id": "406",
       "type": "Observation",
       "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observationcancelled" ],
       "mustSupport": [ "code", "effective", "status", "status.value", "extension" ],
@@ -1039,7 +1039,7 @@
   "title": "Preventive Care and Screening Body Mass Index Screening and Follow Up PlanFHIR",
   "status": "draft",
   "experimental": false,
-  "date": "2025-01-07T19:52:29+00:00",
+  "date": "2025-01-07T21:55:46+00:00",
   "publisher": "Centers for Medicare & Medicaid Services (CMS)",
   "contact": [ {
     "telecom": [ {
