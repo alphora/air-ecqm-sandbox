@@ -84,5 +84,7 @@
     "reference": "https://madie.cms.gov/Patient/81311477-01a1-45d7-b0ac-df1144227d08"
   }, {
     "reference": "https://madie.cms.gov/Encounter/encounter-to-screen-for-depression-e712"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/Practitioner-d"
   } ]
 }

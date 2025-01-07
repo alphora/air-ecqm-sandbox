@@ -88,5 +88,7 @@
     "reference": "https://madie.cms.gov/Observation/adolescent-depression-screening-assessment-cf37"
   }, {
     "reference": "https://madie.cms.gov/MedicationRequest/adolescent-depression-medications-cf38"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/Practitioner-b"
   } ]
 }

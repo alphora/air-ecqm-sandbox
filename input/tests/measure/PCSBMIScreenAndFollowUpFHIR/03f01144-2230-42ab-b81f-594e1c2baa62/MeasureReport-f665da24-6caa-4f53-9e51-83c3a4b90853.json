@@ -90,5 +90,7 @@
     "reference": "https://madie.cms.gov/Coverage/1"
   }, {
     "reference": "https://madie.cms.gov/Organization/123456"
+  }, {
+    "reference": "https://madie.cms.gov/Practitioner/Practitioner-03f01144"
   } ]
 }
