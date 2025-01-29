@@ -4,10 +4,10 @@ using QICore version '6.0.0'
 //using USCore version '6.1.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
-include Hospice version '6.12.000' called Hospice
-include PalliativeCare version '1.11.000' called PalliativeCare
-include QICoreCommon version '2.1.000' called QICoreCommon
-include SupplementalDataElements version '3.5.000' called SDE
+include HospiceSTU6Prototype version '0.1.000' called Hospice
+include PalliativeCareSTU6Prototype version '0.1.000' called PalliativeCare
+include QICoreCommonSTU6Prototype version '0.1.000' called QICoreCommon 
+include SupplementalDataElementsSTU6Prototype version '0.1.000' called SDE
 
 codesystem "ActCode": 'http://terminology.hl7.org/CodeSystem/v3-ActCode'
 codesystem "ICD10CM": 'http://hl7.org/fhir/sid/icd-10-cm'
@@ -31,7 +31,7 @@ code "Encounter for palliative care": 'Z51.5' from "ICD10CM" display 'Encounter 
 code "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)": '71007-9' from "LOINC" display 'Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)'
 code "virtual": 'VR' from "ActCode" display 'virtual'
 
-parameter "Measurement Period" Interval<DateTime>
+parameter "Measurement Period" Interval<DateTime> default Interval[@2025-01-01T00:00:00.000, @2026-01-01T00:00:00.000)
 
 context Patient
 

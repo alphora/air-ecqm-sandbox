@@ -3,10 +3,10 @@ library StatinsforthePreventionandTreatmentofCardiovascularDiseaseFHIR version '
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
-include Hospice version '6.12.000' called Hospice
-include PalliativeCare version '1.11.000' called PalliativeCare
-include QICoreCommon version '2.1.000' called QICoreCommon
-include SupplementalDataElements version '3.5.000' called SDE
+include HospiceSTU6Prototype version '0.1.000' called Hospice
+include PalliativeCareSTU6Prototype version '0.1.000' called PalliativeCare
+include QICoreCommonSTU6Prototype version '0.1.000' called QICoreCommon 
+include SupplementalDataElementsSTU6Prototype version '0.1.000' called SDE
 
 codesystem "CPT": 'http://www.ama-assn.org/go/cpt'
 codesystem "ICD10CM": 'http://hl7.org/fhir/sid/icd-10-cm'

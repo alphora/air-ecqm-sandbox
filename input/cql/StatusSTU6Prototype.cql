@@ -1,4 +1,4 @@
-library Status version '1.8.000'
+library StatusSTU6Prototype version '0.1.000'
 
 using QICore version '6.0.0'
 //using USCore version '6.1.0'
@@ -39,7 +39,11 @@ define fluent function isInterventionPerformed(Proc List<Procedure>):
 define fluent function isInterventionOrder(ServiceRequest List<ServiceRequest>):
   ServiceRequest S
     where S.status in { 'active', 'completed' }
-      and S.intent = 'order'  
+      and S.intent = 'order' 
+
+define fluent function isProcedurePerformed(Proc List<Procedure>):
+  Proc P
+    where P.status ~ 'completed' 
 
 /*
 //Diagnosis
@@ -109,9 +113,6 @@ define fluent function isImmunizationAdministered(Immunization List<Immunization
 define function "Completed Procedure"(Proc List<Procedure>):
   isProcedurePerformed()
 
-define fluent function isProcedurePerformed(Proc List<Procedure>):
-  Proc P
-    where P.status ~ 'completed'
 
 //Laboratory Test, Performed
 define fluent function isLaboratoryTestPerformed(Obs List<"LaboratoryResultObservation">):

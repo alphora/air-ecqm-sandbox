@@ -6,7 +6,7 @@ https://oncprojectracking.healthit.gov/support/browse/CQLIT-414
 */
 
 
-library QICoreCommon version '2.1.000'
+library QICoreCommonSTU6Prototype version '0.1.000'
 
 using QICore version '6.0.0'
 
