@@ -65,3 +65,21 @@ parameter "Measurement Period" default Interval[@2025-01-01T00:00:00.000, @2026-
 context Patient
 
 define "Initial Population":
+    AgeInYearsAt(date from start of "Measurement Period") >= 18
+        and exists ([ConditionProblemsHealthConcerns: "Diabetes"] DiabetesDiagnosis
+            where QICoreCommon."ToPrevalenceInterval" ( DiabetesDiagnosis ) overlaps "Measurement Period")
+        and exists "Qualifying Encounters"
+
+define "Denominator":
+    "Initial Population"
+
+define "Qualifying Encounters":
+  (([Encounter: "Annual Wellness Visit"]
+    union [Encounter: "Encounter Inpatient"]
+    union [Encounter: "Office Visit"]
+    union [Encounter: "Preventive Services Established"]
+    union [Encounter: "Preventive Services Initial"]
+    union [Encounter: "Telemedicine Services"]
+    union [Encounter: "Telephone Visits"]
+    union [Encounter: "Virtual Encounter"]).isEncounterPerformed()) QualifyingEncounter
+        where QualifyingEncounter.period during day of "Measurement Period"
