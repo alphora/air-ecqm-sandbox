@@ -83,3 +83,28 @@ define "Qualifying Encounters":
     union [Encounter: "Telephone Visits"]
     union [Encounter: "Virtual Encounter"]).isEncounterPerformed()) QualifyingEncounter
         where QualifyingEncounter.period during day of "Measurement Period"
+
+define "Denominator Exclusions":
+    "Has Bilateral Lower Extremity Amputation at the Foot or Above"
+    or Hospice."Has Hospice Services"
+
+define "Has Bilateral Lower Extremity Amputation at the Foot or Above":
+    exists ([ConditionProblemsHealthConcerns] C
+        where 
+            C.code in "Acquired Absense Bilateral Feet"
+            or (C.code in "Acquired Absence of Left Foot" and C.code in "Acquired Absence of Right Foot")
+            and QICoreCommon."ToPrevalenceInterval"(C) before "Measurement Period"
+    )
+    or exists ([Procedure] P
+        where 
+            P.code in "Amputation of Bilateral Feet"
+            or (P.code in "Amputation of Left Foot" 
+                and exists ([Procedure] Procedure2
+                    where Procedure2.code in "Amputation of Right Foot") 
+            )
+            or (P.code in "Amputation of Unspecified Foot"
+                and exists (P.bodySite B
+                    where B.coding.code = '')
+            )
+            and end of ToInterval(P.performed) before start of "Measurement Period"
+    )
