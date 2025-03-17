@@ -107,9 +107,19 @@ define "Has Bilateral Lower Extremity Amputation at the Foot or Above":
     )
 
 define "Numerator":
-    "Has At Least 2 Neurological Exams of Lower Extremity"
-    and "Has a Vascular Exam of Lower Extremity"
-    and "Has a Visual Inspection of Lower Extremity"
+    "Has At Least Two Normal Neurological Exam Findings of Lower Extremity"
+    and "Has a Normal Vascular Exam Finding of Lower Extremity"
+    and "Has a Normal Visual Inspection of Lower Extremity"
     and "Received Foot Care Education"
+
+define "Has At Least Two Normal Neurological Exam Findings of Lower Extremity":
+    exists ([ObservationClinicalResult: "Monofilament Test Normal Finding"]
+        union [ObservationClinicalResult: "Pinprick Test Normal Finding"]
+        union [ObservationClinicalResult: "Vibration Test Normal Finding"]
+        union [ObservationClinicalResult: "Ipswich Test Normal Finding"]
+        union [ObservationClinicalResult: "Temperature Test Normal Finding"]
+    ) NormalNeurologicalExam
+        where NormalNeurologicalExam.isDiagnosticStudyPerformed() 
+            and ToInterval(NormalNeurologicalExam) overlaps "Measurement Period"
 
 during measurement period
