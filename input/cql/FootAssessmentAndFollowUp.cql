@@ -133,3 +133,9 @@ define "Has a Normal Vascular Exam Finding of Lower Extremity":
     exists ([ObservationClinicalResult: "Pedal Pulse Normal Finding"]) NormalVascularExam
         where NormalVascularExam.isDiagnosticStudyPerformed() 
             and ToInterval(NormalVascularExam) overlaps "Measurement Period"
+
+define "Has a Normal Visual Inspection of Lower Extremity":
+    exists ([ObservationClinicalResult: "Visual Exam Normal Finding"]) NormalVisualExam
+        where NormalVisualExam.isDiagnosticStudyPerformed() 
+            and ToInterval(NormalVisualExam) overlaps "Measurement Period"
+    
