@@ -1,42 +1,30 @@
 /*
-@update: JSR 2024-04-04 ->
-Updated FHIRHelpers version to 4.4.000.
-Added Male and Female codes and related AdministrativeGender code system
-Updated SDE Sex definition to use added codes from FHIR administrative-gender code system.
+@update: JSR 2025-02-27 ->
+Updated to use the CMS Sex value set and relevant codes
 */
-library SupplementalDataElements version '3.5.000'
+library SupplementalDataElements version '5.0.000'
 
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 
-codesystem "AdministrativeGender": 'http://hl7.org/fhir/administrative-gender'
+codesystem "SNOMEDCT": 'http://snomed.info/sct'
 
 valueset "Ethnicity": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837'
-valueset "ONC Administrative Sex": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1'
+valueset "CMS Sex": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1021.121'
 valueset "Payer Type": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591'
 valueset "Race": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836'
 
-code "M": 'M' from "AdministrativeGender" display 'Male'
-code "F": 'F' from "AdministrativeGender" display 'Female'
+code "Male (finding)": '248153007' from "SNOMEDCT" display 'Male (finding)'
+code "Female (finding)": '248152002' from "SNOMEDCT" display 'Female (finding)'
 
 context Patient
 
 define "SDE Ethnicity":
-  Patient.extension E
-    where E.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity' 
+  Patient.ethnicity E
     return Tuple {
-      codes: { 
-        E.extension e
-          where e.url = 'ombCategory'
-          return e.value as Code
-      } 
-      union {
-        E.extension e
-          where e.url = 'detailed'
-          return e.value as Code
-      },
-      display: E.value
+      codes: { E.ombCategory } union E.detailed,
+      display: E.text
     }
 
 define "SDE Payer":
@@ -47,25 +35,15 @@ define "SDE Payer":
     }
 
 define "SDE Race":
-  Patient.extension E
-    where E.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race' 
+  Patient.race R
     return Tuple {
-      codes: { 
-        E.extension e
-          where e.url = 'ombCategory'
-          return e.value as Code
-      } 
-      union {
-        E.extension e
-          where e.url = 'detailed'
-          return e.value as Code
-      },
-      display: E.value
+      codes: R.ombCategory union R.detailed,
+      display: R.text
     }
 
 define "SDE Sex":
   case
-    when Patient.gender = 'male' then "M"
-    when Patient.gender = 'female' then "F"
+    when Patient.sex = '248153007' then "Male (finding)"
+    when Patient.sex = '248152002' then "Female (finding)"
     else null
   end

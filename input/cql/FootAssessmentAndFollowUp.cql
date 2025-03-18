@@ -3,7 +3,7 @@ library FootAssessmentAndFollowUp
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
-include SupplementalDataElements version '3.4.000' called SDE
+include SupplementalDataElements version '5.0.000' called SDE
 include QICoreCommon version '2.1.000' called QICoreCommon
 include Hospice version '6.12.000' called Hospice
 include Status version '1.6.000' called Status
@@ -170,15 +170,18 @@ define "Has Follow-Up Plan of Care Within One Week of Eligible Encounter":
     exists ( 
         (([Procedure: "Offloading Interventions"] 
             union [Procedure: "Therapeutic Footwear Interventions"]) FollowUpProcedure
-                where FollowUpProcedure.performed.toInterval() during "Seven-Day Period Following Qualifying Encounter"
+                where FollowUpProcedure.isProcedurePerformed()
+                    and FollowUpProcedure.performed.toInterval() during "Seven-Day Period Following Qualifying Encounter"
         )
         union (([ServiceRequest: "Referral for Foot Care"]
             union [ServiceRequest: "Order for Follow Up Visit (within 12 months)"]) FollowUpServiceRequest
-                where FollowUpServiceRequest.authoredOn.toInterval() during "Seven-Day Period Following Qualifying Encounter"
+                where FollowUpServiceRequest.isInterventionOrder()
+                    and FollowUpServiceRequest.authoredOn.toInterval() during "Seven-Day Period Following Qualifying Encounter"
         )
         union (([DeviceRequest: "Offloading Devices"]
             union [DeviceRequest: "Therapeutic Footwear"]) FollowUpDeviceRequest
-                where FollowUpDeviceRequest.authoredOn.toInterval() during "Seven-Day Period Following Qualifying Encounter"
+                where FollowUpDeviceRequest.isDeviceOrder()
+                    and FollowUpDeviceRequest.authoredOn.toInterval() during "Seven-Day Period Following Qualifying Encounter"
         )
     )
 
