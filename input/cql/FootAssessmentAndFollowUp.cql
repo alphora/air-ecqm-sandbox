@@ -112,8 +112,8 @@ define "Numerator":
     and "Has a Normal Visual Inspection of Lower Extremity"
     and "Received Foot Care Education"
 
-define "Has At Least Two Normal Neurological Exam Findings of Lower Extremity":
-    exists ([ObservationClinicalResult: "Monofilament Test Normal Finding"]
+define "Qualifying Normal Neurological Exam Findings":
+    ([ObservationClinicalResult: "Monofilament Test Normal Finding"]
         union [ObservationClinicalResult: "Pinprick Test Normal Finding"]
         union [ObservationClinicalResult: "Vibration Test Normal Finding"]
         union [ObservationClinicalResult: "Ipswich Test Normal Finding"]
@@ -122,4 +122,14 @@ define "Has At Least Two Normal Neurological Exam Findings of Lower Extremity":
         where NormalNeurologicalExam.isDiagnosticStudyPerformed() 
             and ToInterval(NormalNeurologicalExam) overlaps "Measurement Period"
 
-during measurement period
+define "Has At Least Two Normal Neurological Exam Findings of Lower Extremity":
+    Count("Qualifying Normal Neurological Exam Findings") >= 2
+        and exists ("Qualifying Normal Neurological Exam Findings" NeurologicalExamType1
+            where exists ("Qualifying Normal Neurological Exam Findings" NeurologicalExamType2
+                where NeurologicalExamType1.code != NeurologicalExamType2.code)
+        )
+
+define "Has a Normal Vascular Exam Finding of Lower Extremity":
+    exists ([ObservationClinicalResult: "Pedal Pulse Normal Finding"]) NormalVascularExam
+        where NormalVascularExam.isDiagnosticStudyPerformed() 
+            and ToInterval(NormalVascularExam) overlaps "Measurement Period"
