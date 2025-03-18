@@ -4,7 +4,7 @@ using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '5.0.000' called SDE
-include QICoreCommon version '2.1.000' called QICoreCommon
+include QICoreCommon version '4.0.000' called QICoreCommon
 include Hospice version '6.12.000' called Hospice
 include Status version '1.6.000' called Status
 

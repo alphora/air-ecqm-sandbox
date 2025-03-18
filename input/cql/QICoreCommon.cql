@@ -1,16 +1,8 @@
-/*
-@update: JKR 2024-04-02 ->
-Check display code accuracy against source system                                                        
-Ensure all fluent functions are not referencing any deprecated functions.   
-https://oncprojectracking.healthit.gov/support/browse/CQLIT-414
-*/
-
-
-library QICoreCommon version '2.1.000'
+library QICoreCommon version '4.0.000'
 
 using QICore version '6.0.0'
 
-include FHIRHelpers version '4.4.000'
+include FHIRHelpers version '4.4.000' called FHIRHelpers
 
 codesystem "LOINC": 'http://loinc.org'
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
@@ -27,12 +19,18 @@ codesystem "ObservationCategoryCodes": 'http://terminology.hl7.org/CodeSystem/ob
 codesystem "USCoreObservationCategoryExtensionCodes": 'http://hl7.org/fhir/us/core/CodeSystem/us-core-observation-category'  
 codesystem "ConditionCategory": 'http://terminology.hl7.org/CodeSystem/condition-category'
 codesystem "USCoreConditionCategoryExtensionCodes": 'http://hl7.org/fhir/us/core/CodeSystem/condition-category'
+codesystem "TaskCodeSystem": 'http://hl7.org/fhir/CodeSystem/task-code' 
+
+
 
 code "Birthdate": '21112-8' from "LOINC" display 'Birth date'
 code "Dead": '419099009' from "SNOMEDCT" display 'Dead'
 code "ER": 'ER' from "RoleCode" display 'Emergency room'
 code "ICU": 'ICU' from "RoleCode" display 'Intensive care unit'
 code "Billing": 'billing' from "Diagnosis Role" display 'Billing'
+
+//Task codes
+code "Fulfill": 'fulfill' from "TaskCodeSystem" display 'Fulfill'
 
 // Encounter Class Codes
 code "ambulatory": 'AMB' from ActCode display 'ambulatory'
@@ -102,7 +100,6 @@ code "survey": 'survey' from "ObservationCategoryCodes" display 'Survey'
 code "exam": 'exam' from "ObservationCategoryCodes" display 'Exam'
 code "therapy": 'therapy' from "ObservationCategoryCodes" display 'Therapy'
 code "activity": 'activity' from "ObservationCategoryCodes" display 'Activity'
-
 
 context Patient
 
@@ -215,7 +212,7 @@ define fluent function isLaboratory(observation Choice<"SimpleObservation",
   )
 
 /*
-@description: REturns true if the given observation is a procedure observation
+@description: Returns true if the given observation is a procedure observation
 */
 define fluent function isProcedure(observation Choice<"SimpleObservation", 
 "ObservationCancelled",
@@ -279,20 +276,10 @@ define fluent function isActivity(observation Choice<"SimpleObservation",
     where C ~ "activity"
   )
 
-
-
 /*
 @description: Returns true if the given MedicationRequest has a category of Community
 */
-define fluent function isCommunity(medicationRequest MedicationRequest):
-  exists (medicationRequest.category C
-    where C ~ Community
-  )
-
-/*
-@description: Returns true if the given MedicationRequest has a category of Community
-*/
-define fluent function isCommunity(medicationRequest MedicationNotRequested):
+define fluent function isCommunity(medicationRequest Choice<MedicationRequest, MedicationNotRequested>):
   exists (medicationRequest.category C
     where C ~ Community
   )
@@ -300,28 +287,18 @@ define fluent function isCommunity(medicationRequest MedicationNotRequested):
 /*
 @description: Returns true if the given MedicationRequest has a category of Discharge
 */
-define fluent function isDischarge(medicationRequest MedicationRequest):
-  exists (medicationRequest.category C
-    where C ~ Discharge
-  )
-
-/*
-@description: Returns true if the given MedicationRequest has a category of Discharge
-*/
-define fluent function isDischarge(medicationRequest MedicationNotRequested):
+define fluent function isDischarge(medicationRequest Choice<MedicationRequest, MedicationNotRequested>):
   exists (medicationRequest.category C
     where C ~ Discharge
   )
 
 /*
 @description: Returns true if the given DeviceRequest is a negation (i.e. do not perform this order)
+@deprecated: This function is no longer required in QICore 6.0.0 and above
 */
 define fluent function doNotPerform(deviceRequest DeviceRequest):
-  singleton from (
-    deviceRequest.modifierExtension E
-      where E.url = 'http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-doNotPerform'
-      return E.value as Boolean
-  )
+  // KNOWN ISSUE: The translator reports this as an error but the execution still works, this is under investigation
+  deviceRequest.doNotPerform
 
 /*
 @description: Normalizes a value that is a choice of timing-valued types to an equivalent interval
@@ -491,7 +468,7 @@ a single-server environment to trace references. However, this function does not
 or distinguish the base of the given url, and so cannot be used safely in multi-server environments.
 @deprecated: This function is deprecated. Use the fluent function `getId()` instead
 */
-define function GetId(uri String ):
+define function GetId(uri String):
   Last(Split(uri, '/'))
 
 /*
@@ -502,6 +479,45 @@ or distinguish the base of the given url, and so cannot be used safely in multi-
 */
 define fluent function getId(uri String):
   Last(Split(uri, '/'))
+
+/*
+@description: Returns true if the given reference is to the given resource
+@comment: Returns true if the `id` element of the given resource exactly equals the tail of the given reference.
+NOTE: This function assumes resources from the same source server.
+*/
+define fluent function references(reference Reference, resource Resource):
+  resource.id = Last(Split(reference.reference, '/'))  
+
+/*
+@description: Returns true if the given reference is to the given resourceId
+@comment: Returns true if the `resourceId` parameter exactly equals the tail of the given reference.
+NOTE: This function assumes resources from the same source server.
+*/
+define fluent function references(reference Reference, resourceId String):
+  resourceId = Last(Split(reference.reference, '/'))
+
+/*
+@description: Returns true if any of the given references are to the given resource
+@comment: Returns true if the `id` element of the given resource exactly equals the tail of any of the given references.
+NOTE: This function assumes resources from the same source server.
+*/
+define fluent function references(references List<Reference>, resource Resource):
+  exists (references R where R.references(resource))
+  
+/*
+@description: Returns true if any of the given references are to the given resourceId
+@comment: Returns true if the `resourceId` parameter exactly equals the tail of any of the given references.
+NOTE: This function assumes resources from the same source server.
+*/
+define fluent function references(references List<Reference>, resourceId String):
+  exists (references R where R.references(resourceId))
+
+/*
+@description: Returns true if the given code is in the given codeList
+@comment: Returns true if the `code` is equivalent to any of the codes in the given `codeList`, false otherwise.
+*/
+define fluent function includesCode(codeList List<Concept>, code Code):
+  exists (codeList C where C ~ code)
 
 /*
 @description: Given an interval, return true if the interval has a starting boundary specified
