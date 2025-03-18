@@ -64,7 +64,7 @@ context Patient
 define "Initial Population":
     AgeInYearsAt(date from start of "Measurement Period") >= 18
         and exists ([ConditionProblemsHealthConcerns: "Diabetes"] DiabetesDiagnosis
-            where QICoreCommon."ToPrevalenceInterval" ( DiabetesDiagnosis ) overlaps "Measurement Period")
+            where QICoreCommon."ToPrevalenceInterval"(DiabetesDiagnosis) overlaps "Measurement Period")
         and exists "Qualifying Encounters"
 
 define "Denominator":
@@ -93,17 +93,17 @@ define "Has Bilateral Lower Extremity Amputation at the Foot or Above":
             and QICoreCommon."ToPrevalenceInterval"(C) before "Measurement Period"
     )
     or exists ([Procedure] P
-        where 
-            (P.code in "Amputation of Bilateral Feet"
+        where (
+            P.code in "Amputation of Bilateral Feet"
             or (P.code in "Amputation of Left Foot" 
                 and exists ([Procedure] Procedure2
-                    where Procedure2.code in "Amputation of Right Foot") 
-            )
+                    where Procedure2.code in "Amputation of Right Foot"))
             or (P.code in "Amputation of Unspecified Foot"
                 and exists (P.bodySite B
-                    where B.coding.code = '51440002')
-            ))
-            and end of ToInterval(P.performed) before start of "Measurement Period"
+                    where B.coding.code = '51440002'))
+        )
+            and P.isProcedurePerformed() 
+            and end of P.performed.toInterval() before start of "Measurement Period"
     )
 
 define "Numerator":
@@ -120,7 +120,7 @@ define "Qualifying Normal Neurological Exam Findings":
         union [ObservationClinicalResult: "Temperature Test Normal Finding"]
     ) NormalNeurologicalExam
         where NormalNeurologicalExam.isDiagnosticStudyPerformed() 
-            and ToInterval(NormalNeurologicalExam) overlaps "Measurement Period"
+            and NormalNeurologicalExam.effective.toInterval() overlaps "Measurement Period"
 
 define "Has At Least Two Normal Neurological Exam Findings of Lower Extremity":
     Count("Qualifying Normal Neurological Exam Findings") >= 2
@@ -132,10 +132,14 @@ define "Has At Least Two Normal Neurological Exam Findings of Lower Extremity":
 define "Has a Normal Vascular Exam Finding of Lower Extremity":
     exists ([ObservationClinicalResult: "Pedal Pulse Normal Finding"]) NormalVascularExam
         where NormalVascularExam.isDiagnosticStudyPerformed() 
-            and ToInterval(NormalVascularExam) overlaps "Measurement Period"
+            and NormalVascularExam.effective.toInterval() overlaps "Measurement Period"
 
 define "Has a Normal Visual Inspection of Lower Extremity":
     exists ([ObservationClinicalResult: "Visual Exam Normal Finding"]) NormalVisualExam
         where NormalVisualExam.isDiagnosticStudyPerformed() 
-            and ToInterval(NormalVisualExam) overlaps "Measurement Period"
+            and NormalVisualExam.effective.toInterval() overlaps "Measurement Period"
     
+define "Received Foot Care Education":
+    exists ([Procedure: "Foot Care Education"]) FootCareEducation
+        where FootCareEducation.isProcedurePerformed()
+            and FootCareEducation.performed.toInterval() overlaps "Measurement Period"
