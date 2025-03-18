@@ -107,10 +107,15 @@ define "Has Bilateral Lower Extremity Amputation at the Foot or Above":
     )
 
 define "Numerator":
-    "Has At Least Two Normal Neurological Exam Findings of Lower Extremity"
-    and "Has a Normal Vascular Exam Finding of Lower Extremity"
-    and "Has a Normal Visual Inspection of Lower Extremity"
-    and "Received Foot Care Education"
+    ("Has At Least Two Normal Neurological Exam Findings of Lower Extremity"
+        and "Has a Normal Vascular Exam Finding of Lower Extremity"
+        and "Has a Normal Visual Inspection of Lower Extremity"
+        and "Received Foot Care Education"
+    ) 
+    or 
+    ("Has Abnormal Exam Finding of Lower Extremity"
+        and "Has Follow-Up Plan of Care Within One Week of Eligible Encounter"
+    )
 
 define "Qualifying Normal Neurological Exam Findings":
     ([ObservationClinicalResult: "Monofilament Test Normal Finding"]
@@ -143,3 +148,20 @@ define "Received Foot Care Education":
     exists ([Procedure: "Foot Care Education"]) FootCareEducation
         where FootCareEducation.isProcedurePerformed()
             and FootCareEducation.performed.toInterval() overlaps "Measurement Period"
+
+define "Has Abnormal Exam Finding of Lower Extremity":
+    exists (([ObservationClinicalResult: "Monofilament Test Abnormal Finding"]
+        union [ObservationClinicalResult: "Pinprick Test Abnormal Finding"]
+        union [ObservationClinicalResult: "Vibration Test Abnormal Finding"]
+        union [ObservationClinicalResult: "Ipswich Test Abnormal Finding"]
+        union [ObservationClinicalResult: "Temperature Test Abnormal Finding"]
+        union [ObservationClinicalResult: "Pedal Pulse Abnormal Finding"]) AbnormalObservation
+        where AbnormalObservation.isDiagnosticStudyPerformed()
+            and AbnormalObservation.effective.toInterval() overlaps "Measurement Period"
+    )
+    or exists (([ConditionEncounterDiagnosis: "Foot Callus"]
+        union [ConditionEncounterDiagnosis: "Foot Deformity"]
+        union [ConditionEncounterDiagnosis: "Foot Ulcer"]) AbnormalCondition
+        where AbnormalCondition.isActiveOnly()
+            and AbnormalCondition.onset.toInterval() overlaps "Measurement Period"   
+    )
