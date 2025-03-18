@@ -165,3 +165,22 @@ define "Has Abnormal Exam Finding of Lower Extremity":
         where AbnormalCondition.isActiveOnly()
             and AbnormalCondition.onset.toInterval() overlaps "Measurement Period"   
     )
+
+define "Has Follow-Up Plan of Care Within One Week of Eligible Encounter":
+    exists ( 
+        (([Procedure: "Offloading Interventions"] 
+            union [Procedure: "Therapeutic Footwear Interventions"]) FollowUpProcedure
+                where FollowUpProcedure.performed.toInterval() during "Seven-Day Period Following Qualifying Encounter"
+        )
+        union (([ServiceRequest: "Referral for Foot Care"]
+            union [ServiceRequest: "Order for Follow Up Visit (within 12 months)"]) FollowUpServiceRequest
+                where FollowUpServiceRequest.authoredOn.toInterval() during "Seven-Day Period Following Qualifying Encounter"
+        )
+        union (([DeviceRequest: "Offloading Devices"]
+            union [DeviceRequest: "Therapeutic Footwear"]) FollowUpDeviceRequest
+                where FollowUpDeviceRequest.authoredOn.toInterval() during "Seven-Day Period Following Qualifying Encounter"
+        )
+    )
+
+define "Seven-Day Period Following Qualifying Encounter":
+    Interval[start of "Qualifying Encounters".period, end of "Qualifying Encounters".period + 7 days]
