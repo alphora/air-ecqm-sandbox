@@ -1,4 +1,4 @@
-library FootAssessmentAndFollowUp
+library FootAssessmentAndFollowUp version '0.0.000'
 
 using QICore version '6.0.0'
 
@@ -6,7 +6,8 @@ include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '5.0.000' called SDE
 include QICoreCommon version '4.0.000' called QICoreCommon
 include Hospice version '6.12.000' called Hospice
-include Status version '1.6.000' called Status
+
+codesystem "SNOMEDCT": 'http://snomed.info/sct'
 
 valueset "Diabetes": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.103.12.1001'
 valueset "Annual Wellness Visit": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240'
@@ -55,6 +56,8 @@ valueset "Therapeutic Footwear Interventions": 'http://cts.nlm.nih.gov/fhir/Valu
 valueset "Therapeutic Footwear": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.324'
 valueset "Order for Follow Up Visit (within 12 months)": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.326'
 
+code "Right (qualifier value)": '24028007' from "SNOMEDCT" display 'Right (qualifier value)'
+code "Left (qualifier value)": '7771000' from "SNOMEDCT" display 'Left (qualifier value)'
 code "Right and left (qualifier value)": '51440002' from "SNOMEDCT" display 'Right and left (qualifier value)'
 
 parameter "Measurement Period" default Interval[@2025-01-01T00:00:00.000, @2026-01-01T00:00:00.000)
@@ -64,7 +67,7 @@ context Patient
 define "Initial Population":
     AgeInYearsAt(date from start of "Measurement Period") >= 18
         and exists ([ConditionProblemsHealthConcerns: "Diabetes"] DiabetesDiagnosis
-            where QICoreCommon."ToPrevalenceInterval"(DiabetesDiagnosis) overlaps "Measurement Period")
+            where QICoreCommon.ToPrevalenceInterval(DiabetesDiagnosis) overlaps "Measurement Period")
         and exists "Qualifying Encounters"
 
 define "Denominator":
@@ -78,8 +81,9 @@ define "Qualifying Encounters":
     union [Encounter: "Preventive Services Initial"]
     union [Encounter: "Telemedicine Services"]
     union [Encounter: "Telephone Visits"]
-    union [Encounter: "Virtual Encounter"]).isEncounterPerformed()) QualifyingEncounter
-        where QualifyingEncounter.period during day of "Measurement Period"
+    union [Encounter: "Virtual Encounter"])) QualifyingEncounter
+        where QualifyingEncounter.status in {'finished', 'arrived', 'triaged', 'in-progress', 'onleave'}
+            and QualifyingEncounter.period during day of "Measurement Period"
 
 define "Denominator Exclusions":
     "Has Bilateral Lower Extremity Amputation at the Foot or Above"
@@ -87,25 +91,31 @@ define "Denominator Exclusions":
 
 define "Has Bilateral Lower Extremity Amputation at the Foot or Above":
     exists ([ConditionProblemsHealthConcerns] C
-        where 
-            (C.code in "Acquired Absense Bilateral Feet"
-            or (C.code in "Acquired Absence of Left Foot" and C.code in "Acquired Absence of Right Foot"))
-            and QICoreCommon."ToPrevalenceInterval"(C) before "Measurement Period"
+        where (
+            C.code in "Acquired Absense Bilateral Feet"
+            or (C.code in "Acquired Absence of Left Foot" and C.code in "Acquired Absence of Right Foot")
+        )
+            and QICoreCommon.ToPrevalenceInterval(C) before "Measurement Period"
     )
     or exists ([Procedure] P
         where (
             P.code in "Amputation of Bilateral Feet"
             or (P.code in "Amputation of Left Foot" 
                 and exists ([Procedure] Procedure2
-                    where Procedure2.code in "Amputation of Right Foot"))
+                    where Procedure2.code in "Amputation of Right Foot")
+            )
             or (P.code in "Amputation of Unspecified Foot"
                 and exists (P.bodySite B
-                    where B.coding.code = '51440002'))
+                    where B.display = 'Right and left (qualifier value)'
+                        or (B.display = 'Right (qualifier value)'
+                            and B.display = 'Left (qualifier value)')
+                )
+            )
         )
-            and P.isProcedurePerformed() 
+            and P.status ~ 'completed'
             and end of P.performed.toInterval() before start of "Measurement Period"
     )
-
+                
 define "Numerator":
     ("Has At Least Two Normal Neurological Exam Findings of Lower Extremity"
         and "Has a Normal Vascular Exam Finding of Lower Extremity"
@@ -124,7 +134,7 @@ define "Qualifying Normal Neurological Exam Findings":
         union [ObservationClinicalResult: "Ipswich Test Normal Finding"]
         union [ObservationClinicalResult: "Temperature Test Normal Finding"]
     ) NormalNeurologicalExam
-        where NormalNeurologicalExam.isDiagnosticStudyPerformed() 
+        where NormalNeurologicalExam.status in { 'final', 'amended', 'corrected' }
             and NormalNeurologicalExam.effective.toInterval() overlaps "Measurement Period"
 
 define "Has At Least Two Normal Neurological Exam Findings of Lower Extremity":
@@ -136,17 +146,17 @@ define "Has At Least Two Normal Neurological Exam Findings of Lower Extremity":
 
 define "Has a Normal Vascular Exam Finding of Lower Extremity":
     exists ([ObservationClinicalResult: "Pedal Pulse Normal Finding"]) NormalVascularExam
-        where NormalVascularExam.isDiagnosticStudyPerformed() 
+        where NormalVascularExam.status in { 'final', 'amended', 'corrected' }
             and NormalVascularExam.effective.toInterval() overlaps "Measurement Period"
 
 define "Has a Normal Visual Inspection of Lower Extremity":
     exists ([ObservationClinicalResult: "Visual Exam Normal Finding"]) NormalVisualExam
-        where NormalVisualExam.isDiagnosticStudyPerformed() 
+        where NormalVisualExam.status in { 'final', 'amended', 'corrected' }
             and NormalVisualExam.effective.toInterval() overlaps "Measurement Period"
     
 define "Received Foot Care Education":
     exists ([Procedure: "Foot Care Education"]) FootCareEducation
-        where FootCareEducation.isProcedurePerformed()
+        where FootCareEducation.status ~ 'completed'
             and FootCareEducation.performed.toInterval() overlaps "Measurement Period"
 
 define "Has Abnormal Exam Finding of Lower Extremity":
@@ -156,34 +166,49 @@ define "Has Abnormal Exam Finding of Lower Extremity":
         union [ObservationClinicalResult: "Ipswich Test Abnormal Finding"]
         union [ObservationClinicalResult: "Temperature Test Abnormal Finding"]
         union [ObservationClinicalResult: "Pedal Pulse Abnormal Finding"]) AbnormalObservation
-        where AbnormalObservation.isDiagnosticStudyPerformed()
+        where AbnormalObservation.status in { 'final', 'amended', 'corrected' }
             and AbnormalObservation.effective.toInterval() overlaps "Measurement Period"
     )
     or exists (([ConditionEncounterDiagnosis: "Foot Callus"]
         union [ConditionEncounterDiagnosis: "Foot Deformity"]
         union [ConditionEncounterDiagnosis: "Foot Ulcer"]) AbnormalCondition
-        where AbnormalCondition.isActiveOnly()
-            and AbnormalCondition.onset.toInterval() overlaps "Measurement Period"   
+        where AbnormalCondition.isActive()
+        and AbnormalCondition.onset.toInterval() overlaps "Measurement Period"   
     )
 
 define "Has Follow-Up Plan of Care Within One Week of Eligible Encounter":
     exists ( 
         (([Procedure: "Offloading Interventions"] 
             union [Procedure: "Therapeutic Footwear Interventions"]) FollowUpProcedure
-                where FollowUpProcedure.isProcedurePerformed()
+                where FollowUpProcedure.status ~ 'completed'
                     and FollowUpProcedure.performed.toInterval() during "Seven-Day Period Following Qualifying Encounter"
         )
         union (([ServiceRequest: "Referral for Foot Care"]
             union [ServiceRequest: "Order for Follow Up Visit (within 12 months)"]) FollowUpServiceRequest
-                where FollowUpServiceRequest.isInterventionOrder()
+                where FollowUpServiceRequest.status in { 'active', 'completed' }
+                    and FollowUpServiceRequest.intent = 'order'
                     and FollowUpServiceRequest.authoredOn.toInterval() during "Seven-Day Period Following Qualifying Encounter"
         )
         union (([DeviceRequest: "Offloading Devices"]
             union [DeviceRequest: "Therapeutic Footwear"]) FollowUpDeviceRequest
-                where FollowUpDeviceRequest.isDeviceOrder()
+                where FollowUpDeviceRequest.status in { 'active', 'completed' }
+                    and FollowUpDeviceRequest.intent = 'order'
                     and FollowUpDeviceRequest.authoredOn.toInterval() during "Seven-Day Period Following Qualifying Encounter"
         )
     )
 
 define "Seven-Day Period Following Qualifying Encounter":
-    Interval[start of "Qualifying Encounters".period, end of "Qualifying Encounters".period + 7 days]
+    "Qualifying Encounters" E 
+    return Interval[start of E.period, end of E.period + 7 days]
+
+define "SDE Ethnicity":
+  SDE."SDE Ethnicity"
+
+define "SDE Payer":
+  SDE."SDE Payer"
+
+define "SDE Race":
+  SDE."SDE Race"
+
+define "SDE Sex":
+  SDE."SDE Sex"
