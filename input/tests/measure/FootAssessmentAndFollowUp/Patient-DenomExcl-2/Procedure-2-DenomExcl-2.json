@@ -1,0 +1,26 @@
+{
+    "resourceType": "Procedure",
+    "id": "Procedure-2-DenomExcl-2",
+    "meta": {
+      "profile": [ "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure" ]
+    },
+    "extension": [ {
+      "url": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-recorded",
+      "valueDateTime": "2003-07-15T06:00:00.000Z"
+    } ],
+    "status": "completed",
+    "code": {
+      "coding": [ {
+        "system": "http://hl7.org/fhir/sid/icd-10-cm",
+        "code": "0Y6M0Z0",
+        "display": "Detachment at Right Foot, Complete, Open Approach"
+      } ]
+    },
+    "subject": {
+      "reference": "Patient/Patient-DenomExcl-2"
+    },
+    "performedPeriod": {
+      "start": "2003-07-15T00:00:00.000Z",
+      "end": "2003-07-15T05:00:00.000Z"
+    }
+}
