@@ -1,17 +1,14 @@
-/*
-@update: JKR 2024-04-02 ->
-Increment QICoreCommon and FHIRHelpers version
-Update principalDiagnosis function to correctly reference the 'use' element https://oncprojectracking.healthit.gov/support/browse/CQLIT-416
-*/
-
-library CQMCommon version '2.2.000'
+library CQMCommon version '4.0.000'
 
 using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
-include QICoreCommon version '2.1.000' called QICoreCommon
+include QICoreCommon version '4.0.000' called QICoreCommon
 
 codesystem DiagnosisRole: 'http://terminology.hl7.org/CodeSystem/diagnosis-role'
+codesystem "Diagnosis Type": 'http://terminology.hl7.org/CodeSystem/ex-diagnosistype'
+codesystem "Procedure Type": 'http://terminology.hl7.org/CodeSystem/ex-procedure-type'
+codesystem "Present On Admission Indicators": 'https://www.cms.gov/Medicare/Medicare-Fee-for-Service-Payment/HospitalAcqCond/Coding'
 
 valueset "Emergency Department Visit": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292'
 valueset "Encounter Inpatient": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307'
@@ -21,16 +18,33 @@ valueset "Outpatient Surgery Service": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.1
 valueset "Present on Admission or Clinically Undetermined": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1147.197'
 
 code "Billing": 'billing' from DiagnosisRole display 'Billing'
+code "Admitting Diagnosis": 'admitting' from "Diagnosis Type" display 'Admitting Diagnosis'
+code "Clinical Diagnosis": 'clinical' from "Diagnosis Type" display 'Clinical Diagnosis'
+code "Differential Diagnosis": 'differential' from "Diagnosis Type" display 'Differential Diagnosis'
+code "Discharge Diagnosis": 'discharge' from "Diagnosis Type" display 'Discharge Diagnosis'
+code "Laboratory Diagnosis": 'laboratory' from "Diagnosis Type" display 'Laboratory Diagnosis'
+code "Nursing Diagnosis": 'nursing' from "Diagnosis Type" display 'Nursing Diagnosis'
+code "Prenatal Diagnosis": 'prenatal' from "Diagnosis Type" display 'Prenatal Diagnosis'
+code "Principal Diagnosis": 'principal' from "Diagnosis Type" display 'Principal Diagnosis'
+code "Radiology Diagnosis": 'radiology' from "Diagnosis Type" display 'Radiology Diagnosis'
+code "Remote Diagnosis": 'remote' from "Diagnosis Type" display 'Remote Diagnosis'
+code "Retrospective Diagnosis": 'retrospective' from "Diagnosis Type" display 'Retrospetive Diagnosis'
+code "Self Diagnosis": 'self' from "Diagnosis Type" display 'Self Diagnosis'
+code "Primary procedure": 'primary' from "Procedure Type" display 'Primary procedure'
+code "POA-Y": 'Y' from "Present On Admission Indicators" display 'POA-Y'
+code "POA-N": 'N' from "Present On Admission Indicators" display 'POA-N'
+code "POA-W": 'W' from "Present On Admission Indicators" display 'POA-W'
+code "POA-1": '1' from "Present On Admission Indicators" display 'POA-1'
+code "POA-U": 'U' from "Present On Admission Indicators" display 'POA-U'
 
 parameter "Measurement Period" Interval<DateTime>
-  default Interval[@2025-01-01T00:00:00.0, @2026-01-01T00:00:00.0)
 
 context Patient
 
 define "Inpatient Encounter":
-  [Encounter: type in "Encounter Inpatient"] EncounterInpatient
-		where EncounterInpatient.status = 'finished'
-		and EncounterInpatient.period ends during day of "Measurement Period"
+  [Encounter: "Encounter Inpatient"] EncounterInpatient
+    where EncounterInpatient.status = 'finished'
+      and EncounterInpatient.period ends during day of "Measurement Period"
 
 /*
 @description: Returns an interval of date values extracted from the input interval of date-time values
@@ -61,7 +75,7 @@ define fluent function lengthInDays(Value Interval<DateTime> ):
 */
 define function "ED Visit"(TheEncounter Encounter ):
   Last(
-    [Encounter: type in "Emergency Department Visit"] EDVisit
+    [Encounter: "Emergency Department Visit"] EDVisit
       where EDVisit.status = 'finished'
         and EDVisit.period ends 1 hour or less on or before start of TheEncounter.period
       sort by end of period
@@ -72,7 +86,7 @@ define function "ED Visit"(TheEncounter Encounter ):
 */
 define fluent function edVisit(TheEncounter Encounter ):
   Last(
-    [Encounter: type in "Emergency Department Visit"] EDVisit
+    [Encounter: "Emergency Department Visit"] EDVisit
       where EDVisit.status = 'finished'
         and EDVisit.period ends 1 hour or less on or before start of TheEncounter.period
       sort by end of period
@@ -211,7 +225,7 @@ define function "Emergency Department Arrival Time"(TheEncounter Encounter):
 define fluent function emergencyDepartmentArrivalTime(TheEncounter Encounter):
 	start of (
 	    singleton from (
-	        ( (TheEncounter. "hospitalizationLocations"()) ) HospitalLocation
+	        ( (TheEncounter."hospitalizationLocations"()) ) HospitalLocation
 				where GetLocation(HospitalLocation.location).type in "Emergency Department Visit"
 		)
 	).period
@@ -222,19 +236,19 @@ define fluent function emergencyDepartmentArrivalTime(TheEncounter Encounter):
 */
 define function "HospitalizationWithObservationAndOutpatientSurgeryService"(TheEncounter "Encounter" ):
   TheEncounter Visit
-	  let ObsVisit: Last([Encounter: type in "Observation Services"] LastObs
+	  let ObsVisit: Last([Encounter: "Observation Services"] LastObs
 		  	where LastObs.status = 'finished'
           and LastObs.period ends 1 hour or less on or before start of Visit.period
 			  sort by	end of period
     	),
     	VisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),
-    	EDVisit: Last([Encounter: type in "Emergency Department Visit"] LastED
+    	EDVisit: Last([Encounter: "Emergency Department Visit"] LastED
 			  where LastED.status = 'finished'
           and LastED.period ends 1 hour or less on or before VisitStart
 			  sort by	end of period
     	),
     	VisitStartWithED: Coalesce(start of EDVisit.period, VisitStart),
-    	OutpatientSurgeryVisit: Last([Encounter: type in "Outpatient Surgery Service"] LastSurgeryOP
+    	OutpatientSurgeryVisit: Last([Encounter: "Outpatient Surgery Service"] LastSurgeryOP
 			  where LastSurgeryOP.period ends 1 hour or less on or before VisitStartWithED
 			  sort by	end of period
     	)
@@ -245,19 +259,19 @@ define function "HospitalizationWithObservationAndOutpatientSurgeryService"(TheE
 */
 define fluent function hospitalizationWithObservationAndOutpatientSurgeryService(TheEncounter "Encounter" ):
   TheEncounter Visit
-	  let ObsVisit: Last([Encounter: type in "Observation Services"] LastObs
+	  let ObsVisit: Last([Encounter: "Observation Services"] LastObs
 		  	where LastObs.status = 'finished'
           and LastObs.period ends 1 hour or less on or before start of Visit.period
 			  sort by	end of period
     	),
     	VisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),
-    	EDVisit: Last([Encounter: type in "Emergency Department Visit"] LastED
+    	EDVisit: Last([Encounter: "Emergency Department Visit"] LastED
 			  where LastED.status = 'finished'
           and LastED.period ends 1 hour or less on or before VisitStart
 			  sort by	end of period
     	),
     	VisitStartWithED: Coalesce(start of EDVisit.period, VisitStart),
-    	OutpatientSurgeryVisit: Last([Encounter: type in "Outpatient Surgery Service"] LastSurgeryOP
+    	OutpatientSurgeryVisit: Last([Encounter: "Outpatient Surgery Service"] LastSurgeryOP
 			  where LastSurgeryOP.period ends 1 hour or less on or before VisitStartWithED
 			  sort by	end of period
     	)
@@ -269,13 +283,13 @@ define fluent function hospitalizationWithObservationAndOutpatientSurgeryService
 */
 define function "HospitalizationWithObservation"(TheEncounter Encounter ):
   TheEncounter Visit
-  		let ObsVisit: Last([Encounter: type in "Observation Services"] LastObs
+  		let ObsVisit: Last([Encounter: "Observation Services"] LastObs
   				where LastObs.status = 'finished'
             and LastObs.period ends 1 hour or less on or before start of Visit.period
   				sort by end of period
   			),
   			VisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),
-  			EDVisit: Last([Encounter: type in "Emergency Department Visit"] LastED
+  			EDVisit: Last([Encounter: "Emergency Department Visit"] LastED
   				where LastED.status = 'finished'
             and LastED.period ends 1 hour or less on or before VisitStart
   				sort by end of period
@@ -287,13 +301,13 @@ define function "HospitalizationWithObservation"(TheEncounter Encounter ):
 */
 define fluent function hospitalizationWithObservation(TheEncounter Encounter ):
   TheEncounter Visit
-  		let ObsVisit: Last([Encounter: type in "Observation Services"] LastObs
+  		let ObsVisit: Last([Encounter: "Observation Services"] LastObs
   				where LastObs.status = 'finished'
             and LastObs.period ends 1 hour or less on or before start of Visit.period
   				sort by end of period
   			),
   			VisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),
-  			EDVisit: Last([Encounter: type in "Emergency Department Visit"] LastED
+  			EDVisit: Last([Encounter: "Emergency Department Visit"] LastED
   				where LastED.status = 'finished'
             and LastED.period ends 1 hour or less on or before VisitStart
   				sort by end of period
@@ -311,7 +325,7 @@ define function "HospitalizationWithObservationLengthofStay"(TheEncounter "Encou
 @description: Hospitalization with Observation Length of Stay returns the length in days from the start of any immediately prior emergency department visit through the observation visit to the discharge of the given encounter
 */
 define fluent function hospitalizationWithObservationLengthofStay(TheEncounter "Encounter" ):
-  ((TheEncounter."hospitalizationWithObservation"(). "lengthInDays"()))
+  ((TheEncounter."hospitalizationWithObservation"()."lengthInDays"()))
 
 /*
 @description: First Inpatient Intensive Care Unit returns the first intensive care unit for the given encounter, without considering any immediately prior emergency department visit.
@@ -340,78 +354,103 @@ define fluent function firstInpatientIntensiveCareUnit(Encounter Encounter ):
 */
 define function "EncounterDiagnosis"(Encounter Encounter ):
   Encounter.diagnosis D
-	return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = D.condition.reference.getId())
+	return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where D.condition.references(C.id))
 
-/*
-@description: Returns the Condition resources referenced by the diagnosis element of the Encounter
+/*  
+@description: Returns the Condition resources referenced by the diagnosis element of the Encounter  
 */
 define fluent function encounterDiagnosis(Encounter Encounter ):
-  Encounter.diagnosis D
-    return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = D.condition.reference.getId())
+  Encounter.reasonReference D
+    return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where D.references(C.id))
+
 
 /*
 @description: Returns the Condition resource for the given reference
 @deprecated: This function is deprecated. Use the fluent function `getCondition()` instead
 */
 define function "GetCondition"(reference Reference):
-  singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = reference.reference.getId())
+  singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where reference.references(C.id))
 
 /*
 @description: Returns the Condition resource for the given reference
 */
 define fluent function getCondition(reference Reference):
-  singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = reference.reference.getId())
+  singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where reference.references(C.id))
 
 /*
 @description: Returns the condition that is specified as the principal diagnosis for the encounter
 @deprecated: This function is deprecated. Use the fluent function `principalDiagnosis()` instead.
 */
-define function "PrincipalDiagnosis"(Encounter Encounter ):
+define function "PrincipalDiagnosis"(Encounter Encounter):
 	singleton from (
 	(Encounter.diagnosis D where D.rank = 1 and D.use ~ "Billing") PD
-      return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = PD.condition.reference.getId())
+      return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where PD.condition.references(C.id))
 	)
 
 /*
 @description: Returns the condition that is specified as the principal diagnosis for the encounter
+@deprecated: This function is deprecated. Use the claimDiagnosis function for principal diagnosis and present on admission use cases. See
+[ClaimDiagnoses](https://github.com/cqframework/CQL-Formatting-and-Usage-Wiki/blob/master/Source/Cooking%20With%20CQL/88/ClaimDiagnoses.md) 
+discussion for more information.
 */
-define fluent function principalDiagnosis(Encounter Encounter ):
-	singleton from ((Encounter.diagnosis D where D.rank = 1 and D.use ~ "Billing") PD
-      return singleton from (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where C.id = PD.condition.reference.getId())
-	)
+define fluent function principalDiagnosis(encounter Encounter):
+  encounter E1
+	let 
+	  PD: E1.claimDiagnosis() where PD.type.includesCode("Principal Diagnosis")
+	return (([ConditionEncounterDiagnosis] union [ConditionProblemsHealthConcerns]) C where exists (PD.diagnosis.reference R where R = C.id))
+/*
+@description: Returns the claim diagnosis elements for the given encounter
+*/
+define fluent function claimDiagnosis(encounter Encounter):
+  encounter E
+    let 
+      claim: ([Claim] C where C.status = 'active' and C.use = 'claim' and exists (C.item I where I.encounter.references(E))),
+      claimItem: (claim.item I where I.encounter.references(E))
+    return claim.diagnosis D where D.sequence in claimItem.diagnosisSequence
 
 /*
 @description: Returns the Location resource specified by the given reference
 @deprecated: This function is deprecated. Use the fluent function `getLocation()` instead.
 */
-define function "GetLocation"(reference Reference ):
+define function "GetLocation"(reference Reference):
   singleton from (
-    [Location] L where L.id = reference.reference.getId()
+    [Location] L where reference.references(L)
   )
 
 /*
 @description: Returns the Location resource specified by the given reference.
 */
-define fluent function getLocation(reference Reference ):
+define fluent function getLocation(reference Reference):
   singleton from (
-    [Location] L where L.id = reference.reference.getId()
+    [Location] L where reference.references(L)
   )
 
 /*
 @description: Returns the medication code for the given MedicationRequest
 @deprecated: This function is deprecated. Use the fluent function `getMedicationCode()` instead.
 */
-define function "GetMedicationCode"(request MedicationRequest ):
+define function "GetMedicationCode"(request MedicationRequest):
   if request.medication is Concept then
   	  request.medication as Concept
   	else
-  	  (singleton from ([Medication] M where M.id = (request.medication as Reference).reference.getId())).code
+  	  (singleton from ([Medication] M where request.medication.references(M))).code
 
 /*
 @description: Returns the medication code for the given MedicationRequest
 */
-define fluent function getMedicationCode(request MedicationRequest ):
+define fluent function getMedicationCode(request MedicationRequest):
   if request.medication is Concept then
   	  request.medication as Concept
   	else
-  	  (singleton from ([Medication] M where M.id = (request.medication as Reference).reference.getId())).code
+  	  (singleton from ([Medication] M where request.medication.references(M))).code
+  	  
+/*
+@description: Returns the claim procedure elements for the given encounter
+*/
+define fluent function principalProcedure(encounter Encounter):  	  
+  	 encounter E
+  	 let 
+        claim: [Claim] C where C.status = 'active' and C.use = 'claim' and exists (C.item I where I.encounter.references(E)),
+        claimItem: claim.item I where I.encounter.references(E),
+        claimProcedure: claim.procedure P where P.sequence in claimItem.procedureSequence
+      where claimProcedure.type.includesCode("Primary procedure")
