@@ -4,8 +4,9 @@ using QICore version '6.0.0'
 
 include FHIRHelpers version '4.4.000' called FHIRHelpers
 include SupplementalDataElements version '5.0.000' called SDE
-include QICoreCommon version '4.0.000' called QICoreCommon
-include Hospice version '6.12.000' called Hospice
+include QICoreCommonSTU6Prototype version '0.1.000' called QICoreCommon
+include HospiceSTU6Prototype version '0.1.000' called Hospice
+include StatusSTU6Prototype version '0.5.000' called Status
 
 codesystem "SNOMEDCT": 'http://snomed.info/sct'
 
@@ -18,7 +19,7 @@ valueset "Preventive Services Initial": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.
 valueset "Telemedicine Services": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.276'
 valueset "Telephone Visits": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1080'
 valueset "Virtual Encounter": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089'
-valueset "Acquired Absense Bilateral Feet": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.278'
+valueset "Acquired Absence Bilateral Feet": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.278'
 valueset "Acquired Absence of Left Foot": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.281'
 valueset "Acquired Absence of Right Foot": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.284'
 valueset "Amputation of Bilateral Feet": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.287'
@@ -74,14 +75,14 @@ define "Denominator":
     "Initial Population"
 
 define "Qualifying Encounters":
-  (([Encounter: "Annual Wellness Visit"]
+  ([Encounter: "Annual Wellness Visit"]
     union [Encounter: "Encounter Inpatient"]
     union [Encounter: "Office Visit"]
     union [Encounter: "Preventive Services Established"]
     union [Encounter: "Preventive Services Initial"]
     union [Encounter: "Telemedicine Services"]
     union [Encounter: "Telephone Visits"]
-    union [Encounter: "Virtual Encounter"])) QualifyingEncounter
+    union [Encounter: "Virtual Encounter"]) QualifyingEncounter
         where QualifyingEncounter.status in {'finished', 'arrived', 'triaged', 'in-progress', 'onleave'}
             and QualifyingEncounter.period during day of "Measurement Period"
 
@@ -92,7 +93,7 @@ define "Denominator Exclusions":
 define "Has Bilateral Lower Extremity Amputation at the Foot or Above":
     exists ([ConditionProblemsHealthConcerns] C
         where (
-            C.code in "Acquired Absense Bilateral Feet"
+            C.code in "Acquired Absence Bilateral Feet"
             or (C.code in "Acquired Absence of Left Foot" and C.code in "Acquired Absence of Right Foot")
         )
             and QICoreCommon.ToPrevalenceInterval(C) before "Measurement Period"
