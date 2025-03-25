@@ -26,11 +26,11 @@ valueset "Amputation of Bilateral Feet": 'http://cts.nlm.nih.gov/fhir/ValueSet/2
 valueset "Amputation of Left Foot": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.291'
 valueset "Amputation of Right Foot": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.294'
 valueset "Amputation of Unspecified Foot": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.295'
-valueset "10-g Monofilament Test": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.296'
+valueset "Monofilament Foot Test": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.296'
 valueset "Pinprick Sensation Test and Finding": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.347'
-valueset "Vibration Test - 128-Hz tuning fork": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.297'
-valueset "Ipswich Touch Test and Finding": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.348'
-valueset "Temperature Discrimination Test": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.300'
+valueset "Vibration Sensation Foot Test": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.297'
+valueset "Ipswich Soft Touch Test and Finding": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.348'
+valueset "Temperature Discrimination Foot Test": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.300'
 valueset "Pedal Pulse Palpation Test": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.304'
 valueset "Lower Extremity Visual Exam": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.305'
 valueset "Foot Care Education": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1248.327'
@@ -118,7 +118,7 @@ define "Has Bilateral Lower Extremity Amputation at the Foot or Above":
     )
                 
 define "Numerator":
-    ("Has At Least Two Normal Neurological Exam Findings of Lower Extremity"
+    (("Has At Least Two Normal Neurological Exam Findings of Lower Extremity"
         and "Has a Normal Vascular Exam Finding of Lower Extremity"
         and "Has a Normal Visual Inspection of Lower Extremity"
         and "Received Foot Care Education"
@@ -126,18 +126,10 @@ define "Numerator":
     or 
     ("Has Abnormal Exam Finding of Lower Extremity"
         and "Has Follow-Up Plan of Care Within One Week of Eligible Encounter"
-    )
+    ))
+    and not "Denominator Exclusions"
 
-define "Qualifying Normal Neurological Exam Findings":
-    ([ObservationClinicalResult: "Monofilament Test Normal Finding"]
-        union [ObservationClinicalResult: "Pinprick Test Normal Finding"]
-        union [ObservationClinicalResult: "Vibration Test Normal Finding"]
-        union [ObservationClinicalResult: "Ipswich Test Normal Finding"]
-        union [ObservationClinicalResult: "Temperature Test Normal Finding"]
-    ) NormalNeurologicalExam
-        where NormalNeurologicalExam.status in { 'final', 'amended', 'corrected' }
-            and NormalNeurologicalExam.effective.toInterval() overlaps "Measurement Period"
-
+//Normal Neurological Exam
 define "Has At Least Two Normal Neurological Exam Findings of Lower Extremity":
     Count("Qualifying Normal Neurological Exam Findings") >= 2
         and exists ("Qualifying Normal Neurological Exam Findings" NeurologicalExamType1
@@ -145,28 +137,79 @@ define "Has At Least Two Normal Neurological Exam Findings of Lower Extremity":
                 where NeurologicalExamType1.code != NeurologicalExamType2.code)
         )
 
-define "Has a Normal Vascular Exam Finding of Lower Extremity":
-    exists ([ObservationClinicalResult: "Pedal Pulse Normal Finding"]) NormalVascularExam
-        where NormalVascularExam.status in { 'final', 'amended', 'corrected' }
-            and NormalVascularExam.effective.toInterval() overlaps "Measurement Period"
+define "Qualifying Normal Neurological Exam Findings":
+    ("Normal Monofilament Foot Test Finding"
+        // union "Normal Pinprick Sensation Foot Test Finding"
+        union "Normal Vibration Sensation Foot Test Finding"
+        union "Normal Ipswich Soft Touch Test Finding"
+        union "Normal Temperature Discrimination Foot Test Finding"
+    ) NormalNeurologicalExam
+        where NormalNeurologicalExam.status in { 'final', 'amended', 'corrected' }
+            and NormalNeurologicalExam.effective.toInterval() overlaps "Measurement Period"
 
+define "Normal Monofilament Foot Test Finding":
+    [ObservationClinicalResult: "Monofilament Foot Test"] MonofilmanetFootTest
+        where MonofilmanetFootTest.value is not null 
+            and (MonofilmanetFootTest.value as Concept in "Monofilament Test Normal Finding"
+                or MonofilmanetFootTest.component.code in "Monofilament Test Normal Finding")
+
+// define "Normal Pinprick Sensation Foot Test Finding":
+//     [ObservationClinicalResult: "Pinprick Sensation Test and Finding"]
+
+define "Normal Vibration Sensation Foot Test Finding":
+    [ObservationClinicalResult: "Vibration Sensation Foot Test"] VibrationTest
+        where VibrationTest.value is not null
+            and (VibrationTest.value as Concept in "Vibration Test Normal Finding"
+                or VibrationTest.component.code in "Vibration Test Normal Finding")
+
+define "Normal Ipswich Soft Touch Test Finding":
+    ([ObservationClinicalResult: "Ipswich Test Normal Finding"]
+        union [ObservationClinicalResult: "Ipswich Test Abnormal Finding"]
+    ) IpswichTest 
+        where IpswichTest.value is not null
+            and (IpswichTest.value as Concept in "Ipswich Test Normal Finding"
+                or IpswichTest.component.code in "Ipswich Test Normal Finding")
+
+define "Normal Temperature Discrimination Foot Test Finding":
+    [ObservationClinicalResult: "Temperature Discrimination Foot Test"] TemperatureTest
+        where TemperatureTest.value is not null
+            and (TemperatureTest.value as Concept in "Temperature Test Normal Finding"
+                or TemperatureTest.component.code in "Temperature Test Normal Finding")
+
+//Vascular Exam
+define "Has a Normal Vascular Exam Finding of Lower Extremity":
+    exists ([ObservationClinicalResult: "Pedal Pulse Palpation Test"]) VascularExam
+        where VascularExam.value is not null
+            and 
+                (VascularExam.value as Concept in "Pedal Pulse Normal Finding"
+                or VascularExam.component.code in "Pedal Pulse Normal Finding")
+            and VascularExam.status in { 'final', 'amended', 'corrected' }
+            and VascularExam.effective.toInterval() overlaps "Measurement Period"
+
+//Visual Exam
 define "Has a Normal Visual Inspection of Lower Extremity":
-    exists ([ObservationClinicalResult: "Visual Exam Normal Finding"]) NormalVisualExam
-        where NormalVisualExam.status in { 'final', 'amended', 'corrected' }
-            and NormalVisualExam.effective.toInterval() overlaps "Measurement Period"
+    exists ([ObservationClinicalResult: "Lower Extremity Visual Exam"]) VisualExam
+        where VisualExam.value is not null
+            and 
+                (VisualExam.value as Concept in "Visual Exam Normal Finding"
+                or VisualExam.component.code in "Visual Exam Normal Finding")
+            and VisualExam.status in { 'final', 'amended', 'corrected' }
+            and VisualExam.effective.toInterval() overlaps "Measurement Period"            
     
+//Foot Care Education
 define "Received Foot Care Education":
     exists ([Procedure: "Foot Care Education"]) FootCareEducation
         where FootCareEducation.status ~ 'completed'
             and FootCareEducation.performed.toInterval() overlaps "Measurement Period"
 
+//Abnormal Neurological Exam
 define "Has Abnormal Exam Finding of Lower Extremity":
-    exists (([ObservationClinicalResult: "Monofilament Test Abnormal Finding"]
-        union [ObservationClinicalResult: "Pinprick Test Abnormal Finding"]
-        union [ObservationClinicalResult: "Vibration Test Abnormal Finding"]
-        union [ObservationClinicalResult: "Ipswich Test Abnormal Finding"]
-        union [ObservationClinicalResult: "Temperature Test Abnormal Finding"]
-        union [ObservationClinicalResult: "Pedal Pulse Abnormal Finding"]) AbnormalObservation
+    exists (("Abnormal Monofilament Foot Test Finding"
+        // union "Abnormal Pinprick Sensation Foot Test Finding"
+        union "Abnormal Vibration Sensation Foot Test Finding"
+        // union "Abnormal Ipswich Soft Touch Test Finding"
+        union "Abnormal Temperature Discrimination Foot Test Finding"
+        union "Abnormal Vascular Exam Finding of Lower Extremity") AbnormalObservation
         where AbnormalObservation.status in { 'final', 'amended', 'corrected' }
             and AbnormalObservation.effective.toInterval() overlaps "Measurement Period"
     )
@@ -177,6 +220,41 @@ define "Has Abnormal Exam Finding of Lower Extremity":
         and AbnormalCondition.onset.toInterval() overlaps "Measurement Period"   
     )
 
+define "Abnormal Monofilament Foot Test Finding":
+    [ObservationClinicalResult: "Monofilament Foot Test"] MonofilmanetFootTest
+        where MonofilmanetFootTest.value is not null
+            and (MonofilmanetFootTest.value as Concept in "Monofilament Test Abnormal Finding"
+                or MonofilmanetFootTest.component.code in "Monofilament Test Abnormal Finding")
+
+// define "Abnormal Pinprick Sensation Foot Test Finding":
+//     [ObservationClinicalResult: "Pinprick Sensation Test and Finding"]
+
+define "Abnormal Vibration Sensation Foot Test Finding":
+    [ObservationClinicalResult: "Vibration Sensation Foot Test"] VibrationTest
+        where VibrationTest.value is not null
+            and (VibrationTest.value as Concept in "Vibration Test Abnormal Finding"
+                or VibrationTest.component.code in "Vibration Test Abnormal Finding")
+
+// define "Abnormal Ipswich Soft Touch Test Finding":
+//     ([ObservationClinicalResult: "Ipswich Test Normal Finding"]
+//         union [ObservationClinicalResult: "Ipswich Test Abnormal Finding"]
+//     ) IpswichTest 
+//         where IpswichTest.value as Concept in "Ipswich Test Abnormal Finding"
+//             or IpswichTest.component.code in "Ipswich Test Abnormal Finding" //abnormal valueset contains normal codes
+
+define "Abnormal Temperature Discrimination Foot Test Finding":
+    [ObservationClinicalResult: "Temperature Discrimination Foot Test"] TemperatureTest
+        where TemperatureTest.value is not null
+            and (TemperatureTest.value as Concept in "Temperature Test Abnormal Finding"
+                or TemperatureTest.component.code in "Temperature Test Abnormal Finding")
+
+define "Abnormal Vascular Exam Finding of Lower Extremity":
+    ([ObservationClinicalResult: "Pedal Pulse Palpation Test"]) VascularExam
+        where VascularExam.value is not null
+            and (VascularExam.value as Concept in "Pedal Pulse Abnormal Finding"
+                or VascularExam.component.code in "Pedal Pulse Abnormal Finding")
+
+//Follow-Up Plan
 define "Has Follow-Up Plan of Care Within One Week of Eligible Encounter":
     exists ( 
         (([Procedure: "Offloading Interventions"] 
